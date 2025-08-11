@@ -69,6 +69,10 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
+    <!-- Dropzone CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 </head>
@@ -91,7 +95,7 @@
         </div>
     </nav>
 
-    <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
+    <nav id="sidebarMenu" class="sidebar d-lg-block text-white collapse" data-simplebar>
         @include('template.sidebar')
     </nav>
 
@@ -102,7 +106,7 @@
         </nav>
 
         <div class="d-flex align-items-center py-4">
-            <a href="/cek-alat" class="hover-back">
+            <a href="/inventaris-alat/cek-alat" class="hover-back">
                 <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -161,9 +165,9 @@
                             </div>
 
                             <div class="card-table border-0 shadow">
-                                <h4 class="fs-6 fw-bold p-3">Peralatan Konvensional</h4>
+                                <h4 class="fs-6 fw-bold text-white py-2">Peralatan Konvensional</h4>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                    <table class="table bg-white align-items-center table-flush">
                                         <colgroup>
                                             <col style="width: 3%;">
                                             <col style="width: 20%;">
@@ -174,7 +178,7 @@
                                             <col style="width: 11%;">
                                             <col style="width: 20%;">
                                         </colgroup>
-                                        <thead class="thead-light">
+                                        <thead class="thead-white">
                                             <tr>
                                                 <th class="border-bottom">No</th>
                                                 <th class="border-bottom">Nama Alat</th>
@@ -210,13 +214,27 @@
 
                                                 {{-- Kondisi --}}
                                                 <td>
-                                                    <select class="form-select" style="min-width: 130px"
-                                                        aria-label="Default select example">
-                                                        <option selected>Pilih Kondisi</option>
-                                                        <option value="Baik">Baik</option>
-                                                        <option value="Rusak Ringan">Rusak Ringan</option>
-                                                        <option value="Rusak Berat">Rusak Berat</option>
-                                                    </select>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="checkDefault">
+                                                        <label class="form-check-label" for="checkDefault">
+                                                            Baik
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="checkDefault">
+                                                        <label class="form-check-label" for="checkDefault">
+                                                            Rusak Ringan
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="checkDefault">
+                                                        <label class="form-check-label" for="checkDefault">
+                                                            Rusak Berat
+                                                        </label>
+                                                    </div>
                                                 </td>
 
                                                 {{-- Tahun Pemasangan --}}
@@ -406,359 +424,74 @@
                                                     {{-- Jangan diisi dulu --}}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    6.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Thermometer Max./ Min
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Scheneider
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2000
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    7.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Thermometer Max./ Min
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    F.Ketterer
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2011
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    8.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Barograph
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    J. Richard
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    1976
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    9.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Barometer Digital
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Vaisalla PTB 330
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2012
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    10.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Anemometer Digital
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    RM. Young
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    11.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Cup Counter Anemometer
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    DR. A.Muller/91 g
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2003
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    12.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Panci Penguapan
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Lokal
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    1978
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
 
-                            <div class="p-3">
-                                <!-- Tombol Tambah Catatan -->
-                                <div class="d-flex justify-content-end mb-3">
-                                    <button class="btn btn-sm btn-tertiary" data-bs-toggle="modal"
-                                        data-bs-target="#modalTambahCatatan">
-                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 5l0 14" />
-                                            <path d="M5 12l14 0" />
-                                        </svg>
-                                        Tambah Catatan
-                                    </button>
-                                </div>
+                                <div class="py-3">
 
-                                <!-- Modal Tambah Catatan -->
-                                <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
-                                    aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content border-0 shadow">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTambahCatatanLabel">Tambah Catatan
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Tutup"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form id="formTambahCatatan">
-                                                    <div class="mb-3">
-                                                        <label for="catatan" class="form-label">Catatan</label>
-                                                        <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-sm btn-danger"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" form="formTambahCatatan"
-                                                    class="btn btn-sm btn-success">Simpan</button>
+                                    <!-- Tombol Tambah Catatan -->
+                                    <div class="d-flex justify-content-end mb-3">
+                                        <button class="btn btn-sm btn-white" data-bs-toggle="modal"
+                                            data-bs-target="#modalTambahCatatan">
+                                            <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M12 5l0 14" />
+                                                <path d="M5 12l14 0" />
+                                            </svg>
+                                            Tambah Catatan
+                                        </button>
+                                    </div>
+
+                                    <!-- Modal Tambah Catatan -->
+                                    <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
+                                        aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content border-0 shadow">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTambahCatatanLabel">Tambah
+                                                        Catatan
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Tutup"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="formTambahCatatan">
+                                                        <div class="mb-3">
+                                                            <label for="catatan" class="form-label">Catatan</label>
+                                                            <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-danger"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" form="formTambahCatatan"
+                                                        class="btn btn-sm btn-success">Simpan</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="card-note border-0 shadow">
-                                    <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
+                                    <div class="card-note border-0 shadow">
+                                        <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
 
-                                    <!-- Daftar Catatan -->
-                                    <ul class="list-unstyled mb-0">
-                                        <li>Tambahkan catatan apabila dibutuhkan</li>
-                                        <li>Catatan kedua</li>
-                                    </ul>
+                                        <!-- Daftar Catatan -->
+                                        <ul class="list-unstyled mb-0">
+                                            <li>Tambahkan catatan apabila dibutuhkan</li>
+                                            <li>Catatan kedua</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="card-table border-0 shadow">
-                                <h4 class="fs-6 fw-bold p-3">AWS Digital</h4>
+                                <h4 class="fs-6 fw-bold text-white py-2">AWS Digital</h4>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                    <table class="table bg-white align-items-center table-flush">
                                         <colgroup>
                                             <col style="width: 1%;">
                                             <col style="width: 20%;">
@@ -769,7 +502,7 @@
                                             <col style="width: 10%;">
                                             <col style="width: 18%;">
                                         </colgroup>
-                                        <thead class="thead-light">
+                                        <thead class="thead-white">
                                             <tr>
                                                 <th class="border-bottom">No</th>
                                                 <th class="border-bottom">Nama Alat</th>
@@ -1001,369 +734,132 @@
                                                     {{-- Jangan diisi dulu --}}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    6.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Tipping Bucket
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Vaisala/RG13N2NN
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    7.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Water Level
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Thies Clima/6143210073
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    8.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Linghtning Detector
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    9.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Data Logger
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Campbel Scientific/CR3000
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    10.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    PC Server
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    11.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    PC Client
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    12.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    UPS
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            <div class="p-3">
-                                <!-- Tombol Tambah Catatan -->
-                                <div class="d-flex justify-content-end mb-3">
-                                    <button class="btn btn-sm btn-tertiary" data-bs-toggle="modal"
-                                        data-bs-target="#modalTambahCatatan">
-                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 5l0 14" />
-                                            <path d="M5 12l14 0" />
-                                        </svg>
-                                        Tambah Catatan
-                                    </button>
-                                </div>
 
-                                <!-- Modal Tambah Catatan -->
-                                <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
-                                    aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
+                                <div class="py-3">
+                                    <!-- Tombol Tambah Catatan -->
+                                    <div class="d-flex justify-content-end mb-3">
+                                        <button class="btn btn-sm btn-white" data-bs-toggle="modal"
+                                            data-bs-target="#modalTambahCatatan">
+                                            <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M12 5l0 14" />
+                                                <path d="M5 12l14 0" />
+                                            </svg>
+                                            Tambah Catatan
+                                        </button>
+                                    </div>
+
+                                    <!-- Modal Tambah Catatan -->
+                                    <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
+                                        aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content border-0 shadow">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTambahCatatanLabel">Tambah
+                                                        Catatan
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Tutup"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="formTambahCatatan">
+                                                        <div class="mb-3">
+                                                            <label for="catatan" class="form-label">Catatan</label>
+                                                            <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-danger"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" form="formTambahCatatan"
+                                                        class="btn btn-sm btn-success">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-note border-0 shadow">
+                                        <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
+
+                                        <!-- Daftar Catatan -->
+                                        <ul class="list-unstyled mb-0">
+                                            <li>Tambahkan catatan apabila dibutuhkan</li>
+                                            <li>Catatan kedua</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end flex-row mb-2">
+                                <button class="btn btn-sm btn-gray-100 me-2" data-bs-toggle="modal"
+                                    data-bs-target="#modalTambahFoto">
+                                    <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12 5l0 14" />
+                                        <path d="M5 12l14 0" />
+                                    </svg>
+                                    Tambah Foto
+                                </button>
+
+                                <!-- Modal Tambah Foto -->
+                                <div class="modal fade" id="modalTambahFoto" tabindex="-1"
+                                    aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content border-0 shadow">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTambahCatatanLabel">Tambah Catatan
+                                                <h5 class="modal-title" id="modalTambahFotoLabel">Tambah Foto
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Tutup"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form id="formTambahCatatan">
+                                                <form action="">
                                                     <div class="mb-3">
-                                                        <label for="catatan" class="form-label">Catatan</label>
-                                                        <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
+                                                        <label for="">Nama Alat</label>
+                                                        <input type="text" class="form-control" name=""
+                                                            placeholder="Masukkan nama alat...">
                                                     </div>
+                                                </form>
+
+                                                <label for="">Upload Foto</label>
+                                                <form action="/upload-foto" method="POST"
+                                                    enctype="multipart/form-data" class="dropzone"
+                                                    id="formTambahFoto">
+                                                    @csrf
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-sm btn-danger"
                                                     data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" form="formTambahCatatan"
+                                                <button type="submit" form="formTambahFoto"
                                                     class="btn btn-sm btn-success">Simpan</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card-note border-0 shadow">
-                                    <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
-
-                                    <!-- Daftar Catatan -->
-                                    <ul class="list-unstyled mb-0">
-                                        <li>Tambahkan catatan apabila dibutuhkan</li>
-                                        <li>Catatan kedua</li>
-                                    </ul>
-                                </div>
-
-                                <div class="d-flex justify-content-end py-3">
-                                    <button class="btn btn-primary">
-                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                            <path d="M14 4l0 4l-6 0l0 -4" />
-                                        </svg>
-                                        Simpan
-                                    </button>
-                                </div>
+                                <button class="btn btn-info">
+                                    <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                        <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                        <path d="M14 4l0 4l-6 0l0 -4" />
+                                    </svg>
+                                    Simpan
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -1449,6 +945,20 @@
         </footer>
     </main>
 
+    <script>
+        Dropzone.autoDiscover = false;
+
+        const dropzone = new Dropzone("#dropzoneArea", {
+            url: "/upload/foto",
+            paramName: "foto_alat",
+            maxFiles: 5,
+            maxFilesize: 2,
+            acceptedFiles: ".jpg,.jpeg,.png",
+            addRemoveLinks: true,
+            dictDefaultMessage: "Seret dan lepas foto di sini atau klik untuk memilih",
+        });
+    </script>
+
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -1489,6 +999,10 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
+
+    <!-- Dropzone JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-..."
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

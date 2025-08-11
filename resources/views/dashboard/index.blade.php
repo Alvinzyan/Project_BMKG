@@ -94,7 +94,7 @@
         </div>
     </nav>
 
-    <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
+    <nav id="sidebarMenu" class="sidebar d-lg-block text-white collapse" data-simplebar>
         @include('template.sidebar')    
     </nav>
 

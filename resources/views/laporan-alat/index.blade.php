@@ -101,200 +101,90 @@
             @include('template.navbar')
         </nav>
 
-        {{-- <div class="py-4">
-            <div class="dropdown">
-                <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    New Task
-                </button>
-                <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z">
-                            </path>
-                        </svg>
-                        Add User
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
-                            </path>
-                        </svg>
-                        Add Widget
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z">
-                            </path>
-                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path>
-                        </svg>
-                        Upload Files
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Preview Security
-                    </a>
-                    <div role="separator" class="dropdown-divider my-1"></div>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Upgrade to Pro
-                    </a>
-                </div>
-            </div>
-        </div> --}}
+        <div class="card-three border-0 shadow mt-4">
+            <div class="card-body">
+                <h2 class="fw-bolder fs-4">Filter Laporan Inventaris Alat</h2>
 
-        <div class="row mt-4">
-            <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="/inventaris-alat/cek-alat/kantor-bmkg" class="card-link">
-                    <div class="card-two border-0 shadow text-center hover-card">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                            <!-- Ikon -->
-                            <div
-                                class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-building">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M3 21l18 0" />
-                                    <path d="M9 8l1 0" />
-                                    <path d="M9 12l1 0" />
-                                    <path d="M9 16l1 0" />
-                                    <path d="M14 8l1 0" />
-                                    <path d="M14 12l1 0" />
-                                    <path d="M14 16l1 0" />
-                                    <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
-                                </svg>
-                            </div>
-                            <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Kantor Meteorologi Banyuwangi</h3>
+                <div class="row">
+                    <div class="col-5">
+                        <div class="d-flex align-items-end">
+                            <label for="" class="form-label me-2">Lokasi</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Semua lokasi</option>
+                                <option value="1">Kantor Meteorologi Banyuwangi</option>
+                                <option value="2">Pos Meteorologi Bandara Banyuwangi</option>
+                                <option value="3">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</option>
+                                <option value="4">Pos Meteorologi Bandara Notodinegoro Jember</option>
+                            </select>
                         </div>
                     </div>
-                </a>
-            </div>
 
-            <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="" class="card-link">
-                    <div class="card-two border-0 shadow text-center hover-card">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                            <!-- Ikon -->
-                            <div
-                                class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path
-                                        d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                    <path
-                                        d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                    <path d="M8 2v2" />
-                                    <path d="M6 12v9h4v-9" />
-                                    <path d="M3 21h18" />
-                                    <path d="M22 5h-6l-1 -1" />
-                                    <path d="M18 3l2 2l-2 2" />
-                                    <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                </svg>
-                            </div>
-                            <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Banyuwangi</h3>
+                    <div class="col-5">
+                        <div class="d-flex align-items-end">
+                            <label for="" class="form-label me-2">Periode</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Semua lokasi</option>
+                                <option value="1">Kantor Meteorologi Banyuwangi</option>
+                                <option value="2">Pos Meteorologi Bandara Banyuwangi</option>
+                                <option value="3">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</option>
+                                <option value="4">Pos Meteorologi Bandara Notodinegoro Jember</option>
+                            </select>
                         </div>
                     </div>
-                </a>
-            </div>
-
-            <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="" class="card-link">
-                    <div class="card-two border-0 shadow text-center hover-card">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <!-- Ikon -->
-                        <div
-                            class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-anchor">
+                    <div class="col-2">
+                        <button class="btn btn-sm btn-info"><svg class="icon icon-xs me-1"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2" />
-                                <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                            </svg>
-                        </div>
-                        <!-- Tulisan -->
-                        <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
+                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                <path
+                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                            </svg>Tampilkan</button>
                     </div>
                 </div>
-                </a>
-            </div>
-
-            <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="" class="card-link">
-                    <div class="card-two border-0 shadow text-center hover-card">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <!-- Ikon -->
-                        <div
-                            class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                <path
-                                    d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                <path d="M8 2v2" />
-                                <path d="M6 12v9h4v-9" />
-                                <path d="M3 21h18" />
-                                <path d="M22 5h-6l-1 -1" />
-                                <path d="M18 3l2 2l-2 2" />
-                                <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                            </svg>
-                        </div>
-                        <!-- Tulisan -->
-                        <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember</h3>
-                    </div>
-                </div>
-                </a>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-sm-12 col-xl-6 mb-4">
-                <div class="card-two border-0 shadow hover-card">
-                    <div class="card-body d-flex align-items-start">
-                        <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg"  width="35"  height="35"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" /><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" /><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" /></svg>
-                        <h2 class="fw-extrabold text-white fs-4">Preview Foto Lampiran</h2>
-                    </div>
-                </div>
-            </div>
+        <div class="card-three border-0 shadow mt-4">
+            <div class="card-body">
+                <h2 class="fw-bolder fs-4">Form Data Surat</h2>
 
-            <div class="col-12 col-sm-12 col-xl-6 mb-4">
-                <div class="card-two border-0 shadow hover-card">
-                    <div class="card-body d-flex align-items-start">
-                        <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg"  width="35"  height="35"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg>
-                        <h2 class="fw-extrabold text-white fs-4">Review Laporan Mingguan</h2>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="d-flex align-items-end">
+                            <label for="" class="form-label me-2">Tempat</label>
+                            <input type="text" class="form-control" name="">
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="d-flex align-items-end">
+                            <label for="" class="form-label me-2">Tanggal</label>
+                            <input type="date" class="form-control" name="">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="d-flex align-items-start">
+                            <label for="" class="form-label me-2">Nomor Surat</label>
+                            <input type="number" class="form-control" name=""
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type="number" id="inputNumber" maxlength="5">
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <button class="btn btn-sm btn-info"><svg class="icon icon-xs me-2"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M14 4l0 4l-6 0l0 -4" />
+                            </svg>Simpan</button>
                     </div>
                 </div>
             </div>
@@ -304,31 +194,41 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <div class="card-table-two border-0 shadow">
+                        <div class="card-table-two border-0 shadow mt-4">
                             <div class="card-header-two">
-                                <div class="row align-items-center">
-                                    <!-- Kolom kiri: ikon + judul -->
-                                    <div class="col d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                            <path
-                                                d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                            <path d="M9 12h6" />
-                                            <path d="M9 16h6" />
-                                        </svg>
-                                        <h2 class="fs-4 fw-bolder mb-0">Laporan Inventaris Mingguan</h2>
-                                    </div>
+                                <!-- Kolom kiri: ikon + judul -->
+                                <div class="col d-flex align-items-center">
+                                    <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                        <path
+                                            d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                        <path d="M9 12h6" />
+                                        <path d="M9 16h6" />
+                                    </svg>
+                                    <h2 class="fs-4 fw-bolder mb-0">Laporan Inventaris Alat BMKG</h2>
+                                </div>
 
-                                    <!-- Kolom kanan / bawah: periode -->
-                                    <div class="col-12 mt-1">
-                                        <small class="text-muted">
-                                            Periode Minggu Ke-1 | <span>Tanggal 1 - 5 Agustus 2025</span>
-                                        </small>
-                                    </div>
+                                <div class="col-4 border rounded mt-2 p-1">
+                                    <small class="text-muted">
+                                        Lokasi : Semua Lokasi
+                                    </small>
+                                </div>
+
+                                <div class="col-4 border rounded mt-2 p-1">
+                                    <small class="text-muted">
+                                        Periode : 1-5 Agustus 2025
+                                    </small>
+                                </div>
+
+                                <div class="col mt-3">
+                                    <button class="btn btn-sm btn-danger">
+                                        <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" /><path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" /><path d="M17 18h2" /><path d="M20 15h-3v6" /><path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>
+                                        Cetak Pdf
+                                    </button>
                                 </div>
                             </div>
 

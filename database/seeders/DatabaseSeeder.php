@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LokasiSeeder::class);
         $this->call(KategoriSeeder::class);
+        $this->call(AlatSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 

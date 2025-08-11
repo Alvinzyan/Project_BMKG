@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KantorBmkgController;
+use App\Http\Controllers\LaporanAlatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,11 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
-Route::get('/cek-alat', function () {
+Route::get('/inventaris-alat/cek-alat', function () {
     return view('inventaris-alat.index');
 });
 
+Route::get('inventaris-alat/cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
 
-Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
+
+Route::get('inventaris-alat/laporan-alat', [LaporanAlatController::class, 'index']);
