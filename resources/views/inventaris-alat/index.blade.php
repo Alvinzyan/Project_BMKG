@@ -195,7 +195,7 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="" class="card-link">
+                <a href="/cek-alat/pos-bandara-bwi" class="card-link">
                     <div class="card border-0 shadow text-center hover-card">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center">
                             <!-- Ikon -->
@@ -226,7 +226,7 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="" class="card-link">
+                <a href="/cek-alat/ketapang" class="card-link">
                     <div class="card border-0 shadow text-center hover-card">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <!-- Ikon -->
@@ -249,7 +249,7 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="" class="card-link">
+                <a href="/cek-alat/pos-bandara-jember" class="card-link">
                     <div class="card border-0 shadow text-center hover-card">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <!-- Ikon -->
