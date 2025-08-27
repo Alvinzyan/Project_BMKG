@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\KantorBmkgController;
-use App\Http\Controllers\LaporanAlatController;
+use App\Http\Controllers\PosBandaraBwiController;
+use App\Http\Controllers\PosBandaraJemberController;
+use App\Http\Controllers\KetapangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +25,8 @@ Route::get('/inventaris-alat/cek-alat', [KantorBmkgController::class, 'index'])-
 Route::get('inventaris-alat/cek-alat/kantor-bmkg/create', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
 Route::post('inventaris-alat/cek-alat/kantor-bmkg/store', [KantorBmkgController::class, 'store'])->name('kantor-bmkg.store');
 
-Route::get('inventaris-alat/laporan-alat', [LaporanAlatController::class, 'index']);
+
+Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
+Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
+Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
+Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ketapang.create');
