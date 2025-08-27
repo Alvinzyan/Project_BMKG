@@ -106,7 +106,7 @@
                 <h2 class="fw-bolder fs-4">Filter Laporan Inventaris Alat</h2>
 
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-12 col-sm-12 col-xl-5 mb-3">
                         <div class="d-flex align-items-end">
                             <label for="" class="form-label me-2">Lokasi</label>
                             <select class="form-select" aria-label="Default select example">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-12 col-sm-12 col-xl-5 mb-3">
                         <div class="d-flex align-items-end">
                             <label for="" class="form-label me-2">Periode</label>
                             <select class="form-select" aria-label="Default select example">
@@ -131,7 +131,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-12 col-sm-12 col-xl-2 mb-3">
                         <button class="btn btn-sm btn-info"><svg class="icon icon-xs me-1"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -151,30 +151,30 @@
                 <h2 class="fw-bolder fs-4">Form Data Surat</h2>
 
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-12 col-sm-12 col-xl-3 mb-3">
                         <div class="d-flex align-items-end">
                             <label for="" class="form-label me-2">Tempat</label>
                             <input type="text" class="form-control" name="">
                         </div>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-12 col-sm-12 col-xl-3 mb-3">
                         <div class="d-flex align-items-end">
                             <label for="" class="form-label me-2">Tanggal</label>
                             <input type="date" class="form-control" name="">
                         </div>
                     </div>
 
-                    <div class="col-4">
-                        <div class="d-flex align-items-start">
-                            <label for="" class="form-label me-2">Nomor Surat</label>
+                    <div class="col-12 col-sm-12 col-xl-4 mb-3">
+                        <div class="d-flex align-items-end">
+                            <label for="" class="form-label me-2 flex-shrink-0">Nomor Surat</label>
                             <input type="number" class="form-control" name=""
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 type="number" id="inputNumber" maxlength="5">
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-12 col-sm-12 col-xl-2 mb-3">
                         <button class="btn btn-sm btn-info"><svg class="icon icon-xs me-2"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -212,19 +212,19 @@
                                     <h2 class="fs-4 fw-bolder mb-0">Laporan Inventaris Alat BMKG</h2>
                                 </div>
 
-                                <div class="col-4 border rounded mt-2 p-1">
+                                <div class="col-12 col-md-8 col-xl-4 border rounded mt-2 p-1">
                                     <small class="text-muted">
                                         Lokasi : Semua Lokasi
                                     </small>
                                 </div>
 
-                                <div class="col-4 border rounded mt-2 p-1">
+                                <div class="col-12 col-md-8 col-xl-4 border rounded mt-2 p-1">
                                     <small class="text-muted">
                                         Periode : 1-5 Agustus 2025
                                     </small>
                                 </div>
 
-                                <div class="col mt-3">
+                                <div class="col col-12 col-md-8 col-xl-4 mt-3">
                                     <button class="btn btn-sm btn-danger">
                                         <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" /><path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" /><path d="M17 18h2" /><path d="M20 15h-3v6" /><path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>
                                         Cetak Pdf

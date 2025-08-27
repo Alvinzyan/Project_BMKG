@@ -12,8 +12,8 @@ class Lokasi extends Model
 
     protected $fillable = ['nama_lokasi'];
 
-    public function kategori():HasMany 
+    public function kategoris(): HasMany
     {
-        return $this->hasMany(Kategori::class);
+        return $this->hasMany(Kategori::class, 'lokasi_id');
     }
 }

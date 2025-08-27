@@ -23,7 +23,7 @@ class KategoriSeeder extends Seeder
         DB::table('kategoris')->insert([
             // Kantor Meteorologi Banyuwangi
             [
-                'nama_kategori' => 'Peralatan Konvensional Kantor Bwi',
+                'nama_kategori' => 'Peralatan Konvensional',
                 'id_lokasi' => $kantorMeteorologiBwi,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -37,7 +37,7 @@ class KategoriSeeder extends Seeder
 
             // Pos Meteorologi Bandara Banyuwangi
             [
-                'nama_kategori' => 'Peralatan Konvensional Bandara Bwi',
+                'nama_kategori' => 'Peralatan Konvensional',
                 'id_lokasi' => $posBandaraBwi,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -49,7 +49,7 @@ class KategoriSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nama_kategori' => 'Peralatan Pendukung Bandara Bwi',
+                'nama_kategori' => 'Peralatan Pendukung',
                 'id_lokasi' => $posBandaraBwi,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -63,7 +63,7 @@ class KategoriSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nama_kategori' => 'Peralatan Pendukung Pelabuhan Ktpg Bwi',
+                'nama_kategori' => 'Peralatan Pendukung',
                 'id_lokasi' => $posPelabuhanKetapangBwi,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -83,7 +83,7 @@ class KategoriSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nama_kategori' => 'Peralatan Pendukung Bandara Jember',
+                'nama_kategori' => 'Peralatan Pendukung',
                 'id_lokasi' => $posBandaraJember,
                 'created_at' => now(),
                 'updated_at' => now(),

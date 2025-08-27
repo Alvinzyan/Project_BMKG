@@ -11,16 +11,10 @@ class Alat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_alat', 'id_kategori', 'merk_tipe', 'jumlah', 'tahun_pemasangan'];
+    protected $fillable = ['nama_alat', 'id_kategori', 'merk_tipe', 'jumlah', 'tahun_pemasangan', 'keterangan'];
 
-
-    public function alat():BelongsTo
+    public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'id_kategori');
-    }
-
-    public function cekAlat():BelongsTo
-    {
-        return $this->belongsTo(Pengecekan::class, 'id_alat');
     }
 }

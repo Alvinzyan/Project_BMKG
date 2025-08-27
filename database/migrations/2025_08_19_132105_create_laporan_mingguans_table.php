@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengecekans', function (Blueprint $table) {
+        Schema::create('laporan_mingguans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_lokasi');
+            $table->foreign('id_lokasi')->references('id')->on('lokasis');
+            $table->date('periode_awal');
+            $table->date('periode_akhir');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_alat');
-            $table->foreign('id_alat')->references('id')->on('alats');
-            $table->enum('kondisi', ['baik', 'rusak ringan', 'rusak berat']);
-            $table->enum('keterangan', ['terpasang', 'tidak terpasang']);
-            $table->integer('kalibrasi_terakhir');
             $table->date('tanggal_dibuat');
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengecekans');
+        Schema::dropIfExists('laporan_mingguans');
     }
 };

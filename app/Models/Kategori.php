@@ -13,13 +13,13 @@ class Kategori extends Model
 
     protected $fillable = ['nama_kategori', 'id_lokasi'];
 
-    public function lokasi():BelongsTo
+    public function lokasi()
     {
-        return $this->belongsTo(Lokasi::class, 'id_kategori');
+        return $this->belongsTo(Lokasi::class, 'id_lokasi');
     }
 
-    public function alat():HasMany
+    public function alats(): HasMany
     {
-        return $this->hasMany(Alat::class);
+        return $this->hasMany(Alat::class, 'id_kategori');
     }
 }

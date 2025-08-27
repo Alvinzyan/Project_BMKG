@@ -137,731 +137,274 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <div class="card border-0 shadow">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col d-flex justify-content-center">
-                                        <h2 class="fs-4 fw-bolder mb-3">Inventaris Alat BMKG</h2>
-                                    </div>
-
-                                    <div class="card-info border-0 shadow py-2 mb-3">
-                                        <div class="col-12">
-                                            <small class="fs-6 fw-bold text-black">
-                                                Nama Penanggung Jawab :
-                                            </small>
-                                            <small class="fs-6 fw-medium text-gray-900">Cindil</small>
+                        <form action="{{ route('kantor-bmkg.store') }}" method="POST">
+                            @csrf
+                            <div class="card border-0 shadow">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col d-flex justify-content-center">
+                                            <h2 class="fs-4 fw-bolder mb-3">Inventaris Alat BMKG</h2>
                                         </div>
-                                    </div>
 
-                                    <div class="card-info border-0 shadow py-2">
-                                        <div class="col-12 d-flex align-items-center gap-2">
-                                            <small class="fs-6 fw-bold text-black">
-                                                Tanggal Pengecekan : </small>
-                                            <input type="date" class="form-control" name="" id=""
-                                                style="max-width: 150px">
+                                        <div class="card-info border-0 shadow py-2 mb-3">
+                                            <div class="col-12">
+                                                <small class="fs-6 fw-bold text-black">
+                                                    Nama Penanggung Jawab :
+                                                </small>
+                                                <small class="fs-6 fw-medium text-gray-900">Cindil</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-info border-0 shadow py-2">
+                                            <div class="col-12 d-flex align-items-center gap-2">
+                                                <small class="fs-6 fw-bold text-black">
+                                                    Tanggal Pengecekan : </small>
+                                                <input type="date" class="form-control" name=""
+                                                    id="" style="max-width: 150px">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="card-table border-0 shadow">
-                                <h4 class="fs-6 fw-bold text-white py-2">Peralatan Konvensional</h4>
-                                <div class="table-responsive">
-                                    <table class="table bg-white align-items-center table-flush">
-                                        <colgroup>
-                                            <col style="width: 3%;">
-                                            <col style="width: 20%;">
-                                            <col style="width: 15%;">
-                                            <col style="width: 3%;">
-                                            <col style="width: 25%;">
-                                            <col style="width: 3%;">
-                                            <col style="width: 11%;">
-                                            <col style="width: 20%;">
-                                        </colgroup>
-                                        <thead class="thead-white">
-                                            <tr>
-                                                <th class="border-bottom">No</th>
-                                                <th class="border-bottom">Nama Alat</th>
-                                                <th class="border-bottom">Merek/Type</th>
-                                                <th class="border-bottom">Jml</th>
-                                                <th class="border-bottom">Kondisi</th>
-                                                <th class="border-bottom">Tahun <br> Pemasangan</th>
-                                                <th class="border-bottom">Kalibrasi Terakhir</th>
-                                                <th class="border-bottom">Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                {{-- No --}}
-                                                <td class="text-gray-900" scope="row">
-                                                    1.
-                                                </td>
+                                <div class="card-table border-0 shadow">
+                                    @foreach ($kategoris as $kategori)
+                                        <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
+                                        <div class="table-responsive">
+                                            <table class="table bg-white align-items-center table-flush">
+                                                <colgroup>
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 15%;">
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 25%;">
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 11%;">
+                                                    <col style="width: 20%;">
+                                                </colgroup>
+                                                <thead class="thead-white">
+                                                    <tr>
+                                                        <th class="border-bottom">No</th>
+                                                        <th class="border-bottom">Nama Alat</th>
+                                                        <th class="border-bottom">Merek/Type</th>
+                                                        <th class="border-bottom">Jml</th>
+                                                        <th class="border-bottom">Kondisi</th>
+                                                        <th class="border-bottom">Tahun <br> Pemasangan</th>
+                                                        <th class="border-bottom">Kalibrasi Terakhir</th>
+                                                        <th class="border-bottom">Keterangan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($kategori->alats as $item)
+                                                        <tr>
+                                                            {{-- No --}}
+                                                            <td class="text-gray-900" scope="row">
+                                                                {{ $loop->iteration }}
+                                                            </td>
 
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Sangkar Metereologi
-                                                </td>
+                                                            {{-- Nama Alat --}}
+                                                            <td class="fw-bolder text-gray-500">
+                                                                {{ $item->nama_alat }}
+                                                            </td>
 
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Kayu Lokal
-                                                </td>
+                                                            {{-- Merek/Type --}}
+                                                            <td class="fw-bolder text-gray-500">
+                                                                {{ $item->merk_tipe }}
+                                                            </td>
 
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
+                                                            {{-- Jumlah --}}
+                                                            <td class="fw-bolder text-gray-500">
+                                                                {{ $item->jumlah }}
+                                                            </td>
 
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            value="" id="checkDefault">
-                                                        <label class="form-check-label" for="checkDefault">
-                                                            Baik
-                                                        </label>
+                                                            {{-- Kondisi --}}
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        value="baik"
+                                                                        name="kondisi[{{ $item->id }}]"
+                                                                        id="checkDefault">
+                                                                    <label class="form-check-label"
+                                                                        for="checkDefault">
+                                                                        Baik
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        value="rusak ringan"
+                                                                        name="kondisi[{{ $item->id }}]"
+                                                                        id="checkDefault">
+                                                                    <label class="form-check-label"
+                                                                        for="checkDefault">
+                                                                        Rusak Ringan
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        value="rusak berat"
+                                                                        name="kondisi[{{ $item->id }}]"
+                                                                        id="checkDefault">
+                                                                    <label class="form-check-label"
+                                                                        for="checkDefault">
+                                                                        Rusak Berat
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+
+                                                            {{-- Tahun Pemasangan --}}
+                                                            <td>
+
+                                                            </td>
+
+                                                            {{-- Kalibrasi Terakhir --}}
+                                                            <td>
+                                                                <input type="number"
+                                                                    name="kalibrasi_terakhir[{{ $item->id }}]"
+                                                                    class="form-control" min="2000"
+                                                                    max="2099"
+                                                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                    type="number" id="inputNumber" maxlength="4">
+                                                            </td>
+
+                                                            {{-- Keterangan --}}
+                                                            <td>
+
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="py-3">
+                                            <!-- Tombol Tambah Catatan -->
+                                            <div class="d-flex justify-content-end mb-3">
+                                                <button type="button" class="btn btn-sm btn-white" data-bs-toggle="modal"
+                                                    data-bs-target="#modalTambahCatatan">
+                                                    <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M12 5l0 14" />
+                                                        <path d="M5 12l14 0" />
+                                                    </svg>
+                                                    Tambah Catatan
+                                                </button>
+                                            </div>
+
+                                            <!-- Modal Tambah Catatan -->
+                                            <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
+                                                aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content border-0 shadow">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modalTambahCatatanLabel">
+                                                                Tambah
+                                                                Catatan
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form id="formTambahCatatan">
+                                                                <div class="mb-3">
+                                                                    <label for="catatan"
+                                                                        class="form-label">Catatan</label>
+                                                                    <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-sm btn-danger"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" form="formTambahCatatan"
+                                                                class="btn btn-sm btn-success">Simpan</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            value="" id="checkDefault">
-                                                        <label class="form-check-label" for="checkDefault">
-                                                            Rusak Ringan
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            value="" id="checkDefault">
-                                                        <label class="form-check-label" for="checkDefault">
-                                                            Rusak Berat
-                                                        </label>
-                                                    </div>
-                                                </td>
+                                                </div>
+                                            </div>
 
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2004
-                                                </td>
+                                            <div class="card-note border-0 shadow">
+                                                <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
 
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    <input type="number" name="" class="form-control"
-                                                        min="2000" max="2099"
-                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                        type="number" id="inputNumber" maxlength="4">
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    <select class="form-select" style="min-width: 160px"
-                                                        aria-label="Default select example">
-                                                        <option selected>Pilih Keterangan</option>
-                                                        <option value="Terpasang">Terpasang</option>
-                                                        <option value="Tidak Terpasang">Tidak Terpasang</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    2.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Thermometer BB/ BK
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Scheneider
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    2
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2000
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    3.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Thermometer BB/ BK
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    F.Ketterer
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    2
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2011
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    4.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Thermometer Max./ Min
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Scheneider
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    1968
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    5.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Thermometer Max./ Min
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Scheneider
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    1994
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                <!-- Daftar Catatan -->
+                                                <ul class="list-unstyled mb-0">
+                                                    <li>Tambahkan catatan apabila dibutuhkan</li>
+                                                    <li>Catatan kedua</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                 </div>
 
-                                <div class="py-3">
+                                <div class="d-flex justify-content-end flex-row mb-2">
+                                    <button type="button" class="btn btn-sm btn-gray-100 me-2" data-bs-toggle="modal"
+                                        data-bs-target="#modalTambahFoto">
+                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M12 5l0 14" />
+                                            <path d="M5 12l14 0" />
+                                        </svg>
+                                        Tambah Foto
+                                    </button>
 
-                                    <!-- Tombol Tambah Catatan -->
-                                    <div class="d-flex justify-content-end mb-3">
-                                        <button class="btn btn-sm btn-white" data-bs-toggle="modal"
-                                            data-bs-target="#modalTambahCatatan">
-                                            <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M12 5l0 14" />
-                                                <path d="M5 12l14 0" />
-                                            </svg>
-                                            Tambah Catatan
-                                        </button>
-                                    </div>
-
-                                    <!-- Modal Tambah Catatan -->
-                                    <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
-                                        aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
+                                    <!-- Modal Tambah Foto -->
+                                    <div class="modal fade" id="modalTambahFoto" tabindex="-1"
+                                        aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content border-0 shadow">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTambahCatatanLabel">Tambah
-                                                        Catatan
+                                                    <h5 class="modal-title" id="modalTambahFotoLabel">Tambah Foto
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Tutup"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form id="formTambahCatatan">
+                                                    <form action="">
                                                         <div class="mb-3">
-                                                            <label for="catatan" class="form-label">Catatan</label>
-                                                            <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
+                                                            <label for="">Nama Alat</label>
+                                                            <input type="text" class="form-control" name=""
+                                                                placeholder="Masukkan nama alat...">
                                                         </div>
+                                                    </form>
+
+                                                    <label for="">Upload Foto</label>
+                                                    <form action="/upload-foto" method="POST"
+                                                        enctype="multipart/form-data" class="dropzone"
+                                                        id="formTambahFoto">
+                                                        @csrf
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-sm btn-danger"
                                                         data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" form="formTambahCatatan"
+                                                    <button type="submit" form="formTambahFoto"
                                                         class="btn btn-sm btn-success">Simpan</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="card-note border-0 shadow">
-                                        <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
-
-                                        <!-- Daftar Catatan -->
-                                        <ul class="list-unstyled mb-0">
-                                            <li>Tambahkan catatan apabila dibutuhkan</li>
-                                            <li>Catatan kedua</li>
-                                        </ul>
-                                    </div>
+                                    <button class="btn btn-info">
+                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                            <path d="M14 4l0 4l-6 0l0 -4" />
+                                        </svg>
+                                        Simpan
+                                    </button>
                                 </div>
                             </div>
-
-                            <div class="card-table border-0 shadow">
-                                <h4 class="fs-6 fw-bold text-white py-2">AWS Digital</h4>
-                                <div class="table-responsive">
-                                    <table class="table bg-white align-items-center table-flush">
-                                        <colgroup>
-                                            <col style="width: 1%;">
-                                            <col style="width: 20%;">
-                                            <col style="width: 15%;">
-                                            <col style="width: 3%;">
-                                            <col style="width: 30%;">
-                                            <col style="width: 3%;">
-                                            <col style="width: 10%;">
-                                            <col style="width: 18%;">
-                                        </colgroup>
-                                        <thead class="thead-white">
-                                            <tr>
-                                                <th class="border-bottom">No</th>
-                                                <th class="border-bottom">Nama Alat</th>
-                                                <th class="border-bottom">Merek/Type</th>
-                                                <th class="border-bottom">Jml</th>
-                                                <th class="border-bottom">Kondisi</th>
-                                                <th class="border-bottom">Tahun <br> Pemasangan</th>
-                                                <th class="border-bottom">Kalibrasi Terakhir</th>
-                                                <th class="border-bottom">Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                {{-- No --}}
-                                                <td class="text-gray-900" scope="row">
-                                                    1.
-                                                </td>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Temperature&Humidity Sensor
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Vaisala/HMP155
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    <select class="form-select" style="min-width: 130px"
-                                                        aria-label="Default select example">
-                                                        <option selected>Pilih Kondisi</option>
-                                                        <option value="Baik">Baik</option>
-                                                        <option value="Rusak Ringan">Rusak Ringan</option>
-                                                        <option value="Rusak Berat">Rusak Berat</option>
-                                                    </select>
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    <input type="number" name="" class="form-control"
-                                                        min="2000" max="2099"
-                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                        type="number" id="inputNumber" maxlength="4">
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    <select class="form-select" style="min-width: 160px"
-                                                        aria-label="Default select example">
-                                                        <option selected>Pilih Keterangan</option>
-                                                        <option value="Terpasang">Terpasang</option>
-                                                        <option value="Tidak Terpasang">Tidak Terpasang</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    2.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Barometer Sensor
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Vaisala/PTB330
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    2
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    3.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Water Thermometer
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Vaisala/QMT110
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    2
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    4.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Wind Speed Evaporation
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Vaisala/WAA151
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                {{-- No --}}
-                                                <th class="text-gray-900" scope="row">
-                                                    5.
-                                                </th>
-
-                                                {{-- Nama Alat --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Ultrasonic Sensor
-                                                </td>
-
-                                                {{-- Merek/Type --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    Vaisala/WMT703
-                                                </td>
-
-                                                {{-- Jumlah --}}
-                                                <td class="fw-bolder text-gray-500">
-                                                    1
-                                                </td>
-
-                                                {{-- Kondisi --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Tahun Pemasangan --}}
-                                                <td>
-                                                    2018
-                                                </td>
-
-                                                {{-- Kalibrasi Terakhir --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-
-                                                {{-- Keterangan --}}
-                                                <td>
-                                                    {{-- Jangan diisi dulu --}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="py-3">
-                                    <!-- Tombol Tambah Catatan -->
-                                    <div class="d-flex justify-content-end mb-3">
-                                        <button class="btn btn-sm btn-white" data-bs-toggle="modal"
-                                            data-bs-target="#modalTambahCatatan">
-                                            <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M12 5l0 14" />
-                                                <path d="M5 12l14 0" />
-                                            </svg>
-                                            Tambah Catatan
-                                        </button>
-                                    </div>
-
-                                    <!-- Modal Tambah Catatan -->
-                                    <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
-                                        aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content border-0 shadow">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTambahCatatanLabel">Tambah
-                                                        Catatan
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Tutup"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form id="formTambahCatatan">
-                                                        <div class="mb-3">
-                                                            <label for="catatan" class="form-label">Catatan</label>
-                                                            <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-sm btn-danger"
-                                                        data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" form="formTambahCatatan"
-                                                        class="btn btn-sm btn-success">Simpan</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-note border-0 shadow">
-                                        <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
-
-                                        <!-- Daftar Catatan -->
-                                        <ul class="list-unstyled mb-0">
-                                            <li>Tambahkan catatan apabila dibutuhkan</li>
-                                            <li>Catatan kedua</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end flex-row mb-2">
-                                <button class="btn btn-sm btn-gray-100 me-2" data-bs-toggle="modal"
-                                    data-bs-target="#modalTambahFoto">
-                                    <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M12 5l0 14" />
-                                        <path d="M5 12l14 0" />
-                                    </svg>
-                                    Tambah Foto
-                                </button>
-
-                                <!-- Modal Tambah Foto -->
-                                <div class="modal fade" id="modalTambahFoto" tabindex="-1"
-                                    aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content border-0 shadow">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTambahFotoLabel">Tambah Foto
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Tutup"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="">
-                                                    <div class="mb-3">
-                                                        <label for="">Nama Alat</label>
-                                                        <input type="text" class="form-control" name=""
-                                                            placeholder="Masukkan nama alat...">
-                                                    </div>
-                                                </form>
-
-                                                <label for="">Upload Foto</label>
-                                                <form action="/upload-foto" method="POST"
-                                                    enctype="multipart/form-data" class="dropzone"
-                                                    id="formTambahFoto">
-                                                    @csrf
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-sm btn-danger"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" form="formTambahFoto"
-                                                    class="btn btn-sm btn-success">Simpan</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-info">
-                                    <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path
-                                            d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                                        <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                        <path d="M14 4l0 4l-6 0l0 -4" />
-                                    </svg>
-                                    Simpan
-                                </button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
