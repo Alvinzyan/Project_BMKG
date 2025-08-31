@@ -34,3 +34,19 @@ Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ke
 Route::get('/data-alat', function () {
     return view('data-alat.index');
 });
+
+Route::get('/data-alat/kantor-bmkg', function () {
+    return view('data-alat.tempat-alat.kantorbmkg');
+})->name('data-alat.tempat-alat.kantorbmkg');
+
+Route::get('/data-alat/pos-bandara-bwi', function () {
+    return view('data-alat.tempat-alat.posbandarabwi');
+})->name('data-alat.tempat-alat.posbandarabwi');
+
+Route::get('/data-alat/pos-bandara-jember', function () {
+    return view('data-alat.tempat-alat.posbandarajember');
+})->name('data-alat.tempat-alat.posbandarajember');
+
+Route::get('/data-alat/ketapang', function () {
+    return view('data-alat.tempat-alat.ketapang');
+})->name('data-alat.tempat-alat.ketapang');
