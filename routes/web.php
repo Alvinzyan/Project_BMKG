@@ -4,6 +4,7 @@ use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
 use App\Http\Controllers\PosBandaraJemberController;
 use App\Http\Controllers\KetapangController;
+use App\Http\Controllers\DataAlatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,5 @@ Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'
 Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ketapang.create');
 
-Route::get('/data-alat', function () {
-    return view('data-alat.index');
-});
+Route::get('/data-alat', [DataAlatController::class, 'index'])->name('data-alat.index');
+Route::get('/tambah-data-alat', [DataAlatController::class, 'create'])->name('tambah-data-alat.create');
