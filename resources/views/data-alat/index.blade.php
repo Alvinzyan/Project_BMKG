@@ -192,17 +192,16 @@
                     <div class="card-header fw-bold">
                     Jumlah Alat Meteorologi
                     </div>
-                    {{-- <div class="card-body">
-                    <canvas id="alatChart" height="120"></canvas>
+                    <div class="card-body">
+                    <canvas id="alatChart" style="width:100%; height:400px;"></canvas>
                     </div>
-                    </div> --}}
                 </div>
             </div>
             
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <div class="row g-3">
                     <div class="col-12">
-                        <a href="">
+                        <a href="/data-alat/kantor-bmkg">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -225,7 +224,7 @@
 
                                     <!-- TEXT -->
                                     <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Pos Meteorologi Bandara Banyuwangi</h3>
+                                        <h3 class="fw-extrabold text-white fs-4">Kantor BMKG</h3>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +232,7 @@
                     </div>
 
                     <div class="col-12">
-                        <a href="">
+                        <a href="/data-alat/pos-bandara-bwi">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -266,7 +265,7 @@
                     </div>
 
                     <div class="col-12">
-                        <a href="">
+                        <a href="/data-alat/ketapang">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -291,7 +290,7 @@
                     </div>
 
                     <div class="col-12">
-                        <a href="">
+                        <a href="/data-alat/pos-bandara-jember">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -445,6 +444,31 @@
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
 
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Script Chart -->
+    <script>
+        const ctx = document.getElementById('alatChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Kantor', 'Bandara BW', 'Ketapang', 'Bandara JMB'], 
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [450, 516, 450, 516],
+                    backgroundColor: '#1d72b8'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
