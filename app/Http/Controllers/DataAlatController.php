@@ -10,4 +10,8 @@ class DataAlatController extends Controller
     {
         return view('data-alat.index');
     }
+
+    public function create() {
+        return view('tambah-data-alat.index');
+    }
 }
