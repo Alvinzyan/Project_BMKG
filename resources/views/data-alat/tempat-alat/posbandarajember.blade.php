@@ -182,26 +182,14 @@
                 </div>
 
                 <!-- Judul -->
-                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Data Alat</h2>
+                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Peralatan di Pos Meteorologi Bandara Notohadinegoro Jember</h2>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-sm-12 col-xl-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-header fw-bold">
-                    Jumlah Alat Meteorologi
-                    </div>
-                    <div class="card-body">
-                    <canvas id="alatChart" style="width:100%; height:400px;"></canvas>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-12 col-sm-12 col-xl-6 mb-4">
-                <div class="row g-3">
-                    <div class="col-12">
-                        <a href="/data-alat/kantor-bmkg">
+        <div class="row">  
+                <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
+                    <div class="col-6">
+                        <a href="">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -224,15 +212,15 @@
 
                                     <!-- TEXT -->
                                     <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Kantor BMKG</h3>
+                                        <h3 class="fw-extrabold text-white fs-4">AWOS Kategori 1 ALL WEATHER</h3>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-12">
-                        <a href="/data-alat/pos-bandara-bwi">
+                    <div class="col-6">
+                        <a href="">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -257,40 +245,14 @@
 
                                     <!-- TEXT -->
                                     <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Pos Meteorologi Bandara Banyuwangi</h3>
+                                        <h3 class="fw-extrabold text-white fs-4">RAMI</h3>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                    <div class="col-12">
-                        <a href="/data-alat/ketapang">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-anchor">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2" />
-                                            <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-12">
-                        <a href="/data-alat/pos-bandara-jember">
+                    <div class="col-6">
+                        <a href="">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -315,14 +277,45 @@
 
                                     <!-- TEXT -->
                                     <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Pos Meteorologi Bandara Notodinegoro Jember</h3>
+                                        <h3 class="fw-extrabold text-white fs-4">Peralatan Pendukung</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="">
+                            <div class="card-two border-0 shadow hover-card">
+                                <div class="card-body d-flex align-items-center">
+                                    <!-- ICON -->
+                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
+                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
+                                            <path
+                                                d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
+                                            <path d="M8 2v2" />
+                                            <path d="M6 12v9h4v-9" />
+                                            <path d="M3 21h18" />
+                                            <path d="M22 5h-6l-1 -1" />
+                                            <path d="M18 3l2 2l-2 2" />
+                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
+                                        </svg>
+                                    </div>
+
+                                    <!-- TEXT -->
+                                    <div>
+                                        <h3 class="fw-extrabold text-white fs-4">Semua Kategori</h3>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
-            </div>
         </div>        
 
         <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
@@ -444,31 +437,7 @@
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
 
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Script Chart -->
-    <script>
-        const ctx = document.getElementById('alatChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Kantor', 'Bandara BW', 'Ketapang', 'Bandara JMB'], 
-                datasets: [{
-                    label: 'Jumlah',
-                    data: [450, 516, 450, 516],
-                    backgroundColor: '#1d72b8'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-    </script>
+    
 </body>
 
 </html>

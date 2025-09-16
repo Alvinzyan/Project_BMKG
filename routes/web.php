@@ -31,6 +31,3 @@ Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->nam
 Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
 Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ketapang.create');
-
-Route::get('/data-alat', [DataAlatController::class, 'index'])->name('data-alat.index');
-Route::get('/tambah-data-alat', [DataAlatController::class, 'create'])->name('tambah-data-alat.create');
