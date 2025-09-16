@@ -50,3 +50,11 @@ Route::get('/data-alat/pos-bandara-jember', function () {
 Route::get('/data-alat/ketapang', function () {
     return view('data-alat.tempat-alat.ketapang');
 })->name('data-alat.tempat-alat.ketapang');
+
+Route::get('/tambah-data-alat/index', function () {
+    return view('data-alat.tambah-data-alat.index');
+});
+
+Route::get('/inventaris-alat/laporan-alat', function () {
+    return view('laporan-alat.index');
+});
