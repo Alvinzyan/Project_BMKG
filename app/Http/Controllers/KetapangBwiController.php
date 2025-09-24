@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KetapangController extends Controller
+class KetapangBwiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class KetapangController extends Controller
      */
     public function create()
     {
-        return view ('ketapang.create');
+        return view ('ketapang-bwi.create');
     }
 
     /**

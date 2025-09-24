@@ -106,7 +106,7 @@
         </nav>
 
         <div class="d-flex align-items-center py-4">
-            <a href="/inventaris-alat/cek-alat" class="hover-back">
+            <a href="{{ route('kantor-bmkg.index') }}" class="hover-back">
                 <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -151,23 +151,14 @@
                                                 <small class="fs-6 fw-bold text-black">
                                                     Nama Penanggung Jawab :
                                                 </small>
-                                                <small class="fs-6 fw-medium text-gray-900">Cindil</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-info border-0 shadow py-2">
-                                            <div class="col-12 d-flex align-items-center gap-2">
-                                                <small class="fs-6 fw-bold text-black">
-                                                    Tanggal Pengecekan : </small>
-                                                <input type="date" class="form-control" name=""
-                                                    id="" style="max-width: 150px">
+                                                <small class="fs-6 fw-medium text-gray-900">{{ $user->nama_lengkap }}</small>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card-table border-0 shadow">
-                                    @foreach ($kategoris as $kategori)
+                                @foreach ($kategoris as $kategori)
+                                    <div class="card-table border-0 shadow">
                                         <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
                                         <div class="table-responsive">
                                             <table class="table bg-white align-items-center table-flush">
@@ -193,153 +184,72 @@
                                                         <th class="border-bottom">Keterangan</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    @foreach ($kategori->alats as $item)
+
+                                                @foreach ($kategori->alats as $alat)
+                                                    <tbody>
                                                         <tr>
                                                             {{-- No --}}
-                                                            <td class="text-gray-900" scope="row">
-                                                                {{ $loop->iteration }}
-                                                            </td>
+                                                            <td class="text-gray-900">{{ $loop->iteration }}</td>
 
                                                             {{-- Nama Alat --}}
-                                                            <td class="fw-bolder text-gray-500">
-                                                                {{ $item->nama_alat }}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
                                                             </td>
 
                                                             {{-- Merek/Type --}}
-                                                            <td class="fw-bolder text-gray-500">
-                                                                {{ $item->merk_tipe }}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
                                                             </td>
 
                                                             {{-- Jumlah --}}
-                                                            <td class="fw-bolder text-gray-500">
-                                                                {{ $item->jumlah }}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
                                                             </td>
 
-                                                            {{-- Kondisi --}}
+                                                            {{-- Kondisi (input) --}}
                                                             <td>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="baik"
-                                                                        name="kondisi[{{ $item->id }}]"
-                                                                        id="checkDefault">
-                                                                    <label class="form-check-label"
-                                                                        for="checkDefault">
-                                                                        Baik
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="rusak ringan"
-                                                                        name="kondisi[{{ $item->id }}]"
-                                                                        id="checkDefault">
-                                                                    <label class="form-check-label"
-                                                                        for="checkDefault">
-                                                                        Rusak Ringan
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="rusak berat"
-                                                                        name="kondisi[{{ $item->id }}]"
-                                                                        id="checkDefault">
-                                                                    <label class="form-check-label"
-                                                                        for="checkDefault">
-                                                                        Rusak Berat
-                                                                    </label>
-                                                                </div>
+                                                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="kondisi[{{ $alat->id }}]"
+                                                                            value="{{ $kondisi }}">
+                                                                        <label
+                                                                            class="form-check-label">{{ ucfirst($kondisi) }}</label>
+                                                                    </div>
+                                                                @endforeach
                                                             </td>
 
                                                             {{-- Tahun Pemasangan --}}
-                                                            <td>
+                                                            <td>{{ $alat->tahun_pemasangan }}</td>
 
-                                                            </td>
-
-                                                            {{-- Kalibrasi Terakhir --}}
+                                                            {{-- Kalibrasi Terakhir (input number tahun) --}}
                                                             <td>
-                                                                <input type="number"
-                                                                    name="kalibrasi_terakhir[{{ $item->id }}]"
+                                                                <input type="number" name="kalibrasi[{{ $alat->id }}]"
                                                                     class="form-control" min="2000"
-                                                                    max="2099"
-                                                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                    type="number" id="inputNumber" maxlength="4">
+                                                                    max="2099" maxlength="4"
+                                                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                                             </td>
 
                                                             {{-- Keterangan --}}
                                                             <td>
-
+                                                                <input type="text" name=""
+                                                                    class="form-control" placeholder="Opsional...">
                                                             </td>
                                                         </tr>
-                                                    @endforeach
-                                                </tbody>
+                                                    </tbody>
+                                                @endforeach
                                             </table>
                                         </div>
 
-                                        <div class="py-3">
-                                            <!-- Tombol Tambah Catatan -->
-                                            <div class="d-flex justify-content-end mb-3">
-                                                <button type="button" class="btn btn-sm btn-white" data-bs-toggle="modal"
-                                                    data-bs-target="#modalTambahCatatan">
-                                                    <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M12 5l0 14" />
-                                                        <path d="M5 12l14 0" />
-                                                    </svg>
-                                                    Tambah Catatan
-                                                </button>
-                                            </div>
-
-                                            <!-- Modal Tambah Catatan -->
-                                            <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
-                                                aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content border-0 shadow">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="modalTambahCatatanLabel">
-                                                                Tambah
-                                                                Catatan
-                                                            </h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form id="formTambahCatatan">
-                                                                <div class="mb-3">
-                                                                    <label for="catatan"
-                                                                        class="form-label">Catatan</label>
-                                                                    <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-sm btn-danger"
-                                                                data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" form="formTambahCatatan"
-                                                                class="btn btn-sm btn-success">Simpan</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-note border-0 shadow">
-                                                <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
-
-                                                <!-- Daftar Catatan -->
-                                                <ul class="list-unstyled mb-0">
-                                                    <li>Tambahkan catatan apabila dibutuhkan</li>
-                                                    <li>Catatan kedua</li>
-                                                </ul>
-                                            </div>
+                                        <div class="d-flex align-items-start mt-3">
+                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
+                                            <!-- isi Catatan -->
+                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control" style="max-width: 50%"
+                                                placeholder="Tambahkan catatan bila diperlukan..."></textarea>
                                         </div>
-                                        @endforeach
-                                </div>
+                                    </div>
+                                @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">
-                                    <button type="button" class="btn btn-sm btn-gray-100 me-2" data-bs-toggle="modal"
-                                        data-bs-target="#modalTambahFoto">
+                                    <button type="button" class="btn btn-sm btn-gray-100 me-2"
+                                        data-bs-toggle="modal" data-bs-target="#modalTambahFoto">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -363,14 +273,6 @@
                                                         aria-label="Tutup"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="">
-                                                        <div class="mb-3">
-                                                            <label for="">Nama Alat</label>
-                                                            <input type="text" class="form-control" name=""
-                                                                placeholder="Masukkan nama alat...">
-                                                        </div>
-                                                    </form>
-
                                                     <label for="">Upload Foto</label>
                                                     <form action="/upload-foto" method="POST"
                                                         enctype="multipart/form-data" class="dropzone"
@@ -487,20 +389,6 @@
             </div>
         </footer>
     </main>
-
-    <script>
-        Dropzone.autoDiscover = false;
-
-        const dropzone = new Dropzone("#dropzoneArea", {
-            url: "/upload/foto",
-            paramName: "foto_alat",
-            maxFiles: 5,
-            maxFilesize: 2,
-            acceptedFiles: ".jpg,.jpeg,.png",
-            addRemoveLinks: true,
-            dictDefaultMessage: "Seret dan lepas foto di sini atau klik untuk memilih",
-        });
-    </script>
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
