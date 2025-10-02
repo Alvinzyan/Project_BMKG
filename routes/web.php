@@ -23,13 +23,17 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 
-route::get('autentikasi/register', [AuthController::class, 'register'])->name('auth.register');
-route::post('autentikasi/register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-route::get('autentikasi/login', [AuthController::class, 'login'])->name('auth.login');
-route::post('autentikasi/login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
+route::get('register', [AuthController::class, 'register'])->name('auth.register');
+route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
 
-route::get('autentikasi/logout', [AuthController::class, 'logout'])->name('auth.logout');
+route::get('login', [AuthController::class, 'login'])->name('auth.login');
+route::post('login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
+
+route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('dashboard', [DashboardController::class, 'index']);
 

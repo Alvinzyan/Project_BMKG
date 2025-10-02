@@ -151,7 +151,7 @@
                                                 <small class="fs-6 fw-bold text-black">
                                                     Nama Penanggung Jawab :
                                                 </small>
-                                                <small class="fs-6 fw-medium text-gray-900">{{ $user->nama_lengkap }}</small>
+                                                <small class="fs-6 fw-medium text-gray-900"></small>
                                             </div>
                                         </div>
                                     </div>
