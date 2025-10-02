@@ -194,19 +194,20 @@
                 <div class="row g-0 border mb-1">
                     <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Lokasi</div>
                     <div class="col-10 p-2 bg-white text-dark" 
-                        style="color:#1E3D58; border:1px solid #1E3D58;">Kantor Meteorologi Banyuwangi</div>
+                        style="color:#1E3D58; border:1px solid #1E3D58;">{{ $lokasi->nama_lokasi }}</div>
                 </div>
 
                 <div class="row g-0 border">
                     <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Kategori</div>
                     <div class="col-10 p-2 bg-white text-dark" 
-                        style="color:#1E3D58; border:1px solid #1E3D58;">Semua Kategori</div>
+                        style="color:#1E3D58; border:1px solid #1E3D58;">{{ $kategori->nama_kategori ?? 'Semua Kategori' }}</div>
                 </div>
             </div>
         </div>
 
+        @foreach($alats as $group => $list)
         <div class="card shadow-sm rounded-0" style="background-color:#fff; border-top:3px solid #1E3D58;">
-            <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">Peralatan Konvensional
+            <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">{{ $group }}
                 <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;">
                     <i class="bi bi-plus"></i> Tambah Data
                 </a>
@@ -227,66 +228,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="border:1px solid #000;">1</td>
-                                <td style="border:1px solid #000;">Sangkar Meteorologi</td>
-                                <td style="border:1px solid #000;">Kayu Lokal</td>
-                                <td style="border:1px solid #000;">1</td>
-                                <td style="border:1px solid #000;">2004</td>
-                                <td style="border:1px solid #000;">
-                                    <a href="#" class="btn btn-sm text-white" style="background-color:#055C9D;"><i class="bi bi-pencil-square"></i> Edit</a>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border:1px solid #000;">2</td>
-                                <td style="border:1px solid #000;">Thermometer BB/ BK</td>
-                                <td style="border:1px solid #000;">Scheneider</td>
-                                <td style="border:1px solid #000;">2</td>
-                                <td style="border:1px solid #000;">2000</td>
-                                <td style="border:1px solid #000;">
-                                    <a href="#" class="btn btn-sm text-white" style="background-color:#055C9D;"><i class="bi bi-pencil-square"></i> Edit</a>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
-                                </td>
-                            </tr>
+                            @forelse($list as $i => $a)
+                                <tr>
+                                    <td style="border:1px solid #000;">{{ $i+1 }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->nama_alat }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->merk }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->tahun_pasang }}</td>
+                                    <td style="border:1px solid #000;">
+                                        <a href="#" class="btn btn-sm text-white" style="background-color:#055C9D;"><i class="bi bi-pencil-square"></i> Edit</a>
+                                        <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr class="text-center align-middle">
+                                    <td style="border:1px solid #000;"></td>
+                                    <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        @endforeach
 
-        <div class="card shadow-sm rounded-0 mt-3" style="background-color:#fff; border-top:3px solid #1E3D58;">
-            <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">AWS Digital
-                <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;">
-                    <i class="bi bi-plus"></i> Tambah Data
-                </a>
-            </div>
+        
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table text-center align-middle" 
-                        style="border:1px solid #000; border-collapse:collapse; font-size:14px;">
-                        <thead>
-                            <tr>
-                                <th style="border:1px solid #000;">No</th>
-                                <th style="border:1px solid #000;">Nama Alat</th>
-                                <th style="border:1px solid #000;">Merk/Type</th>
-                                <th style="border:1px solid #000;">Jumlah</th>
-                                <th style="border:1px solid #000;">Tahun Pemasangan</th>
-                                <th style="border:1px solid #000;">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center align-middle">
-                                <td style="border:1px solid #000;"></td>
-                                <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
+        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
             <div class="card-body bg-gray-800 text-white pt-4">
                 <button type="button" class="btn-close theme-settings-close" aria-label="Close"
                     data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"

@@ -4,6 +4,7 @@ use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
 use App\Http\Controllers\PosBandaraJemberController;
 use App\Http\Controllers\KetapangController;
+use App\Http\Controllers\DataAlatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,25 +32,29 @@ Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'
 Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ketapang.create');
 
-Route::get('/data-alat', function () {
-    return view('data-alat.index');
-});
+// route khusus data alat
+Route::get('/data-alat', [DataAlatController::class, 'index']);
+Route::get('/data-alat/{nama_lokasi}', [DataAlatController::class, 'kategoriByLokasi']);
+Route::get('/data-alat/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'alatByKategori']);
+Route::get('/data-alat/{nama_lokasi}/semua', [DataAlatController::class, 'alatSemua']);
 
-Route::get('/data-alat/kantor-bmkg', function () {
-    return view('data-alat.tempat-alat.kantorbmkg');
-})->name('data-alat.tempat-alat.kantorbmkg');
 
-Route::get('/data-alat/pos-bandara-bwi', function () {
-    return view('data-alat.tempat-alat.posbandarabwi');
-})->name('data-alat.tempat-alat.posbandarabwi');
 
-Route::get('/data-alat/pos-bandara-jember', function () {
-    return view('data-alat.tempat-alat.posbandarajember');
-})->name('data-alat.tempat-alat.posbandarajember');
+// Route::get('/data-alat/kantor-bmkg', function () {
+//     return view('data-alat.tempat-alat.kantorbmkg');
+// })->name('data-alat.tempat-alat.kantorbmkg');
 
-Route::get('/data-alat/ketapang', function () {
-    return view('data-alat.tempat-alat.ketapang');
-})->name('data-alat.tempat-alat.ketapang');
+// Route::get('/data-alat/pos-bandara-bwi', function () {
+//     return view('data-alat.tempat-alat.posbandarabwi');
+// })->name('data-alat.tempat-alat.posbandarabwi');
+
+// Route::get('/data-alat/pos-bandara-jember', function () {
+//     return view('data-alat.tempat-alat.posbandarajember');
+// })->name('data-alat.tempat-alat.posbandarajember');
+
+// Route::get('/data-alat/ketapang', function () {
+//     return view('data-alat.tempat-alat.ketapang');
+// })->name('data-alat.tempat-alat.ketapang');
 
 Route::get('/tambah-data-alat/index', function () {
     return view('data-alat.tambah-data-alat.index');

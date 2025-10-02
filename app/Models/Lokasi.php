@@ -14,6 +14,6 @@ class Lokasi extends Model
 
     public function kategoris(): HasMany
     {
-        return $this->hasMany(Kategori::class, 'lokasi_id');
+        return $this->hasMany(Kategori::class, 'id_lokasi');
     }
 }

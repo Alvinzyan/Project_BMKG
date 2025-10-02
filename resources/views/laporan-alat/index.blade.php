@@ -101,7 +101,7 @@
             @include('template.navbar')
         </nav>
 
-        <div class="card-three border-0 shadow mt-4">
+        <div class="card-three border-0 shadow mt-4 bg-white" style="border-top: 10px solid #055C9D !important;">
             <div class="card-body">
                 <h2 class="fw-bolder fs-4">Filter Laporan Inventaris Alat</h2>
 
@@ -140,7 +140,7 @@
             </div>
         </div>
 
-        <div class="card-three border-0 shadow mt-4">
+        <div class="card-three border-0 shadow mt-4 bg-white" style="border-top: 10px solid #055C9D !important;">
             <div class="card-body">
                 <h2 class="fw-bolder fs-4">Form Data Surat</h2>
 
@@ -188,8 +188,8 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <div class="card-table-two border-0 shadow mt-4">
-                            <div class="card-header-two">
+                        <div class="card-table-two border-0 shadow mt-4 bg-white" style="border-top: 10px solid #055C9D !important;">
+                            <div class="card-header-two bg-white">
                                 <!-- Kolom kiri: ikon + judul -->
                                 <div class="col d-flex align-items-center">
                                     <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24"
