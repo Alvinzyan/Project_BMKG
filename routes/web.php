@@ -10,6 +10,8 @@ use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\NavbarController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\KelolaAkunController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +52,7 @@ Route::get('inventaris-alat/cek-alat/pos-bandara-bwi/create', [PosBandaraBwiCont
 Route::get('inventaris-alat/cek-alat/pos-bandara-jember/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 
 Route::get('inventaris-alat/laporan-alat', [LaporanAlatController::class, 'index']);
+
+//tambahan sendi
+Route::resource('kelola-akun', KelolaAkunController::class);
+Route::resource('profile', ProfileController::class);

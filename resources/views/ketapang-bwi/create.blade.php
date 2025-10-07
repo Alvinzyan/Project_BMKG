@@ -188,8 +188,9 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th class="border-bottom text-center align-middle">Belum ada alat
-                                                    </th>
+                                                    <td class="border-bottom text-center align-middle" colspan="8">
+                                                        Belum ada alat
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -244,14 +245,20 @@
                                             </div>
                                         </div>
 
-                                        <div class="card-note border-0 shadow">
-                                            <h4 class="fs-6 fw-bold mb-0 me-2">Catatan : </h4>
+                                       <div class="bg-dark">
+                                            <div class="card-note border-0 shadow bg-white text-dark p-3">
+                                                <div class="row align-items-center mb-2">
+                                                    <div class="col">
+                                                        <h6 class="fw-bold mb-0">
+                                                        <i class="fas fa-list me-1"></i> Catatan
+                                                        </h6>
+                                                    </div>
+                                                </div>
 
-                                            <!-- Daftar Catatan -->
-                                            <ul class="list-unstyled mb-0">
-                                                <li>Tambahkan catatan apabila dibutuhkan</li>
-                                                <li>Catatan kedua</li>
-                                            </ul>
+                                                <div>
+                                                <input type="text" class="form-control" placeholder="*Isi catatan bila perlu">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -456,6 +463,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-..."
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
 </body>
 
 </html>
