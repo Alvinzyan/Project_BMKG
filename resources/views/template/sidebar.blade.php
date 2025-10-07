@@ -103,6 +103,11 @@
                     </span>
                     <div class="multi-level collapse " role="list" id="submenu-inventory" aria-expanded="false">
                         <ul class="flex-column nav">
+                            <li class="nav-item {{ Request::is('/data-alat') ? 'active' : '' }}">
+                                <a class="nav-link" href="/data-alat">
+                                    <span class="sidebar-text">Data Alat</span>
+                                </a>
+                            </li>
                             <li class="nav-item {{ Request::is('/inventaris-alat/cek-alat') ? 'active' : '' }}">
                                 <a class="nav-link" href="/inventaris-alat/cek-alat">
                                     <span class="sidebar-text">Cek Alat</span>

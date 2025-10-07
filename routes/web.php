@@ -5,9 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
 use App\Http\Controllers\PosBandaraJemberController;
-use App\Http\Controllers\KetapangBwiController;
-use App\Http\Controllers\LaporanAlatController;
-use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\KetapangController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\KelolaAkunController;
@@ -51,7 +49,10 @@ Route::get('inventaris-alat/cek-alat/ketapang-bwi/create', [KetapangBwiControlle
 Route::get('inventaris-alat/cek-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
 Route::get('inventaris-alat/cek-alat/pos-bandara-jember/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 
-Route::get('inventaris-alat/laporan-alat', [LaporanAlatController::class, 'index']);
+Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
+Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
+Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
+Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ketapang.create');
 
 //tambahan sendi
 Route::resource('kelola-akun', KelolaAkunController::class);
