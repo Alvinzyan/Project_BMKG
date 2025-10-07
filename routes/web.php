@@ -29,13 +29,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('register', [AuthController::class, 'register'])->name('auth.register');
-route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
+Route::get('register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
 
-route::get('login', [AuthController::class, 'login'])->name('auth.login');
-route::post('login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
+Route::get('login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
 
-route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('dashboard', [DashboardController::class, 'index']);
 
