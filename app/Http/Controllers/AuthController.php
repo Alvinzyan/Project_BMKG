@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         return view('auth.register');
     }
-
+ 
     public function register_action(Request $request)
     {
         $request->validate([
