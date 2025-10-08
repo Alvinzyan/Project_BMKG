@@ -123,11 +123,11 @@
                         <div class="d-flex align-items-end">
                             <label for="" class="form-label me-2">Periode</label>
                             <select class="form-select" aria-label="Default select example">
-                                <option selected>Semua lokasi</option>
-                                <option value="1">Kantor Meteorologi Banyuwangi</option>
-                                <option value="2">Pos Meteorologi Bandara Banyuwangi</option>
-                                <option value="3">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</option>
-                                <option value="4">Pos Meteorologi Bandara Notodinegoro Jember</option>
+                                <option selected>Semua Periode</option>
+                                <option value="1">Periode 1</option>
+                                <option value="2">Periode 2</option>
+                                <option value="3">Periode 3</option>
+                                <option value="4">Periode 4</option>
                             </select>
                         </div>
                     </div>

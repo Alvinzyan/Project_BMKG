@@ -9,6 +9,7 @@ use App\Http\Controllers\KetapangBwiController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\KelolaAkunController;
+use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -27,8 +28,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('register', [AuthController::class, 'register'])->name('auth.register');
-Route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
+// Route::get('register', [AuthController::class, 'register'])->name('auth.register');
+// Route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
 
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
@@ -37,7 +38,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('dashboard', [DashboardController::class, 'index']);
 
-Route::get('inventaris-alat/cek-alat', [KantorBmkgController::class, 'index'])->name('kantor-bmkg.index');
+Route::get('inventaris-alat', [KantorBmkgController::class, 'index'])->name('kantor-bmkg.index');
 
 Route::get('inventaris-alat/cek-alat/kantor-bmkg/create', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
 Route::post('inventaris-alat/cek-alat/kantor-bmkg/store', [KantorBmkgController::class, 'store'])->name('kantor-bmkg.store');
@@ -52,8 +53,9 @@ Route::get('inventaris-alat/cek-alat/pos-bandara-jember/create', [PosBandaraJemb
 Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
 Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
 Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
-Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ketapang.create');
+Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
 
-//tambahan sendi
+Route::get('cetak-laporan', [LaporanAlatController::class, 'index'])->name('laporan-alat.index');
+
 Route::resource('kelola-akun', KelolaAkunController::class);
 Route::resource('profile', ProfileController::class);
