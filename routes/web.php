@@ -5,11 +5,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
 use App\Http\Controllers\PosBandaraJemberController;
-use App\Http\Controllers\KetapangBwiController;
-use App\Http\Controllers\LaporanAlatController;
-use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\KetapangController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\KelolaAkunController;
+use App\Http\Controllers\KetapangBwiController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('register', [AuthController::class, 'register'])->name('auth.register');
-route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
+Route::get('register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
 
-route::get('login', [AuthController::class, 'login'])->name('auth.login');
-route::post('login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
+Route::get('login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
 
-route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('dashboard', [DashboardController::class, 'index']);
 
@@ -49,4 +50,10 @@ Route::get('inventaris-alat/cek-alat/ketapang-bwi/create', [KetapangBwiControlle
 Route::get('inventaris-alat/cek-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
 Route::get('inventaris-alat/cek-alat/pos-bandara-jember/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 
-Route::get('inventaris-alat/laporan-alat', [LaporanAlatController::class, 'index']);
+Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
+Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
+Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
+Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
+
+Route::resource('kelola-akun', KelolaAkunController::class);
+Route::resource('profil', ProfileController::class);

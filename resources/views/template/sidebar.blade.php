@@ -103,6 +103,11 @@
                     </span>
                     <div class="multi-level collapse " role="list" id="submenu-inventory" aria-expanded="false">
                         <ul class="flex-column nav">
+                            <li class="nav-item {{ Request::is('/data-alat') ? 'active' : '' }}">
+                                <a class="nav-link" href="/data-alat">
+                                    <span class="sidebar-text">Data Alat</span>
+                                </a>
+                            </li>
                             <li class="nav-item {{ Request::is('/inventaris-alat/cek-alat') ? 'active' : '' }}">
                                 <a class="nav-link" href="/inventaris-alat/cek-alat">
                                     <span class="sidebar-text">Cek Alat</span>
@@ -117,6 +122,31 @@
                     </div>
                 </li>
                 
+               <li class="nav-item {{ Request::is('kelola-akun') ? 'active' : '' }}">
+                    <a href="/kelola-akun" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 14a7 7 0 1114 0H3z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Akun User</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
+                    <a href="/profile" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zM5 7a1 1 0 011-1h8a1 1 0 011 1v2H5V7zm0 4h10v4H5v-4z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Profile</span>
+                    </a>
+                </li>
+
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/calendar.html" target="_blank"
                         class="nav-link d-flex justify-content-between">
