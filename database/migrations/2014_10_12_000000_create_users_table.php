@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('jabatan')->nullable();
             $table->enum('jenis_kelamin', ['laki laki', 'perempuan'])->nullable();
             $table->enum('peran', ['admin', 'teknisi']);
+            $table->string('foto_profil')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
