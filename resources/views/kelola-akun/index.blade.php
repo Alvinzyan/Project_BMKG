@@ -359,6 +359,9 @@
                                                                         <label class="form-label">Nama Lengkap</label>
                                                                         <input type="text" class="form-control" name="nama_lengkap" value="{{ $user->nama_lengkap }}"
                                                                             oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                                                        @error('nama_lengkap')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">NIP</label>
@@ -379,7 +382,11 @@
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Email</label>
-                                                                        <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+                                                                        <input type="email" class="form-control" name="email" value="{{ $user->email }}"
+                                                                            autocomplete="new-email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$">
+                                                                        @error('email')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Peran</label>
@@ -387,14 +394,28 @@
                                                                             <option value="Admin" {{ $user->peran == 'Admin' ? 'selected' : '' }}>Admin</option>
                                                                             <option value="Teknisi" {{ $user->peran == 'Teknisi' ? 'selected' : '' }}>Teknisi</option>
                                                                         </select>
+                                                                        @error('peran')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <label class="form-label">Password Baru (Opsional)</label>
-                                                                        <input type="password" class="form-control" name="password" placeholder="Kosongkan jika tidak diubah">
+                                                                        <label class="form-label">Password</label>
+                                                                        <div class="input-group">
+                                                                            <input type="password"
+                                                                                class="form-control"
+                                                                                name="password"
+                                                                                value="{{ $user->decrypted_password }}"
+                                                                                placeholder="Masukkan password"
+                                                                                autocomplete="off">
+                                                                            <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                                <i class="bi bi-eye"></i>
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Foto Profil (Opsional)</label>
                                                                         <input type="file" class="form-control" name="foto_profil">
+                                                                        <div class="form-text text-muted">Kosongkan jika tidak ingin mengubah foto profil.</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -471,7 +492,9 @@
                                 <!-- Email -->
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required
+                                        autocomplete="new-email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$"
+                                        title="Masukkan email yang valid, misal: nama@gmail.com atau nama@sekolah.ac.id">
                                     @error('email')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -485,6 +508,9 @@
                                         <option value="Admin">Admin</option>
                                         <option value="Teknisi">Teknisi</option>
                                     </select>
+                                    @error('peran')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <!-- Password -->
@@ -664,11 +690,11 @@
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
 
-    <!-- Modal Error Handling
+    <!-- Modal Error Handling -->
     @if ($errors->any())
     @if(session('edit_user_id'))
     <script>
-        var modalEdit = new bootstrap.Modal(document.getElementById('modalEditAkun'));
+        var modalEdit = new bootstrap.Modal(document.getElementById('modalEditAkun{{ session("edit_user_id") }}'));
         modalEdit.show();
     </script>
     @else
@@ -677,7 +703,7 @@
         modalTambah.show();
     </script>
     @endif
-    @endif -->
+    @endif
 
     @if (session('success'))
     <script>
@@ -693,21 +719,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // window.showEditModal = function(id, nama, nip, jabatan, jenis_kelamin, email, peran) {
-            //     // set form action
-            //     document.getElementById('formEditAkun').action = '/kelola-akun/' + id;
-
-            //     document.getElementById('edit_id').value = id;
-            //     document.getElementById('edit_nama_lengkap').value = nama || '';
-            //     document.getElementById('edit_nip').value = nip || '';
-            //     document.getElementById('edit_jabatan').value = jabatan || '';
-            //     document.getElementById('edit_jenis_kelamin').value = jenis_kelamin || '';
-            //     document.getElementById('edit_email').value = email || '';
-            //     document.getElementById('edit_peran').value = peran || '';
-
-            //     new bootstrap.Modal(document.getElementById('modalEditAkun')).show();
-            // }
-
             // === Modal Hapus ===
             window.hapusAkun = function(id, nama) {
                 document.getElementById('hapusNamaUser').innerText = nama;

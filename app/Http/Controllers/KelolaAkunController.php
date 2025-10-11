@@ -46,10 +46,18 @@ class KelolaAkunController extends Controller
             'nip'            => 'nullable|string|max:50|unique:users,nip',
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
-            'email'          => 'required|email|max:255|unique:users,email',
+            'email'          => [
+                'required',
+                'email',
+                'max:255',
+                'unique:users,email',
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
+            ],
             'password'       => 'required|string|min:6',
             'peran'          => 'required|in:Admin,Teknisi,User',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ], [
+            'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
         ]);
 
         // Proses upload foto profil (jika ada)
@@ -84,16 +92,28 @@ class KelolaAkunController extends Controller
     {
         $user = User::findOrFail($id);
 
+        session(['edit_user_id' => $id]);
+
         $request->validate([
             'nama_lengkap'   => 'required|string|max:255',
             'nip'            => 'nullable|string|max:50|unique:users,nip,' . $id,
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
-            'email'          => 'required|email|max:255|unique:users,email,' . $id,
+            'email'          => [
+                'required',
+                'email',
+                'max:255',
+                'unique:users,email,' . $id,
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
+            ],
             'password'       => 'nullable|string|min:6',
             'peran'          => 'required|in:Admin,Teknisi',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ], [
+            'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
         ]);
+
+        session()->forget('edit_user_id');
 
         // Update data
         $user->nama_lengkap  = $request->nama_lengkap;
