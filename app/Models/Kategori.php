@@ -22,4 +22,9 @@ class Kategori extends Model
     {
         return $this->hasMany(Alat::class, 'id_kategori');
     }
+
+    public function catatanKategoris()
+    {
+        return $this->hasMany(CatatanKategori::class, 'id_kategori');
+    }
 }

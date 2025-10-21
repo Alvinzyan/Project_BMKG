@@ -361,13 +361,16 @@
     <!-- Script Chart -->
     <script>
         const ctx = document.getElementById('alatChart').getContext('2d');
+        const chartLabels = @json($chartLabels);
+        const chartData = @json($chartData);
+
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Kantor', 'Bandara BW', 'Ketapang', 'Bandara JMB'], 
+                labels: chartLabels, 
                 datasets: [{
-                    label: 'Jumlah',
-                    data: [450, 516, 450, 516],
+                    label: 'Jumlah Alat',
+                    data: chartData,
                     backgroundColor: '#1d72b8'
                 }]
             },

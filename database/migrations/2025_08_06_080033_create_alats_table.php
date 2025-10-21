@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('alats', function (Blueprint $table) {
             $table->id();
             $table->string('nama_alat');
-            $table->unsignedBigInteger('id_kategori');
-            $table->foreign('id_kategori')->references('id')->on('kategoris');
+            $table->foreignId('id_kategori')->constrained('kategoris');
             $table->string('merk_tipe');
             $table->integer('jumlah');
             $table->integer('tahun_pemasangan')->nullable();

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alat;
+use App\Models\CatatanKategori;
 use App\Models\Kategori;
+use App\Models\LaporanKategori;
 use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
@@ -16,7 +18,9 @@ class KantorBmkgController extends Controller
      */
     public function index()
     {
-        return view('inventaris-alat.index');
+        $user = Auth::user();
+        
+        return view('inventaris-alat.index', compact('user'));
     }
 
     /**
@@ -24,36 +28,46 @@ class KantorBmkgController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with('alats')
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('kantor-bmkg.create', compact('lokasi', 'kategoris'));
+        return view('kantor-bmkg.create', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'kondisi'   => 'required|array',
-            'kalibrasi_terakhir' => 'required|array',
-        ]);
 
-        foreach ($request->kondisi as $idAlat => $kondisi) {
+        $userId = Auth::id();
+
+        foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                'id_user'           => Auth::id(),
-                'id_alat'           => $idAlat,
-                'id_laporan_kategori'    => 1,
-                'kondisi'           => $kondisi,
-                'kalibrasi_terakhir'=> $request->kalibrasi_terakhir[$idAlat],
+                'id_user' => $userId,
+                'id_alat' => $alatId,
+                'kondisi' => $kondisi,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
             ]);
         }
 
-        return redirect()->back()->with('success', 'Data pengecekan berhasil disimpan.');
+        if ($request->has('catatan')) {
+            foreach ($request->catatan as $kategoriId => $isi) {
+                if ($isi) {
+                    CatatanKategori::create([
+                        'id_kategori' => $kategoriId,
+                        'isi_catatan' => $isi
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('kantor-bmkg.create')->with('success', 'Data pengecekan alat berhasil disimpan.');
     }
 
     /**
@@ -67,9 +81,15 @@ class KantorBmkgController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        
+        $lokasi = Lokasi::where('nama_lokasi', 'kantor bmkg bwi')->firstOrFail();
+
+        $kategoris = Kategori::with(['alats.pengecekans' => function ($q) {
+            $q->latest()->limit(1);
+        }])->where('id_lokasi', $lokasi->id)->get();
+
+        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris'));
     }
 
     /**
@@ -77,19 +97,30 @@ class KantorBmkgController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pengecekan = Pengecekan::findOrFail($id);
 
-        $request->validate([
-            'kondisi'   => 'required|in:baik,rusak ringan,rusak berat',
-            'kalibrasi' => 'nullable|integer',
-        ]);
+        $userId = Auth::id();
 
-        $pengecekan->update([
-            'kondisi'            => $request->kondisi,
-            'kalibrasi_terakhir' => $request->kalibrasi,
-        ]);
+        foreach ($request->kondisi as $alatId => $kondisi) {
+            Pengecekan::create([
+                'id_user' => $userId,
+                'id_alat' => $alatId,
+                'kondisi' => $kondisi,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
+            ]);
+        }
 
-        return redirect()->back()->with('success', 'Data pengecekan berhasil diperbarui.');
+        if ($request->has('catatan')) {
+            foreach ($request->catatan as $kategoriId => $isi) {
+                if ($isi) {
+                    CatatanKategori::create([
+                        'id_kategori' => $kategoriId,
+                        'isi_catatan' => $isi
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('kantor-bmkg.edit', $id)->with('success', 'Data pengecekan alat berhasil diperbarui.');
     }
 
     /**
