@@ -107,14 +107,18 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="" method="POST">  
+                        <form action="" method="POST">
                             <div class="row g-3">
                                 <!-- Card Total User -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="card text-white" style="background-color: #1E3D58;">
                                         <div class="card-body d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-users me-2" width="32"
+                                                height="32" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M5 21v-2a4 4 0 0 1 4 -4h6a4 4 0 0 1 4 4v2" />
                                                 <circle cx="12" cy="7" r="4" />
                                                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
@@ -131,9 +135,14 @@
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="card text-white" style="background-color: #1E3D58;">
                                         <div class="card-body d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-user me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                                <path d="M12 3l8 4v5c0 5.5 -3.5 10.74 -8 13c-4.5 -2.26 -8 -7.5 -8 -13v-5l8 -4z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-shield-user me-2" width="32"
+                                                height="32" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path
+                                                    d="M12 3l8 4v5c0 5.5 -3.5 10.74 -8 13c-4.5 -2.26 -8 -7.5 -8 -13v-5l8 -4z" />
                                                 <path d="M12 11a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" />
                                                 <path d="M12 13v2" />
                                             </svg>
@@ -149,8 +158,12 @@
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="card text-white" style="background-color: #1E3D58;">
                                         <div class="card-body d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-tools me-2" width="32"
+                                                height="32" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M14.7 9.3l-3.4 3.4" />
                                                 <path d="M10 14l-3 3a2.828 2.828 0 1 1 -4 -4l3-3" />
                                                 <path d="M15 5l4 4" />
@@ -167,20 +180,17 @@
                             <div class="row g-3 mt-2">
                                 <div class="col-12">
                                     <div class="card shadow" style="background-color:#1E3D58; border:0;">
-                                        <div class="card-header d-flex justify-content-between align-items-center text-white" style="border-bottom:none;">
+                                        <div class="card-header d-flex justify-content-between align-items-center text-white"
+                                            style="border-bottom:none;">
                                             <div class="d-flex align-items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                                    class="icon icon-tabler icon-tabler-user me-2" 
-                                                    width="24" height="24" 
-                                                    viewBox="0 0 24 24" 
-                                                    stroke-width="2" 
-                                                    stroke="currentColor" 
-                                                    fill="none" 
-                                                    stroke-linecap="round" 
-                                                    stroke-linejoin="round"> 
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/> 
-                                                    <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" /> 
-                                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /> 
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-user me-2" width="24"
+                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" />
+                                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                                 </svg>
                                                 <h2 class="fs-4 fw-bolder mb-0 text-white">Kelola Akun User</h2>
                                             </div>
@@ -188,9 +198,9 @@
                                                 <button type="button" class="btn btn-sm btn-white"
                                                     data-bs-toggle="modal" data-bs-target="#modalTambahAkun">
                                                     <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
+                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M12 5l0 14" />
                                                         <path d="M5 12l14 0" />
@@ -219,60 +229,85 @@
                                                             <td>{{ $user->nama_lengkap }}</td>
                                                             <td>{{ $user->username }}</td>
                                                             <td>
-                                                                <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
+                                                                <a class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                                    data-bs-target="#modalLihatAkun{{ $user->id }}">
                                                                     <i class="bi bi-eye"></i> Lihat
                                                                 </a>
-                                                                <button type="button" class="btn btn-sm btn-warning me-1" onclick="showEditModal('{{ $user->id }}', '{{ $user->nama_lengkap }}', '{{ $user->username }}')">
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-warning me-1"
+                                                                    onclick="showEditModal('{{ $user->id }}', '{{ $user->nama_lengkap }}', '{{ $user->username }}')">
                                                                     <i class="bi bi-pencil"></i> Edit
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun"
+                                                                <button type="button" class="btn btn-sm btn-danger"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#modalHapusAkun"
                                                                     onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
                                                                     <i class="bi bi-trash"></i> Hapus
                                                                 </button>
                                                             </td>
                                                         </tr>
-                                                       
+
                                                         <!-- Modal Lihat Akun -->
-                                                        <div class="modal fade" id="modalLihatAkun{{ $user->id }}" tabindex="-1"
-                                                            aria-labelledby="modalLihatAkunLabel{{ $user->id }}" aria-hidden="true">
+                                                        <div class="modal fade"
+                                                            id="modalLihatAkun{{ $user->id }}" tabindex="-1"
+                                                            aria-labelledby="modalLihatAkunLabel{{ $user->id }}"
+                                                            aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                                 <div class="modal-content border-0 shadow">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalLihatAkunLabel{{ $user->id }}">Detail Akun User</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                                        <h5 class="modal-title"
+                                                                            id="modalLihatAkunLabel{{ $user->id }}">
+                                                                            Detail Akun User</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Tutup"></button>
                                                                     </div>
-                                                                    
+
                                                                     <div class="modal-body">
                                                                         <div class="row g-3">
                                                                             <!-- Nama Lengkap -->
                                                                             <div class="col-md-6">
-                                                                                <label class="form-label">Nama Lengkap</label>
-                                                                                <input type="text" class="form-control" value="{{ $user->nama_lengkap }}" readonly>
+                                                                                <label class="form-label">Nama
+                                                                                    Lengkap</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    value="{{ $user->nama_lengkap }}"
+                                                                                    readonly>
                                                                             </div>
 
                                                                             <!-- Username -->
                                                                             <div class="col-md-6">
-                                                                                <label class="form-label">Username</label>
-                                                                                <input type="text" class="form-control" value="{{ $user->username }}" readonly>
+                                                                                <label
+                                                                                    class="form-label">Username</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    value="{{ $user->username }}"
+                                                                                    readonly>
                                                                             </div>
 
                                                                             <!-- Password (tidak ditampilkan aslinya) -->
                                                                             <div class="col-md-6">
-                                                                                <label class="form-label">Password</label>
-                                                                                <input type="password" class="form-control" value="********" readonly>
+                                                                                <label
+                                                                                    class="form-label">Password</label>
+                                                                                <input type="password"
+                                                                                    class="form-control"
+                                                                                    value="********" readonly>
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                        <button type="button"
+                                                                            class="btn btn-sm btn-secondary"
+                                                                            data-bs-dismiss="modal">Tutup</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>                                                    
+                                                        </div>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="4" class="text-muted text-center">Belum ada data</td>
+                                                            <td colspan="4" class="text-muted text-center">Belum
+                                                                ada data</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>
@@ -288,30 +323,32 @@
         </div>
 
         <!-- Modal Tambah Akun -->
-        <div class="modal fade" id="modalTambahAkun" tabindex="-1"
-            aria-labelledby="modalTambahAkunLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow">
-        <div class="modal-header">
-        <h5 class="modal-title" id="modalTambahAkunLabel">Tambah Akun User</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <form id="formTambahAkun" action="{{ route('kelola-akun.store') }}" method="POST">
-        @csrf
-        <div class="modal-body">
-        <div class="row g-3">
-            <!-- Nama User -->
-            <div class="col-md-6">
-                <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap" required
-                    oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
-                @error('nama_lengkap')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+        <div class="modal fade" id="modalTambahAkun" tabindex="-1" aria-labelledby="modalTambahAkunLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTambahAkunLabel">Tambah Akun User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Tutup"></button>
+                    </div>
+                    <form id="formTambahAkun" action="{{ route('kelola-akun.store') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <!-- Nama User -->
+                                <div class="col-md-6">
+                                    <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
+                                        placeholder="Masukkan nama lengkap" required
+                                        oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
+                                    @error('nama_lengkap')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
 
-            <!-- Jenis Kelamin -->
-            <!-- <div class="col-md-6">
+                                <!-- Jenis Kelamin -->
+                                <!-- <div class="col-md-6">
                 <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
                 <select class="form-select" id="jenisKelamin" name="jenisKelamin" required>
                     <option value="" disabled selected>Pilih jenis kelamin</option>
@@ -320,26 +357,28 @@
                 </select>
             </div> -->
 
-            <!-- Username -->
-            <div class="col-md-6">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" required>
-                @error('username')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+                                <!-- Username -->
+                                <div class="col-md-6">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        placeholder="Masukkan username" required>
+                                    @error('username')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
 
-            <!-- Password -->
-            <div class="col-md-6">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
-                @error('password')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+                                <!-- Password -->
+                                <div class="col-md-6">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Masukkan password" required>
+                                    @error('password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
 
-            <!-- Hak Akses -->
-            <!-- <div class="col-md-6">
+                                <!-- Hak Akses -->
+                                <!-- <div class="col-md-6">
             <label for="hakAkses" class="form-label">Hak Akses</label>
             <select class="form-select" id="hakAkses" name="hakAkses" required>
                 <option value="" disabled selected>Pilih hak akses</option>
@@ -349,93 +388,104 @@
             </select>
             </div> -->
 
-            <!-- Photo -->
-            <!-- <div class="col-md-6">
+                                <!-- Photo -->
+                                <!-- <div class="col-md-6">
             <label for="photo" class="form-label">Photo (opsional)</label>
             <input type="file" class="form-control" id="photo" name="photo">
             </div> -->
-        </div>
-        </div>
+                            </div>
+                        </div>
 
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" form="formTambahAkun" class="btn btn-sm btn-success">Simpan</button>
-        </div>
-        </form>
-        </div>
-        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-danger"
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" form="formTambahAkun"
+                                class="btn btn-sm btn-success">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <!-- Modal Edit Akun -->
-        <div class="modal fade" id="modalEditAkun" tabindex="-1" aria-labelledby="modalEditAkunLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow">
-        <div class="modal-header">
-        <h5 class="modal-title" id="modalEditAkunLabel">Edit Akun User</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
+        <div class="modal fade" id="modalEditAkun" tabindex="-1" aria-labelledby="modalEditAkunLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditAkunLabel">Edit Akun User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Tutup"></button>
+                    </div>
 
-        <form id="formEditAkun" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="modal-body">
-        <div class="row g-3">
-            <!-- Nama Lengkap -->
-            <div class="col-md-6">
-                <label for="edit_nama_lengkap" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="edit_nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap" required
-                    oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
+                    <form id="formEditAkun" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <!-- Nama Lengkap -->
+                                <div class="col-md-6">
+                                    <label for="edit_nama_lengkap" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="edit_nama_lengkap"
+                                        name="nama_lengkap" placeholder="Masukkan nama lengkap" required
+                                        oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
+                                </div>
+
+                                <!-- Username -->
+                                <div class="col-md-6">
+                                    <label for="edit_username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="edit_username" name="username"
+                                        placeholder="Masukkan username" required>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="col-md-6">
+                                    <label for="edit_password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="edit_password" name="password"
+                                        placeholder="Masukkan password baru">
+                                    <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-danger"
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" form="formEditAkun"
+                                class="btn btn-sm btn-success">Perbarui</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <!-- Username -->
-            <div class="col-md-6">
-                <label for="edit_username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="edit_username" name="username" placeholder="Masukkan username" required>
-            </div>
-
-            <!-- Password -->
-            <div class="col-md-6">
-                <label for="edit_password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="edit_password" name="password" placeholder="Masukkan password baru">
-                <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
-            </div>
-        </div>
-        </div>
-
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" form="formEditAkun" class="btn btn-sm btn-success">Perbarui</button>
-        </div>
-        </form>
-        </div>
-        </div>
         </div>
 
         <!-- Modal Hapus Akun -->
-        <div class="modal fade" id="modalHapusAkun" tabindex="-1"
-        aria-labelledby="modalHapusAkunLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-        <div class="modal-header">
-        <h5 class="modal-title" id="modalHapusAkunLabel">Konfirmasi Hapus Akun</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <form id="formHapusAkun" method="POST">
-        @csrf
-        @method('DELETE')
-        <div class="modal-body">
-        <p>Apakah Anda yakin ingin menghapus akun berikut?</p>
-        <div class="alert alert-warning mb-0">
-            <strong id="hapusNamaUser"></strong>
-        </div>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus</button>
-        </div>
-        </form>
-        </div>
-        </div>
+        <div class="modal fade" id="modalHapusAkun" tabindex="-1" aria-labelledby="modalHapusAkunLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalHapusAkunLabel">Konfirmasi Hapus Akun</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Tutup"></button>
+                    </div>
+                    <form id="formHapusAkun" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-body">
+                            <p>Apakah Anda yakin ingin menghapus akun berikut?</p>
+                            <div class="alert alert-warning mb-0">
+                                <strong id="hapusNamaUser"></strong>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary"
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
@@ -559,22 +609,22 @@
 
     <!-- Pesan Error -->
     @if ($errors->any())
-    <script>
-        var tambahAkunModal = new bootstrap.Modal(document.getElementById('modalTambahAkun'));
-        tambahAkunModal.show();
-    </script>
+        <script>
+            var tambahAkunModal = new bootstrap.Modal(document.getElementById('modalTambahAkun'));
+            tambahAkunModal.show();
+        </script>
     @endif
 
     @if (session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('success') }}',
-            showConfirmButton: false,
-            timer: 2000
-        });
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
     @endif
 
     <script>

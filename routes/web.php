@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CetakLaporanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
@@ -10,7 +11,6 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\KelolaAkunController;
 use App\Http\Controllers\KetapangBwiController;
-use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -37,7 +37,7 @@ Route::post('login-action', [AuthController::class, 'login_action'])->name('auth
 
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-Route::get('dashboard', [DashboardController::class, 'index']);
+// Route::get('dashboard', [DashboardController::class, 'index']);
 
 Route::get('inventaris-alat', [KantorBmkgController::class, 'index'])->name('kantor-bmkg.index');
 
@@ -56,7 +56,15 @@ Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'
 Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
 
-Route::get('cetak-laporan', [LaporanAlatController::class, 'index'])->name('laporan-alat.index');
+Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
 
 Route::resource('kelola-akun', KelolaAkunController::class);
 Route::resource('profil', ProfileController::class);
+
+Route::get('/surat-laporan', function () {
+    return view('pdf.surat-laporan-alat');
+});
+
+Route::get('/surat-laporan-tabel', function () {
+    return view('pdf.tabel-surat-satu');
+});
