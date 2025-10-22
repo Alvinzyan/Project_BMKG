@@ -9,27 +9,27 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register()
-    {
-        return view('auth.register');
-    }
+    // public function register()
+    // {
+    //     return view('auth.register');
+    // }
 
-    public function register_action(Request $request)
-    {
-        $request->validate([
-            'nama_lengkap' => 'required',
-            'username' => 'required|unique:users|min:6|max:30|regex:/^[a-z0-9]+$/',
-            'password' => 'required|min:6|max:25|regex:/^[A-Z](?=.*[0-9])[A-Za-z0-9]{5,}$/'
-        ]);
+    // public function register_action(Request $request)
+    // {
+    //     $request->validate([
+    //         'nama_lengkap' => 'required',
+    //         'username' => 'required|unique:users|min:6|max:30|regex:/^[a-z0-9]+$/',
+    //         'password' => 'required|min:6|max:25|regex:/^[A-Z](?=.*[0-9])[A-Za-z0-9]{5,}$/'
+    //     ]);
 
-        User::create([
-            'nama_lengkap' => $request->nama_lengkap,
-            'username' => $request->username,
-            'password' => Hash::make($request->password)
-        ]);
+    //     User::create([
+    //         'nama_lengkap' => $request->nama_lengkap,
+    //         'username' => $request->username,
+    //         'password' => Hash::make($request->password)
+    //     ]);
 
-        return redirect()->route('auth.login')->with('success, Pembuatan akun berhasil.');
-    }
+    //     return redirect()->route('auth.login')->with('success, Pembuatan akun berhasil.');
+    // }
 
     public function login()
     {
@@ -39,8 +39,8 @@ class AuthController extends Controller
     public function login_action(Request $request)
     {
         $request->validate([
-            'username' => 'required|min:6|max:30|regex:/^[a-z0-9]+$/',
-            'password' => 'required|min:6|max:25',
+            'email' => 'required|regex:regex:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/',
+            'password' => 'required|min:6|max:30',
         ]);
 
         $remember = $request->has('remember');

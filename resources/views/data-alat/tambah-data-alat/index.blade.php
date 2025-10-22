@@ -254,8 +254,7 @@
                                                 'nama_lokasi' => $lokasi->nama_lokasi,
                                                 'nama_kategori' => $group,
                                                 'id' => $a->id
-                                            ]) }}" method="POST" class="d-inline"
-                                            onsubmit="return confirm('Yakin ingin menghapus alat ini?')">
+                                            ]) }}" method="POST" class="d-inline form-hapus">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">
@@ -453,6 +452,47 @@
         </footer>
     </main>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+    @endif
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const forms = document.querySelectorAll('.form-hapus');
+
+            forms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Yakin ingin menghapus alat ini?',
+                        text: "Data yang dihapus tidak dapat dikembalikan.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit(); // lanjut hapus kalau dikonfirmasi
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>

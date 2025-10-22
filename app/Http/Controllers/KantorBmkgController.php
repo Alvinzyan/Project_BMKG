@@ -49,7 +49,7 @@ class KantorBmkgController extends Controller
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                'id_user' => $userId,
+                // 'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
@@ -102,7 +102,7 @@ class KantorBmkgController extends Controller
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                'id_user' => $userId,
+                // 'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId]

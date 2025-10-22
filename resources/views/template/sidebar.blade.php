@@ -41,7 +41,7 @@
                         <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                     <a href="/dashboard" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -52,7 +52,7 @@
                         </span>
                         <span class="sidebar-text">Dashboard</span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/kanban.html" target="_blank"
                         class="nav-link d-flex justify-content-between">
@@ -73,55 +73,58 @@
                     </a>
                 </li> --}}
 
-                <li class="nav-item {{ Request::is('inventaris-alat/cek-alat') || Request::is('inventaris-alat/laporan') ? 'active' : '' }}">
-                    <span class="nav-link collapsed d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#submenu-inventory">
-                        <span>
-                            <span class="sidebar-icon">
-                                <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    fill="currentColor" class="size-6">
-                                    <path fill-rule="evenodd"
-                                        d="M12 6.75a5.25 5.25 0 0 1 6.775-5.025.75.75 0 0 1 .313 1.248l-3.32 3.319c.063.475.276.934.641 1.299.365.365.824.578 1.3.64l3.318-3.319a.75.75 0 0 1 1.248.313 5.25 5.25 0 0 1-5.472 6.756c-1.018-.086-1.87.1-2.309.634L7.344 21.3A3.298 3.298 0 1 1 2.7 16.657l8.684-7.151c.533-.44.72-1.291.634-2.309A5.342 5.342 0 0 1 12 6.75ZM4.117 19.125a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75v-.008Z"
-                                        clip-rule="evenodd" />
-                                    <path
-                                        d="m10.076 8.64-2.201-2.2V4.874a.75.75 0 0 0-.364-.643l-3.75-2.25a.75.75 0 0 0-.916.113l-.75.75a.75.75 0 0 0-.113.916l2.25 3.75a.75.75 0 0 0 .643.364h1.564l2.062 2.062 1.575-1.297Z" />
-                                    <path fill-rule="evenodd"
-                                        d="m12.556 17.329 4.183 4.182a3.375 3.375 0 0 0 4.773-4.773l-3.306-3.305a6.803 6.803 0 0 1-1.53.043c-.394-.034-.682-.006-.867.042a.589.589 0 0 0-.167.063l-3.086 3.748Zm3.414-1.36a.75.75 0 0 1 1.06 0l1.875 1.876a.75.75 0 1 1-1.06 1.06L15.97 17.03a.75.75 0 0 1 0-1.06Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="sidebar-text">Inventaris Alat</span>
+                <li class="nav-item {{ Request::is('inventaris-alat') ? 'active' : '' }}">
+                    <a href="/inventaris-alat" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-folders"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a1 1 0 0 1 .707 .293l1.708 1.707h4.585a3 3 0 0 1 2.995 2.824l.005 .176v7a3 3 0 0 1 -3 3h-1v1a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-9a3 3 0 0 1 3 -3h1v-1a3 3 0 0 1 3 -3zm-6 6h-1a1 1 0 0 0 -1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1 -1v-1h-7a3 3 0 0 1 -3 -3z" /></svg>
                         </span>
-                        <span class="link-arrow">
-                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                        <span class="sidebar-text">Inventaris Alat</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::is('cetak-laporan') ? 'active' : '' }}">
+                    <a href="/cetak-laporan" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-clipboard-text"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17.997 4.17a3 3 0 0 1 2.003 2.83v12a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 2.003 -2.83a4 4 0 0 0 3.997 3.83h4a4 4 0 0 0 3.98 -3.597zm-2.997 10.83h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m0 -4h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m-1 -9a2 2 0 1 1 0 4h-4a2 2 0 1 1 0 -4z" /></svg>
+                        </span>
+                        <span class="sidebar-text">Cetak Laporan</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::is('tambah-alat') ? 'active' : '' }}">
+                    <a href="/data-alat" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-database-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" /><path d="M4 6v6c0 1.657 3.582 3 8 3c1.075 0 2.1 -.08 3.037 -.224" /><path d="M20 12v-6" /><path d="M4 12v6c0 1.657 3.582 3 8 3c.166 0 .331 -.002 .495 -.006" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
+                        </span>
+                        <span class="sidebar-text">Tambah Alat</span>
+                    </a>
+                </li>
+                
+               <li class="nav-item {{ Request::is('kelola-akun') ? 'active' : '' }}">
+                    <a href="/kelola-akun" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 14a7 7 0 1114 0H3z"
                                     clip-rule="evenodd"></path>
                             </svg>
                         </span>
-                    </span>
-                    <div class="multi-level collapse " role="list" id="submenu-inventory" aria-expanded="false">
-                        <ul class="flex-column nav">
-                            <li class="nav-item {{ Request::is('/data-alat') ? 'active' : '' }}">
-                                <a class="nav-link" href="/data-alat">
-                                    <span class="sidebar-text">Data Alat</span>
-                                </a>
-                            </li>
-                            <li class="nav-item {{ Request::is('/inventaris-alat/cek-alat') ? 'active' : '' }}">
-                                <a class="nav-link" href="/inventaris-alat/cek-alat">
-                                    <span class="sidebar-text">Cek Alat</span>
-                                </a>
-                            </li>
-                             <li class="nav-item {{ Request::is('/inventaris-alat/laporan-alat') ? 'active' : '' }}">
-                                <a class="nav-link" href="/inventaris-alat/laporan-alat">
-                                    <span class="sidebar-text">Laporan</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                        <span class="sidebar-text">Akun User</span>
+                    </a>
                 </li>
-                
+
+                <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
+                    <a href="/profile" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zM5 7a1 1 0 011-1h8a1 1 0 011 1v2H5V7zm0 4h10v4H5v-4z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Profile</span>
+                    </a>
+                </li>
+
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/calendar.html" target="_blank"
                         class="nav-link d-flex justify-content-between">

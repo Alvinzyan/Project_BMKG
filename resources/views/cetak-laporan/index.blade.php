@@ -103,31 +103,19 @@
             @include('template.navbar')
         </nav>
 
-        <div class="card-three border-0 shadow mt-4 bg-white" style="border-top: 10px solid #055C9D !important;">
+        <div class="card-three border-0 shadow mt-4">
             <div class="card-body">
                 <h2 class="fw-bolder fs-4">Filter Laporan Inventaris Alat</h2>
 
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-xl-5 mb-3">
-                        <div class="d-flex align-items-end">
-                            <label for="" class="form-label me-2">Lokasi</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Semua lokasi</option>
-                                <option value="1">Kantor Meteorologi Banyuwangi</option>
-                                <option value="2">Pos Meteorologi Bandara Banyuwangi</option>
-                                <option value="3">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</option>
-                                <option value="4">Pos Meteorologi Bandara Notodinegoro Jember</option>
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="col-12 col-sm-12 col-xl-5 mb-3">
                         <div class="d-flex align-items-end">
                             <label for="periode" class="form-label me-2">Periode</label>
-                            <input type="text" id="periode" class="form-control" placeholder="Pilih Periode">
+                            <input type="text" id="periode" class="form-control" placeholder="Pilih tanggal">
                         </div>
                     </div>
-                    
+
                     <div class="col-12 col-sm-12 col-xl-2 mb-3">
                         <button class="btn btn-sm btn-info"><svg class="icon icon-xs me-1"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -143,7 +131,7 @@
             </div>
         </div>
 
-        <div class="card-three border-0 shadow mt-4 bg-white" style="border-top: 10px solid #055C9D !important;">
+        <div class="card-three border-0 shadow mt-4">
             <div class="card-body">
                 <h2 class="fw-bolder fs-4">Form Data Surat</h2>
 
@@ -191,191 +179,31 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <div class="card-table-two border-0 shadow mt-4 bg-white" style="border-top: 10px solid #055C9D !important;">
-                            <div class="card-header-two bg-white">
-                                <!-- Kolom kiri: ikon + judul -->
-                                <div class="col d-flex align-items-center">
-                                    <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path
-                                            d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                        <path
-                                            d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                        <path d="M9 12h6" />
-                                        <path d="M9 16h6" />
-                                    </svg>
-                                    <h2 class="fs-4 fw-bolder mb-0">Laporan Inventaris Alat BMKG</h2>
-                                </div>
+                        <div class="card-three border-0 shadow mt-4">
+                            <div class="card-header-two">
+                                <h2 class="fs-4 fw-bolder mb-0">Laporan Inventaris Alat BMKG</h2>
+                            </div>
 
-                                <div class="col-12 col-md-8 col-xl-4 border rounded mt-2 p-1">
-                                    <small class="text-muted">
-                                        Lokasi : Semua Lokasi
-                                    </small>
-                                </div>
+                            <div class="card-four border-0 shadow mt-2 px-4 py-3">
+                                <h5 class="fw-bold fs-5">
+                                    Judul Laporan
+                                </h5>
 
-                                <div class="col-12 col-md-8 col-xl-4 border rounded mt-2 p-1">
-                                    <small class="text-muted">
-                                        Periode : 1-5 Agustus 2025
-                                    </small>
-                                </div>
+                                <p class="fw-normal fs-6">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                </p>
 
-                                <div class="col col-12 col-md-8 col-xl-4 mt-3">
-                                    <button class="btn btn-sm text-white" style="background-color: #3aff3aff; border-color: #3aff3aff;">
-                                        <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" /><path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" /><path d="M17 18h2" /><path d="M20 15h-3v6" /><path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>
-                                        Cetak Pdf
-                                    </button>
+                                <div class="col">
+                                    <a href="">
+                                        <button class="btn btn-info">Lihat Laporan</button>
+                                    </a>
+
+                                    <a href="">
+                                        <button class="btn btn-danger">Cetak Laporan</button>
+                                    </a>
                                 </div>
                             </div>
 
-                            <div class="row mt-2">
-                                <div class="col-12">
-                                    <h6 class="mb-0 fw-bold">A. Peralatan di Kantor Meteorologi Banyuwangi</h6>
-                                    <small class="text-muted">Peralatan Konvensional</small>
-                                </div>
-                            </div>
-
-                            <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
-                                    <colgroup>
-                                        <col style="width: 5%;">
-                                        <col style="width: 20%;">
-                                        <col style="width: 15%;">
-                                        <col style="width: 8%;">
-                                        <col style="width: 15%;">
-                                        <col style="width: 12%;">
-                                        <col style="width: 12%;">
-                                        <col style="width: 13%;">
-                                    </colgroup>
-                                    <thead class="thead-primary">
-                                        <tr>
-                                            <th class="border-bottom text-center">No</th>
-                                            <th class="border-bottom">Nama Alat</th>
-                                            <th class="border-bottom">Merk/Type</th>
-                                            <th class="border-bottom text-center">Jumlah</th>
-                                            <th class="border-bottom text-center">Kondisi<br><span class="fw-normal">(B / RR / RB)</span></th>
-                                            <th class="border-bottom text-center">Tahun Pemasangan</th>
-                                            <th class="border-bottom text-center">Kalibrasi Terakhir</th>
-                                            <th class="border-bottom text-center">Keterangan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>Sangkar Meteorologi</td>
-                                            <td>Kayu Lokal</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">2004</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td>Thermometer BB/BK</td>
-                                            <td>Scheneider</td>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox"  disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">2000</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">3</td>
-                                            <td>Thermometer BB/BK</td>
-                                            <td>F.Ketterer</td>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">2011</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">4</td>
-                                            <td>Thermometer Max/Min</td>
-                                            <td>Scheneider</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">1968</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">5</td>
-                                            <td>Thermometer Max/Min</td>
-                                            <td>Scheneider</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">1994</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">6</td>
-                                            <td>Thermometer Max/Min</td>
-                                            <td>Scheneider</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">2000</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">7</td>
-                                            <td>Thermometer Max/Min</td>
-                                            <td>F.Ketterer</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">2011</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">8</td>
-                                            <td>Barograph</td>
-                                            <td>J. Richard</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
-                                            </td>
-                                            <td class="text-center">1976</td>
-                                            <td class="text-center">Mei 2024</td>
-                                            <td class="text-center">Terpasang</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -461,36 +289,75 @@
     </main>
 
     <!-- Periode -->
+     <style>
+        /* highlight minggu */
+        .week-highlight {
+            background-color: rgba(0, 123, 255, 0.2) !important;
+            border-radius: 50%;
+            color: #000 !important;
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        // menghitung rentang (Sabtu - Jumat)
-        function getWeekRange(date) {
-            const selected = new Date(date);
-            const day = selected.getDay(); //mengambil hari (0=minggu, ....,6=sabtu)
-            const diffToSaturday = (day + 1) % 7; // jarak ke Sabtu sebelumnya
-            const start = new Date(selected);
-            start.setDate(selected.getDate() - diffToSaturday);
-            const end = new Date(start);
-            end.setDate(start.getDate() + 6); 
-            return [start, end];
+        // Fungsi untuk menghitung rentang minggu (Sabtu - Jumat)
+        function hitungRentangMinggu(tanggal) {
+            const tanggalDipilih = new Date(tanggal);
+            const hari = tanggalDipilih.getDay(); // Mengambil indeks hari (0 = Minggu, ... , 6 = Sabtu)
+            const jarakKeSabtu = (hari + 1) % 7; // Menghitung selisih ke hari Sabtu sebelumnya
+            const awal = new Date(tanggalDipilih);
+            awal.setDate(tanggalDipilih.getDate() - jarakKeSabtu);
+            const akhir = new Date(awal);
+            akhir.setDate(awal.getDate() + 6);
+            return [awal, akhir];
         }
 
-        flatpickr("#periode", {
+        const kalender = flatpickr("#periode", {
             dateFormat: "d-m-Y",
-            onChange: function(selectedDates, dateStr, instance) {
-                if (selectedDates.length > 0) {
-                    const [start, end] = getWeekRange(selectedDates[0]);
-                    instance.setDate([start, end], true); // highlight range
+            locale: { firstDayOfWeek: 6 }, // Kalender dimulai dari Sabtu
+            onChange: function (tanggalTerpilih, stringTanggal, instansi) {
+                if (tanggalTerpilih.length > 0) {
+                    const [awal, akhir] = hitungRentangMinggu(tanggalTerpilih[0]);
+
+                    // Format tampilan teks input (contoh: 12-10-2025 s.d. 18-10-2025)
+                    const formatTanggal = t => t.toLocaleDateString('id-ID', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    instansi.input.value = `${formatTanggal(awal)} s.d. ${formatTanggal(akhir)}`;
+
+                    // highlight pada minggu yang dipilih
+                    setTimeout(() => {
+                        document.querySelectorAll(".flatpickr-day").forEach(elemen => {
+                            const tanggalHariIni = elemen.dateObj;
+                            if (tanggalHariIni >= awal && tanggalHariIni <= akhir) {
+                                elemen.classList.add("week-highlight");
+                            } else {
+                                elemen.classList.remove("week-highlight");
+                            }
+                        });
+                    }, 50);
                 }
             },
-            mode: "range",
-            locale: {
-                firstDayOfWeek: 6 // mulai dari Sabtu
+            onMonthChange: function (tanggalTerpilih, stringTanggal, instansi) {
+                // Pastikan highlight tetap muncul saat berpindah bulan
+                if (tanggalTerpilih.length > 0) {
+                    const [awal, akhir] = hitungRentangMinggu(tanggalTerpilih[0]);
+                    setTimeout(() => {
+                        document.querySelectorAll(".flatpickr-day").forEach(elemen => {
+                            const tanggalHariIni = elemen.dateObj;
+                            if (tanggalHariIni >= awal && tanggalHariIni <= akhir) {
+                                elemen.classList.add("week-highlight");
+                            }
+                        });
+                    }, 50);
+                }
             }
         });
     </script>
     <!-- End Periode -->
-     
+
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
