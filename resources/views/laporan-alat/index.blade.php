@@ -71,6 +71,8 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
+    <!-- Untuk Filter Periode -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -121,7 +123,7 @@
 
                     <div class="col-12 col-sm-12 col-xl-5 mb-3">
                         <div class="d-flex align-items-end">
-                            <label for="" class="form-label me-2">Periode</label>
+                            <label for="periode" class="form-label me-2">Periode</label>
                             <input type="text" id="periode" class="form-control" placeholder="Pilih Periode">
                         </div>
                     </div>
@@ -485,6 +487,32 @@
             // Tampilkan range Sabtu - Jumat
             $('#periode').val(saturday.format('DD-MM-YYYY') + " s/d " + friday.format('DD-MM-YYYY'));
         });
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // menghitung rentang (Sabtu - Jumat)
+        function getWeekRange(date) {
+            const selected = new Date(date);
+            const day = selected.getDay(); //mengambil hari (0=minggu, ....,6=sabtu)
+            const diffToSaturday = (day + 1) % 7; // jarak ke Sabtu sebelumnya
+            const start = new Date(selected);
+            start.setDate(selected.getDate() - diffToSaturday);
+            const end = new Date(start);
+            end.setDate(start.getDate() + 6); 
+            return [start, end];
+        }
+
+        flatpickr("#periode", {
+            dateFormat: "d-m-Y",
+            onChange: function(selectedDates, dateStr, instance) {
+                if (selectedDates.length > 0) {
+                    const [start, end] = getWeekRange(selectedDates[0]);
+                    instance.setDate([start, end], true); // highlight range
+                }
+            },
+            mode: "range",
+            locale: {
+                firstDayOfWeek: 6 // mulai dari Sabtu
+            }
         });
     </script>
     <!-- End Periode -->

@@ -73,6 +73,8 @@ Route::resource('profil', ProfileController::class);
 Route::get('/surat-laporan', function () {
     return view('pdf.surat-laporan-alat');
 });
+Route::get('inventaris-alat/laporan-alat', [LaporanAlatController::class, 'index']);
+
 
 Route::prefix('data-alat')->name('data-alat.')->group(function () {
     Route::get('/', [DataAlatController::class, 'index'])

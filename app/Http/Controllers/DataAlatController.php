@@ -35,6 +35,7 @@ class DataAlatController extends Controller
     public function create() {
         return view('tambah-data-alat.index');
     }
+    
     public function kategoriByLokasi($nama_lokasi)
     {
         $lokasi = Lokasi::where('nama_lokasi', urldecode($nama_lokasi))

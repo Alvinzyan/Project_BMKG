@@ -81,22 +81,12 @@ class KantorBmkgController extends Controller
         // $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
-            $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
-
-            if ($pengecekan) {
-                $pengecekan->update([
-                    // 'id_user' => $userId,
-                    'kondisi' => $kondisi,
-                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? $pengecekan->kalibrasi_terakhir,
-                ]);
-            } else {
-                Pengecekan::create([
-                    // 'id_user' => $userId,
-                    'id_alat' => $alatId,
-                    'kondisi' => $kondisi,
-                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
-                ]);
-            }
+            Pengecekan::create([
+                // 'id_user' => $userId,
+                'id_alat' => $alatId,
+                'kondisi' => $kondisi,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
+            ]);
         }
 
         if ($request->has('catatan')) {

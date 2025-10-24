@@ -71,6 +71,8 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
+    <!-- Untuk Filter Periode -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -109,14 +111,8 @@
 
                     <div class="col-12 col-sm-12 col-xl-5 mb-3">
                         <div class="d-flex align-items-end">
-                            <label for="" class="form-label me-2">Periode</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Semua Periode</option>
-                                <option value="1">Periode 1</option>
-                                <option value="2">Periode 2</option>
-                                <option value="3">Periode 3</option>
-                                <option value="4">Periode 4</option>
-                            </select>
+                            <label for="periode" class="form-label me-2">Periode</label>
+                            <input type="text" id="periode" class="form-control" placeholder="Pilih tanggal">
                         </div>
                     </div>
 
@@ -291,6 +287,76 @@
             </div>
         </footer>
     </main>
+
+    <!-- Periode -->
+     <style>
+        /* highlight minggu */
+        .week-highlight {
+            background-color: rgba(0, 123, 255, 0.2) !important;
+            border-radius: 50%;
+            color: #000 !important;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Fungsi untuk menghitung rentang minggu (Sabtu - Jumat)
+        function hitungRentangMinggu(tanggal) {
+            const tanggalDipilih = new Date(tanggal);
+            const hari = tanggalDipilih.getDay(); // Mengambil indeks hari (0 = Minggu, ... , 6 = Sabtu)
+            const jarakKeSabtu = (hari + 1) % 7; // Menghitung selisih ke hari Sabtu sebelumnya
+            const awal = new Date(tanggalDipilih);
+            awal.setDate(tanggalDipilih.getDate() - jarakKeSabtu);
+            const akhir = new Date(awal);
+            akhir.setDate(awal.getDate() + 6);
+            return [awal, akhir];
+        }
+
+        const kalender = flatpickr("#periode", {
+            dateFormat: "d-m-Y",
+            locale: { firstDayOfWeek: 6 }, // Kalender dimulai dari Sabtu
+            onChange: function (tanggalTerpilih, stringTanggal, instansi) {
+                if (tanggalTerpilih.length > 0) {
+                    const [awal, akhir] = hitungRentangMinggu(tanggalTerpilih[0]);
+
+                    // Format tampilan teks input (contoh: 12-10-2025 s.d. 18-10-2025)
+                    const formatTanggal = t => t.toLocaleDateString('id-ID', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    instansi.input.value = `${formatTanggal(awal)} s.d. ${formatTanggal(akhir)}`;
+
+                    // highlight pada minggu yang dipilih
+                    setTimeout(() => {
+                        document.querySelectorAll(".flatpickr-day").forEach(elemen => {
+                            const tanggalHariIni = elemen.dateObj;
+                            if (tanggalHariIni >= awal && tanggalHariIni <= akhir) {
+                                elemen.classList.add("week-highlight");
+                            } else {
+                                elemen.classList.remove("week-highlight");
+                            }
+                        });
+                    }, 50);
+                }
+            },
+            onMonthChange: function (tanggalTerpilih, stringTanggal, instansi) {
+                // Pastikan highlight tetap muncul saat berpindah bulan
+                if (tanggalTerpilih.length > 0) {
+                    const [awal, akhir] = hitungRentangMinggu(tanggalTerpilih[0]);
+                    setTimeout(() => {
+                        document.querySelectorAll(".flatpickr-day").forEach(elemen => {
+                            const tanggalHariIni = elemen.dateObj;
+                            if (tanggalHariIni >= awal && tanggalHariIni <= akhir) {
+                                elemen.classList.add("week-highlight");
+                            }
+                        });
+                    }, 50);
+                }
+            }
+        });
+    </script>
+    <!-- End Periode -->
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
