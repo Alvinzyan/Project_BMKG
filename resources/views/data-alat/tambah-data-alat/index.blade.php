@@ -69,6 +69,9 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"> 
+
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 </head>
@@ -166,6 +169,16 @@
 
         <div class="row mb-4 mt-4">
             <div class="col-12 d-flex align-items-center">
+                <a href="/data-alat" class="hover-back">
+                    <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l14 0" />
+                        <path d="M5 12l6 6" />
+                        <path d="M5 12l6 -6" />
+                    </svg>
+                </a>
                 <!-- ICON -->
                 <div class="icon-shape rounded d-flex align-items-center justify-content-center me-2"
                     style="width:40px; height:40px; background-color:#1E3D58; color:#fff;">
@@ -182,141 +195,185 @@
                 </div>
 
                 <!-- Judul -->
-                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Peralatan di Pos Meteorologi Bandara Banyuwangi</h2>
+                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Data Alat</h2>
             </div>
         </div>
 
-        <div class="row">  
-                <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
-                    <div class="col-6">
-                        <a href="">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                            <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433"/>
-                                            <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342"/>
-                                            <path d="M8 2v2"/>
-                                            <path d="M6 12v9h4v-9"/>
-                                            <path d="M3 21h18"/>
-                                            <path d="M22 5h-6l-1 -1"/>
-                                            <path d="M18 3l2 2l-2 2"/>
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2"/>
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Peralatan Konvensional</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-6">
-                        <a href="">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                            <path
-                                                d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                            <path d="M8 2v2" />
-                                            <path d="M6 12v9h4v-9" />
-                                            <path d="M3 21h18" />
-                                            <path d="M22 5h-6l-1 -1" />
-                                            <path d="M18 3l2 2l-2 2" />
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">AWOS Kategori 3 ALL WEATHER</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href="">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                            <path
-                                                d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                            <path d="M8 2v2" />
-                                            <path d="M6 12v9h4v-9" />
-                                            <path d="M3 21h18" />
-                                            <path d="M22 5h-6l-1 -1" />
-                                            <path d="M18 3l2 2l-2 2" />
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Peralatan Pendukung</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href="">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                            <path
-                                                d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                            <path d="M8 2v2" />
-                                            <path d="M6 12v9h4v-9" />
-                                            <path d="M3 21h18" />
-                                            <path d="M22 5h-6l-1 -1" />
-                                            <path d="M18 3l2 2l-2 2" />
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Semua Kategori</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+        <div class="row mb-4 mt-4">
+            <div class="align-items-center">
+                <div class="row g-0 border mb-1">
+                    <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Lokasi</div>
+                    <div class="col-10 p-2 bg-white text-dark" 
+                        style="color:#1E3D58; border:1px solid #1E3D58;">{{ $lokasi->nama_lokasi }}</div>
                 </div>
-        </div>        
+
+                <div class="row g-0 border">
+                    <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Kategori</div>
+                    <div class="col-10 p-2 bg-white text-dark" 
+                        style="color:#1E3D58; border:1px solid #1E3D58;">{{ $nama_kategori }}</div>
+                </div>
+            </div>
+        </div>
+
+        @foreach($alats as $group => $list)
+        <div class="card shadow-sm rounded-0 mb-4" style="background-color:#fff; border-top:3px solid #1E3D58;">
+            <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">{{ $group }}
+                <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;" data-bs-toggle="modal" data-bs-target="#modalTambahAlat_{{ Str::slug($group) }}">
+                    <i class="bi bi-plus"></i> Tambah Data
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table text-center align-middle" 
+                        style="border:1px solid #000; border-collapse:collapse; font-size:14px;">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid #000;">No</th>
+                                <th style="border:1px solid #000;">Nama Alat</th>
+                                <th style="border:1px solid #000;">Merk/Type</th>
+                                <th style="border:1px solid #000;">Jumlah</th>
+                                <th style="border:1px solid #000;">Tahun Pemasangan</th>
+                                <th style="border:1px solid #000;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($list as $a)
+                                <tr data-id="{{ $a->id }}">
+                                    <td style="border:1px solid #000;">{{ $loop->iteration }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->nama_alat }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->merk_tipe }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
+                                    <td style="border:1px solid #000;">{{ $a->tahun_pemasangan }}</td>
+                                    <td style="border:1px solid #000;">
+                                        <a href="#" class="btn btn-sm text-white btn-edit" style="background-color:#055C9D;" data-bs-toggle="modal" data-bs-target="#modalEditAlat_{{ $a->id }}">
+                                            <i class="bi bi-pencil-square"></i> Edit</a>
+                                        
+                                        <!-- Tombol Hapus -->
+                                        <form action="{{ route('data-alat.tambah-data-alat.destroy', [
+                                                'nama_lokasi' => $lokasi->nama_lokasi,
+                                                'nama_kategori' => $group,
+                                                'id' => $a->id
+                                            ]) }}" method="POST" class="d-inline"
+                                            onsubmit="return confirm('Yakin ingin menghapus alat ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="bi bi-trash"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                                <!-- Modal Edit Alat -->
+                                <div class="modal fade" id="modalEditAlat_{{ $a->id }}" tabindex="-1"
+                                    aria-labelledby="modalEditAlatLabel_{{ $a->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content border-0 rounded-2 shadow">
+                                            <div class="modal-header" style="background:#1E3D58;">
+                                                <h5 class="modal-title" id="modalEditAlatLabel_{{ $a->id }}"
+                                                    style="color:#ffffff !important;">Edit Alat - {{ $a->nama_alat }}</h5>
+                                                <button type="button" class="btn-close btn-close-white"
+                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <form action="{{ route('data-alat.tambah-data-alat.update', [
+                                                'nama_lokasi' => $lokasi->nama_lokasi,
+                                                'id' => $a->id,
+                                                'nama_kategori' => $kategori->nama_kategori ?? null,
+                                            ]) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Nama Alat</label>
+                                                        <input type="text" class="form-control" name="nama_alat"
+                                                            value="{{ $a->nama_alat }}" required>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Merk / Type</label>
+                                                        <input type="text" class="form-control" name="merk_tipe"
+                                                            value="{{ $a->merk_tipe }}" required>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Jumlah</label>
+                                                        <input type="number" class="form-control" name="jumlah"
+                                                            value="{{ $a->jumlah }}" required>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Tahun Pemasangan</label>
+                                                        <input type="number" class="form-control" name="tahun_pemasangan"
+                                                            value="{{ $a->tahun_pemasangan }}" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn text-white"
+                                                            style="background:#1E3D58;">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <tr class="text-center align-middle">
+                                    <td style="border:1px solid #000;"></td>
+                                    <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal tambah alat -->
+        <div class="modal fade" id="modalTambahAlat_{{ Str::slug($group) }}" tabindex="-1" aria-labelledby="modalTambahAlatLabel_{{ Str::slug($group) }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content border-0 rounded-2 shadow">
+                    <div class="modal-header" style="background:#1E3D58;">
+                        <h5 class="modal-title" id="modalTambahAlatLabel_{{ Str::slug($group) }}" style="color:#ffffff !important;">Tambah Alat - {{ $group }}</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form method="POST" action="{{ route('data-alat.tambah-data-alat.store', ['nama_lokasi' => $lokasi->nama_lokasi, 'nama_kategori' => $group]) }}">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nama_alat_{{ Str::slug($group) }}" class="form-label">Nama Alat</label>
+                                <input type="text" class="form-control" id="nama_alat_{{ Str::slug($group) }}" name="nama_alat" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="merk_tipe_{{ Str::slug($group) }}" class="form-label">Merk / Type</label>
+                                <input type="text" class="form-control" id="merk_tipe_{{ Str::slug($group) }}" name="merk_tipe" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="jumlah_{{ Str::slug($group) }}" class="form-label">Jumlah</label>
+                                <input type="number" class="form-control" id="jumlah_{{ Str::slug($group) }}" name="jumlah" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="tahun_pemasangan_{{ Str::slug($group) }}" class="form-label">Tahun Pemasangan</label>
+                                <input type="number" class="form-control" id="tahun_pemasangan_{{ Str::slug($group) }}" name="tahun_pemasangan" required>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn text-white" style="background:#1E3D58;">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
 
         <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
             <div class="card-body bg-gray-800 text-white pt-4">
@@ -395,7 +452,7 @@
             </div>
         </footer>
     </main>
-
+    
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -437,7 +494,6 @@
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
 
-    
 </body>
 
 </html>
