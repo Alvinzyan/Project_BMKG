@@ -5,32 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthController extends Controller
 {
-    // public function register()
-    // {
-    //     return view('auth.register');
-    // }
-
-    // public function register_action(Request $request)
-    // {
-    //     $request->validate([
-    //         'nama_lengkap' => 'required',
-    //         'username' => 'required|unique:users|min:6|max:30|regex:/^[a-z0-9]+$/',
-    //         'password' => 'required|min:6|max:25|regex:/^[A-Z](?=.*[0-9])[A-Za-z0-9]{5,}$/'
-    //     ]);
-
-    //     User::create([
-    //         'nama_lengkap' => $request->nama_lengkap,
-    //         'username' => $request->username,
-    //         'password' => Hash::make($request->password)
-    //     ]);
-
-    //     return redirect()->route('auth.login')->with('success, Pembuatan akun berhasil.');
-    // }
-
     public function login()
     {
         return view('auth.login');
@@ -39,20 +17,37 @@ class AuthController extends Controller
     public function login_action(Request $request)
     {
         $request->validate([
-            'email' => 'required|regex:regex:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/',
+            'email' => [
+                'required',
+                'regex:/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.(com|co\.id|id|ac\.id|net|org)$/'
+            ],
             'password' => 'required|min:6|max:30',
         ]);
 
-        $remember = $request->has('remember');
+        $user = User::where('email', $request->email)->first();
 
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $remember)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard')->with('success', 'Login berhasil.');
+        if ($user) {
+            try {
+                // Dekripsi password dari database
+                $decryptedPassword = Crypt::decryptString($user->password);
+
+                // Cek apakah cocok
+                if ($decryptedPassword === $request->password) {
+                    Auth::login($user, $request->has('remember'));
+                    $request->session()->regenerate();
+
+                    // Arahkan langsung ke halaman inventaris alat
+                    return redirect('/inventaris-alat')->with('success', 'Login berhasil.');
+                } else {
+                    return back()->withErrors(['email' => 'Password salah.'])->onlyInput('email');
+                }
+
+            } catch (\Exception $e) {
+                return back()->withErrors(['email' => 'Password tidak valid atau terenkripsi dengan format berbeda.'])->onlyInput('email');
+            }
         }
 
-        return back()->withErrors([
-            'username' => 'Username atau password salah.',
-        ])->onlyInput('username');
+        return back()->withErrors(['email' => 'Email tidak ditemukan.'])->onlyInput('email');
     }
 
     public function logout(Request $request)

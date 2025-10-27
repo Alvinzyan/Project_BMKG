@@ -89,11 +89,11 @@
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">Masuk Ke Akun Anda</h1>
                             </div>
-                            <form action="{{ route('auth.login-action') }}" method="POST" class="mt-4">
+                            <form action="{{ route('auth.login') }}" method="POST" class="mt-4">
                                 @csrf
                                 <!-- Form -->
                                 <div class="form-group mb-4">
-                                    <label for="username">Nama Pengguna</label>
+                                    <label for="email">Email</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1">
                                             <svg class="icon icon-xs text-gray-600" fill="currentColor"
@@ -106,10 +106,10 @@
                                             </svg>
                                         </span>
                                         <input type="text"
-                                            class="form-control @error('username') is-invalid @enderror"
-                                            placeholder="jono123" id="username" name="username" autofocus required>
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            placeholder="jono123" id="email" name="email" autofocus required>
                                         <div class="invalid-feedback">
-                                            @error('ussername')
+                                            @error('email')
                                                 {{ $message }}
                                             @enderror
                                         </div>

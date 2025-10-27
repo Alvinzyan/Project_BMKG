@@ -142,17 +142,27 @@
                                         <button class="btn btn-sm text-white" style="background-color:#1E3D58;">Edit Profile</button>
                                     </div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="row">
+                                <div class="col-md-6 mb-3">
                                     <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="John Doe" readonly>
+                                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="{{ $users->nama_lengkap}}" readonly>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" value="johndoe123" readonly>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nip" class="form-label">NIP</label>
+                                    <input type="text" class="form-control" id="nip" value="{{ $users->nip ?? '-' }}" readonly>
                                 </div>
-                                <div class="mb-3">
+                                <div class="col-md-6 mb-3">
+                                    <label for="jabatan" class="form-label">Jabatan</label>
+                                    <input type="jabatan" class="form-control" id="jabatan" value="{{ $users->jabatan ?? '-' }}" readonly>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                    <input type="jenis_kelamin" class="form-control" id="jenis_kelamin" value="{{ $users->jenis_kelamin ?? '-' }}" readonly>
+                                </div>
+                                <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="johndoe@example.com" readonly>
+                                    <input type="email" class="form-control" id="email" value="{{ $users->email}}" readonly>
+                                </div>
                                 </div>
                             </div>
 

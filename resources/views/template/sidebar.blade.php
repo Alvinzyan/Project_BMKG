@@ -99,7 +99,7 @@
                         <span class="sidebar-text">Tambah Alat</span>
                     </a>
                 </li>
-                
+                @if (auth()->user()->peran=="admin")
                <li class="nav-item {{ Request::is('kelola-akun') ? 'active' : '' }}">
                     <a href="/kelola-akun" class="nav-link">
                         <span class="sidebar-icon">
@@ -113,7 +113,7 @@
                         <span class="sidebar-text">Akun User</span>
                     </a>
                 </li>
-
+                @endif
                 <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
                     <a href="/profile" class="nav-link">
                         <span class="sidebar-icon">
