@@ -6,14 +6,14 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
 use App\Http\Controllers\PosBandaraJemberController;
-use App\Http\Controllers\KetapangBwiController;
-use App\Http\Controllers\LaporanAlatController;
-use App\Http\Controllers\NavbarController;
-use App\Http\Controllers\DataAlatController;
+use App\Http\Controllers\KetapangController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\KelolaAkunController;
+use App\Http\Controllers\KetapangBwiController;
+use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DataAlatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ Route::get('/', function () {
 // Route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
 
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('login-action', [AuthController::class, 'login_action'])->name('auth.login-action');
+Route::post('login', [AuthController::class, 'login_action']);
 
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
@@ -94,4 +94,19 @@ Route::prefix('data-alat')->name('data-alat.')->group(function () {
 
     Route::delete('/{nama_lokasi}/{nama_kategori?}/delete/{id}', [DataAlatController::class, 'destroy'])
         ->name('tambah-data-alat.destroy');
+});
+
+Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
+Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
+Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
+Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
+
+Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
+
+
+
+Route::group(['middleware' => ['auth', 'cekperan:admin']], function (){
+
+    Route::resource('kelola-akun', KelolaAkunController::class);
+    Route::resource('profile', ProfileController::class);
 });
