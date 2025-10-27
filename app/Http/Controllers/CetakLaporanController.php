@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class CetakLaporanController extends Controller
@@ -17,6 +18,14 @@ class CetakLaporanController extends Controller
     public function lihatView()
     {
         return view('pdf.surat-laporan-alat');
+    }
+
+    public function generatePdf()
+    {
+        // Karena view kamu statis / sudah lengkap, cukup:
+        $pdf = Pdf::loadView('pdf.surat-laporan-alat')
+            ->setPaper('a4', 'portrait');
+        return $pdf->stream('laporan-alat.pdf');
     }
 
     /**

@@ -75,6 +75,7 @@ class KelolaAkunController extends Controller
             'email'         => $validated['email'],
             'password'      => Crypt::encryptString($validated['password']),
             'peran'         => $validated['peran'],
+            
             'foto_profil'   => $fotoProfilPath,
         ]);
 
