@@ -107,214 +107,621 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="" method="POST">  
-                            <div class="row g-3">
-                                <!-- Card Total User -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="card text-white" style="background-color: #1E3D58;">
-                                        <div class="card-body d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                                <path d="M5 21v-2a4 4 0 0 1 4 -4h6a4 4 0 0 1 4 4v2" />
-                                                <circle cx="12" cy="7" r="4" />
-                                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                            </svg>
-                                            <div>
-                                                <h5 class="card-title mb-0">Total User</h5>
-                                                <p class="card-text fs-4 fw-bolder">150</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="row g-3">
+                            <!-- Card Total User -->
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card text-white" style="background-color: #1E3D58;">
+                                    <div class="card-body d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M5 21v-2a4 4 0 0 1 4 -4h6a4 4 0 0 1 4 4v2" />
+                                            <circle cx="12" cy="7" r="4" />
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        </svg>
+                                        <div>
+                                            <h5 class="card-title mb-0">Total User</h5>
+                                            <p class="card-text fs-4 fw-bolder">{{ $users->count() }}</p>
+                                            <form action="" method="POST">
+                                                <div class="row g-3">
+                                                    <!-- Card Total User -->
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <div class="card text-white" style="background-color: #1E3D58;">
+                                                            <div class="card-body d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="icon icon-tabler icon-tabler-users me-2" width="32"
+                                                                    height="32" viewBox="0 0 24 24" stroke-width="2"
+                                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                    <path d="M5 21v-2a4 4 0 0 1 4 -4h6a4 4 0 0 1 4 4v2" />
+                                                                    <circle cx="12" cy="7" r="4" />
+                                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                                                </svg>
+                                                                <div>
+                                                                    <h5 class="card-title mb-0">Total User</h5>
+                                                                    <p class="card-text fs-4 fw-bolder">150</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                <!-- Card Admin -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="card text-white" style="background-color: #1E3D58;">
-                                        <div class="card-body d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-user me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                                <path d="M12 3l8 4v5c0 5.5 -3.5 10.74 -8 13c-4.5 -2.26 -8 -7.5 -8 -13v-5l8 -4z" />
-                                                <path d="M12 11a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" />
-                                                <path d="M12 13v2" />
-                                            </svg>
-                                            <div>
-                                                <h5 class="card-title mb-0">Admin</h5>
-                                                <p class="card-text fs-4 fw-bolder">10</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <!-- Card Admin -->
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <div class="card text-white" style="background-color: #1E3D58;">
+                                                            <div class="card-body d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="icon icon-tabler icon-tabler-shield-user me-2" width="32"
+                                                                    height="32" viewBox="0 0 24 24" stroke-width="2"
+                                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                    <path
+                                                                        d="M12 3l8 4v5c0 5.5 -3.5 10.74 -8 13c-4.5 -2.26 -8 -7.5 -8 -13v-5l8 -4z" />
+                                                                    <path d="M12 11a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" />
+                                                                    <path d="M12 13v2" />
+                                                                </svg>
+                                                                <div>
+                                                                    <h5 class="card-title mb-0">Admin</h5>
+                                                                    <p class="card-text fs-4 fw-bolder">10</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                <!-- Card Teknisi -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="card text-white" style="background-color: #1E3D58;">
-                                        <div class="card-body d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                                <path d="M14.7 9.3l-3.4 3.4" />
-                                                <path d="M10 14l-3 3a2.828 2.828 0 1 1 -4 -4l3-3" />
-                                                <path d="M15 5l4 4" />
-                                            </svg>
-                                            <div>
-                                                <h5 class="card-title mb-0">Teknisi</h5>
-                                                <p class="card-text fs-4 fw-bolder">5</p>
+                                                    <!-- Card Teknisi -->
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <div class="card text-white" style="background-color: #1E3D58;">
+                                                            <div class="card-body d-flex align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="icon icon-tabler icon-tabler-tools me-2" width="32"
+                                                                    height="32" viewBox="0 0 24 24" stroke-width="2"
+                                                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                    <path d="M14.7 9.3l-3.4 3.4" />
+                                                                    <path d="M10 14l-3 3a2.828 2.828 0 1 1 -4 -4l3-3" />
+                                                                    <path d="M15 5l4 4" />
+                                                                </svg>
+                                                                <div>
+                                                                    <h5 class="card-title mb-0">Teknisi</h5>
+                                                                    <p class="card-text fs-4 fw-bolder">5</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Card Admin -->
+                                                <div class="col-12 col-md-6 col-lg-4">
+                                                    <div class="card text-white" style="background-color: #1E3D58;">
+                                                        <div class="card-body d-flex align-items-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-user me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M12 3l8 4v5c0 5.5 -3.5 10.74 -8 13c-4.5 -2.26 -8 -7.5 -8 -13v-5l8 -4z" />
+                                                                <path d="M12 11a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" />
+                                                                <path d="M12 13v2" />
+                                                            </svg>
+                                                            <div>
+                                                                <h5 class="card-title mb-0">Admin</h5>
+                                                                <p class="card-text fs-4 fw-bolder">{{ $users->where('peran', 'admin')->count() }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Card Teknisi -->
+                                                <div class="col-12 col-md-6 col-lg-4">
+                                                    <div class="card text-white" style="background-color: #1E3D58;">
+                                                        <div class="card-body d-flex align-items-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M14.7 9.3l-3.4 3.4" />
+                                                                <path d="M10 14l-3 3a2.828 2.828 0 1 1 -4 -4l3-3" />
+                                                                <path d="M15 5l4 4" />
+                                                            </svg>
+                                                            <div>
+                                                                <h5 class="card-title mb-0">Teknisi</h5>
+                                                                <p class="card-text fs-4 fw-bolder">{{ $users->where('peran', 'teknisi')->count() }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3 mt-2">
+                                        <div class="col-12">
+                                            <div class="card shadow" style="background-color:#1E3D58; border:0;">
+                                                <div class="card-header d-flex justify-content-between align-items-center text-white" style="border-bottom:none;">
+                                                    <div class="d-flex align-items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="icon icon-tabler icon-tabler-user me-2"
+                                                            width="24" height="24"
+                                                            viewBox="0 0 24 24"
+                                                            stroke-width="2"
+                                                            stroke="currentColor"
+                                                            fill="none"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" />
+                                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                                        </svg>
+                                                        <h2 class="fs-4 fw-bolder mb-0 text-white">Kelola Akun User</h2>
+                                                    </div>
+                                                    <div class="d-flex justify-content-end">
+                                                        <button type="button" class="btn btn-sm btn-white"
+                                                            data-bs-toggle="modal" data-bs-target="#modalTambahAkun">
+                                                            <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M12 5l0 14" />
+                                                                <path d="M5 12l14 0" />
+                                                            </svg>
+                                                            Tambah Akun
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table table-flush bg-white">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama Lengkap</th>
+                                                                <th>NIP</th>
+                                                                <th>Jabatan</th>
+                                                                <th>Jenis Kelamin</th>
+                                                                <th>Email</th>
+                                                                <th>Photo</th>
+                                                                <th>Hak Akses</th>
+                                                                <th>Aksi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @forelse ($users as $index => $user)
+                                                            <tr>
+                                                                <td>{{ $index + 1 }}</td>
+                                                                <td>{{ $user->nama_lengkap }}</td>
+                                                                <td>{{ $user->nip ?: '-' }}</td>
+                                                                <td>{{ $user->jabatan ?: '-' }}</td>
+                                                                <td>{{ $user->jenis_kelamin ? \Illuminate\Support\Str::title($user->jenis_kelamin) : '-' }}</td>
+                                                                <td>{{ $user->email }}</td>
+                                                                <td>
+                                                                    @php
+                                                                    // cek apakah file ada di storage
+                                                                    if ($user->foto_profil && file_exists(storage_path('app/public/' . $user->foto_profil))) {
+                                                                    $fotoPath = $user->foto_profil;
+                                                                    } else {
+                                                                    $fotoPath = 'foto_profil/default-profile.png';
+                                                                    }
+                                                                    @endphp
+                                                                    <div style="width:50px; height:50px; border-radius:50%; overflow:hidden;">
+                                                                        <img src="{{ asset('storage/' . $fotoPath) }}"
+                                                                            alt="Foto Profil"
+                                                                            style="width:100%; height:100%; object-fit:cover;">
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $user->peran }}</td>
+                                                                <td>
+                                                                    <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
+                                                                        <i class="bi bi-eye"></i> Lihat
+                                                                    </a>
+                                                                    <button type="button" class="btn btn-sm btn-primary"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modalEditAkun{{ $user->id }}">
+                                                                        <i class="bi bi-pencil"></i> Edit
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun"
+                                                                        onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
+                                                                        <i class="bi bi-trash"></i> Hapus
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+
+                                                            <!-- Modal Lihat Akun -->
+                                                            <div class="modal fade" id="modalLihatAkun{{ $user->id }}" tabindex="-1"
+                                                                aria-labelledby="modalLihatAkunLabel{{ $user->id }}" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                    <div class="modal-content border-0 shadow">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="modalLihatAkunLabel{{ $user->id }}">Detail Akun User</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                                        </div>
+
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center mb-4">
+                                                                                @php
+                                                                                // cek apakah file ada di storage
+                                                                                if ($user->foto_profil && file_exists(storage_path('app/public/' . $user->foto_profil))) {
+                                                                                $fotoPath = $user->foto_profil;
+                                                                                } else {
+                                                                                $fotoPath = 'foto_profil/default-profile.png'; // sesuaikan path default kamu
+                                                                                }
+                                                                                @endphp
+                                                                                <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:auto;">
+                                                                                    <img src="{{ asset('storage/' . $fotoPath) }}"
+                                                                                        alt="Foto Profil"
+                                                                                        style="width:100%; height:100%; object-fit:cover;">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row g-3">
+                                                                                <!-- Nama Lengkap -->
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Nama Lengkap</label>
+                                                                                    <input type="text" class="form-control" value="{{ $user->nama_lengkap ?? '-' }}" readonly>
+                                                                                </div>
+
+                                                                                <!-- NIP -->
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">NIP</label>
+                                                                                    <input type="text" class="form-control" value="{{ $user->nip ?? '-' }}" readonly>
+                                                                                </div>
+
+                                                                                <!-- Jabatan -->
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Jabatan</label>
+                                                                                    <input type="text" class="form-control" value="{{ $user->jabatan ?? '-' }}" readonly>
+                                                                                </div>
+
+                                                                                <!-- Jenis Kelamin -->
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Jenis Kelamin</label>
+                                                                                    <input type="text" class="form-control" value="{{ $user->jenis_kelamin ?? '-' }}" readonly>
+                                                                                </div>
+
+                                                                                <!-- Email -->
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Email</label>
+                                                                                    <input type="text" class="form-control" value="{{ $user->email ?? '-' }}" readonly>
+                                                                                </div>
+
+                                                                                <!-- Peran -->
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Peran</label>
+                                                                                    <input type="text" class="form-control" value="{{ $user->peran ?? '-' }}" readonly>
+                                                                                </div>
+
+                                                                                <!-- Password -->
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Password</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="password" class="form-control"
+                                                                                            value="{{ $user->decrypted_password }}"
+                                                                                            readonly>
+                                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                                            <i class="bi bi-eye"></i>
+                                                                                        </button>
+                                                                                        <div class="row g-3 mt-2">
+                                                                                            <div class="col-12">
+                                                                                                <div class="card shadow" style="background-color:#1E3D58; border:0;">
+                                                                                                    <div class="card-header d-flex justify-content-between align-items-center text-white"
+                                                                                                        style="border-bottom:none;">
+                                                                                                        <div class="d-flex align-items-center">
+                                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                                class="icon icon-tabler icon-tabler-user me-2" width="24"
+                                                                                                                height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                                                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                                                                stroke-linejoin="round">
+                                                                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                                                                <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" />
+                                                                                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                                                                                            </svg>
+                                                                                                            <h2 class="fs-4 fw-bolder mb-0 text-white">Kelola Akun User</h2>
+                                                                                                        </div>
+                                                                                                        <div class="d-flex justify-content-end">
+                                                                                                            <button type="button" class="btn btn-sm btn-white"
+                                                                                                                data-bs-toggle="modal" data-bs-target="#modalTambahAkun">
+                                                                                                                <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                                                                                                    width="24" height="24" viewBox="0 0 24 24"
+                                                                                                                    fill="none" stroke="currentColor" stroke-width="2"
+                                                                                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                                                                    <path d="M12 5l0 14" />
+                                                                                                                    <path d="M5 12l14 0" />
+                                                                                                                </svg>
+                                                                                                                Tambah Akun
+                                                                                                            </button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="table-responsive">
+                                                                                                        <table class="table table-flush bg-white">
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                    <th>No</th>
+                                                                                                                    <th>Nama Lengkap</th>
+                                                                                                                    <th>Username</th>
+                                                                                                                    <!-- <th>Jenis Kelamin</th>
+                                                        <th>Photo</th>
+                                                        <th>Hak Akses</th> -->
+                                                                                                                    <th>Aksi</th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody>
+                                                                                                                @forelse ($users as $index => $user)
+                                                                                                                <tr>
+                                                                                                                    <td>{{ $index + 1 }}</td>
+                                                                                                                    <td>{{ $user->nama_lengkap }}</td>
+                                                                                                                    <td>{{ $user->username }}</td>
+                                                                                                                    <td>
+                                                                                                                        <a class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                                                                                            data-bs-target="#modalLihatAkun{{ $user->id }}">
+                                                                                                                            <i class="bi bi-eye"></i> Lihat
+                                                                                                                        </a>
+                                                                                                                        <button type="button"
+                                                                                                                            class="btn btn-sm btn-warning me-1"
+                                                                                                                            onclick="showEditModal('{{ $user->id }}', '{{ $user->nama_lengkap }}', '{{ $user->username }}')">
+                                                                                                                            <i class="bi bi-pencil"></i> Edit
+                                                                                                                        </button>
+                                                                                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                                                                                            data-bs-toggle="modal"
+                                                                                                                            data-bs-target="#modalHapusAkun"
+                                                                                                                            onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
+                                                                                                                            <i class="bi bi-trash"></i> Hapus
+                                                                                                                        </button>
+                                                                                                                    </td>
+                                                                                                                </tr>
+
+                                                                                                                <!-- Modal Lihat Akun -->
+                                                                                                                <div class="modal fade"
+                                                                                                                    id="modalLihatAkun{{ $user->id }}" tabindex="-1"
+                                                                                                                    aria-labelledby="modalLihatAkunLabel{{ $user->id }}"
+                                                                                                                    aria-hidden="true">
+                                                                                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                                                                        <div class="modal-content border-0 shadow">
+                                                                                                                            <div class="modal-header">
+                                                                                                                                <h5 class="modal-title"
+                                                                                                                                    id="modalLihatAkunLabel{{ $user->id }}">
+                                                                                                                                    Detail Akun User</h5>
+                                                                                                                                <button type="button" class="btn-close"
+                                                                                                                                    data-bs-dismiss="modal"
+                                                                                                                                    aria-label="Tutup"></button>
+                                                                                                                            </div>
+
+                                                                                                                            <div class="modal-body">
+                                                                                                                                <div class="row g-3">
+                                                                                                                                    <!-- Nama Lengkap -->
+                                                                                                                                    <div class="col-md-6">
+                                                                                                                                        <label class="form-label">Nama
+                                                                                                                                            Lengkap</label>
+                                                                                                                                        <input type="text"
+                                                                                                                                            class="form-control"
+                                                                                                                                            value="{{ $user->nama_lengkap }}"
+                                                                                                                                            readonly>
+                                                                                                                                    </div>
+
+                                                                                                                                    <!-- Username -->
+                                                                                                                                    <div class="col-md-6">
+                                                                                                                                        <label
+                                                                                                                                            class="form-label">Username</label>
+                                                                                                                                        <input type="text"
+                                                                                                                                            class="form-control"
+                                                                                                                                            value="{{ $user->username }}"
+                                                                                                                                            readonly>
+                                                                                                                                    </div>
+
+                                                                                                                                    <!-- Password (tidak ditampilkan aslinya) -->
+                                                                                                                                    <div class="col-md-6">
+                                                                                                                                        <label
+                                                                                                                                            class="form-label">Password</label>
+                                                                                                                                        <input type="password"
+                                                                                                                                            class="form-control"
+                                                                                                                                            value="********" readonly>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+
+                                                                                                                            <div class="modal-footer">
+                                                                                                                                <button type="button"
+                                                                                                                                    class="btn btn-sm btn-secondary"
+                                                                                                                                    data-bs-dismiss="modal">Tutup</button>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                                                                </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <!-- Modal Edit Akun -->
+                                                                                            <div class="modal fade" id="modalEditAkun{{ $user->id }}" tabindex="-1" aria-hidden="true">
+                                                                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                                                    <div class="modal-content border-0 shadow">
+                                                                                                        <div class="modal-header">
+                                                                                                            <h5 class="modal-title">Edit Akun User</h5>
+                                                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                                                                        </div>
+                                                                                                        <form method="POST" action="{{ route('kelola-akun.update', $user->id) }}" enctype="multipart/form-data">
+                                                                                                            @csrf
+                                                                                                            @method('PUT')
+                                                                                                            <div class="modal-body">
+                                                                                                                <div class="row g-3">
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">Nama Lengkap</label>
+                                                                                                                        <input type="text" class="form-control" name="nama_lengkap" value="{{ $user->nama_lengkap }}"
+                                                                                                                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                                                                                                        @error('nama_lengkap')
+                                                                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                                                                        @enderror
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">NIP</label>
+                                                                                                                        <input type="text" class="form-control" name="nip" value="{{ $user->nip ?? '-' }}">
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">Jabatan</label>
+                                                                                                                        <input type="text" class="form-control" name="jabatan" value="{{ $user->jabatan ?? '-' }}"
+                                                                                                                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">Jenis Kelamin</label>
+                                                                                                                        <select name="jenis_kelamin" class="form-control">
+                                                                                                                            <option value="">-</option>
+                                                                                                                            <option value="laki laki" {{ $user->jenis_kelamin == 'laki laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                                                                                            <option value="perempuan" {{ $user->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                                                                                        </select>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">Email</label>
+                                                                                                                        <input type="email" class="form-control" name="email" value="{{ $user->email }}"
+                                                                                                                            autocomplete="new-email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$">
+                                                                                                                        @error('email')
+                                                                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                                                                        @enderror
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">Peran</label>
+                                                                                                                        <select name="peran" class="form-control">
+                                                                                                                            <option value="Admin" {{ $user->peran == 'Admin' ? 'selected' : '' }}>Admin</option>
+                                                                                                                            <option value="Teknisi" {{ $user->peran == 'Teknisi' ? 'selected' : '' }}>Teknisi</option>
+                                                                                                                        </select>
+                                                                                                                        @error('peran')
+                                                                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                                                                        @enderror
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">Password</label>
+                                                                                                                        <div class="input-group">
+                                                                                                                            <input type="password"
+                                                                                                                                class="form-control"
+                                                                                                                                name="password"
+                                                                                                                                value="{{ $user->decrypted_password }}"
+                                                                                                                                placeholder="Masukkan password"
+                                                                                                                                autocomplete="off">
+                                                                                                                            <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                                                                                <i class="bi bi-eye"></i>
+                                                                                                                            </button>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-6">
+                                                                                                                        <label class="form-label">Foto Profil (Opsional)</label>
+                                                                                                                        <input type="file" class="form-control" name="foto_profil">
+                                                                                                                        <div class="form-text text-muted">Kosongkan jika tidak ingin mengubah foto profil.</div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                                                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                                                                                            </div>
+                                                                                                        </form>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @empty
+                                                                                            <tr>
+                                                                                                <td colspan="9" class="text-muted text-center">Belum ada data</td>
+                                                                                            </tr>
+                                                                                            @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                    @empty
+                                                    <tr>
+                                                        <td colspan="4" class="text-muted text-center">Belum
+                                                            ada data</td>
+                                                    </tr>
+                                                    @endforelse
+                                                    </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
-                            <div class="row g-3 mt-2">
-                                <div class="col-12">
-                                    <div class="card shadow" style="background-color:#1E3D58; border:0;">
-                                        <div class="card-header d-flex justify-content-between align-items-center text-white" style="border-bottom:none;">
-                                            <div class="d-flex align-items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                                    class="icon icon-tabler icon-tabler-user me-2" 
-                                                    width="24" height="24" 
-                                                    viewBox="0 0 24 24" 
-                                                    stroke-width="2" 
-                                                    stroke="currentColor" 
-                                                    fill="none" 
-                                                    stroke-linecap="round" 
-                                                    stroke-linejoin="round"> 
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/> 
-                                                    <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" /> 
-                                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /> 
-                                                </svg>
-                                                <h2 class="fs-4 fw-bolder mb-0 text-white">Kelola Akun User</h2>
-                                            </div>
-                                            <div class="d-flex justify-content-end">
-                                                <button type="button" class="btn btn-sm btn-white"
-                                                    data-bs-toggle="modal" data-bs-target="#modalTambahAkun">
-                                                    <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M12 5l0 14" />
-                                                        <path d="M5 12l14 0" />
-                                                    </svg>
-                                                    Tambah Akun
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table table-flush bg-white">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Nama Lengkap</th>
-                                                        <th>Username</th>
-                                                        <!-- <th>Jenis Kelamin</th>
-                                                        <th>Photo</th>
-                                                        <th>Hak Akses</th> -->
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @forelse ($users as $index => $user)
-                                                        <tr>
-                                                            <td>{{ $index + 1 }}</td>
-                                                            <td>{{ $user->nama_lengkap }}</td>
-                                                            <td>{{ $user->username }}</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
-                                                                    <i class="bi bi-eye"></i> Lihat
-                                                                </a>
-                                                                <button type="button" class="btn btn-sm btn-warning me-1" onclick="showEditModal('{{ $user->id }}', '{{ $user->nama_lengkap }}', '{{ $user->username }}')">
-                                                                    <i class="bi bi-pencil"></i> Edit
-                                                                </button>
-                                                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun"
-                                                                    onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
-                                                                    <i class="bi bi-trash"></i> Hapus
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                       
-                                                        <!-- Modal Lihat Akun -->
-                                                        <div class="modal fade" id="modalLihatAkun{{ $user->id }}" tabindex="-1"
-                                                            aria-labelledby="modalLihatAkunLabel{{ $user->id }}" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                                <div class="modal-content border-0 shadow">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalLihatAkunLabel{{ $user->id }}">Detail Akun User</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                                                    </div>
-                                                                    
-                                                                    <div class="modal-body">
-                                                                        <div class="row g-3">
-                                                                            <!-- Nama Lengkap -->
-                                                                            <div class="col-md-6">
-                                                                                <label class="form-label">Nama Lengkap</label>
-                                                                                <input type="text" class="form-control" value="{{ $user->nama_lengkap }}" readonly>
-                                                                            </div>
-
-                                                                            <!-- Username -->
-                                                                            <div class="col-md-6">
-                                                                                <label class="form-label">Username</label>
-                                                                                <input type="text" class="form-control" value="{{ $user->username }}" readonly>
-                                                                            </div>
-
-                                                                            <!-- Password (tidak ditampilkan aslinya) -->
-                                                                            <div class="col-md-6">
-                                                                                <label class="form-label">Password</label>
-                                                                                <input type="password" class="form-control" value="********" readonly>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                    
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="4" class="text-muted text-center">Belum ada data</td>
-                                                        </tr>
-                                                    @endforelse
-                                                </tbody>
-                                            </table>
-                                        </div>
+                    <!-- Modal Tambah Akun -->
+                    <div class="modal fade" id="modalTambahAkun" tabindex="-1"
+                        aria-labelledby="modalTambahAkunLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalTambahAkun" tabindex="-1" aria-labelledby="modalTambahAkunLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content border-0 shadow">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTambahAkunLabel">Tambah Akun User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                                     </div>
+                                    <form id="formTambahAkun" action="{{ route('kelola-akun.store') }}" method="POST" enctype="multipart/form-data">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Tutup"></button>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                <form id="formTambahAkun" action="{{ route('kelola-akun.store') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row g-3">
+                                            <!-- Nama User -->
+                                            <div class="col-md-6">
+                                                <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
+                                                <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap" required
+                                                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                                @error('nama_lengkap')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
 
-        <!-- Modal Tambah Akun -->
-        <div class="modal fade" id="modalTambahAkun" tabindex="-1"
-            aria-labelledby="modalTambahAkunLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow">
-        <div class="modal-header">
-        <h5 class="modal-title" id="modalTambahAkunLabel">Tambah Akun User</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <form id="formTambahAkun" action="{{ route('kelola-akun.store') }}" method="POST">
-        @csrf
-        <div class="modal-body">
-        <div class="row g-3">
-            <!-- Nama User -->
-            <div class="col-md-6">
-                <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap" required
-                    oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
-                @error('nama_lengkap')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+                                            <!-- NIP -->
+                                            <div class="col-md-6">
+                                                <label for="nip" class="form-label">NIP</label>
+                                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP">
+                                            </div>
 
-            <!-- Jenis Kelamin -->
-            <!-- <div class="col-md-6">
+                                            <!-- Jabatan -->
+                                            <div class="col-md-6">
+                                                <label for="jabatan" class="form-label">Jabatan</label>
+                                                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan jabatan"
+                                                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                            </div>
+
+                                            <!-- Jenis Kelamin -->
+                                            <div class="col-md-6">
+                                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                                <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
+                                                    <option value="" disabled selected>Pilih jenis kelamin</option>
+                                                    <option value="laki laki">Laki-laki</option>
+                                                    <option value="perempuan">Perempuan</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- Email -->
+                                            <div class="col-md-6">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required
+                                                    autocomplete="new-email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$"
+                                                    title="Masukkan email yang valid, misal: nama@gmail.com atau nama@sekolah.ac.id">
+                                                @error('email')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+
+                                            <!-- Hak Akses -->
+                                            <div class="col-md-6">
+                                                <label for="peran" class="form-label">Hak Akses</label>
+                                                <select class="form-select" id="peran" name="peran" required>
+                                                    <option value="" disabled selected>Pilih hak akses</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Teknisi">Teknisi</option>
+                                                </select>
+                                                @error('peran')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
+                                                    placeholder="Masukkan nama lengkap" required
+                                                    oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
+                                                @error('nama_lengkap')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+
+                                            <!-- Jenis Kelamin -->
+                                            <!-- <div class="col-md-6">
                 <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
                 <select class="form-select" id="jenisKelamin" name="jenisKelamin" required>
                     <option value="" disabled selected>Pilih jenis kelamin</option>
@@ -323,26 +730,43 @@
                 </select>
             </div> -->
 
-            <!-- Username -->
-            <div class="col-md-6">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" required>
-                @error('username')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+                                            <!-- Username -->
+                                            <div class="col-md-6">
+                                                <label for="username" class="form-label">Username</label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    placeholder="Masukkan username" required>
+                                                @error('username')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
 
-            <!-- Password -->
-            <div class="col-md-6">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
-                @error('password')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+                                            <!-- Password -->
+                                            <div class="col-md-6">
+                                                <label for="password" class="form-label">Password</label>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
+                                                    <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                </div>
+                                                @error('password')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
 
-            <!-- Hak Akses -->
-            <!-- <div class="col-md-6">
+                                            <!-- Foto Profil -->
+                                            <div class="col-md-6">
+                                                <label for="foto_profil" class="form-label">Foto Profil (opsional)</label>
+                                                <input type="file" class="form-control" id="foto_profil" name="foto_profil">
+                                                <input type="password" class="form-control" id="password" name="password"
+                                                    placeholder="Masukkan password" required>
+                                                @error('password')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+
+                                            <!-- Hak Akses -->
+                                            <!-- <div class="col-md-6">
             <label for="hakAkses" class="form-label">Hak Akses</label>
             <select class="form-select" id="hakAkses" name="hakAkses" required>
                 <option value="" disabled selected>Pilih hak akses</option>
@@ -352,171 +776,188 @@
             </select>
             </div> -->
 
-            <!-- Photo -->
-            <!-- <div class="col-md-6">
+                                            <!-- Photo -->
+                                            <!-- <div class="col-md-6">
             <label for="photo" class="form-label">Photo (opsional)</label>
             <input type="file" class="form-control" id="photo" name="photo">
             </div> -->
-        </div>
-        </div>
+                                        </div>
+                                    </div>
 
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" form="formTambahAkun" class="btn btn-sm btn-success">Simpan</button>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-danger"
+                                            data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" form="formTambahAkun"
+                                            class="btn btn-sm btn-success">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Modal Edit Akun -->
-        <div class="modal fade" id="modalEditAkun" tabindex="-1" aria-labelledby="modalEditAkunLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow">
-        <div class="modal-header">
-        <h5 class="modal-title" id="modalEditAkunLabel">Edit Akun User</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
+                    <!-- Modal Edit Akun -->
+                    <div class="modal fade" id="modalEditAkun" tabindex="-1" aria-labelledby="modalEditAkunLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content border-0 shadow">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalEditAkunLabel">Edit Akun User</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Tutup"></button>
+                                </div>
 
-        <form id="formEditAkun" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="modal-body">
-        <div class="row g-3">
-            <!-- Nama Lengkap -->
-            <div class="col-md-6">
-                <label for="edit_nama_lengkap" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="edit_nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap" required
-                    oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
-            </div>
+                                <form id="formEditAkun" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="modal-body">
+                                        <div class="row g-3">
+                                            <!-- Nama Lengkap -->
+                                            <div class="col-md-6">
+                                                <label for="edit_nama_lengkap" class="form-label">Nama Lengkap</label>
+                                                <input type="text" class="form-control" id="edit_nama_lengkap"
+                                                    name="nama_lengkap" placeholder="Masukkan nama lengkap" required
+                                                    oninput="this.value = this.value.replace(/\b\w/g, l => l.toUpperCase())">
+                                            </div>
 
-            <!-- Username -->
-            <div class="col-md-6">
-                <label for="edit_username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="edit_username" name="username" placeholder="Masukkan username" required>
-            </div>
+                                            <!-- Username -->
+                                            <div class="col-md-6">
+                                                <label for="edit_username" class="form-label">Username</label>
+                                                <input type="text" class="form-control" id="edit_username" name="username"
+                                                    placeholder="Masukkan username" required>
+                                            </div>
 
-            <!-- Password -->
-            <div class="col-md-6">
-                <label for="edit_password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="edit_password" name="password" placeholder="Masukkan password baru">
-                <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
-            </div>
-        </div>
-        </div>
+                                            <!-- Password -->
+                                            <div class="col-md-6">
+                                                <label for="edit_password" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="edit_password" name="password"
+                                                    placeholder="Masukkan password baru">
+                                                <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
+                                            </div>
+                                        </div>
+                                    </div>
 
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" form="formEditAkun" class="btn btn-sm btn-success">Perbarui</button>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" form="formTambahAkun" class="btn btn-sm btn-success">Simpan</button>
+                                        <button type="button" class="btn btn-sm btn-danger"
+                                            data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" form="formEditAkun"
+                                            class="btn btn-sm btn-success">Perbarui</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Modal Hapus Akun -->
-        <div class="modal fade" id="modalHapusAkun" tabindex="-1"
-        aria-labelledby="modalHapusAkunLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-        <div class="modal-header">
-        <h5 class="modal-title" id="modalHapusAkunLabel">Konfirmasi Hapus Akun</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <form id="formHapusAkun" method="POST">
-        @csrf
-        @method('DELETE')
-        <div class="modal-body">
-        <p>Apakah Anda yakin ingin menghapus akun berikut?</p>
-        <div class="alert alert-warning mb-0">
-            <strong id="hapusNamaUser"></strong>
-        </div>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus</button>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
+                    <!-- Modal Hapus Akun -->
+                    <div class="modal fade" id="modalHapusAkun" tabindex="-1"
+                        aria-labelledby="modalHapusAkunLabel" aria-hidden="true">
+                        =========
+                        <div class="modal fade" id="modalHapusAkun" tabindex="-1" aria-labelledby="modalHapusAkunLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content border-0 shadow">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalHapusAkunLabel">Konfirmasi Hapus Akun</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Tutup"></button>
+                                    </div>
+                                    <form id="formHapusAkun" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="modal-body">
+                                            <p>Apakah Anda yakin ingin menghapus akun berikut?</p>
+                                            <div class="alert alert-warning mb-0">
+                                                <strong id="hapusNamaUser"></strong>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                data-bs-dismiss="modal">Batal</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
-            <div class="card-body bg-gray-800 text-white pt-4">
-                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
-                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
-                    aria-controls="theme-settings"></button>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
-                    </p>
-                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
-                        data-size="large" data-show-count="true"
-                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
-                </div>
-                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
-                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
-                    Download
-                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
-                <div class="d-flex justify-content-center">
-                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-                        target="_blank">
-                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
-                    </a>
-                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
-                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
-                    </a>
-                </div>
-            </div>
-        </div>
+                        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
+                            <div class="card-body bg-gray-800 text-white pt-4">
+                                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
+                                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
+                                    aria-controls="theme-settings"></button>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
+                                    </p>
+                                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
+                                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
+                                        data-size="large" data-show-count="true"
+                                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
+                                </div>
+                                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
+                                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
+                                    Download
+                                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
+                                <div class="d-flex justify-content-center">
+                                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
+                                        target="_blank">
+                                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
+                                    </a>
+                                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
+                                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
-            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
-                <span class="fw-bold d-inline-flex align-items-center h6">
-                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Settings
-                </span>
-            </div>
-        </div>
+                        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
+                            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
+                                <span class="fw-bold d-inline-flex align-items-center h6">
+                                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Settings
+                                </span>
+                            </div>
+                        </div>
 
-        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
-            <div class="row">
-                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
-                            class="text-primary fw-normal" href="https://themesberg.com"
-                            target="_blank">Themesberg</a></p>
-                </div>
-                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-                    <!-- List -->
-                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/about">About</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/themes">Themes</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/blog">Blog</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
+                        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
+                            <div class="row">
+                                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
+                                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
+                                            class="text-primary fw-normal" href="https://themesberg.com"
+                                            target="_blank">Themesberg</a></p>
+                                </div>
+                                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
+                                    <!-- List -->
+                                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
+                                        <li class="list-inline-item px-0 px-sm-2">
+                                            <a href="https://themesberg.com/about">About</a>
+                                        </li>
+                                        <li class="list-inline-item px-0 px-sm-2">
+                                            <a href="https://themesberg.com/themes">Themes</a>
+                                        </li>
+                                        <li class="list-inline-item px-0 px-sm-2">
+                                            <a href="https://themesberg.com/blog">Blog</a>
+                                        </li>
+                                        <li class="list-inline-item px-0 px-sm-2">
+                                            <a href="https://themesberg.com/contact">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </footer>
     </main>
 
     <!-- Core -->
@@ -562,49 +1003,51 @@
 
     <!-- Modal Error Handling -->
     @if ($errors->any())
-    <script>
+    <<<<<<<<< Temporary merge branch 1
+        @if(session('edit_user_id'))
+        <script>
         var tambahAkunModal = new bootstrap.Modal(document.getElementById('modalTambahAkun'));
         tambahAkunModal.show();
-    </script>
-    @endif
-    @endif
+        </script>
+        @endif
+        @endif
 
-    @if (session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: "{{ session('success') }}",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    </script>
-    @endif
+        @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+        @endif
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // === Modal Hapus ===
-            window.hapusAkun = function(id, nama) {
-                document.getElementById('hapusNamaUser').innerText = nama;
-                document.getElementById('formHapusAkun').action = '/kelola-akun/' + id;
-            };
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // === Modal Hapus ===
+                window.hapusAkun = function(id, nama) {
+                    document.getElementById('hapusNamaUser').innerText = nama;
+                    document.getElementById('formHapusAkun').action = '/kelola-akun/' + id;
+                };
 
-            // === Toggle Password Universal ===
-            document.querySelectorAll('.btn-toggle-password').forEach(button => {
-                button.addEventListener('click', function() {
-                    const input = this.closest('.input-group').querySelector('input');
-                    const icon = this.querySelector('i');
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        icon.classList.replace('bi-eye', 'bi-eye-slash');
-                    } else {
-                        input.type = 'password';
-                        icon.classList.replace('bi-eye-slash', 'bi-eye');
-                    }
+                // === Toggle Password Universal ===
+                document.querySelectorAll('.btn-toggle-password').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const input = this.closest('.input-group').querySelector('input');
+                        const icon = this.querySelector('i');
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            icon.classList.replace('bi-eye', 'bi-eye-slash');
+                        } else {
+                            input.type = 'password';
+                            icon.classList.replace('bi-eye-slash', 'bi-eye');
+                        }
+                    });
                 });
             });
-        });
-    </script>
+        </script>
 </body>
 
 </html>

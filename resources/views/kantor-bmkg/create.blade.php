@@ -106,7 +106,7 @@
         </nav>
 
         <div class="d-flex align-items-center py-4">
-            <a href="{{ route('kantor-bmkg.index') }}" class="hover-back">
+            <a href="/inventaris-alat" class="hover-back">
                 <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -221,17 +221,18 @@
 
                                                             {{-- Kalibrasi Terakhir (input number tahun) --}}
                                                             <td>
-                                                                <input type="number" name="kalibrasi[{{ $alat->id }}]"
+                                                                <input type="number"
+                                                                    name="kalibrasi[{{ $alat->id }}]"
                                                                     class="form-control" min="2000"
                                                                     max="2099" maxlength="4"
                                                                     oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                                             </td>
 
                                                             {{-- Keterangan --}}
-                                                            <td>
-                                                                <input type="text" name=""
-                                                                    class="form-control" placeholder="Opsional...">
+                                                            <td style="text-transform: capitalize">
+                                                                {{ $alat->keterangan }}
                                                             </td>
+
                                                         </tr>
                                                     </tbody>
                                                 @endforeach
@@ -241,8 +242,8 @@
                                         <div class="d-flex align-items-start mt-3">
                                             <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
                                             <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control" style="max-width: 50%"
-                                                placeholder="Tambahkan catatan bila diperlukan..."></textarea>
+                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control"
+                                                style="max-width: 50%" placeholder="Tambahkan catatan bila diperlukan..."></textarea>
                                         </div>
                                     </div>
                                 @endforeach
@@ -290,7 +291,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-info">
+                                    <button class="btn btn-info" id="btnSimpan">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -389,6 +390,50 @@
             </div>
         </footer>
     </main>
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Sukses',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonColor: '#0d6efd',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>
+    @endif
+
+    <script>
+        document.getElementById('btnSimpan').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data pengecekan alat akan disimpan.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#0d6efd',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Simpan',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.querySelector('form').submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'Dibatalkan',
+                        text: 'Data pengecekan alat tidak jadi disimpan.',
+                        icon: 'info',
+                        confirmButtonColor: '#0d6efd'
+                    });
+                }
+            });
+        });
+    </script>
+
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>

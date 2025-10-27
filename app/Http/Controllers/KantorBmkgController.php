@@ -13,22 +13,16 @@ use Illuminate\Support\Facades\Auth;
 
 class KantorBmkgController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $user = Auth::user();
-        
-        return view('inventaris-alat.index', compact('user'));
+        // $user = Auth::user();
+
+        return view('inventaris-alat.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
@@ -36,23 +30,19 @@ class KantorBmkgController extends Controller
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('kantor-bmkg.create', compact('lokasi', 'kategoris', 'user'));
+        return view('kantor-bmkg.create', compact('lokasi', 'kategoris'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-
-        $userId = Auth::id();
+        // $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                'id_user' => $userId,
+                // 'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
-                'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
             ]);
         }
 
@@ -70,39 +60,29 @@ class KantorBmkgController extends Controller
         return redirect()->route('kantor-bmkg.create')->with('success', 'Data pengecekan alat berhasil disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function edit()
     {
-        $lokasi = Lokasi::where('nama_lokasi', 'kantor bmkg bwi')->firstOrFail();
+        $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
-        $kategoris = Kategori::with(['alats.pengecekans' => function ($q) {
-            $q->latest()->limit(1);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        $kategoris = Kategori::with([
+            'alats.pengecekanTerakhir', 'catatanTerakhir'
+        ])->where('id_lokasi', $lokasi->id)->get();
 
         return view('kantor-bmkg.edit', compact('lokasi', 'kategoris'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-
-        $userId = Auth::id();
+        // $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                'id_user' => $userId,
+                // 'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
@@ -112,15 +92,22 @@ class KantorBmkgController extends Controller
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {
-                    CatatanKategori::create([
-                        'id_kategori' => $kategoriId,
-                        'isi_catatan' => $isi
-                    ]);
+                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+
+                    if ($catatan) {
+                        $catatan->update(['isi_catatan' => $isi]);
+                    } else {
+                        CatatanKategori::create([
+                            'id_kategori' => $kategoriId,
+                            'isi_catatan' => $isi,
+                        ]);
+                    }
                 }
             }
         }
 
-        return redirect()->route('kantor-bmkg.edit', $id)->with('success', 'Data pengecekan alat berhasil diperbarui.');
+        return redirect()->route('kantor-bmkg.edit')
+            ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }
 
     /**

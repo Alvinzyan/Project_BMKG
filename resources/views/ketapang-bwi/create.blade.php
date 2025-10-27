@@ -108,7 +108,7 @@
         </nav>
 
         <div class="d-flex align-items-center py-4">
-            <a href="/inventaris-alat/cek-alat" class="hover-back">
+            <a href="/inventaris-alat" class="hover-back">
                 <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -306,7 +306,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-info">
+                                    <button class="btn btn-info" id="btnSimpan">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -417,6 +417,35 @@
             acceptedFiles: ".jpg,.jpeg,.png",
             addRemoveLinks: true,
             dictDefaultMessage: "Seret dan lepas foto di sini atau klik untuk memilih",
+        });
+    </script>
+
+    <script>
+        document.getElementById('btnSimpan').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data pengecekan alat akan disimpan.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#0d6efd',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Simpan',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.querySelector('form').submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'Dibatalkan',
+                        text: 'Data pengecekan alat tidak jadi disimpan.',
+                        icon: 'info',
+                        confirmButtonColor: '#0d6efd'
+                    });
+                }
+            });
         });
     </script>
 
