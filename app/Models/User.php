@@ -26,6 +26,7 @@ class User extends Authenticatable
         'password',
         'peran',
         'foto_profil',
+        'last_seen',
     ];
 
     /**
