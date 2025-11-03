@@ -22,9 +22,8 @@ class CetakLaporanController extends Controller
 
     public function generatePdf()
     {
-        // Karena view kamu statis / sudah lengkap, cukup:
-        $pdf = Pdf::loadView('pdf.surat-laporan-alat')
-            ->setPaper('a4', 'portrait');
+        $pdf = Pdf::loadView('pdf.surat-cetak-pdf')
+            ->setPaper('A4', 'portrait');
         return $pdf->stream('laporan-alat.pdf');
     }
 

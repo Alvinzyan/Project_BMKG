@@ -13,7 +13,12 @@ class KetapangBwiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index()
+    {
+        // $user = Auth::user();
+
+        return view('inventaris-alat.index');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -76,9 +81,10 @@ class KetapangBwiController extends Controller
     {
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
-        $kategoris = Kategori::with(['alats.pengecekans' => function ($q) {
-            $q->latest()->limit(1);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        $kategoris = Kategori::with([
+            'alats.pengecekanTerakhir',
+            'catatanTerakhir'
+        ])->where('id_lokasi', $lokasi->id)->get();
 
         return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris'));
     }
@@ -102,10 +108,16 @@ class KetapangBwiController extends Controller
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {
-                    CatatanKategori::create([
-                        'id_kategori' => $kategoriId,
-                        'isi_catatan' => $isi
-                    ]);
+                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+
+                    if ($catatan) {
+                        $catatan->update(['isi_catatan' => $isi]);
+                    } else {
+                        CatatanKategori::create([
+                            'id_kategori' => $kategoriId,
+                            'isi_catatan' => $isi,
+                        ]);
+                    }
                 }
             }
         }

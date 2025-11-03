@@ -72,10 +72,18 @@ Route::get('cetak-laporan/view', [CetakLaporanController::class, 'lihatView'])->
 Route::resource('kelola-akun', KelolaAkunController::class);
 Route::resource('profil', ProfileController::class);
 
-Route::get('/surat-laporan', function () {
-    return view('pdf.surat-laporan-alat');
+// Route::get('/surat-laporan', function () {
+//     return view('pdf.surat-laporan-alat');
+// });
+// Route::get('/cetak-laporan', [CetakLaporanController::class, 'generatePdf']);
+// Rute untuk laporan alat:
+Route::prefix('laporan-alat')->name('laporan-alat.')->group(function () {
+    // Melihat tampilan laporan sebagai HTML biasa
+    Route::get('/', [CetakLaporanController::class, 'index'])->name('index');
+    Route::get('/view', [CetakLaporanController::class, 'lihatView'])->name('view');
+    // Cetak ke PDF
+    Route::get('/pdf', [CetakLaporanController::class, 'generatePdf'])->name('pdf');
 });
-Route::get('/cetak-laporan', [CetakLaporanController::class, 'generatePdf']);
 
 Route::prefix('data-alat')->name('data-alat.')->group(function () {
     Route::get('/', [DataAlatController::class, 'index'])
@@ -102,8 +110,10 @@ Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'
 Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
 Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
 
+// Route Laporan
 Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
-
+Route::get('laporan-alat/view', [CetakLaporanController::class, 'lihatView'])->name('laporan-alat.view');
+Route::get('laporan-alat/pdf', [CetakLaporanController::class, 'generatePdf'])->name('laporan-alat.pdf');
 
 
 Route::group(['middleware' => ['auth', 'cekperan:admin']], function (){

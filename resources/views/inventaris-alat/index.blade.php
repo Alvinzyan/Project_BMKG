@@ -280,7 +280,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <a href="">
                     <div class="card-two border-0 shadow hover-card">
@@ -302,7 +302,7 @@
                     </div>
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-12 col-xl-12">
