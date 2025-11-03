@@ -36,8 +36,14 @@ class AuthController extends Controller
                     Auth::login($user, $request->has('remember'));
                     $request->session()->regenerate();
 
+                    if ($user->peran == 'admin') {
+                        return redirect()->route('dashboard-admin.index')->with('success', 'Login berhasil sebagai admin.');
+                    }
+
                     // Arahkan langsung ke halaman inventaris alat
-                    return redirect('/inventaris-alat')->with('success', 'Login berhasil.');
+                    if ($user->peran == 'teknisi') {
+                        return redirect('/inventaris-alat')->with('success', 'Login berhasil sebagai teknisi.');
+                    }
                 } else {
                     return back()->withErrors(['email' => 'Password salah.'])->onlyInput('email');
                 }
