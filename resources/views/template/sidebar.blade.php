@@ -73,6 +73,7 @@
                     </a>
                 </li> --}}
 
+                @if (auth()->user()->peran=="teknisi")
                 <li class="nav-item {{ Request::is('inventaris-alat') ? 'active' : '' }}">
                     <a href="/inventaris-alat" class="nav-link">
                         <span class="sidebar-icon">
@@ -81,7 +82,9 @@
                         <span class="sidebar-text">Inventaris Alat</span>
                     </a>
                 </li>
+                @endif
 
+                @if (auth()->user()->peran=="teknisi")
                 <li class="nav-item {{ Request::is('cetak-laporan') ? 'active' : '' }}">
                     <a href="/cetak-laporan" class="nav-link">
                         <span class="sidebar-icon">
@@ -90,7 +93,9 @@
                         <span class="sidebar-text">Cetak Laporan</span>
                     </a>
                 </li>
+                @endif
 
+                @if (auth()->user()->peran=="teknisi")
                 <li class="nav-item {{ Request::is('tambah-alat') ? 'active' : '' }}">
                     <a href="/data-alat" class="nav-link">
                         <span class="sidebar-icon">
@@ -99,8 +104,26 @@
                         <span class="sidebar-text">Tambah Alat</span>
                     </a>
                 </li>
+                @endif
+
                 @if (auth()->user()->peran=="admin")
-               <li class="nav-item {{ Request::is('kelola-akun') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard-admin') ? 'active' : '' }}">
+                    <a href="/dashboard-admin" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 14a7 7 0 1114 0H3z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Dashboard</span>
+                    </a>
+                </li>
+                @endif
+
+                @if (auth()->user()->peran=="admin")
+                <li class="nav-item {{ Request::is('kelola-akun') ? 'active' : '' }}">
                     <a href="/kelola-akun" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -114,6 +137,7 @@
                     </a>
                 </li>
                 @endif
+
                 <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
                     <a href="/profile" class="nav-link">
                         <span class="sidebar-icon">
