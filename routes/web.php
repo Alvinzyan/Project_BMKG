@@ -30,4 +30,3 @@ Route::post('inventaris-alat/cek-alat/kantor-bmkg/store', [KantorBmkgController:
 Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
 Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
 Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
-Route::get('cek-alat/ketapang', [KetapangController::class, 'create'])->name('ketapang.create');

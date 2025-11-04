@@ -122,13 +122,7 @@
                     <div class="col-12 col-sm-12 col-xl-5 mb-3">
                         <div class="d-flex align-items-end">
                             <label for="" class="form-label me-2">Periode</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Semua lokasi</option>
-                                <option value="1">Kantor Meteorologi Banyuwangi</option>
-                                <option value="2">Pos Meteorologi Bandara Banyuwangi</option>
-                                <option value="3">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</option>
-                                <option value="4">Pos Meteorologi Bandara Notodinegoro Jember</option>
-                            </select>
+                            <input type="text" id="periode" class="form-control" placeholder="Pilih Periode">
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-xl-2 mb-3">
@@ -225,10 +219,17 @@
                                 </div>
 
                                 <div class="col col-12 col-md-8 col-xl-4 mt-3">
-                                    <button class="btn btn-sm btn-danger">
+                                    <button class="btn btn-sm text-white" style="background-color: #3aff3aff; border-color: #3aff3aff;">
                                         <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" /><path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" /><path d="M17 18h2" /><path d="M20 15h-3v6" /><path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>
                                         Cetak Pdf
                                     </button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <h6 class="mb-0 fw-bold">A. Peralatan di Kantor Meteorologi Banyuwangi</h6>
+                                    <small class="text-muted">Peralatan Konvensional</small>
                                 </div>
                             </div>
 
@@ -236,302 +237,138 @@
                                 <table class="table align-items-center table-flush">
                                     <colgroup>
                                         <col style="width: 5%;">
-                                        <col style="width: 35%;">
-                                        <col style="width: 10%;">
                                         <col style="width: 20%;">
                                         <col style="width: 15%;">
+                                        <col style="width: 8%;">
                                         <col style="width: 15%;">
+                                        <col style="width: 12%;">
+                                        <col style="width: 12%;">
+                                        <col style="width: 13%;">
                                     </colgroup>
                                     <thead class="thead-primary">
                                         <tr>
-                                            <th class="border-bottom">No</th>
-                                            <th class="border-bottom">Nama Lokasi</th>
-                                            <th class="border-bottom">Status</th>
-                                            <th class="border-bottom">Penanggung Jawab</th>
-                                            <th class="border-bottom">Catatan</th>
-                                            <th class="border-bottom">Aksi</th>
+                                            <th class="border-bottom text-center">No</th>
+                                            <th class="border-bottom">Nama Alat</th>
+                                            <th class="border-bottom">Merk/Type</th>
+                                            <th class="border-bottom text-center">Jumlah</th>
+                                            <th class="border-bottom text-center">Kondisi<br><span class="fw-normal">(B / RR / RB)</span></th>
+                                            <th class="border-bottom text-center">Tahun Pemasangan</th>
+                                            <th class="border-bottom text-center">Kalibrasi Terakhir</th>
+                                            <th class="border-bottom text-center">Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                1.
-                                            </th>
-                                            <td class="fw-bolder text-gray-500">
-                                                Kantor Meteorologi Banyuwangi
+                                            <td class="text-center">1</td>
+                                            <td>Sangkar Meteorologi</td>
+                                            <td>Kayu Lokal</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox" disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                $20
-                                            </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-danger me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    42,55%
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td class="text-center">2004</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
                                         </tr>
                                         <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                2.
-                                            </th>
-                                            <td class="fw-bolder text-gray-500">
-                                                Pos Meteorologi Bandara Banyuwangi
+                                            <td class="text-center">2</td>
+                                            <td>Thermometer BB/BK</td>
+                                            <td>Scheneider</td>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox"  disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                0
-                                            </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-success me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    43,24%
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td class="text-center">2000</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
                                         </tr>
                                         <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                3.
-                                            </th>
-                                            <td class="fw-bolder text-gray-500">
-                                                Pos Meteorologi Pelabuhan Ketapang Banyuwangi
+                                            <td class="text-center">3</td>
+                                            <td>Thermometer BB/BK</td>
+                                            <td>F.Ketterer</td>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox" disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                294
-                                            </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-success me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    32,35%
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td class="text-center">2011</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
                                         </tr>
                                         <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                4.
-                                            </th>
-                                            <td class="fw-bolder text-gray-500">
-                                                Pos Meteorologi Bandara Notodinegoro Jember
+                                            <td class="text-center">4</td>
+                                            <td>Thermometer Max/Min</td>
+                                            <td>Scheneider</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox" disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                $147
+                                            <td class="text-center">1968</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5</td>
+                                            <td>Thermometer Max/Min</td>
+                                            <td>Scheneider</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox" disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
-                                            <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-danger me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    50,87%
-                                                </div>
+                                            <td class="text-center">1994</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">6</td>
+                                            <td>Thermometer Max/Min</td>
+                                            <td>Scheneider</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox" disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
+                                            <td class="text-center">2000</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">7</td>
+                                            <td>Thermometer Max/Min</td>
+                                            <td>F.Ketterer</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox" disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
-                                            <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
-                                                    </div>
-                                                </div>
+                                            <td class="text-center">2011</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">8</td>
+                                            <td>Barograph</td>
+                                            <td>J. Richard</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">
+                                            <input type="checkbox" checked> B
+                                            <input type="checkbox" disabled> RR
+                                            <input type="checkbox" disabled> RB
                                             </td>
+                                            <td class="text-center">1976</td>
+                                            <td class="text-center">Mei 2024</td>
+                                            <td class="text-center">Terpasang</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -620,6 +457,37 @@
         </footer>
     </main>
 
+    <!-- Periode -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+        $(function() {
+        $('#periode').daterangepicker({
+            autoApply: true,
+            singleDatePicker: true, // pilih 1 tanggal saja
+            locale: {
+            format: 'DD-MM-YYYY'
+            }
+        }, function(start) {
+            // Cari Sabtu (6) sebelum atau sama dengan tanggal terpilih
+            let saturday = start.clone().day(6);
+            if (saturday.isAfter(start)) {
+            saturday.subtract(7, 'days');
+            }
+
+            // Jumat (5) setelah Sabtu
+            let friday = saturday.clone().add(6, 'days');
+
+            // Tampilkan range Sabtu - Jumat
+            $('#periode').val(saturday.format('DD-MM-YYYY') + " s/d " + friday.format('DD-MM-YYYY'));
+        });
+        });
+    </script>
+    <!-- End Periode -->
+     
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>

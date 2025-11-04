@@ -69,6 +69,9 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"> 
+
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 </head>
@@ -182,111 +185,108 @@
                 </div>
 
                 <!-- Judul -->
-                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Peralatan di Kantor Meteorologi Banyuwangi</h2>
+                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Data Alat</h2>
             </div>
         </div>
 
-        <div class="row">  
-                <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
-                    <div class="col-6">
-                        <a href="../tambah-data-alat/index">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                            <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433"/>
-                                            <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342"/>
-                                            <path d="M8 2v2"/>
-                                            <path d="M6 12v9h4v-9"/>
-                                            <path d="M3 21h18"/>
-                                            <path d="M22 5h-6l-1 -1"/>
-                                            <path d="M18 3l2 2l-2 2"/>
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2"/>
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Peralatan Konvensional</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-6">
-                        <a href="">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                            <path
-                                                d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                            <path d="M8 2v2" />
-                                            <path d="M6 12v9h4v-9" />
-                                            <path d="M3 21h18" />
-                                            <path d="M22 5h-6l-1 -1" />
-                                            <path d="M18 3l2 2l-2 2" />
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">AWS Digital</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href="">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                            <path
-                                                d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                            <path d="M8 2v2" />
-                                            <path d="M6 12v9h4v-9" />
-                                            <path d="M3 21h18" />
-                                            <path d="M22 5h-6l-1 -1" />
-                                            <path d="M18 3l2 2l-2 2" />
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Semua Kategori</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+        <div class="row mb-4 mt-4">
+            <div class="align-items-center">
+                <div class="row g-0 border mb-1">
+                    <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Lokasi</div>
+                    <div class="col-10 p-2 bg-white text-dark" 
+                        style="color:#1E3D58; border:1px solid #1E3D58;">Kantor Meteorologi Banyuwangi</div>
                 </div>
-        </div>        
 
-        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
+                <div class="row g-0 border">
+                    <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Kategori</div>
+                    <div class="col-10 p-2 bg-white text-dark" 
+                        style="color:#1E3D58; border:1px solid #1E3D58;">Semua Kategori</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm rounded-0" style="background-color:#fff; border-top:3px solid #1E3D58;">
+            <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">Peralatan Konvensional
+                <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;">
+                    <i class="bi bi-plus"></i> Tambah Data
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table text-center align-middle" 
+                        style="border:1px solid #000; border-collapse:collapse; font-size:14px;">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid #000;">No</th>
+                                <th style="border:1px solid #000;">Nama Alat</th>
+                                <th style="border:1px solid #000;">Merk/Type</th>
+                                <th style="border:1px solid #000;">Jumlah</th>
+                                <th style="border:1px solid #000;">Tahun Pemasangan</th>
+                                <th style="border:1px solid #000;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #000;">1</td>
+                                <td style="border:1px solid #000;">Sangkar Meteorologi</td>
+                                <td style="border:1px solid #000;">Kayu Lokal</td>
+                                <td style="border:1px solid #000;">1</td>
+                                <td style="border:1px solid #000;">2004</td>
+                                <td style="border:1px solid #000;">
+                                    <a href="#" class="btn btn-sm text-white" style="background-color:#055C9D;"><i class="bi bi-pencil-square"></i> Edit</a>
+                                    <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #000;">2</td>
+                                <td style="border:1px solid #000;">Thermometer BB/ BK</td>
+                                <td style="border:1px solid #000;">Scheneider</td>
+                                <td style="border:1px solid #000;">2</td>
+                                <td style="border:1px solid #000;">2000</td>
+                                <td style="border:1px solid #000;">
+                                    <a href="#" class="btn btn-sm text-white" style="background-color:#055C9D;"><i class="bi bi-pencil-square"></i> Edit</a>
+                                    <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm rounded-0 mt-3" style="background-color:#fff; border-top:3px solid #1E3D58;">
+            <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">AWS Digital
+                <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;">
+                    <i class="bi bi-plus"></i> Tambah Data
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table text-center align-middle" 
+                        style="border:1px solid #000; border-collapse:collapse; font-size:14px;">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid #000;">No</th>
+                                <th style="border:1px solid #000;">Nama Alat</th>
+                                <th style="border:1px solid #000;">Merk/Type</th>
+                                <th style="border:1px solid #000;">Jumlah</th>
+                                <th style="border:1px solid #000;">Tahun Pemasangan</th>
+                                <th style="border:1px solid #000;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center align-middle">
+                                <td style="border:1px solid #000;"></td>
+                                <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
             <div class="card-body bg-gray-800 text-white pt-4">
                 <button type="button" class="btn-close theme-settings-close" aria-label="Close"
                     data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
@@ -363,7 +363,7 @@
             </div>
         </footer>
     </main>
-
+    
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -405,7 +405,6 @@
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
 
-    
 </body>
 
 </html>
