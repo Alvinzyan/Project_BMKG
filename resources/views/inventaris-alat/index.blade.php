@@ -195,8 +195,8 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="/cek-alat/pos-bandara-bwi" class="card-link">
-                    <div class="card border-0 shadow text-center hover-card">
+                <a href="{{ route('pos-bandara-bwi.create') }}" class="card-link">
+                    <div class="card-two border-0 shadow text-center hover-card">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center">
                             <!-- Ikon -->
                             <div
@@ -226,8 +226,8 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="/cek-alat/ketapang" class="card-link">
-                    <div class="card border-0 shadow text-center hover-card">
+                <a href="{{ route('ketapang-bwi.create') }}" class="card-link">
+                    <div class="card-two border-0 shadow text-center hover-card">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <!-- Ikon -->
                         <div
@@ -249,8 +249,8 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="/cek-alat/pos-bandara-jember" class="card-link">
-                    <div class="card border-0 shadow text-center hover-card">
+                <a href="{{ route('pos-bandara-jember.create') }}" class="card-link">
+                    <div class="card-two border-0 shadow text-center hover-card">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <!-- Ikon -->
                         <div
@@ -280,7 +280,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <a href="">
                     <div class="card-two border-0 shadow hover-card">
@@ -302,7 +302,7 @@
                     </div>
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-12 col-xl-12">
@@ -410,7 +410,8 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
+
+                                                            <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -422,7 +423,7 @@
                                                                 <path
                                                                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                                                 <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
+                                                            </svg>Edit</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -480,7 +481,7 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
+                                                        <a href="{{ route('pos-bandara-bwi.edit') }}" class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -492,7 +493,7 @@
                                                                 <path
                                                                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                                                 <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
+                                                            </svg>Edit</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -620,7 +621,8 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
+                                                            
+                                                        <a href="{{ route('pos-bandara-jember.edit') }}" class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -632,7 +634,7 @@
                                                                 <path
                                                                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                                                 <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
+                                                            </svg>Edit</a>
                                                     </div>
                                                 </div>
                                             </td>

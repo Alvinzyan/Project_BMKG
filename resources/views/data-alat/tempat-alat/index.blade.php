@@ -166,6 +166,16 @@
 
         <div class="row mb-4 mt-4">
             <div class="col-12 d-flex align-items-center">
+                <a href="/data-alat" class="hover-back">
+                    <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l14 0" />
+                        <path d="M5 12l6 6" />
+                        <path d="M5 12l6 -6" />
+                    </svg>
+                </a>
                 <!-- ICON -->
                 <div class="icon-shape rounded d-flex align-items-center justify-content-center me-2"
                     style="width:40px; height:40px; background-color:#1E3D58; color:#fff;">
@@ -182,14 +192,15 @@
                 </div>
 
                 <!-- Judul -->
-                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Peralatan di Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h2>
+                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Peralatan di {{ $lokasi->nama_lokasi }}</h2>
             </div>
         </div>
 
         <div class="row">  
                 <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
+                    @foreach($lokasi->kategoris as $kategori)
                     <div class="col-6">
-                        <a href="">
+                        <a href="{{ url('/data-alat/' . urlencode($lokasi->nama_lokasi). '/' . urlencode($kategori->nama_kategori)) }}">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->
@@ -212,47 +223,16 @@
 
                                     <!-- TEXT -->
                                     <div>
-                                        <h3 class="fw-extrabold text-white fs-4">AWS Maritim</h3>
+                                        <h3 class="fw-extrabold text-white fs-4">{{ $kategori->nama_kategori }}</h3>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
+                    @endforeach
 
                     <div class="col-6">
-                        <a href="">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                            <path
-                                                d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                            <path d="M8 2v2" />
-                                            <path d="M6 12v9h4v-9" />
-                                            <path d="M3 21h18" />
-                                            <path d="M22 5h-6l-1 -1" />
-                                            <path d="M18 3l2 2l-2 2" />
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                        </svg>
-                                    </div>
-
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">Peralatan Pendukung</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href="">
+                        <a href="{{ url('/data-alat/' . urlencode($lokasi->nama_lokasi) . '/semua') }}">
                             <div class="card-two border-0 shadow hover-card">
                                 <div class="card-body d-flex align-items-center">
                                     <!-- ICON -->

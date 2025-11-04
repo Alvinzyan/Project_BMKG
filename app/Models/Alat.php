@@ -13,8 +13,13 @@ class Alat extends Model
 
     protected $fillable = ['nama_alat', 'id_kategori', 'merk_tipe', 'jumlah', 'tahun_pemasangan', 'keterangan'];
 
-    public function kategori()
+    public function pengecekans()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
+        return $this->hasMany(Pengecekan::class, 'id_alat');
+    }
+
+    public function pengecekanTerakhir()
+    {
+        return $this->hasOne(Pengecekan::class, 'id_alat')->latest();
     }
 }

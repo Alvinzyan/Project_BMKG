@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LaporanAlatController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('laporan-alat.index');
+        $users = auth()->user(); 
+        return view('profile.index', compact('users'));
     }
 
     /**
@@ -19,7 +20,7 @@ class LaporanAlatController extends Controller
      */
     public function create()
     {
-        //
+        return view ('pos-bandara-bwi.create');
     }
 
     /**

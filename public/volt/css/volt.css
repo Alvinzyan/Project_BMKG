@@ -7430,7 +7430,7 @@ textarea.form-control-lg {
     margin: 1rem;
 }
 
-.card-note {
+/* .card-note {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -7438,11 +7438,11 @@ textarea.form-control-lg {
     padding: 1rem;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     background-clip: border-box;
     border: 0.0625rem solid rgba(17, 24, 39, 0.125);
     border-radius: 0.5rem;
-}
+} */
 
 .card-info {
     position: relative;
@@ -7481,6 +7481,20 @@ textarea.form-control-lg {
     border: 0.0625rem solid rgba(17, 24, 39, 0.125);
     border-radius: 0.5rem;
 }
+
+.card-four {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #F0F0F0;
+    background-clip: border-box;
+    border: 0.0625rem solid rgba(17, 24, 39, 0.125);
+    border-radius: 0.5rem;
+}
+
 
 .card-table-two {
     position: relative;

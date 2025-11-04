@@ -13,14 +13,10 @@ return new class extends Migration
     {
         Schema::create('pengecekans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_alat');
-            $table->foreign('id_alat')->references('id')->on('alats');
-            $table->unsignedBigInteger('id_laporan_kategori');
-            $table->foreign('id_laporan_kategori')->references('id')->on('laporan_kategoris');
+            $table->foreignId('id_user')->constrained('users');
+            $table->foreignId('id_alat')->constrained('alats');                    
             $table->enum('kondisi', ['baik', 'rusak ringan', 'rusak berat']);
-            $table->integer('kalibrasi_terakhir');
+            $table->string('kalibrasi_terakhir')->nullable();     
             $table->timestamps();
         });
     }

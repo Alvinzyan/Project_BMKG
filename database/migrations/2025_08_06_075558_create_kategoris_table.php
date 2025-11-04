@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kategori');
-            $table->unsignedBigInteger('id_lokasi');
-            $table->foreign('id_lokasi')->references('id')->on('lokasis');
+            $table->foreignId('id_lokasi')->constrained('lokasis');
             $table->timestamps();
         });
     }

@@ -8,14 +8,16 @@ use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
 
-class PosBandaraJemberController extends Controller
+class KetapangBwiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-    
+        // $user = Auth::user();
+
+        return view('inventaris-alat.index');
     }
 
     /**
@@ -25,7 +27,7 @@ class PosBandaraJemberController extends Controller
     {
         // $user = Auth::user();
 
-        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
+        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with('alats')
             ->where('id_lokasi', $lokasi->id)
@@ -61,7 +63,7 @@ class PosBandaraJemberController extends Controller
             }
         }
 
-        return redirect()->route('pos-bandara-jmbr.create')->with('success', 'Data pengecekan alat berhasil disimpan.');
+        return redirect()->route('ketapang-bwi.create')->with('success', 'Data pengecekan alat berhasil disimpan.');
     }
 
     /**
@@ -77,11 +79,12 @@ class PosBandaraJemberController extends Controller
      */
     public function edit(string $id)
     {
-        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
+        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
-        $kategoris = Kategori::with(['alats.pengecekans' => function ($q) {
-            $q->latest()->limit(1);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        $kategoris = Kategori::with([
+            'alats.pengecekanTerakhir',
+            'catatanTerakhir'
+        ])->where('id_lokasi', $lokasi->id)->get();
 
         return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris'));
     }
@@ -105,15 +108,21 @@ class PosBandaraJemberController extends Controller
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {
-                    CatatanKategori::create([
-                        'id_kategori' => $kategoriId,
-                        'isi_catatan' => $isi
-                    ]);
+                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+
+                    if ($catatan) {
+                        $catatan->update(['isi_catatan' => $isi]);
+                    } else {
+                        CatatanKategori::create([
+                            'id_kategori' => $kategoriId,
+                            'isi_catatan' => $isi,
+                        ]);
+                    }
                 }
             }
         }
 
-        return redirect()->route('pos-bandara-jmbr.edit', $id)->with('success', 'Data pengecekan alat berhasil diperbarui.');
+        return redirect()->route('ketapang-bwi.edit', $id)->with('success', 'Data pengecekan alat berhasil diperbarui.');
     }
 
     /**

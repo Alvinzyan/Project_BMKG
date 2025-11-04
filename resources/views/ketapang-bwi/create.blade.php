@@ -69,6 +69,8 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css">
+
     <!-- Dropzone CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -130,14 +132,14 @@
                 <path d="M14 16l1 0" />
                 <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
             </svg>
-            <h2 class="fs-4 fw-bolder mb-0">Pos Meteorologi Bandara Banyuwangi</h2>
+            <h2 class="fs-4 fw-bolder mb-0">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h2>
         </div>
 
         <div class="row">
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="{{ route('pos-bandara-bwi.store') }}" method="POST">
+                        <form action="" method="POST">
                             @csrf
                             <div class="card border-0 shadow">
                                 <div class="card-header">
@@ -151,102 +153,115 @@
                                                 <small class="fs-6 fw-bold text-black">
                                                     Nama Penanggung Jawab :
                                                 </small>
-                                                <small class="fs-6 fw-medium text-gray-900"></small>
+                                                <small class="fs-6 fw-medium text-gray-900">Cindil</small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="card-table border-0 shadow">
+                                    <h4 class="fs-6 fw-bold text-white py-2">Kategori Alat</h4>
+                                    <div class="table-responsive">
+                                        <table class="table bg-white align-items-center table-flush">
+                                            <colgroup>
+                                                <col style="width: 3%;">
+                                                <col style="width: 20%;">
+                                                <col style="width: 15%;">
+                                                <col style="width: 3%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 3%;">
+                                                <col style="width: 11%;">
+                                                <col style="width: 20%;">
+                                            </colgroup>
+                                            <thead class="thead-white">
+                                                <tr>
+                                                    <th class="border-bottom">No</th>
+                                                    <th class="border-bottom">Nama Alat</th>
+                                                    <th class="border-bottom">Merek/Type</th>
+                                                    <th class="border-bottom">Jml</th>
+                                                    <th class="border-bottom">Kondisi</th>
+                                                    <th class="border-bottom">Tahun <br> Pemasangan</th>
+                                                    <th class="border-bottom">Kalibrasi Terakhir</th>
+                                                    <th class="border-bottom">Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="border-bottom text-center align-middle" colspan="8">
+                                                        Belum ada alat
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="py-3">
+                                        <!-- Tombol Tambah Catatan -->
+                                        <div class="d-flex justify-content-end mb-3">
+                                            <button type="button" class="btn btn-sm btn-white"
+                                                data-bs-toggle="modal" data-bs-target="#modalTambahCatatan">
+                                                <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 5l0 14" />
+                                                    <path d="M5 12l14 0" />
+                                                </svg>
+                                                Tambah Catatan
+                                            </button>
+                                        </div>
+
+                                        <!-- Modal Tambah Catatan -->
+                                        <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
+                                            aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content border-0 shadow">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalTambahCatatanLabel">
+                                                            Tambah
+                                                            Catatan
+                                                        </h5>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="formTambahCatatan">
+                                                            <div class="mb-3">
+                                                                <label for="catatan"
+                                                                    class="form-label">Catatan</label>
+                                                                <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" form="formTambahCatatan"
+                                                            class="btn btn-sm btn-success">Simpan</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                       <div class="bg-dark">
+                                            <div class="card-note border-0 shadow bg-white text-dark p-3">
+                                                <div class="row align-items-center mb-2">
+                                                    <div class="col">
+                                                        <h6 class="fw-bold mb-0">
+                                                        <i class="fas fa-list me-1"></i> Catatan
+                                                        </h6>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                <input type="text" class="form-control" placeholder="*Isi catatan bila perlu">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                @foreach ($kategoris as $kategori)
-                                    <div class="card-table border-0 shadow">
-                                        <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
-                                        <div class="table-responsive">
-                                            <table class="table bg-white align-items-center table-flush">
-                                                <colgroup>
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 20%;">
-                                                    <col style="width: 15%;">
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 25%;">
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 11%;">
-                                                    <col style="width: 20%;">
-                                                </colgroup>
-                                                <thead class="thead-white">
-                                                    <tr>
-                                                        <th class="border-bottom">No</th>
-                                                        <th class="border-bottom">Nama Alat</th>
-                                                        <th class="border-bottom">Merek/Type</th>
-                                                        <th class="border-bottom">Jml</th>
-                                                        <th class="border-bottom">Kondisi</th>
-                                                        <th class="border-bottom">Tahun <br> Pemasangan</th>
-                                                        <th class="border-bottom">Kalibrasi Terakhir</th>
-                                                        <th class="border-bottom">Keterangan</th>
-                                                    </tr>
-                                                </thead>
-
-                                                @foreach ($kategori->alats as $alat)
-                                                    <tbody>
-                                                        <tr>
-                                                            {{-- No --}}
-                                                            <td class="text-gray-900">{{ $loop->iteration }}</td>
-
-                                                            {{-- Nama Alat --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
-                                                            </td>
-
-                                                            {{-- Merek/Type --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
-                                                            </td>
-
-                                                            {{-- Jumlah --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
-                                                            </td>
-
-                                                            {{-- Kondisi (input) --}}
-                                                            <td>
-                                                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio"
-                                                                            name="kondisi[{{ $alat->id }}]"
-                                                                            value="{{ $kondisi }}">
-                                                                        <label
-                                                                            class="form-check-label">{{ ucfirst($kondisi) }}</label>
-                                                                    </div>
-                                                                @endforeach
-                                                            </td>
-
-                                                            {{-- Tahun Pemasangan --}}
-                                                            <td>{{ $alat->tahun_pemasangan }}</td>
-
-                                                            {{-- Kalibrasi Terakhir (input number tahun) --}}
-                                                            <td>
-                                                                <input type="number"
-                                                                    name="kalibrasi[{{ $alat->id }}]"
-                                                                    class="form-control" min="2000"
-                                                                    max="2099" maxlength="4"
-                                                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                                                            </td>
-
-                                                            {{-- Keterangan --}}
-                                                            <td style="text-transform: capitalize">
-                                                                {{ $alat->keterangan }}
-                                                            </td>
-
-                                                        </tr>
-                                                    </tbody>
-                                                @endforeach
-                                            </table>
-                                        </div>
-
-                                        <div class="d-flex align-items-start mt-3">
-                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
-                                            <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control"
-                                                style="max-width: 50%" placeholder="Tambahkan catatan bila diperlukan..."></textarea>
-                                        </div>
-                                    </div>
-                                @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">
                                     <button type="button" class="btn btn-sm btn-gray-100 me-2"
@@ -392,6 +407,20 @@
     </main>
 
     <script>
+        Dropzone.autoDiscover = false;
+
+        const dropzone = new Dropzone("#dropzoneArea", {
+            url: "/upload/foto",
+            paramName: "foto_alat",
+            maxFiles: 5,
+            maxFilesize: 2,
+            acceptedFiles: ".jpg,.jpeg,.png",
+            addRemoveLinks: true,
+            dictDefaultMessage: "Seret dan lepas foto di sini atau klik untuk memilih",
+        });
+    </script>
+
+    <script>
         document.getElementById('btnSimpan').addEventListener('click', function(e) {
             e.preventDefault();
 
@@ -463,7 +492,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-..."
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
 </body>
 
 </html>

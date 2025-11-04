@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('laporan_mingguans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_lokasi');
-            $table->foreign('id_lokasi')->references('id')->on('lokasis');
+            $table->foreignId('id_lokasi')->constrained('lokasis');
             $table->date('periode_awal');
             $table->date('periode_akhir');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->date('tanggal_dibuat');
+            $table->foreignId('id_user')->constrained('users');     
+            $table->date('tanggal_laporan');                       
+            $table->string('nomor_surat')->nullable();              
+            $table->string('tempat_dibuat')->nullable();           
             $table->timestamps();
         });
     }

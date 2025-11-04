@@ -60,9 +60,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    {{-- Tabler Icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css" />
-
     <!-- Sweet Alert -->
     <link type="text/css" href="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
@@ -95,7 +92,7 @@
     </nav>
 
     <nav id="sidebarMenu" class="sidebar d-lg-block text-white collapse" data-simplebar>
-        @include('template.sidebar')    
+        @include('template.sidebar')
     </nav>
 
     <main class="content">
@@ -891,8 +888,7 @@
                     data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
                     aria-controls="theme-settings"></button>
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img"
-                            aria-label="gratitude">💛</span>
+                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
                     </p>
                     <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
                         data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
@@ -911,8 +907,7 @@
                 </a>
                 <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
                 <div class="d-flex justify-content-center">
-                    <a class="me-3"
-                        href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
+                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
                         target="_blank">
                         <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
                     </a>
