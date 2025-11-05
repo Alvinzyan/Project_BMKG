@@ -25,13 +25,13 @@ class PosBandaraJemberController extends Controller
     {
         // $user = Auth::user();
 
-        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
+        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notodinegoro Jember')->firstOrFail();
 
         $kategoris = Kategori::with('alats')
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('pos-bandara-bwi.create', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-jmbr.create', compact('lokasi', 'kategoris'));
     }
 
     /**
@@ -75,21 +75,21 @@ class PosBandaraJemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
+        $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
-        $kategoris = Kategori::with(['alats.pengecekans' => function ($q) {
-            $q->latest()->limit(1);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        $kategoris = Kategori::with([
+            'alats.pengecekanTerakhir', 'catatanTerakhir'
+        ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-jmbr.edit', compact('lokasi', 'kategoris'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         // $userId = Auth::id();
 
@@ -105,15 +105,22 @@ class PosBandaraJemberController extends Controller
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {
-                    CatatanKategori::create([
-                        'id_kategori' => $kategoriId,
-                        'isi_catatan' => $isi
-                    ]);
+                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+
+                    if ($catatan) {
+                        $catatan->update(['isi_catatan' => $isi]);
+                    } else {
+                        CatatanKategori::create([
+                            'id_kategori' => $kategoriId,
+                            'isi_catatan' => $isi,
+                        ]);
+                    }
                 }
             }
         }
 
-        return redirect()->route('pos-bandara-jmbr.edit', $id)->with('success', 'Data pengecekan alat berhasil diperbarui.');
+        return redirect()->route('pos-bandara-jmbr.edit')
+            ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }
 
     /**

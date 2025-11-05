@@ -6,46 +6,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Surat Aloptoma BMKG- A4</title>
     <style>
-        /* Print settings */
-        @page {
-            size: A4;
-            margin: 1mm 0;
-        }
-
-        @media print {
-            body {
-                background: none;
-                margin: 0;
-            }
-
-            .paper-wrap {
-                display: block;
-                page-break-after: always;
-                box-shadow: none;
-                background: none;
-            }
-
-            .sheet {
-                box-shadow: none;
-                margin: 0;
-                page-break-after: always;
-            }
-
-            table,
-            tr,
-            td,
-            th {
-                page-break-inside: avoid;
-            }
-        }
-
-        html,
-        body {
+    body {
             margin: 0;
             padding: 0;
             font-family: "Times New Roman", serif;
             color: #111;
             background: #fff;
+            position: relative;
         }
 
         /* Center the A4 preview on screen */
@@ -60,16 +27,6 @@
 
         .paper-wrap:last-child {
             page-break-after: auto;
-        }
-
-        .sheet {
-            width: 210mm;
-            min-height: 297mm;
-            background: #fff;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
         }
 
         /* Halaman pertama */
@@ -102,7 +59,7 @@
 
         .header-text .sub {
             display: block;
-            font-size: 11pt;
+            font-size: 12pt;
             font-weight: 600;
             margin-top: 2px;
             text-align: center;
@@ -124,7 +81,7 @@
 
         .meta-left {
             flex: 1 1 auto;
-            font-size: 11pt;
+            font-size: 12pt;
         }
 
         .meta-left .meta-item {
@@ -146,19 +103,19 @@
         .meta-right {
             width: 60mm;
             text-align: right;
-            font-size: 11pt;
+            font-size: 12pt;
         }
 
         .recipient {
             display: flex;
             margin-top: 10mm;
-            font-size: 11pt;
+            font-size: 12pt;
             padding: 0 28mm;
         }
 
         .content-one {
             margin-top: 10mm;
-            font-size: 11pt;
+            font-size: 12pt;
             line-height: 1.6;
             text-align: justify;
             padding: 0 28mm;
@@ -179,7 +136,7 @@
         .signature {
             width: 60mm;
             text-align: left;
-            font-size: 11pt;
+            font-size: 12pt;
         }
 
         .signature .space {

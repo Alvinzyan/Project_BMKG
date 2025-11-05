@@ -15,9 +15,7 @@ class KantorBmkgController extends Controller
 {
     public function index()
     {
-        // $user = Auth::user();
-
-        return view('inventaris-alat.index');
+      
     }
 
     public function create()

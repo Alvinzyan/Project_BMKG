@@ -26,28 +26,24 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if ($user) {
-            try {
-                // Dekripsi password dari database
-                $decryptedPassword = Crypt::decryptString($user->password);
-
-                // Cek apakah cocok
-                if ($decryptedPassword === $request->password) {
-                    Auth::login($user, $request->has('remember'));
-                    $request->session()->regenerate();
-
-                    // Arahkan langsung ke halaman inventaris alat
-                    return redirect('/inventaris-alat')->with('success', 'Login berhasil.');
-                } else {
-                    return back()->withErrors(['email' => 'Password salah.'])->onlyInput('email');
-                }
-
-            } catch (\Exception $e) {
-                return back()->withErrors(['email' => 'Password tidak valid atau terenkripsi dengan format berbeda.'])->onlyInput('email');
-            }
+        if (!$user) {
+            // Jika email tidak ditemukan
+            return back()->with('error', 'Email atau Kata Sandi yang anda masukkan salah.')->onlyInput('email');
         }
 
-        return back()->withErrors(['email' => 'Email tidak ditemukan.'])->onlyInput('email');
+        try {
+            $decryptedPassword = Crypt::decryptString($user->password);
+
+            if ($decryptedPassword === $request->password) {
+                Auth::login($user, $request->has('remember'));
+                $request->session()->regenerate();
+                return redirect('/inventaris-alat')->with('success', 'Login berhasil.');
+            } else {
+                return back()->with('error', 'Email atau Kata Sandi yang anda masukkan salah.')->onlyInput('email');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan pada sistem autentikasi.')->onlyInput('email');
+        }
     }
 
     public function logout(Request $request)

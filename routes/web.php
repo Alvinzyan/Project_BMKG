@@ -14,6 +14,7 @@ use App\Http\Controllers\KetapangBwiController;
 use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataAlatController;
+use App\Http\Controllers\InventarisAlatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,11 +40,7 @@ Route::post('login', [AuthController::class, 'login_action']);
 
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-Route::get('/inventaris-alat', function () {
-    return view('inventaris-alat.index');
-});
-
-// Route::get('inventaris-alat', [KantorBmkgController::class, 'index'])->name('kantor-bmkg.index');
+Route::get('inventaris-alat', [InventarisAlatController::class, 'index']);
 
 Route::get('inventaris-alat/kantor-bmkg/create', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
 Route::post('inventaris-alat/kantor-bmkg/store', [KantorBmkgController::class, 'store'])->name('kantor-bmkg.store');
@@ -60,10 +57,10 @@ Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::c
 Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
 Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
 
-Route::get('inventaris-alat/pos-bandara-jember/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
-Route::post('inventaris-alat/pos-bandara-jember/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jember.store');
-Route::get('inventaris-alat/pos-bandara-jember/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jember.edit');
-Route::put('inventaris-alat/pos-bandara-jember/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jember.update');
+Route::get('inventaris-alat/pos-bandara-jmbr/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jmbr.create');
+Route::post('inventaris-alat/pos-bandara-jmbr/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jmbr.store');
+Route::get('inventaris-alat/pos-bandara-jmbr/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jmbr.edit');
+Route::put('inventaris-alat/pos-bandara-jmbr/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jmbr.update');
 
 Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
 
@@ -102,11 +99,3 @@ Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'c
 Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
 
 Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
-
-
-
-Route::group(['middleware' => ['auth', 'cekperan:admin']], function (){
-
-    Route::resource('kelola-akun', KelolaAkunController::class);
-    Route::resource('profile', ProfileController::class);
-});

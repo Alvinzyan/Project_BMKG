@@ -13,7 +13,10 @@ class KetapangBwiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index() 
+    {
+        
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +31,7 @@ class KetapangBwiController extends Controller
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('pos-bandara-bwi.create', compact('lokasi', 'kategoris'));
+        return view('ketapang-bwi.create', compact('lokasi', 'kategoris'));
     }
 
     /**
@@ -72,21 +75,21 @@ class KetapangBwiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
-        $kategoris = Kategori::with(['alats.pengecekans' => function ($q) {
-            $q->latest()->limit(1);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        $kategoris = Kategori::with([
+            'alats.pengecekanTerakhir', 'catatanTerakhir'
+        ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris'));
+        return view('ketapang-bwi.edit', compact('lokasi', 'kategoris'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         // $userId = Auth::id();
 
@@ -102,15 +105,22 @@ class KetapangBwiController extends Controller
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {
-                    CatatanKategori::create([
-                        'id_kategori' => $kategoriId,
-                        'isi_catatan' => $isi
-                    ]);
+                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+
+                    if ($catatan) {
+                        $catatan->update(['isi_catatan' => $isi]);
+                    } else {
+                        CatatanKategori::create([
+                            'id_kategori' => $kategoriId,
+                            'isi_catatan' => $isi,
+                        ]);
+                    }
                 }
             }
         }
 
-        return redirect()->route('ketapang-bwi.edit', $id)->with('success', 'Data pengecekan alat berhasil diperbarui.');
+        return redirect()->route('ketapang-bwi.edit')
+            ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }
 
     /**

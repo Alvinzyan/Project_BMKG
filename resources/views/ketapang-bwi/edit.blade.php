@@ -69,8 +69,6 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css">
-
     <!-- Dropzone CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -139,11 +137,13 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="{{ route('ketapang-bwi.store') }}" method="POST">
+                        <form action="{{ route('ketapang-bwi.update') }}" method="POST" id="formUpdate">
                             @csrf
+                            @method('PUT')
                             <div class="card border-0 shadow">
                                 <div class="card-header">
                                     <div class="row align-items-center">
+
                                         <div class="col d-flex justify-content-center">
                                             <h2 class="fs-4 fw-bolder mb-3">Inventaris Alat BMKG</h2>
                                         </div>
@@ -205,36 +205,55 @@
                                                             <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
                                                             </td>
 
-                                                            {{-- Kondisi (input) --}}
+                                                            {{-- Kondisi --}}
                                                             <td>
-                                                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio"
-                                                                            name="kondisi[{{ $alat->id }}]"
-                                                                            value="{{ $kondisi }}">
-                                                                        <label
-                                                                            class="form-check-label">{{ ucfirst($kondisi) }}</label>
-                                                                    </div>
-                                                                @endforeach
+                                                                @php
+                                                                    $selectedKondisi = old(
+                                                                        'kondisi.' . $alat->id,
+                                                                        optional($alat->pengecekanTerakhir)->kondisi,
+                                                                    );
+                                                                @endphp
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="kondisi[{{ $alat->id }}]"
+                                                                        value="baik"
+                                                                        {{ $selectedKondisi == 'baik' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label">Baik</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="kondisi[{{ $alat->id }}]"
+                                                                        value="rusak ringan"
+                                                                        {{ $selectedKondisi == 'rusak ringan' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label">Rusak
+                                                                        Ringan</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="kondisi[{{ $alat->id }}]"
+                                                                        value="rusak berat"
+                                                                        {{ $selectedKondisi == 'rusak berat' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label">Rusak Berat</label>
+                                                                </div>
                                                             </td>
 
                                                             {{-- Tahun Pemasangan --}}
                                                             <td>{{ $alat->tahun_pemasangan }}</td>
 
-                                                            {{-- Kalibrasi Terakhir (input number tahun) --}}
+                                                            {{-- Kalibrasi Terakhir --}}
                                                             <td>
                                                                 <input type="number"
                                                                     name="kalibrasi[{{ $alat->id }}]"
                                                                     class="form-control" min="2000"
                                                                     max="2099" maxlength="4"
-                                                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                    value="{{ old('kalibrasi.' . $alat->id, optional($alat->pengecekanTerakhir)->kalibrasi_terakhir) }}">
                                                             </td>
 
                                                             {{-- Keterangan --}}
                                                             <td style="text-transform: capitalize">
                                                                 {{ $alat->keterangan }}
                                                             </td>
-
                                                         </tr>
                                                     </tbody>
                                                 @endforeach
@@ -244,8 +263,7 @@
                                         <div class="d-flex align-items-start mt-3">
                                             <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
                                             <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control"
-                                                style="max-width: 50%" placeholder="Tambahkan catatan bila diperlukan..."></textarea>
+                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
                                         </div>
                                     </div>
                                 @endforeach
@@ -293,7 +311,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-info" id="btnSimpan">
+                                    <button class="btn btn-info" id="btnUbah">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -305,7 +323,7 @@
                                             <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                                             <path d="M14 4l0 4l-6 0l0 -4" />
                                         </svg>
-                                        Simpan
+                                        Ubah
                                     </button>
                                 </div>
                             </div>
@@ -393,41 +411,41 @@
         </footer>
     </main>
 
-    <script>
-        Dropzone.autoDiscover = false;
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Sukses',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonColor: '#0d6efd',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>
+    @endif
 
-        const dropzone = new Dropzone("#dropzoneArea", {
-            url: "/upload/foto",
-            paramName: "foto_alat",
-            maxFiles: 5,
-            maxFilesize: 2,
-            acceptedFiles: ".jpg,.jpeg,.png",
-            addRemoveLinks: true,
-            dictDefaultMessage: "Seret dan lepas foto di sini atau klik untuk memilih",
-        });
-    </script>
-
     <script>
-        document.getElementById('btnSimpan').addEventListener('click', function(e) {
+        document.getElementById('btnUbah').addEventListener('click', function(e) {
             e.preventDefault();
 
             Swal.fire({
                 title: 'Apakah kamu yakin?',
-                text: "Data pengecekan alat akan disimpan.",
+                text: "Data pengecekan alat akan berubah.",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#0d6efd',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Simpan',
+                confirmButtonText: 'Ya, Ubah',
                 cancelButtonText: 'Batal',
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.querySelector('form').submit();
+                    document.getElementById('formUpdate').submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire({
                         title: 'Dibatalkan',
-                        text: 'Data pengecekan alat tidak jadi disimpan.',
+                        text: 'Data pengecekan alat tidak jadi diubah.',
                         icon: 'info',
                         confirmButtonColor: '#0d6efd'
                     });
@@ -477,10 +495,10 @@
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
 
+    <!-- Dropzone JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-..."
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
 </body>
 
 </html>
