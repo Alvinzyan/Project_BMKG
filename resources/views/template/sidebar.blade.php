@@ -33,12 +33,15 @@
                 </div>
             </div>
             <ul class="nav flex-column pt-3 pt-md-0">
-                <li class="nav-item">
-                    <a href="#" class="nav-link d-flex align-items-center">
-                        <span class="sidebar-icon">
-                            <img src="../../assets/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
+                <li class="nav-item" style="width: 100%;">
+                    <a href="#" class="nav-link" 
+                    style="display: flex; align-items: flex-start; text-decoration: none; color: white; background: none;">
+                        <img src="{{ asset('volt/assets/img/BMG_2003.png') }}" 
+                            alt="Logo Instansi" 
+                            style="width: 30px; height: 30px; margin-right: 8px; flex-shrink: 0;">
+                        <span style="font-size: 12px; line-height: 1.2; text-align: center; word-break: break-word; max-width: 150px; white-space: normal;">
+                            Stasiun Meteorologi Kelas III Banyuwangi
                         </span>
-                        <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
                     </a>
                 </li>
                 {{-- <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
@@ -73,6 +76,7 @@
                     </a>
                 </li> --}}
 
+                @if (auth()->user()->peran=="teknisi")
                 <li class="nav-item {{ Request::is('inventaris-alat') ? 'active' : '' }}">
                     <a href="/inventaris-alat" class="nav-link">
                         <span class="sidebar-icon">
@@ -81,7 +85,9 @@
                         <span class="sidebar-text">Inventaris Alat</span>
                     </a>
                 </li>
+                @endif
 
+                @if (auth()->user()->peran=="teknisi")
                 <li class="nav-item {{ Request::is('cetak-laporan') ? 'active' : '' }}">
                     <a href="/cetak-laporan" class="nav-link">
                         <span class="sidebar-icon">
@@ -90,7 +96,9 @@
                         <span class="sidebar-text">Cetak Laporan</span>
                     </a>
                 </li>
+                @endif
 
+                @if (auth()->user()->peran=="teknisi")
                 <li class="nav-item {{ Request::is('tambah-alat') ? 'active' : '' }}">
                     <a href="/data-alat" class="nav-link">
                         <span class="sidebar-icon">
@@ -99,8 +107,26 @@
                         <span class="sidebar-text">Tambah Alat</span>
                     </a>
                 </li>
+                @endif
+
                 @if (auth()->user()->peran=="admin")
-               <li class="nav-item {{ Request::is('kelola-akun') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard-admin') ? 'active' : '' }}">
+                    <a href="/dashboard-admin" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 14a7 7 0 1114 0H3z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Dashboard</span>
+                    </a>
+                </li>
+                @endif
+
+                @if (auth()->user()->peran=="admin")
+                <li class="nav-item {{ Request::is('kelola-akun') ? 'active' : '' }}">
                     <a href="/kelola-akun" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -114,7 +140,8 @@
                     </a>
                 </li>
                 @endif
-                <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
+
+                {{-- <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
                     <a href="/profile" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -123,7 +150,7 @@
                         </span>
                         <span class="sidebar-text">Profile</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/calendar.html" target="_blank"
@@ -164,7 +191,7 @@
                     </a>
                 </li> --}}
 
-                <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+                {{-- <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
                 <li class="nav-item">
                     <a href="https://themesberg.com/docs/volt-bootstrap-5-dashboard/getting-started/quick-start/"
                         target="_blank" class="nav-link d-flex align-items-center">
@@ -179,7 +206,7 @@
                         <span class="sidebar-text">Documentation <span
                                 class="badge badge-sm bg-secondary ms-1 text-gray-800">v1.4</span></span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a href="https://themesberg.com" target="_blank" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">

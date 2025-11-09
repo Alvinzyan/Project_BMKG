@@ -73,17 +73,6 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <style>
-    .nav-tabs .nav-link.active {
-        background-color: #1E3D58 !important;
-        color: white !important;
-    }
-    .nav-tabs .nav-link:hover {
-        background-color: #1E3D58 !important;
-        color: white !important;
-    }
-    </style>
-
 </head>
 
 <body>
@@ -114,80 +103,145 @@
             @include('template.navbar')
         </nav>
 
-        <div class="container-fluid py-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow-sm rounded-4 p-4" style="background-color: #fff; border: 1px solid #e0e0e0;">
-                        <ul class="nav nav-tabs mb-4" id="profileTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="profil-tab" data-bs-toggle="tab" data-bs-target="#profil"
-                                    type="button" role="tab" aria-controls="profil" aria-selected="true">
-                                    Profil
-                                </button>
-                            </li>
-                            {{-- <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="ubah-password-tab" data-bs-toggle="tab" data-bs-target="#ubah-password"
-                                    type="button" role="tab" aria-controls="ubah-password" aria-selected="false">
-                                    Ubah Password
-                                </button>
-                            </li> --}}
-                        </ul>
-
-                        <div class="tab-content" id="profileTabContent">
-                            <!-- Profil -->
-                            <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
-                                <div class="text-center mb-4">
-                                    <img src="https://via.placeholder.com/100" alt="Foto Profil" class="rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
-                                    <div>
-                                        <button class="btn btn-sm text-white" style="background-color:#1E3D58;">Edit Profile</button>
+        <div class="row">
+            <div class="col-12 col-xl-12">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="row g-3">
+                            <!-- Card Total User -->
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card text-white" style="background-color: #1E3D58;">
+                                    <div class="card-body d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M5 21v-2a4 4 0 0 1 4 -4h6a4 4 0 0 1 4 4v2" />
+                                            <circle cx="12" cy="7" r="4" />
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        </svg>
+                                        <div>
+                                            <h5 class="card-title mb-0">Total User</h5>
+                                            <p class="card-text fs-4 fw-bolder">{{ $totalUser }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="{{ $users->nama_lengkap}}" readonly>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="nip" class="form-label">NIP</label>
-                                    <input type="text" class="form-control" id="nip" value="{{ $users->nip ?? '-' }}" readonly>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="jabatan" class="form-label">Jabatan</label>
-                                    <input type="jabatan" class="form-control" id="jabatan" value="{{ $users->jabatan ?? '-' }}" readonly>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                    <input type="jenis_kelamin" class="form-control" id="jenis_kelamin" value="{{ $users->jenis_kelamin ?? '-' }}" readonly>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="{{ $users->email}}" readonly>
-                                </div>
                                 </div>
                             </div>
 
-                            {{-- <!-- Ubah Password -->
-                            <div class="tab-pane fade" id="ubah-password" role="tabpanel" aria-labelledby="ubah-password-tab">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="current_password" class="form-label">Password Lama</label>
-                                        <input type="password" class="form-control" id="current_password" placeholder="Masukkan password lama" required>
+                            <!-- Card Admin -->
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card text-white" style="background-color: #1E3D58;">
+                                    <div class="card-body d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-user me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M12 3l8 4v5c0 5.5 -3.5 10.74 -8 13c-4.5 -2.26 -8 -7.5 -8 -13v-5l8 -4z" />
+                                            <path d="M12 11a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" />
+                                            <path d="M12 13v2" />
+                                        </svg>
+                                        <div>
+                                            <h5 class="card-title mb-0">Admin</h5>
+                                            <p class="card-text fs-4 fw-bolder">{{ $totalAdmin }}</p>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="new_password" class="form-label">Password Baru</label>
-                                        <input type="password" class="form-control" id="new_password" placeholder="Masukkan password baru" required>
+                                </div>
+                            </div>
+
+                            <!-- Card Teknisi -->
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card text-white" style="background-color: #1E3D58;">
+                                    <div class="card-body d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14.7 9.3l-3.4 3.4" />
+                                            <path d="M10 14l-3 3a2.828 2.828 0 1 1 -4 -4l3-3" />
+                                            <path d="M15 5l4 4" />
+                                        </svg>
+                                        <div>
+                                            <h5 class="card-title mb-0">Teknisi</h5>
+                                            <p class="card-text fs-4 fw-bolder">{{ $totalTeknisi }}</p>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="new_password_confirmation" class="form-label">Konfirmasi Password</label>
-                                        <input type="password" class="form-control" id="new_password_confirmation" placeholder="Konfirmasi password baru" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-sm text-white" style="background-color:#1E3D58;">Simpan Perubahan</button>
-                                </form>
-                            </div> --}}
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-12">
+                            <div class="card shadow" style="background-color:#1E3D58; border:0;">
+                                <div class="card-header d-flex justify-content-between align-items-center text-white" style="border-bottom:none;">
+                                    <div class="d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-user me-2"
+                                            width="24" height="24"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="2"
+                                            stroke="currentColor"
+                                            fill="none"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                        </svg>
+                                        <h2 class="fs-4 fw-bolder mb-0 text-white">Aktivitas Teknisi</h2>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-flush bg-white">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Teknisi</th>
+                                                <th>Status</th>
+                                                <th>Terakhir Aktif</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php use Carbon\Carbon; @endphp
+                                            @forelse ($teknisi as $user)
+                                                @php
+                                                    $isOnline = $user->last_seen && Carbon::parse($user->last_seen)->gt(now()->subMinutes(5));
+                                                @endphp
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $user->nama_lengkap }}</td>
+                                                <td>
+                                                    @if ($isOnline)
+                                                        <span class="d-inline-flex align-items-center">
+                                                            <span class="rounded-circle me-2" style="width:10px; height:10px; background-color:green;"></span>
+                                                            <span style="color:green; font-weight:600;">Online</span>
+                                                        </span>
+                                                    @else
+                                                        <span class="d-inline-flex align-items-center">
+                                                            <span class="rounded-circle me-2" style="width:10px; height:10px; background-color:gray;"></span>
+                                                            <span style="color:#6c757d; font-weight:600;">Offline</span>
+                                                        </span>
+                                                    @endif
+                                                </td>
+
+                                                <td>
+                                                    @if ($isOnline)
+                                                        baru saja
+                                                    @else
+                                                        {{ $user->last_seen ? Carbon::parse($user->last_seen)->diffForHumans() : '-' }}
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="9" class="text-muted text-center">Belum ada data</td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
@@ -308,6 +362,58 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
+
+    <!-- Modal Error Handling -->
+    @if ($errors->any())
+    @if(session('edit_user_id'))
+    <script>
+        var modalEdit = new bootstrap.Modal(document.getElementById('modalEditAkun{{ session("edit_user_id") }}'));
+        modalEdit.show();
+    </script>
+    @else
+    <script>
+        var modalTambah = new bootstrap.Modal(document.getElementById('modalTambahAkun'));
+        modalTambah.show();
+    </script>
+    @endif
+    @endif
+
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+    @endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // === Modal Hapus ===
+            window.hapusAkun = function(id, nama) {
+                document.getElementById('hapusNamaUser').innerText = nama;
+                document.getElementById('formHapusAkun').action = '/kelola-akun/' + id;
+            };
+
+            // === Toggle Password Universal ===
+            document.querySelectorAll('.btn-toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.closest('.input-group').querySelector('input');
+                    const icon = this.querySelector('i');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.replace('bi-eye', 'bi-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.replace('bi-eye-slash', 'bi-eye');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

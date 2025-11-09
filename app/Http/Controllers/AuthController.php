@@ -16,38 +16,46 @@ class AuthController extends Controller
 
     public function login_action(Request $request)
     {
+        // Validasi input NIP dan password
         $request->validate([
-            'email' => [
-                'required',
-                'regex:/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.(com|co\.id|id|ac\.id|net|org)$/'
-            ],
+            'nip' => 'required|string|max:50',
             'password' => 'required|min:6|max:30',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        // Cari user berdasarkan NIP
+        $user = User::where('nip', $request->nip)->first();
 
         if ($user) {
             try {
-                // Dekripsi password dari database
+                // Dekripsi password terenkripsi
                 $decryptedPassword = Crypt::decryptString($user->password);
 
-                // Cek apakah cocok
+                // Cek kecocokan password
                 if ($decryptedPassword === $request->password) {
                     Auth::login($user, $request->has('remember'));
                     $request->session()->regenerate();
 
-                    // Arahkan langsung ke halaman inventaris alat
-                    return redirect('/inventaris-alat')->with('success', 'Login berhasil.');
+                    // Arahkan sesuai peran
+                    if ($user->peran == 'admin') {
+                        return redirect()->route('dashboard-admin.index')->with('success', 'Login berhasil sebagai admin.');
+                    }
+
+                    if ($user->peran == 'teknisi') {
+                        return redirect('/inventaris-alat')->with('success', 'Login berhasil sebagai teknisi.');
+                    }
+
+                    // Default jika tidak ada peran spesifik
+                    return redirect()->route('dashboard')->with('success', 'Login berhasil.');
                 } else {
-                    return back()->withErrors(['email' => 'Password salah.'])->onlyInput('email');
+                    return back()->withErrors(['nip', 'password' => 'NIP atau password salah.'])->onlyInput('nip', 'paswword');
                 }
 
             } catch (\Exception $e) {
-                return back()->withErrors(['email' => 'Password tidak valid atau terenkripsi dengan format berbeda.'])->onlyInput('email');
+                return back()->withErrors(['nip' => 'NIP tidak valid atau terenkripsi dengan format berbeda.'])->onlyInput('nip');
             }
         }
 
-        return back()->withErrors(['email' => 'Email tidak ditemukan.'])->onlyInput('email');
+        return back()->withErrors(['nip' => 'NIP tidak ditemukan.'])->onlyInput('nip');
     }
 
     public function logout(Request $request)

@@ -87,33 +87,29 @@
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                             <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">Masuk Ke Akun Anda</h1>
+                                <h1 class="mb-0 h3">Login Aplikasi Inventaris BMKG</h1>
                             </div>
                             <form action="{{ route('auth.login') }}" method="POST" class="mt-4">
                                 @csrf
                                 <!-- Form -->
                                 <div class="form-group mb-4">
-                                    <label for="email">Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor"
-                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
-                                                </path>
-                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <input type="text"
-                                            class="form-control @error('email') is-invalid @enderror"
-                                            placeholder="jono123" id="email" name="email" autofocus required>
-                                        <div class="invalid-feedback">
-                                            @error('email')
-                                                {{ $message }}
-                                            @enderror
+                                        <label for="nip">NIP</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg class="icon icon-xs text-gray-600" fill="none" stroke="currentColor" 
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                        d="M5.121 17.804A9 9 0 1118.879 17.804M12 11a4 4 0 100-8 4 4 0 000 8z" />
+                                                </svg>
+                                            </span>
+                                            <input type="text" class="form-control @error('nip') is-invalid @enderror"
+                                                placeholder="Masukkan NIP Anda" id="nip" name="nip" required>
+                                            <div class="invalid-feedback">
+                                                @error('nip')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <!-- End of Form -->
 
