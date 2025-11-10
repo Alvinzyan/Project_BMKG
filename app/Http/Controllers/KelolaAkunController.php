@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 class KelolaAkunController extends Controller
 {
@@ -42,7 +43,7 @@ class KelolaAkunController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_lengkap'   => 'required|string|max:255',
+            'nama_lengkap'   => 'required|string|min:3|max:255',
             'nip'            => 'required|string|max:50|unique:users,nip',
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
@@ -65,7 +66,7 @@ class KelolaAkunController extends Controller
             'jenis_kelamin' => $validated['jenis_kelamin'] ?? null,
             'password'      => Crypt::encryptString($validated['password']),
             'peran'         => $validated['peran'],
-            
+
             'foto_profil'   => $fotoProfilPath,
         ]);
 
@@ -85,31 +86,26 @@ class KelolaAkunController extends Controller
 
         session(['edit_user_id' => $id]);
 
-        $request->validate([
-            'nama_lengkap'   => 'required|string|max:255',
+        $rules = [
+            'nama_lengkap'   => 'required|string|min:3|max:25',
             'nip'            => 'required|string|max:50|unique:users,nip,' . $id,
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
-            'password'       => 'nullable|string|min:6',
-            'peran'          => 'required|in:Admin,Teknisi',
+            // jangan include peran atau password bila tidak boleh diubah
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+        ];
+
+        $validated = $request->validate($rules);
 
         session()->forget('edit_user_id');
 
-        // Update data
-        $user->nama_lengkap  = $request->nama_lengkap;
-        $user->nip           = $request->nip ?? null;
-        $user->jabatan       = $request->jabatan ?? null;
-        $user->jenis_kelamin = $request->jenis_kelamin ?? null;
-        $user->peran         = $request->peran;
+        $user->nama_lengkap   = $request->nama_lengkap;
+        $user->nip            = $request->nip;
+        $user->jabatan        = $request->jabatan ?? null;
+        $user->jenis_kelamin  = $request->jenis_kelamin ?? null;
+        // peran tetap $user->peran
+        // password tidak diubah di sini
 
-        // Enkripsi password jika diubah
-        if ($request->filled('password')) {
-            $user->password = Crypt::encryptString($request->password);
-        }
-
-        // Update foto jika ada
         if ($request->hasFile('foto_profil')) {
             $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');
             $user->foto_profil = $fotoProfilPath;
@@ -117,28 +113,38 @@ class KelolaAkunController extends Controller
 
         $user->save();
 
-        return redirect()->route('kelola-akun.index')
-            ->with('success', 'Akun berhasil diperbarui.');
+        return redirect()->route('kelola-akun.index')->with('success', 'Akun berhasil diperbarui.');
     }
 
     public function updatePassword(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
-        // Validasi password baru
-        $request->validate([
-            'new_password' => 'required|string|min:6|confirmed',
-        ], [
-            'new_password.required' => 'Password baru wajib diisi.',
-            'new_password.min' => 'Password minimal 6 karakter.',
-            'new_password.confirmed' => 'Konfirmasi password tidak cocok.',
-        ]);
+        $rules = [
+            'new_password'              => 'required|string|min:6|confirmed',
+            'new_password_confirmation' => 'required|string|min:6',
+        ];
+        $messages = [
+            'new_password.required'         => 'Password baru wajib diisi.',
+            'new_password.min'              => 'Password minimal 6 karakter.',
+            'new_password.confirmed'        => 'Konfirmasi password tidak cocok.',
+            'new_password_confirmation.required' => 'Konfirmasi password wajib diisi.',
+        ];
 
-        // Enkripsi dan simpan password baru
-        $user->password = Crypt::encryptString($request->new_password);
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('openUbahPasswordModalId', $id);
+        }
+
+        $user->password = Crypt::encryptString($request->input('new_password'));
         $user->save();
 
-        return redirect()->route('kelola-akun.index')->with('success', 'Password berhasil diperbarui.');
+        return redirect()->route('kelola-akun.index')
+            ->with('success', 'Password berhasil diperbarui.');
     }
 
     public function destroy($id)

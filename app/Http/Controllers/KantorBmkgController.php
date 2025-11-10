@@ -10,14 +10,16 @@ use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\PeriodeHelper;
 
 class KantorBmkgController extends Controller
 {
     public function index()
     {
         // $user = Auth::user();
-
-        return view('inventaris-alat.index');
+        $periode = PeriodeHelper::getPeriodeAktif();
+        return view('inventaris-alat.index')
+            ->with('periode', $periode);
     }
 
     public function create()
@@ -70,7 +72,8 @@ class KantorBmkgController extends Controller
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
-            'alats.pengecekanTerakhir', 'catatanTerakhir'
+            'alats.pengecekanTerakhir',
+            'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
         return view('kantor-bmkg.edit', compact('lokasi', 'kategoris'));

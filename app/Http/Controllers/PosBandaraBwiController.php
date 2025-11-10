@@ -7,13 +7,20 @@ use App\Models\Kategori;
 use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
+use App\Helpers\PeriodeHelper;
 
 class PosBandaraBwiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index()
+    {
+        // $user = Auth::user();
+        $periode = PeriodeHelper::getPeriodeAktif();
+        return view('inventaris-alat.index')
+            ->with('periode', $periode);
+    }
 
     /**
      * Show the form for creating a new resource.

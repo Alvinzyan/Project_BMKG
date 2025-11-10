@@ -5,62 +5,36 @@
 =========================================================
 
 * Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-* Copyright 2021 Themesberg (https://www.themesberg.com)
-* License (https://themesberg.com/licensing)
-
+* Copyright 2021 Themesberg
+* License: https://themesberg.com/licensing
 * Designed and coded by https://themesberg.com
 
 =========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
-
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- Primary Meta Tags -->
-    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <title>Login - Aplikasi Inventaris BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
-    <meta name="author" content="Themesberg">
-    <meta name="description"
-        content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-    <meta name="keywords"
-        content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
-    <link rel="canonical" href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://demo.themesberg.com/volt-pro">
-    <meta property="og:title" content="Volt - Free Bootstrap 5 Dashboard">
-    <meta property="og:description"
-        content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-    <meta property="og:image"
-        content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
-    <meta property="twitter:title" content="Volt - Free Bootstrap 5 Dashboard">
-    <meta property="twitter:description"
-        content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-    <meta property="twitter:image"
-        content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
+    <!-- Metadata -->
+    <meta name="description" content="Halaman login aplikasi inventaris BMKG berbasis Volt Bootstrap 5 Dashboard.">
+    <meta name="keywords" content="bmkg, volt dashboard, login, bootstrap 5">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
     <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
-    <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    {{-- Tabler Icon --}}
+    <!-- Tabler Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css" />
 
     <!-- Sweet Alert -->
@@ -72,94 +46,129 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
-    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%);
+            min-height: 100vh;
+        }
 
+        .login-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: transform .2s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .logo-bmkg {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .login-title {
+            font-weight: 600;
+            color: #1d3557;
+        }
+
+        .btn-login {
+            background-color: #1d3557;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .btn-login:hover {
+            background-color: #16324f;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(69, 123, 157, 0.25);
+        }
+    </style>
 </head>
 
 <body>
-
     <main>
-
-        <!-- Section -->
-        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <section class="vh-lg-100 d-flex align-items-center justify-content-center">
             <div class="container">
-                <div class="row justify-content-center form-bg-image">
-                    <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                            <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">Login Aplikasi Inventaris BMKG</h1>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-5">
+                        <div class="login-card p-4 p-lg-5">
+                            <div class="text-center mb-4">
+                                <img src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                                    alt="Logo Instansi" style="width: 100px; height: 100px;">
+                                <h3 class="login-title">Aplikasi Inventaris BMKG</h3>
+                                <p class="text-muted small mb-0">Silakan masuk untuk melanjutkan</p>
                             </div>
+
                             <form action="{{ route('auth.login') }}" method="POST" class="mt-4">
                                 @csrf
-                                <!-- Form -->
+                                <!-- NIP -->
                                 <div class="form-group mb-4">
-                                        <label for="nip">NIP</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <svg class="icon icon-xs text-gray-600" fill="none" stroke="currentColor" 
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                                        d="M5.121 17.804A9 9 0 1118.879 17.804M12 11a4 4 0 100-8 4 4 0 000 8z" />
-                                                </svg>
-                                            </span>
-                                            <input type="text" class="form-control @error('nip') is-invalid @enderror"
-                                                placeholder="Masukkan NIP Anda" id="nip" name="nip" required>
-                                            <div class="invalid-feedback">
-                                                @error('nip')
-                                                    {{ $message }}
-                                                @enderror
-                                            </div>
-                                        </div>
-                                </div>
-                                <!-- End of Form -->
-
-                                <div class="form-group">
-                                    <!-- Form -->
-                                    <div class="form-group mb-4">
-                                        <label for="password">Kata Sandi</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon2">
-                                                <svg class="icon icon-xs text-gray-600" fill="currentColor"
-                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </span>
-                                            <input type="password" placeholder="Masukkan kata sandi akun anda"
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                id="password" name="password" required>
-                                            <div class="invalid-feedback">
-                                                @error('password')
-                                                    {{ $message }}
-                                                @enderror
-                                            </div>
+                                    <label for="nip" class="fw-semibold">NIP</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <svg class="icon icon-xs text-gray-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5.121 17.804A9 9 0 1118.879 17.804M12 11a4 4 0 100-8 4 4 0 000 8z" />
+                                            </svg>
+                                        </span>
+                                        <input type="text" class="form-control @error('nip') is-invalid @enderror"
+                                            placeholder="Masukkan NIP Anda" id="nip" name="nip" required>
+                                        <div class="invalid-feedback">
+                                            @error('nip') {{ $message }} @enderror
                                         </div>
                                     </div>
-                                    <!-- End of Form -->
+                                </div>
 
-                                    <div class="d-flex justify-content-between align-items-top mb-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="remember">
-                                            <label class="form-check-label mb-0" for="remember">
-                                                Remember me
-                                            </label>
+                                <!-- Password -->
+                                <div class="form-group mb-3">
+                                    <label for="password" class="fw-semibold">Kata Sandi</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <svg class="icon icon-xs text-gray-600" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
+                                        <input type="password" placeholder="Masukkan kata sandi akun anda"
+                                            class="form-control @error('password') is-invalid @enderror" id="password"
+                                            name="password" required>
+                                        <div class="invalid-feedback">
+                                            @error('password') {{ $message }} @enderror
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="remember">
+                                        <label class="form-check-label small" for="remember">
+                                            Ingat saya
+                                        </label>
                                     </div>
                                 </div>
 
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-gray-800">Masuk</button>
+                                    <button type="submit" class="btn btn-login">Masuk</button>
                                 </div>
                             </form>
+
+                            <div class="text-center mt-4">
+                                <small class="text-muted">© 2025 Badan Meteorologi, Klimatologi, dan Geofisika</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>

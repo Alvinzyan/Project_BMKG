@@ -295,6 +295,7 @@
         /* highlight minggu */
         .week-highlight {
             background-color: rgba(0, 123, 255, 0.2) !important;
+
             border-radius: 50%;
             color: #000 !important;
         }

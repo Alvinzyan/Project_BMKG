@@ -34,10 +34,10 @@
             </div>
             <ul class="nav flex-column pt-3 pt-md-0">
                 <li class="nav-item" style="width: 100%;">
-                    <a href="#" class="nav-link" 
-                    style="display: flex; align-items: flex-start; text-decoration: none; color: white; background: none;">
-                        <img src="{{ asset('volt/assets/img/BMG_2003.png') }}" 
-                            alt="Logo Instansi" 
+                    <a href="#" class="nav-link"
+                        style="display: flex; align-items: flex-start; text-decoration: none; color: white; background: none;">
+                        <img src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                            alt="Logo Instansi"
                             style="width: 30px; height: 30px; margin-right: 8px; flex-shrink: 0;">
                         <span style="font-size: 12px; line-height: 1.2; text-align: center; word-break: break-word; max-width: 150px; white-space: normal;">
                             Stasiun Meteorologi Kelas III Banyuwangi
@@ -45,16 +45,16 @@
                     </a>
                 </li>
                 {{-- <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
-                    <a href="/dashboard" class="nav-link">
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Dashboard</span>
-                    </a>
+                <a href="/dashboard" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
                 </li> --}}
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/kanban.html" target="_blank"
@@ -80,7 +80,10 @@
                 <li class="nav-item {{ Request::is('inventaris-alat') ? 'active' : '' }}">
                     <a href="/inventaris-alat" class="nav-link">
                         <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-folders"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a1 1 0 0 1 .707 .293l1.708 1.707h4.585a3 3 0 0 1 2.995 2.824l.005 .176v7a3 3 0 0 1 -3 3h-1v1a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-9a3 3 0 0 1 3 -3h1v-1a3 3 0 0 1 3 -3zm-6 6h-1a1 1 0 0 0 -1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1 -1v-1h-7a3 3 0 0 1 -3 -3z" /></svg>
+                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-folders">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 2a1 1 0 0 1 .707 .293l1.708 1.707h4.585a3 3 0 0 1 2.995 2.824l.005 .176v7a3 3 0 0 1 -3 3h-1v1a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-9a3 3 0 0 1 3 -3h1v-1a3 3 0 0 1 3 -3zm-6 6h-1a1 1 0 0 0 -1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1 -1v-1h-7a3 3 0 0 1 -3 -3z" />
+                            </svg>
                         </span>
                         <span class="sidebar-text">Inventaris Alat</span>
                     </a>
@@ -91,7 +94,10 @@
                 <li class="nav-item {{ Request::is('cetak-laporan') ? 'active' : '' }}">
                     <a href="/cetak-laporan" class="nav-link">
                         <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-clipboard-text"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17.997 4.17a3 3 0 0 1 2.003 2.83v12a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 2.003 -2.83a4 4 0 0 0 3.997 3.83h4a4 4 0 0 0 3.98 -3.597zm-2.997 10.83h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m0 -4h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m-1 -9a2 2 0 1 1 0 4h-4a2 2 0 1 1 0 -4z" /></svg>
+                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-clipboard-text">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M17.997 4.17a3 3 0 0 1 2.003 2.83v12a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 2.003 -2.83a4 4 0 0 0 3.997 3.83h4a4 4 0 0 0 3.98 -3.597zm-2.997 10.83h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m0 -4h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m-1 -9a2 2 0 1 1 0 4h-4a2 2 0 1 1 0 -4z" />
+                            </svg>
                         </span>
                         <span class="sidebar-text">Cetak Laporan</span>
                     </a>
@@ -102,7 +108,15 @@
                 <li class="nav-item {{ Request::is('tambah-alat') ? 'active' : '' }}">
                     <a href="/data-alat" class="nav-link">
                         <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-database-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" /><path d="M4 6v6c0 1.657 3.582 3 8 3c1.075 0 2.1 -.08 3.037 -.224" /><path d="M20 12v-6" /><path d="M4 12v6c0 1.657 3.582 3 8 3c.166 0 .331 -.002 .495 -.006" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
+                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-database-plus">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" />
+                                <path d="M4 6v6c0 1.657 3.582 3 8 3c1.075 0 2.1 -.08 3.037 -.224" />
+                                <path d="M20 12v-6" />
+                                <path d="M4 12v6c0 1.657 3.582 3 8 3c.166 0 .331 -.002 .495 -.006" />
+                                <path d="M16 19h6" />
+                                <path d="M19 16v6" />
+                            </svg>
                         </span>
                         <span class="sidebar-text">Tambah Alat</span>
                     </a>
@@ -142,14 +156,14 @@
                 @endif
 
                 {{-- <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
-                    <a href="/profile" class="nav-link">
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zM5 7a1 1 0 011-1h8a1 1 0 011 1v2H5V7zm0 4h10v4H5v-4z"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Profile</span>
-                    </a>
+                <a href="/profile" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zM5 7a1 1 0 011-1h8a1 1 0 011 1v2H5V7zm0 4h10v4H5v-4z" />
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Profile</span>
+                </a>
                 </li> --}}
 
                 {{-- <li class="nav-item">

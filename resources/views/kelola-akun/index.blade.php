@@ -144,157 +144,164 @@
                                 </div>
                             </div>
 
-                                                <!-- Card Teknisi -->
-                                                <div class="col-12 col-md-6 col-lg-4">
-                                                    <div class="card text-white" style="background-color: #1E3D58;">
-                                                        <div class="card-body d-flex align-items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                <path d="M14.7 9.3l-3.4 3.4" />
-                                                                <path d="M10 14l-3 3a2.828 2.828 0 1 1 -4 -4l3-3" />
-                                                                <path d="M15 5l4 4" />
-                                                            </svg>
-                                                            <div>
-                                                                <h5 class="card-title mb-0">Teknisi</h5>
-                                                                <p class="card-text fs-4 fw-bolder">{{ $users->where('peran', 'teknisi')->count() }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                            <!-- Card Teknisi -->
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card text-white" style="background-color: #1E3D58;">
+                                    <div class="card-body d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14.7 9.3l-3.4 3.4" />
+                                            <path d="M10 14l-3 3a2.828 2.828 0 1 1 -4 -4l3-3" />
+                                            <path d="M15 5l4 4" />
+                                        </svg>
+                                        <div>
+                                            <h5 class="card-title mb-0">Teknisi</h5>
+                                            <p class="card-text fs-4 fw-bolder">{{ $users->where('peran', 'teknisi')->count() }}</p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <div class="row g-3 mt-2">
-                                        <div class="col-12">
-                                            <div class="card shadow" style="background-color:#1E3D58; border:0;">
-                                                <div class="card-header d-flex justify-content-between align-items-center text-white" style="border-bottom:none;">
-                                                    <div class="d-flex align-items-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="icon icon-tabler icon-tabler-user me-2"
-                                                            width="24" height="24"
-                                                            viewBox="0 0 24 24"
-                                                            stroke-width="2"
-                                                            stroke="currentColor"
-                                                            fill="none"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" />
-                                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                                        </svg>
-                                                        <h2 class="fs-4 fw-bolder mb-0 text-white">Kelola Akun User</h2>
-                                                    </div>
-                                                    <div class="d-flex justify-content-end">
-                                                        <button type="button" class="btn btn-sm btn-white"
-                                                            data-bs-toggle="modal" data-bs-target="#modalTambahAkun">
-                                                            <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                                stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                <path d="M12 5l0 14" />
-                                                                <path d="M5 12l14 0" />
-                                                            </svg>
-                                                            Tambah Akun
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="table-responsive">
-                                                    <table class="table table-flush bg-white">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Nama Lengkap</th>
-                                                                <th>NIP</th>
-                                                                <th>Jabatan</th>
-                                                                <th>Jenis Kelamin</th>
-                                                                <th>Hak Akses</th>
-                                                                <th>Aksi</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @forelse ($users as $index => $user)
-                                                            <tr>
-                                                                <td>{{ $index + 1 }}</td>
-                                                                <td>{{ $user->nama_lengkap }}</td>
-                                                                <td>{{ $user->nip }}</td>
-                                                                <td>{{ $user->jabatan ?: '-' }}</td>
-                                                                <td>{{ $user->jenis_kelamin ? \Illuminate\Support\Str::title($user->jenis_kelamin) : '-' }}</td>
-                                                                <td>{{ ucwords($user->peran) }}</td>
-                                                                <td>
-                                                                    <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
-                                                                        <i class="bi bi-eye"></i> Lihat
-                                                                    </a>
-                                                                    <button type="button" class="btn btn-sm btn-primary"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modalEditAkun{{ $user->id }}">
-                                                                        <i class="bi bi-pencil"></i> Edit
-                                                                    </button>
-                                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun"
-                                                                        onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
-                                                                        <i class="bi bi-trash"></i> Hapus
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
+                        </div>
+                    </div>
 
-                                                            <!-- Modal Lihat Akun -->
-                                                            <div class="modal fade" id="modalLihatAkun{{ $user->id }}" tabindex="-1"
-                                                                aria-labelledby="modalLihatAkunLabel{{ $user->id }}" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                                    <div class="modal-content border-0 shadow">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="modalLihatAkunLabel{{ $user->id }}">Detail Akun User</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                                                        </div>
+                    <div class="row g-3 mt-2">
+                        <div class="col-12">
+                            <div class="card shadow" style="background-color:#1E3D58; border:0;">
+                                <div class="card-header d-flex justify-content-between align-items-center text-white" style="border-bottom:none;">
+                                    <div class="d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-user me-2"
+                                            width="24" height="24"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="2"
+                                            stroke="currentColor"
+                                            fill="none"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0 -8z" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                        </svg>
+                                        <h2 class="fs-4 fw-bolder mb-0 text-white">Kelola Akun User</h2>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-sm btn-white"
+                                            data-bs-toggle="modal" data-bs-target="#modalTambahAkun">
+                                            <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M12 5l0 14" />
+                                                <path d="M5 12l14 0" />
+                                            </svg>
+                                            Tambah Akun
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-flush bg-white">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>NIP</th>
+                                                <th>Jabatan</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Hak Akses</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($users as $index => $user)
+                                            <tr>
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $user->nama_lengkap }}</td>
+                                                <td>{{ $user->nip }}</td>
+                                                <td>{{ $user->jabatan ?: '-' }}</td>
+                                                <td>{{ $user->jenis_kelamin ? \Illuminate\Support\Str::title($user->jenis_kelamin) : '-' }}</td>
+                                                <td>{{ ucwords($user->peran) }}</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
+                                                        <i class="bi bi-eye"></i> Lihat
+                                                    </a>
+                                                    @if($user->peran === 'teknisi')
+                                                    <button type="button" class="btn btn-sm btn-primary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalEditAkun{{ $user->id }}">
+                                                        <i class="bi bi-pencil"></i> Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun"
+                                                        onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
+                                                        <i class="bi bi-trash"></i> Hapus
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-warning"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalUbahPassword{{ $user->id }}">
+                                                        <i class="bi bi-key"></i> Ubah Password
+                                                    </button>
+                                                    @endif
+                                                </td>
+                                            </tr>
 
-                                                                        <div class="modal-body">
-                                                                            <div class="text-center mb-4">
-                                                                                @php
-                                                                                // cek apakah file ada di storage
-                                                                                if ($user->foto_profil && file_exists(storage_path('app/public/' . $user->foto_profil))) {
-                                                                                $fotoPath = $user->foto_profil;
-                                                                                } else {
-                                                                                $fotoPath = 'foto_profil/default-profile.png'; // sesuaikan path default kamu
-                                                                                }
-                                                                                @endphp
-                                                                                <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:auto;">
-                                                                                    <img src="{{ asset('storage/' . $fotoPath) }}"
-                                                                                        alt="Foto Profil"
-                                                                                        style="width:100%; height:100%; object-fit:cover;">
-                                                                                </div>
-                                                                            </div>
+                                            <!-- Modal Lihat Akun -->
+                                            <div class="modal fade" id="modalLihatAkun{{ $user->id }}" tabindex="-1"
+                                                aria-labelledby="modalLihatAkunLabel{{ $user->id }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-content border-0 shadow">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modalLihatAkunLabel{{ $user->id }}">Detail Akun User</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                        </div>
 
-                                                                            <div class="row g-3">
-                                                                                <!-- Nama Lengkap -->
-                                                                                <div class="col-md-6">
-                                                                                    <label class="form-label">Nama Lengkap</label>
-                                                                                    <input type="text" class="form-control" value="{{ $user->nama_lengkap ?? '-' }}" readonly>
-                                                                                </div>
+                                                        <div class="modal-body">
+                                                            <div class="text-center mb-4">
+                                                                @php
+                                                                // cek apakah file ada di storage
+                                                                if ($user->foto_profil && file_exists(storage_path('app/public/' . $user->foto_profil))) {
+                                                                $fotoPath = $user->foto_profil;
+                                                                } else {
+                                                                $fotoPath = 'foto_profil/default-profile.png'; // sesuaikan path default kamu
+                                                                }
+                                                                @endphp
+                                                                <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:auto;">
+                                                                    <img src="{{ asset('storage/' . $fotoPath) }}"
+                                                                        alt="Foto Profil"
+                                                                        style="width:100%; height:100%; object-fit:cover;">
+                                                                </div>
+                                                            </div>
 
-                                                                                <!-- NIP -->
-                                                                                <div class="col-md-6">
-                                                                                    <label class="form-label">NIP</label>
-                                                                                    <input type="text" class="form-control" value="{{ $user->nip }}" readonly>
-                                                                                </div>
+                                                            <div class="row g-3">
+                                                                <!-- Nama Lengkap -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Nama Lengkap</label>
+                                                                    <input type="text" class="form-control" value="{{ $user->nama_lengkap ?? '-' }}" readonly>
+                                                                </div>
 
-                                                                                <!-- Jabatan -->
-                                                                                <div class="col-md-6">
-                                                                                    <label class="form-label">Jabatan</label>
-                                                                                    <input type="text" class="form-control" value="{{ $user->jabatan ?? '-' }}" readonly>
-                                                                                </div>
+                                                                <!-- NIP -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">NIP</label>
+                                                                    <input type="text" class="form-control" value="{{ $user->nip }}" readonly>
+                                                                </div>
 
-                                                                                <!-- Jenis Kelamin -->
-                                                                                <div class="col-md-6">
-                                                                                    <label class="form-label">Jenis Kelamin</label>
-                                                                                    <input type="text" class="form-control" value="{{ $user->jenis_kelamin ?? '-' }}" readonly>
-                                                                                </div>
+                                                                <!-- Jabatan -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Jabatan</label>
+                                                                    <input type="text" class="form-control" value="{{ $user->jabatan ?? '-' }}" readonly>
+                                                                </div>
 
-                                                                                <!-- Peran -->
-                                                                                <div class="col-md-6">
-                                                                                    <label class="form-label">Peran</label>
-                                                                                    <input type="text" class="form-control" value="{{ ucwords($user->peran ?? '-') }}" readonly>
-                                                                                </div>
+                                                                <!-- Jenis Kelamin -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Jenis Kelamin</label>
+                                                                    <input type="text" class="form-control" value="{{ $user->jenis_kelamin ?? '-' }}" readonly>
+                                                                </div>
+
+                                                                <!-- Peran -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Peran</label>
+                                                                    <input type="text" class="form-control" value="{{ ucwords($user->peran ?? '-') }}" readonly>
+                                                                </div>
 
                                                                 <!-- Password -->
                                                                 <div class="col-md-6">
@@ -307,6 +314,7 @@
                                                                             <i class="bi bi-eye"></i>
                                                                         </button>
                                                                     </div>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -342,6 +350,9 @@
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">NIP</label>
                                                                         <input type="text" class="form-control" name="nip" value="{{ $user->nip}}">
+                                                                        @error('nip')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Jabatan</label>
@@ -359,65 +370,22 @@
                                                                     <!-- Peran -->
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Peran</label>
-                                                                        <input type="text" class="form-control" value="{{ ucwords($user->peran ?? '-') }}" readonly>
+                                                                        <input type="hidden" value="{{ $user->peran }}">
+                                                                        <input type="text" class="form-control" value="{{ ucwords($user->peran) }}" style="background-color: #f8f9fa; cursor: not-allowed;" readonly>
                                                                     </div>
-                                                                    
+
                                                                     <!-- Field Password -->
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Password</label>
                                                                         <div class="input-group">
                                                                             <input type="password"
                                                                                 class="form-control"
-                                                                                name="password"
                                                                                 value="{{ $user->decrypted_password }}"
                                                                                 readonly
                                                                                 style="background-color: #f8f9fa; cursor: not-allowed;"
                                                                                 autocomplete="off">
                                                                         </div>
-                                                                        <small>
-                                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#ubahPasswordModal"
-                                                                            style="color: green; text-decoration: none; font-weight: 500;">
-                                                                            Ubah Password
-                                                                            </a>
-                                                                        </small>
                                                                     </div>
-
-                                                                    <!-- Modal Ubah Password -->
-                                                                    <div class="modal fade" id="ubahPasswordModal" tabindex="-1" aria-labelledby="ubahPasswordModalLabel" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered">
-                                                                            <div class="modal-content">
-
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title" id="ubahPasswordModalLabel">Ubah Password</h5>
-                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                </div>
-
-                                                                                <div class="modal-body">
-                                                                                    <form action="{{ route('kelola-akun.updatePassword', $user->id) }}" method="POST">
-                                                                                        @csrf
-                                                                                        @method('PUT')
-
-                                                                                        <div class="mb-3">
-                                                                                            <label for="new_password" class="form-label">Password Baru</label>
-                                                                                            <input type="password" class="form-control" id="new_password" name="new_password" required>
-                                                                                        </div>
-
-                                                                                        <div class="mb-3">
-                                                                                            <label for="new_password_confirmation" class="form-label">Konfirmasi Password</label>
-                                                                                            <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
-                                                                                        </div>
-
-                                                                                        <div class="text-end">
-                                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                                            <button type="submit" class="btn btn-success">Simpan</button>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
 
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Foto Profil (Opsional)</label>
@@ -435,9 +403,59 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- Modal Ubah Password User -->
+                                            <div class="modal fade" id="modalUbahPassword{{ $user->id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Ubah Password: {{ $user->nama_lengkap }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <form action="{{ route('kelola-akun.updatePassword', $user->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <label for="new_password_{{ $user->id }}" class="form-label">Password Baru</label>
+                                                                    <div class="input-group">
+                                                                        <input type="password"
+                                                                            class="form-control"
+                                                                            id="new_password_{{ $user->id }}"
+                                                                            name="new_password"
+                                                                            required>
+                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                            <i class="bi bi-eye"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="new_password_confirmation_{{ $user->id }}" class="form-label">Konfirmasi Password</label>
+                                                                        <div class="input-group">
+                                                                            <input type="password"
+                                                                                class="form-control"
+                                                                                id="new_password_confirmation_{{ $user->id }}"
+                                                                                name="new_password_confirmation"
+                                                                                required>
+                                                                            <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                                <i class="bi bi-eye"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    @error('new_password_confirmation')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                                                </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @empty
                                             <tr>
-                                                <td colspan="9" class="text-muted text-center">Belum ada data</td>
+                                                <td colspan="7" class="text-muted text-center">Belum ada data</td>
                                             </tr>
                                             @endforelse
                                         </tbody>
@@ -474,38 +492,37 @@
                                     @enderror
                                 </div>
 
-                                            <!-- NIP -->
-                                            <div class="col-md-6">
-                                                <label for="nip" class="form-label">NIP</label>
-                                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP" required>
-                                                @error('nip')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
+                                <!-- NIP -->
+                                <div class="col-md-6">
+                                    <label for="nip" class="form-label">NIP</label>
+                                    <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP" required>
+                                    @error('nip')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
 
-                                            <!-- Jabatan -->
-                                            <div class="col-md-6">
-                                                <label for="jabatan" class="form-label">Jabatan</label>
-                                                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan jabatan" autocomplete="off"
-                                                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
-                                            </div>
+                                <!-- Jabatan -->
+                                <div class="col-md-6">
+                                    <label for="jabatan" class="form-label">Jabatan</label>
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan jabatan" autocomplete="off"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                </div>
 
-                                            <!-- Jenis Kelamin -->
-                                            <div class="col-md-6">
-                                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                                <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
-                                                    <option value="" disabled selected>Pilih jenis kelamin</option>
-                                                    <option value="laki laki">Laki-laki</option>
-                                                    <option value="perempuan">Perempuan</option>
-                                                </select>
-                                            </div>
+                                <!-- Jenis Kelamin -->
+                                <div class="col-md-6">
+                                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                    <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
+                                        <option value="" disabled selected>Pilih jenis kelamin</option>
+                                        <option value="laki laki">Laki-laki</option>
+                                        <option value="perempuan">Perempuan</option>
+                                    </select>
+                                </div>
 
                                 <!-- Hak Akses -->
                                 <div class="col-md-6">
                                     <label for="peran" class="form-label">Hak Akses</label>
                                     <select class="form-select" id="peran" name="peran" required>
                                         <option value="" disabled selected>Pilih hak akses</option>
-                                        <option value="Admin">Admin</option>
                                         <option value="Teknisi">Teknisi</option>
                                     </select>
                                     @error('peran')
@@ -531,6 +548,10 @@
                                 <div class="col-md-6">
                                     <label for="foto_profil" class="form-label">Foto Profil (opsional)</label>
                                     <input type="file" class="form-control" id="foto_profil" name="foto_profil">
+                                    <div class="form-text text-muted" style="font-size: 13px; margin-top: 1px;">Unggah dengan format jpg, jpeg, png.</div>
+                                    @error('foto_profil')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -571,82 +592,82 @@
             </div>
         </div>
 
-                        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
-                            <div class="card-body bg-gray-800 text-white pt-4">
-                                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
-                                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
-                                    aria-controls="theme-settings"></button>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
-                                    </p>
-                                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-                                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
-                                        data-size="large" data-show-count="true"
-                                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
-                                </div>
-                                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
-                                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
-                                    Download
-                                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
-                                <div class="d-flex justify-content-center">
-                                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-                                        target="_blank">
-                                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
-                                    </a>
-                                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
-                                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
+            <div class="card-body bg-gray-800 text-white pt-4">
+                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
+                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
+                    aria-controls="theme-settings"></button>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
+                    </p>
+                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
+                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
+                        data-size="large" data-show-count="true"
+                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
+                </div>
+                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
+                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
+                    Download
+                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
+                <div class="d-flex justify-content-center">
+                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
+                        target="_blank">
+                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
+                    </a>
+                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
+                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
+                    </a>
+                </div>
+            </div>
+        </div>
 
-                        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
-                            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
-                                <span class="fw-bold d-inline-flex align-items-center h6">
-                                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    Settings
-                                </span>
-                            </div>
-                        </div>
+        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
+            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
+                <span class="fw-bold d-inline-flex align-items-center h6">
+                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    Settings
+                </span>
+            </div>
+        </div>
 
-                        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
-                            <div class="row">
-                                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-                                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
-                                            class="text-primary fw-normal" href="https://themesberg.com"
-                                            target="_blank">Themesberg</a></p>
-                                </div>
-                                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-                                    <!-- List -->
-                                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                                        <li class="list-inline-item px-0 px-sm-2">
-                                            <a href="https://themesberg.com/about">About</a>
-                                        </li>
-                                        <li class="list-inline-item px-0 px-sm-2">
-                                            <a href="https://themesberg.com/themes">Themes</a>
-                                        </li>
-                                        <li class="list-inline-item px-0 px-sm-2">
-                                            <a href="https://themesberg.com/blog">Blog</a>
-                                        </li>
-                                        <li class="list-inline-item px-0 px-sm-2">
-                                            <a href="https://themesberg.com/contact">Contact</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </footer>
+        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
+            <div class="row">
+                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
+                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
+                            class="text-primary fw-normal" href="https://themesberg.com"
+                            target="_blank">Themesberg</a></p>
+                </div>
+                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
+                    <!-- List -->
+                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
+                        <li class="list-inline-item px-0 px-sm-2">
+                            <a href="https://themesberg.com/about">About</a>
+                        </li>
+                        <li class="list-inline-item px-0 px-sm-2">
+                            <a href="https://themesberg.com/themes">Themes</a>
+                        </li>
+                        <li class="list-inline-item px-0 px-sm-2">
+                            <a href="https://themesberg.com/blog">Blog</a>
+                        </li>
+                        <li class="list-inline-item px-0 px-sm-2">
+                            <a href="https://themesberg.com/contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <!-- Core -->
@@ -697,6 +718,11 @@
         var modalEdit = new bootstrap.Modal(document.getElementById('modalEditAkun{{ session("edit_user_id") }}'));
         modalEdit.show();
     </script>
+    @elseif (session('openUbahPasswordModalId'))
+    <script>
+        var modalPwd = new bootstrap.Modal(document.getElementById('modalUbahPassword{{ session("openUbahPasswordModalId") }}'));
+        modalPwd.show();
+    </script>
     @else
     <script>
         var modalTambah = new bootstrap.Modal(document.getElementById('modalTambahAkun'));
@@ -717,30 +743,30 @@
     </script>
     @endif
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // === Modal Hapus ===
-                window.hapusAkun = function(id, nama) {
-                    document.getElementById('hapusNamaUser').innerText = nama;
-                    document.getElementById('formHapusAkun').action = '/kelola-akun/' + id;
-                };
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // === Modal Hapus ===
+            window.hapusAkun = function(id, nama) {
+                document.getElementById('hapusNamaUser').innerText = nama;
+                document.getElementById('formHapusAkun').action = '/kelola-akun/' + id;
+            };
 
-                // === Toggle Password Universal ===
-                document.querySelectorAll('.btn-toggle-password').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const input = this.closest('.input-group').querySelector('input');
-                        const icon = this.querySelector('i');
-                        if (input.type === 'password') {
-                            input.type = 'text';
-                            icon.classList.replace('bi-eye', 'bi-eye-slash');
-                        } else {
-                            input.type = 'password';
-                            icon.classList.replace('bi-eye-slash', 'bi-eye');
-                        }
-                    });
+            // === Toggle Password Universal ===
+            document.querySelectorAll('.btn-toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.closest('.input-group').querySelector('input');
+                    const icon = this.querySelector('i');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.replace('bi-eye', 'bi-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.replace('bi-eye-slash', 'bi-eye');
+                    }
                 });
             });
-        </script>
+        });
+    </script>
 </body>
 
 </html>

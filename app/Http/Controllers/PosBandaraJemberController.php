@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
+use App\Helpers\PeriodeHelper;
 
 class PosBandaraJemberController extends Controller
 {
@@ -15,7 +16,10 @@ class PosBandaraJemberController extends Controller
      */
     public function index()
     {
-    
+        // $user = Auth::user();
+        $periode = PeriodeHelper::getPeriodeAktif();
+        return view('inventaris-alat.index')
+            ->with('periode', $periode);
     }
 
     /**

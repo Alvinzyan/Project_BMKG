@@ -28,28 +28,26 @@
             overflow: hidden;
         }
 
-        /* === HEADER FULL === */
+        /* === HEADER === */
         .letter-header {
             background-color: #e1e1e1;
             width: 210mm;
-            height: 35mm;
-            padding: 4mm 0;
+            padding-top: 10mm;
             box-sizing: border-box;
             text-align: center;
-            border-bottom: 2px solid black;
             position: relative;
         }
 
         .letter-header img.logo {
             position: absolute;
-            left: 15mm;
-            top: 6mm;
+            left: 13mm;
+            top: 10mm;
             width: 70px;
             height: auto;
         }
 
         .header-text {
-            margin-left: 90px;
+            margin-left: 115px;
             margin-right: 15mm;
             line-height: 1.2;
         }
@@ -62,6 +60,13 @@
         .sub {
             font-size: 10pt;
             font-weight: 600;
+        }
+
+        .line-2 {
+            margin-top: 5px;
+            height: 2px;
+            border-bottom: 2px solid #000;
+            border-top: 2px solid #000;
         }
 
         /* === KONTEN SURAT === */
@@ -226,7 +231,7 @@
     <!-- ===== HALAMAN 1 ===== -->
     <div class="paper-wrap">
         <header class="letter-header">
-            <img class="logo" src="{{ asset('volt/assets/img/logo bmkg 2.png') }}" alt="Logo Instansi">
+            <img class="logo" src="{{ public_path('volt/assets/img/logo bmkg 2.png') }}" alt="Logo Instansi">
 
             <div class="header-text">
                 <div class="org-name">BADAN METEOROLOGI, KLIMATOLOGI, DAN GEOFISIKA</div>
@@ -238,6 +243,8 @@
                     Website: www.stamet-banyuwangi.bmkg.go.id
                 </div>
             </div>
+            <div class="line-2"></div>
+
         </header>
 
         <div class="content-wrap">

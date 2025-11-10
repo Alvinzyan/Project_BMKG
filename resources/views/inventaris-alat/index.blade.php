@@ -228,54 +228,54 @@
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
                 <a href="{{ route('ketapang-bwi.create') }}" class="card-link">
                     <div class="card-two border-0 shadow text-center hover-card">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <!-- Ikon -->
-                        <div
-                            class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-anchor">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2" />
-                                <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                            </svg>
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <!-- Ikon -->
+                            <div
+                                class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-anchor">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2" />
+                                    <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                </svg>
+                            </div>
+                            <!-- Tulisan -->
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
                         </div>
-                        <!-- Tulisan -->
-                        <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
                     </div>
-                </div>
                 </a>
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
                 <a href="{{ route('pos-bandara-jember.create') }}" class="card-link">
                     <div class="card-two border-0 shadow text-center hover-card">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <!-- Ikon -->
-                        <div
-                            class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                <path
-                                    d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                <path d="M8 2v2" />
-                                <path d="M6 12v9h4v-9" />
-                                <path d="M3 21h18" />
-                                <path d="M22 5h-6l-1 -1" />
-                                <path d="M18 3l2 2l-2 2" />
-                                <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                            </svg>
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <!-- Ikon -->
+                            <div
+                                class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
+                                    <path
+                                        d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
+                                    <path d="M8 2v2" />
+                                    <path d="M6 12v9h4v-9" />
+                                    <path d="M3 21h18" />
+                                    <path d="M22 5h-6l-1 -1" />
+                                    <path d="M18 3l2 2l-2 2" />
+                                    <path d="M10 17h7a2 2 0 0 1 2 2v2" />
+                                </svg>
+                            </div>
+                            <!-- Tulisan -->
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember</h3>
                         </div>
-                        <!-- Tulisan -->
-                        <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember</h3>
                     </div>
-                </div>
                 </a>
             </div>
         </div>
@@ -330,7 +330,12 @@
                                     <!-- Kolom kanan / bawah: periode -->
                                     <div class="col-12 mt-1">
                                         <small class="text-muted">
-                                            Periode Minggu Ke-1 | <span>Tanggal 1 - 5 Agustus 2025</span>
+                                            <p>
+                                                Periode aktif: Minggu ke-{{ $periode['periode_week'] }} |
+                                                ({{ \Carbon\Carbon::parse($periode['start_date'])->translatedFormat('d M Y') }} s.d.
+                                                {{ \Carbon\Carbon::parse($periode['end_date'])->translatedFormat('d M Y') }})
+                                            </p>
+
                                         </small>
                                     </div>
                                 </div>
@@ -411,7 +416,7 @@
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
 
-                                                            <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary"><svg
+                                                        <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -621,7 +626,7 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                            
+
                                                         <a href="{{ route('pos-bandara-jember.edit') }}" class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"

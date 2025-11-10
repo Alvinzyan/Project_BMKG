@@ -36,7 +36,7 @@ Route::get('/', function () {
 // === AUTH ===
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('login', [AuthController::class, 'login_action']);
-Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // === PROFIL ===
 Route::group(['middleware' => ['auth', 'cekperan:admin,teknisi', 'lastseen']], function () {
@@ -45,9 +45,13 @@ Route::group(['middleware' => ['auth', 'cekperan:admin,teknisi', 'lastseen']], f
 
 // === ADMIN ===
 Route::group(['middleware' => ['auth', 'cekperan:admin', 'lastseen']], function () {
-    Route::resource('kelola-akun', KelolaAkunController::class);
+    Route::get('/kelola-akun/{id}/ubah-password', [KelolaAkunController::class, 'showChangePassword'])
+        ->name('kelola-akun.showChangePassword');
+
     Route::put('/kelola-akun/{id}/update-password', [KelolaAkunController::class, 'updatePassword'])
-    ->name('kelola-akun.updatePassword');
+        ->name('kelola-akun.updatePassword');
+
+    Route::resource('kelola-akun', KelolaAkunController::class);
     Route::get('/dashboard-admin', [DashboardAdminController::class, 'index'])->name('dashboard-admin.index');
 });
 
@@ -77,7 +81,9 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::get('inventaris-alat/pos-bandara-jember/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jember.edit');
     Route::put('inventaris-alat/pos-bandara-jember/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jember.update');
 
-    // 🔹 LAPORAN — GABUNG YANG DOUBEL, PAKAI PREFIX SEKALIAN
+    Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
+    Route::get('cetak-laporan/view', [CetakLaporanController::class, 'lihatView'])->name('laporan-alat.view');
+
     Route::prefix('laporan-alat')->name('laporan-alat.')->group(function () {
         Route::get('/', [CetakLaporanController::class, 'index'])->name('index');
         Route::get('/view', [CetakLaporanController::class, 'lihatView'])->name('view');
