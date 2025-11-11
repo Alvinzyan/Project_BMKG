@@ -228,54 +228,56 @@
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
                 <a href="{{ route('ketapang-bwi.create') }}" class="card-link">
                     <div class="card-two border-0 shadow text-center hover-card">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <!-- Ikon -->
-                        <div
-                            class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-anchor">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2" />
-                                <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                            </svg>
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <!-- Ikon -->
+                            <div
+                                class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-anchor">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2" />
+                                    <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                </svg>
+                            </div>
+                            <!-- Tulisan -->
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi
+                            </h3>
                         </div>
-                        <!-- Tulisan -->
-                        <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
                     </div>
-                </div>
                 </a>
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
                 <a href="{{ route('pos-bandara-jember.create') }}" class="card-link">
                     <div class="card-two border-0 shadow text-center hover-card">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <!-- Ikon -->
-                        <div
-                            class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                <path
-                                    d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                <path d="M8 2v2" />
-                                <path d="M6 12v9h4v-9" />
-                                <path d="M3 21h18" />
-                                <path d="M22 5h-6l-1 -1" />
-                                <path d="M18 3l2 2l-2 2" />
-                                <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                            </svg>
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <!-- Ikon -->
+                            <div
+                                class="icon-shape icon-shape-white rounded mb-3 d-flex align-items-center justify-content-center">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
+                                    <path
+                                        d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
+                                    <path d="M8 2v2" />
+                                    <path d="M6 12v9h4v-9" />
+                                    <path d="M3 21h18" />
+                                    <path d="M22 5h-6l-1 -1" />
+                                    <path d="M18 3l2 2l-2 2" />
+                                    <path d="M10 17h7a2 2 0 0 1 2 2v2" />
+                                </svg>
+                            </div>
+                            <!-- Tulisan -->
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember
+                            </h3>
                         </div>
-                        <!-- Tulisan -->
-                        <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember</h3>
                     </div>
-                </div>
                 </a>
             </div>
         </div>
@@ -285,10 +287,20 @@
                 <a href="">
                     <div class="card-two border-0 shadow hover-card">
                         <div class="card-body d-flex align-items-start">
-                            <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg"  width="35"  height="35"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-photo"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" /><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" /><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" /></svg>
+                            <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg" width="35"
+                                height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-photo">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M15 8h.01" />
+                                <path
+                                    d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" />
+                                <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" />
+                                <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" />
+                            </svg>
                             <h2 class="fw-extrabold text-white fs-4">Preview Foto Lampiran</h2>
                         </div>
-                    </div> 
+                    </div>
                 </a>
             </div>
 
@@ -296,7 +308,20 @@
                 <a href="">
                     <div class="card-two border-0 shadow hover-card">
                         <div class="card-body d-flex align-items-start">
-                            <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg"  width="35"  height="35"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg>
+                            <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg" width="35"
+                                height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                <path
+                                    d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                <path d="M9 12l.01 0" />
+                                <path d="M13 12l2 0" />
+                                <path d="M9 16l.01 0" />
+                                <path d="M13 16l2 0" />
+                            </svg>
                             <h2 class="fw-extrabold text-white fs-4">Review Laporan Mingguan</h2>
                         </div>
                     </div>
@@ -343,8 +368,7 @@
                                         <col style="width: 35%;">
                                         <col style="width: 10%;">
                                         <col style="width: 20%;">
-                                        <col style="width: 15%;">
-                                        <col style="width: 15%;">
+                                        <col style="width: 10%;">
                                     </colgroup>
                                     <thead class="thead-primary">
                                         <tr>
@@ -352,7 +376,6 @@
                                             <th class="border-bottom">Nama Lokasi</th>
                                             <th class="border-bottom">Status</th>
                                             <th class="border-bottom">Penanggung Jawab</th>
-                                            <th class="border-bottom">Catatan</th>
                                             <th class="border-bottom">Aksi</th>
                                         </tr>
                                     </thead>
@@ -361,39 +384,23 @@
                                             <th class="text-gray-900" scope="row">
                                                 1.
                                             </th>
+
+                                            {{-- Nama Lokasi --}}
                                             <td class="fw-bolder text-gray-500">
                                                 Kantor Meteorologi Banyuwangi
                                             </td>
+
+                                            {{-- Status --}}
                                             <td class="fw-bolder text-gray-500">
-                                                $20
+
                                             </td>
+
+                                            {{-- Nama Penanggung Jawab --}}
                                             <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-danger me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    42,55%
-                                                </div>
+
                                             </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
-                                            </td>
+
+                                            {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
@@ -410,8 +417,9 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                            <a href="{{ route('kantor-bmkg.edit') }}">
-                                                                <button class="btn btn-sm btn-secondary"><svg
+
+                                                        <a href="{{ route('kantor-bmkg.edit') }}"
+                                                            class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -423,8 +431,7 @@
                                                                 <path
                                                                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                                                 <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
-                                                            </a>
+                                                            </svg>Edit</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -433,39 +440,23 @@
                                             <th class="text-gray-900" scope="row">
                                                 2.
                                             </th>
+
+                                            {{-- Nama Lokasi --}}
                                             <td class="fw-bolder text-gray-500">
                                                 Pos Meteorologi Bandara Banyuwangi
                                             </td>
+
+                                            {{-- Status --}}
                                             <td class="fw-bolder text-gray-500">
-                                                0
+
                                             </td>
+
+                                            {{-- Nama Penanggung Jawab --}}
                                             <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-success me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    43,24%
-                                                </div>
+
                                             </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
-                                            </td>
+
+                                            {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
@@ -482,7 +473,8 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
+                                                        <a href="{{ route('pos-bandara-bwi.edit') }}"
+                                                            class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -494,7 +486,7 @@
                                                                 <path
                                                                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                                                 <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
+                                                            </svg>Edit</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -503,39 +495,23 @@
                                             <th class="text-gray-900" scope="row">
                                                 3.
                                             </th>
+
+                                            {{-- Nama Lokasi --}}
                                             <td class="fw-bolder text-gray-500">
                                                 Pos Meteorologi Pelabuhan Ketapang Banyuwangi
                                             </td>
+
+                                            {{-- Status --}}
                                             <td class="fw-bolder text-gray-500">
-                                                294
+
                                             </td>
+
+                                            {{-- Nama Penanggung Jawab --}}
                                             <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-success me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    32,35%
-                                                </div>
+
                                             </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
-                                            </td>
+
+                                            {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
@@ -552,7 +528,8 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
+                                                        <a href="{{ route('ketapang-bwi.edit') }}"
+                                                            class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -564,48 +541,34 @@
                                                                 <path
                                                                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                                                 <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
+                                                            </svg>Edit</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
+
+
                                         <tr>
                                             <th class="text-gray-900" scope="row">
                                                 4.
                                             </th>
+
+                                            {{-- Nama Lokasi --}}
                                             <td class="fw-bolder text-gray-500">
                                                 Pos Meteorologi Bandara Notodinegoro Jember
                                             </td>
+
+                                            {{-- Status --}}
                                             <td class="fw-bolder text-gray-500">
-                                                $147
+
                                             </td>
+
+                                            {{-- Nama Penanggung Jawab --}}
                                             <td class="fw-bolder text-gray-500">
-                                                <div class="d-flex">
-                                                    <svg class="icon icon-xs text-danger me-2" fill="currentColor"
-                                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    50,87%
-                                                </div>
+
                                             </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-tertiary"><svg class="icon icon-xs me-1"
-                                                        xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M9 6l11 0" />
-                                                        <path d="M9 12l11 0" />
-                                                        <path d="M9 18l11 0" />
-                                                        <path d="M5 6l0 .01" />
-                                                        <path d="M5 12l0 .01" />
-                                                        <path d="M5 18l0 .01" />
-                                                    </svg>Catatan</button>
-                                            </td>
+
+                                            {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
@@ -622,7 +585,9 @@
                                                                 <path
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
-                                                        <button class="btn btn-sm btn-secondary"><svg
+
+                                                        <a href="{{ route('pos-bandara-jmbr.edit') }}"
+                                                            class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -634,7 +599,7 @@
                                                                 <path
                                                                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                                                 <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</button>
+                                                            </svg>Edit</a>
                                                     </div>
                                                 </div>
                                             </td>

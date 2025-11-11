@@ -130,20 +130,19 @@
                 <path d="M14 16l1 0" />
                 <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
             </svg>
-            <h2 class="fs-4 fw-bolder mb-0">Kantor Meteorologi Banyuwangi</h2>
+            <h2 class="fs-4 fw-bolder mb-0">Pos Meteorologi Bandara Notodinegoro Jember</h2>
         </div>
 
         <div class="row">
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="{{ route('kantor-bmkg.update') }}" method="POST" id="formUpdate">
+                        <form action="{{ route('pos-bandara-bwi.update') }}" method="POST" id="formUpdate">
                             @csrf
                             @method('PUT')
                             <div class="card border-0 shadow">
                                 <div class="card-header">
                                     <div class="row align-items-center">
-
                                         <div class="col d-flex justify-content-center">
                                             <h2 class="fs-4 fw-bolder mb-3">Inventaris Alat BMKG</h2>
                                         </div>
@@ -153,7 +152,7 @@
                                                 <small class="fs-6 fw-bold text-black">
                                                     Nama Penanggung Jawab :
                                                 </small>
-                                                <small class="fs-6 fw-medium text-gray-900">Cindil</small>
+                                                <small class="fs-6 fw-medium text-gray-900"></small>
                                             </div>
                                         </div>
                                     </div>
@@ -413,14 +412,10 @@
 
     @if (session('success'))
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: 'Sukses',
-                    text: "{{ session('success') }}",
-                    icon: 'success',
-                    confirmButtonColor: '#0d6efd',
-                    confirmButtonText: 'OK'
-                });
+            Swal.fire({
+                title: "{{ session('success') }}",
+                icon: "success",
+                draggable: true
             });
         </script>
     @endif

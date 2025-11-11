@@ -108,7 +108,7 @@
         </nav>
 
         <div class="d-flex align-items-center py-4">
-            <a href="/inventaris-alat/cek-alat" class="hover-back">
+            <a href="/inventaris-alat" class="hover-back">
                 <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -139,7 +139,7 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="" method="POST">
+                        <form action="{{ route('ketapang-bwi.store') }}" method="POST">
                             @csrf
                             <div class="card border-0 shadow">
                                 <div class="card-header">
@@ -153,115 +153,102 @@
                                                 <small class="fs-6 fw-bold text-black">
                                                     Nama Penanggung Jawab :
                                                 </small>
-                                                <small class="fs-6 fw-medium text-gray-900">Cindil</small>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="card-table border-0 shadow">
-                                    <h4 class="fs-6 fw-bold text-white py-2">Kategori Alat</h4>
-                                    <div class="table-responsive">
-                                        <table class="table bg-white align-items-center table-flush">
-                                            <colgroup>
-                                                <col style="width: 3%;">
-                                                <col style="width: 20%;">
-                                                <col style="width: 15%;">
-                                                <col style="width: 3%;">
-                                                <col style="width: 25%;">
-                                                <col style="width: 3%;">
-                                                <col style="width: 11%;">
-                                                <col style="width: 20%;">
-                                            </colgroup>
-                                            <thead class="thead-white">
-                                                <tr>
-                                                    <th class="border-bottom">No</th>
-                                                    <th class="border-bottom">Nama Alat</th>
-                                                    <th class="border-bottom">Merek/Type</th>
-                                                    <th class="border-bottom">Jml</th>
-                                                    <th class="border-bottom">Kondisi</th>
-                                                    <th class="border-bottom">Tahun <br> Pemasangan</th>
-                                                    <th class="border-bottom">Kalibrasi Terakhir</th>
-                                                    <th class="border-bottom">Keterangan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="border-bottom text-center align-middle" colspan="8">
-                                                        Belum ada alat
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="py-3">
-                                        <!-- Tombol Tambah Catatan -->
-                                        <div class="d-flex justify-content-end mb-3">
-                                            <button type="button" class="btn btn-sm btn-white"
-                                                data-bs-toggle="modal" data-bs-target="#modalTambahCatatan">
-                                                <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 5l0 14" />
-                                                    <path d="M5 12l14 0" />
-                                                </svg>
-                                                Tambah Catatan
-                                            </button>
-                                        </div>
-
-                                        <!-- Modal Tambah Catatan -->
-                                        <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
-                                            aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content border-0 shadow">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalTambahCatatanLabel">
-                                                            Tambah
-                                                            Catatan
-                                                        </h5>
-                                                        <button type="button" class="btn-close"
-                                                            data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form id="formTambahCatatan">
-                                                            <div class="mb-3">
-                                                                <label for="catatan"
-                                                                    class="form-label">Catatan</label>
-                                                                <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-sm btn-danger"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                        <button type="submit" form="formTambahCatatan"
-                                                            class="btn btn-sm btn-success">Simpan</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                       <div class="bg-dark">
-                                            <div class="card-note border-0 shadow bg-white text-dark p-3">
-                                                <div class="row align-items-center mb-2">
-                                                    <div class="col">
-                                                        <h6 class="fw-bold mb-0">
-                                                        <i class="fas fa-list me-1"></i> Catatan
-                                                        </h6>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                <input type="text" class="form-control" placeholder="*Isi catatan bila perlu">
-                                                </div>
+                                                <small class="fs-6 fw-medium text-gray-900"></small>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                @foreach ($kategoris as $kategori)
+                                    <div class="card-table border-0 shadow">
+                                        <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
+                                        <div class="table-responsive">
+                                            <table class="table bg-white align-items-center table-flush">
+                                                <colgroup>
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 15%;">
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 25%;">
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 11%;">
+                                                    <col style="width: 20%;">
+                                                </colgroup>
+                                                <thead class="thead-white">
+                                                    <tr>
+                                                        <th class="border-bottom">No</th>
+                                                        <th class="border-bottom">Nama Alat</th>
+                                                        <th class="border-bottom">Merek/Type</th>
+                                                        <th class="border-bottom">Jml</th>
+                                                        <th class="border-bottom">Kondisi</th>
+                                                        <th class="border-bottom">Tahun <br> Pemasangan</th>
+                                                        <th class="border-bottom">Kalibrasi Terakhir</th>
+                                                        <th class="border-bottom">Keterangan</th>
+                                                    </tr>
+                                                </thead>
+
+                                                @foreach ($kategori->alats as $alat)
+                                                    <tbody>
+                                                        <tr>
+                                                            {{-- No --}}
+                                                            <td class="text-gray-900">{{ $loop->iteration }}</td>
+
+                                                            {{-- Nama Alat --}}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
+                                                            </td>
+
+                                                            {{-- Merek/Type --}}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
+                                                            </td>
+
+                                                            {{-- Jumlah --}}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
+                                                            </td>
+
+                                                            {{-- Kondisi (input) --}}
+                                                            <td>
+                                                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="kondisi[{{ $alat->id }}]"
+                                                                            value="{{ $kondisi }}">
+                                                                        <label
+                                                                            class="form-check-label">{{ ucfirst($kondisi) }}</label>
+                                                                    </div>
+                                                                @endforeach
+                                                            </td>
+
+                                                            {{-- Tahun Pemasangan --}}
+                                                            <td>{{ $alat->tahun_pemasangan }}</td>
+
+                                                            {{-- Kalibrasi Terakhir (input number tahun) --}}
+                                                            <td>
+                                                                <input type="number"
+                                                                    name="kalibrasi[{{ $alat->id }}]"
+                                                                    class="form-control" min="2000"
+                                                                    max="2099" maxlength="4"
+                                                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                                            </td>
+
+                                                            {{-- Keterangan --}}
+                                                            <td style="text-transform: capitalize">
+                                                                {{ $alat->keterangan }}
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </div>
+
+                                        <div class="d-flex align-items-start mt-3">
+                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
+                                            <!-- isi Catatan -->
+                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control"
+                                                style="max-width: 50%" placeholder="Tambahkan catatan bila diperlukan..."></textarea>
+                                        </div>
+                                    </div>
+                                @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">
                                     <button type="button" class="btn btn-sm btn-gray-100 me-2"
@@ -306,7 +293,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-info">
+                                    <button class="btn btn-info" id="btnSimpan">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -417,6 +404,35 @@
             acceptedFiles: ".jpg,.jpeg,.png",
             addRemoveLinks: true,
             dictDefaultMessage: "Seret dan lepas foto di sini atau klik untuk memilih",
+        });
+    </script>
+
+    <script>
+        document.getElementById('btnSimpan').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data pengecekan alat akan disimpan.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#0d6efd',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Simpan',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.querySelector('form').submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'Dibatalkan',
+                        text: 'Data pengecekan alat tidak jadi disimpan.',
+                        icon: 'info',
+                        confirmButtonColor: '#0d6efd'
+                    });
+                }
+            });
         });
     </script>
 

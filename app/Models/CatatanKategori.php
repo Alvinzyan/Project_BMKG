@@ -10,4 +10,6 @@ class CatatanKategori extends Model
     use HasFactory;
 
     protected $fillable = ['id_kategori', 'isi_catatan'];
+
+    
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_user')->constrained('users');
             $table->foreignId('id_alat')->constrained('alats');                    
             $table->enum('kondisi', ['baik', 'rusak ringan', 'rusak berat']);
-            $table->string('kalibrasi_terakhir');     
+            $table->string('kalibrasi_terakhir')->nullable();     
             $table->timestamps();
         });
     }

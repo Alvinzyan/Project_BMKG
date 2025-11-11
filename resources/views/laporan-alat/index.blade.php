@@ -461,6 +461,32 @@
     </main>
 
     <!-- Periode -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+        $(function() {
+        $('#periode').daterangepicker({
+            autoApply: true,
+            singleDatePicker: true, // pilih 1 tanggal saja
+            locale: {
+            format: 'DD-MM-YYYY'
+            }
+        }, function(start) {
+            // Cari Sabtu (6) sebelum atau sama dengan tanggal terpilih
+            let saturday = start.clone().day(6);
+            if (saturday.isAfter(start)) {
+            saturday.subtract(7, 'days');
+            }
+
+            // Jumat (5) setelah Sabtu
+            let friday = saturday.clone().add(6, 'days');
+
+            // Tampilkan range Sabtu - Jumat
+            $('#periode').val(saturday.format('DD-MM-YYYY') + " s/d " + friday.format('DD-MM-YYYY'));
+        });
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         // menghitung rentang (Sabtu - Jumat)

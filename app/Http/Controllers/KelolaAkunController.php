@@ -15,6 +15,7 @@ class KelolaAkunController extends Controller
 
     //     return view('kelola-akun.index', compact('users', 'totalUser'));
     // }
+
     public function index()
     {
         $users = \App\Models\User::all()->map(function ($user) {
@@ -54,19 +55,17 @@ class KelolaAkunController extends Controller
                 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
             ],
             'password'       => 'required|string|min:6',
-            'peran'          => 'required|in:Admin,Teknisi,User',
+            'peran'          => 'nullable|string',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
         ]);
 
-        // Proses upload foto profil (jika ada)
         $fotoProfilPath = null;
         if ($request->hasFile('foto_profil')) {
             $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');
         }
 
-        // Simpan user — password dienkripsi jika diberikan, kalau tidak -> null
         User::create([
             'nama_lengkap'  => $validated['nama_lengkap'],
             'nip'           => $validated['nip'] ?? null,
@@ -74,7 +73,7 @@ class KelolaAkunController extends Controller
             'jenis_kelamin' => $validated['jenis_kelamin'] ?? null,
             'email'         => $validated['email'],
             'password'      => Crypt::encryptString($validated['password']),
-            'peran'         => $validated['peran'],
+            'peran'         => $validated['peran'] ?? 'teknisi',
             'foto_profil'   => $fotoProfilPath,
         ]);
 
@@ -107,7 +106,7 @@ class KelolaAkunController extends Controller
                 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
             ],
             'password'       => 'nullable|string|min:6',
-            'peran'          => 'required|in:Admin,Teknisi',
+            'peran'          => 'nullable|string',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
@@ -115,20 +114,17 @@ class KelolaAkunController extends Controller
 
         session()->forget('edit_user_id');
 
-        // Update data
         $user->nama_lengkap  = $request->nama_lengkap;
         $user->nip           = $request->nip ?? null;
         $user->jabatan       = $request->jabatan ?? null;
         $user->jenis_kelamin = $request->jenis_kelamin ?? null;
         $user->email         = $request->email;
-        $user->peran         = $request->peran;
+        $user->peran         = $request->peran ?? 'teknisi';
 
-        // Enkripsi password jika diubah
         if ($request->filled('password')) {
             $user->password = Crypt::encryptString($request->password);
         }
 
-        // Update foto jika ada
         if ($request->hasFile('foto_profil')) {
             $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');
             $user->foto_profil = $fotoProfilPath;

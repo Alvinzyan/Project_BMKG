@@ -32,6 +32,10 @@ class DataAlatController extends Controller
         return view('data-alat.index', compact('lokasis', 'chartLabels', 'chartData'));
     }
 
+    public function create() {
+        return view('tambah-data-alat.index');
+    }
+    
     public function kategoriByLokasi($nama_lokasi)
     {
         $lokasi = Lokasi::where('nama_lokasi', urldecode($nama_lokasi))
@@ -77,18 +81,6 @@ class DataAlatController extends Controller
         }
 
         return view('data-alat.tambah-data-alat.index', compact('lokasi', 'alats', 'nama_kategori'));
-    }
-
-
-
-
-    
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**

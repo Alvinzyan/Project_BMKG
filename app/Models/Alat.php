@@ -17,4 +17,9 @@ class Alat extends Model
     {
         return $this->hasMany(Pengecekan::class, 'id_alat');
     }
+
+    public function pengecekanTerakhir()
+    {
+        return $this->hasOne(Pengecekan::class, 'id_alat')->latest();
+    }
 }

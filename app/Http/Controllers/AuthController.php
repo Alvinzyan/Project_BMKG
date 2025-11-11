@@ -26,10 +26,13 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if ($user) {
-            try {
-                // Dekripsi password dari database
-                $decryptedPassword = Crypt::decryptString($user->password);
+        if (!$user) {
+            // Jika email tidak ditemukan
+            return back()->with('error', 'Email atau Kata Sandi yang anda masukkan salah.')->onlyInput('email');
+        }
+
+        try {
+            $decryptedPassword = Crypt::decryptString($user->password);
 
                 // Cek apakah cocok
                 if ($decryptedPassword === $request->password) {
