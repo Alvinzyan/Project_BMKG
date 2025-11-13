@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <title>Laporan Alat - Aplikasi Inventaris BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -127,7 +127,7 @@
                             <input type="text" id="periode" class="form-control" placeholder="Pilih Periode">
                         </div>
                     </div>
-                    
+
                     <div class="col-12 col-sm-12 col-xl-2 mb-3">
                         <button class="btn btn-sm btn-info"><svg class="icon icon-xs me-1"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -223,7 +223,15 @@
 
                                 <div class="col col-12 col-md-8 col-xl-4 mt-3">
                                     <button class="btn btn-sm text-white" style="background-color: #3aff3aff; border-color: #3aff3aff;">
-                                        <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" /><path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" /><path d="M17 18h2" /><path d="M20 15h-3v6" /><path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>
+                                        <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+                                            <path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
+                                            <path d="M17 18h2" />
+                                            <path d="M20 15h-3v6" />
+                                            <path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" />
+                                        </svg>
                                         Cetak Pdf
                                     </button>
                                 </div>
@@ -267,9 +275,9 @@
                                             <td>Kayu Lokal</td>
                                             <td class="text-center">1</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">2004</td>
                                             <td class="text-center">Mei 2024</td>
@@ -281,9 +289,9 @@
                                             <td>Scheneider</td>
                                             <td class="text-center">2</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox"  disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">2000</td>
                                             <td class="text-center">Mei 2024</td>
@@ -295,9 +303,9 @@
                                             <td>F.Ketterer</td>
                                             <td class="text-center">2</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">2011</td>
                                             <td class="text-center">Mei 2024</td>
@@ -309,9 +317,9 @@
                                             <td>Scheneider</td>
                                             <td class="text-center">1</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">1968</td>
                                             <td class="text-center">Mei 2024</td>
@@ -323,9 +331,9 @@
                                             <td>Scheneider</td>
                                             <td class="text-center">1</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">1994</td>
                                             <td class="text-center">Mei 2024</td>
@@ -337,9 +345,9 @@
                                             <td>Scheneider</td>
                                             <td class="text-center">1</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">2000</td>
                                             <td class="text-center">Mei 2024</td>
@@ -351,9 +359,9 @@
                                             <td>F.Ketterer</td>
                                             <td class="text-center">1</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">2011</td>
                                             <td class="text-center">Mei 2024</td>
@@ -365,9 +373,9 @@
                                             <td>J. Richard</td>
                                             <td class="text-center">1</td>
                                             <td class="text-center">
-                                            <input type="checkbox" checked> B
-                                            <input type="checkbox" disabled> RR
-                                            <input type="checkbox" disabled> RB
+                                                <input type="checkbox" checked> B
+                                                <input type="checkbox" disabled> RR
+                                                <input type="checkbox" disabled> RB
                                             </td>
                                             <td class="text-center">1976</td>
                                             <td class="text-center">Mei 2024</td>
@@ -468,26 +476,28 @@
 
     <script>
         $(function() {
-        $('#periode').daterangepicker({
-            autoApply: true,
-            singleDatePicker: true, // pilih 1 tanggal saja
-            locale: {
-            format: 'DD-MM-YYYY'
-            }
-        }, function(start) {
-            // Cari Sabtu (6) sebelum atau sama dengan tanggal terpilih
-            let saturday = start.clone().day(6);
-            if (saturday.isAfter(start)) {
-            saturday.subtract(7, 'days');
-            }
+                    $('#periode').daterangepicker({
+                        autoApply: true,
+                        singleDatePicker: true, // pilih 1 tanggal saja
+                        locale: {
+                            format: 'DD-MM-YYYY'
+                        }
+                    }, function(start) {
+                        // Cari Sabtu (6) sebelum atau sama dengan tanggal terpilih
+                        let saturday = start.clone().day(6);
+                        if (saturday.isAfter(start)) {
+                            saturday.subtract(7, 'days');
+                        }
 
-            // Jumat (5) setelah Sabtu
-            let friday = saturday.clone().add(6, 'days');
+                        // Jumat (5) setelah Sabtu
+                        let friday = saturday.clone().add(6, 'days');
 
-            // Tampilkan range Sabtu - Jumat
-            $('#periode').val(saturday.format('DD-MM-YYYY') + " s/d " + friday.format('DD-MM-YYYY'));
-        });
+                        // Tampilkan range Sabtu - Jumat
+                        $('#periode').val(saturday.format('DD-MM-YYYY') + " s/d " + friday.format('DD-MM-YYYY'));
+                    });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script>
         // menghitung rentang (Sabtu - Jumat)
         function getWeekRange(date) {
@@ -497,26 +507,27 @@
             const start = new Date(selected);
             start.setDate(selected.getDate() - diffToSaturday);
             const end = new Date(start);
-            end.setDate(start.getDate() + 6); 
+            end.setDate(start.getDate() + 6);
             return [start, end];
         }
 
         flatpickr("#periode", {
-            dateFormat: "d-m-Y",
-            onChange: function(selectedDates, dateStr, instance) {
-                if (selectedDates.length > 0) {
-                    const [start, end] = getWeekRange(selectedDates[0]);
-                    instance.setDate([start, end], true); // highlight range
-                }
-            },
-            mode: "range",
-            locale: {
-                firstDayOfWeek: 6 // mulai dari Sabtu
+        dateFormat: "d-m-Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            if (selectedDates.length > 0) {
+                const [start, end] = getWeekRange(selectedDates[0]);
+                instance.setDate([start, end], true); // highlight range
             }
+        },
+        mode: "range",
+        locale: {
+            firstDayOfWeek: 6 // mulai dari Sabtu
+        }
+        });
         });
     </script>
     <!-- End Periode -->
-     
+
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>

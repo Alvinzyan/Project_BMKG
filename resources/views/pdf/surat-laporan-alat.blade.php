@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Surat Aloptoma BMKG - A4</title>
+    <title>Surat Laporan - Aplikasi Inventaris BMKG</title>
     <style>
         /* ==== RESET DASAR ==== */
         @page {
