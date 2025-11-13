@@ -6,6 +6,7 @@ use App\Models\CatatanKategori;
 use App\Models\Kategori;
 use App\Models\Lokasi;
 use App\Models\Pengecekan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PosBandaraJemberController extends Controller
@@ -23,15 +24,15 @@ class PosBandaraJemberController extends Controller
      */
     public function create()
     {
-        // $user = Auth::user();
+        $user = Auth::user();
 
-        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notodinegoro Jember')->firstOrFail();
+        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notohadinegoro Jember')->firstOrFail();
 
         $kategoris = Kategori::with('alats')
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('pos-bandara-jmbr.create', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-jmbr.create', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
@@ -39,14 +40,31 @@ class PosBandaraJemberController extends Controller
      */
     public function store(Request $request)
     {
-        // $userId = Auth::id();
+        $request->validate([
+            'kondisi' => 'required|array',
+            'kalibrasi' => 'nullable|array',
+            'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-        foreach ($request->kondisi as $alatId => $kondisi) {
+        $userId = Auth::id();
+
+        foreach ($request->kondisi as $alatId => $kondisiList) {
+            // pastikan kondisi disimpan sebagai array
+            $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
+
+            $fotoLampiranPath = null;
+            if ($request->hasFile("foto_lampiran.$alatId")) {
+                $file = $request->file("foto_lampiran.$alatId");
+                $namaFile = time() . '_' . $file->getClientOriginalName();
+                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile); 
+            }
+            
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
-                'kondisi' => $kondisi,
-                'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
+                'kondisi' => $kondisiArray,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : null,
             ]);
         }
 
@@ -77,7 +95,7 @@ class PosBandaraJemberController extends Controller
      */
     public function edit()
     {
-        $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
+        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notohadinegoro Jember')->firstOrFail();
 
         $kategoris = Kategori::with([
             'alats.pengecekanTerakhir', 'catatanTerakhir'
@@ -91,14 +109,29 @@ class PosBandaraJemberController extends Controller
      */
     public function update(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
+        $request->validate([
+            'kondisi' => 'required|array',
+            'kalibrasi' => 'nullable|array',
+            'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-        foreach ($request->kondisi as $alatId => $kondisi) {
+        foreach ($request->kondisi as $alatId => $kondisiList) {
+            $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
+            $fotoLampiranPath = null;
+
+            if ($request->hasFile("foto_lampiran.$alatId")) {
+                $file = $request->file("foto_lampiran.$alatId");
+                $namaFile = time() . '_' . $file->getClientOriginalName();
+                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
+            }
+            
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
-                'kondisi' => $kondisi,
-                'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
+                'kondisi' => $kondisiArray,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                'foto_lampiran' => $fotoLampiranPath,
             ]);
         }
 
