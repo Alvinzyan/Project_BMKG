@@ -55,35 +55,38 @@ Route::group(['middleware' => ['auth', 'cekperan:admin', 'lastseen']], function 
 
 Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], function (){
 
+    Route::get('inventaris-alat', [KantorBmkgController::class, 'index'])->name('kantor-bmkg.index');
+    
     Route::get('inventaris-alat/kantor-bmkg/create', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
     Route::post('inventaris-alat/kantor-bmkg/store', [KantorBmkgController::class, 'store'])->name('kantor-bmkg.store');
-Route::get('inventaris-alat/kantor-bmkg/edit', [KantorBmkgController::class, 'edit'])->name('kantor-bmkg.edit');
+    Route::get('inventaris-alat/kantor-bmkg/edit', [KantorBmkgController::class, 'edit'])->name('kantor-bmkg.edit');
     Route::put('inventaris-alat/kantor-bmkg/update', [KantorBmkgController::class, 'update'])->name('kantor-bmkg.update');
 
     Route::get('inventaris-alat/ketapang-bwi/create', [KetapangBwiController::class, 'create'])->name('ketapang-bwi.create');
-Route::post('inventaris-alat/ketapang-bwi/store', [KetapangBwiController::class, 'store'])->name('ketapang-bwi.store');
+    Route::post('inventaris-alat/ketapang-bwi/store', [KetapangBwiController::class, 'store'])->name('ketapang-bwi.store');
     Route::get('inventaris-alat/ketapang-bwi/edit', [KetapangBwiController::class, 'edit'])->name('ketapang-bwi.edit');
     Route::put('inventaris-alat/ketapang-bwi/update', [KetapangBwiController::class, 'update'])->name('ketapang-bwi.update');
 
     Route::get('inventaris-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
-Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
+    Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
     Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
-Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
+    Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
 
     Route::get('inventaris-alat/pos-bandara-jmbr/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jmbr.create');
-Route::post('inventaris-alat/pos-bandara-jmbr/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jmbr.store');
-Route::get('inventaris-alat/pos-bandara-jmbr/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jmbr.edit');
-Route::put('inventaris-alat/pos-bandara-jmbr/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jmbr.update');
+    Route::post('inventaris-alat/pos-bandara-jmbr/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jmbr.store');
+    Route::get('inventaris-alat/pos-bandara-jmbr/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jmbr.edit');
+    Route::put('inventaris-alat/pos-bandara-jmbr/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jmbr.update');
 
-Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
+    Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
 
-Route::resource('kelola-akun', KelolaAkunController::class);
-Route::resource('profil', ProfileController::class);
+    Route::resource('kelola-akun', KelolaAkunController::class);
+    Route::resource('profil', ProfileController::class);
 
     Route::get('/surat-laporan', function () {
-    return view('pdf.surat-laporan-alat');
-});
-Route::get('inventaris-alat/laporan-alat', [CetakLaporanController::class, 'index']);
+        return view('pdf.surat-laporan-alat');
+    });
+
+    Route::get('inventaris-alat/laporan-alat', [CetakLaporanController::class, 'index']);
 
 
     Route::prefix('data-alat')->name('data-alat.')->group(function () {
