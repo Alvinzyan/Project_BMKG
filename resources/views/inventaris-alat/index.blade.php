@@ -250,7 +250,7 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="{{ route('pos-bandara-jember.create') }}" class="card-link">
+                <a href="{{ route('pos-bandara-jmbr.create') }}" class="card-link">
                     <div class="card-two border-0 shadow text-center hover-card">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center">
                             <!-- Ikon -->
