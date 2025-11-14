@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <title>Dashboard - Aplikasi Inventaris BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -242,8 +242,7 @@
                                 </svg>
                             </div>
                             <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi
-                            </h3>
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
                         </div>
                     </div>
                 </a>
@@ -274,15 +273,14 @@
                                 </svg>
                             </div>
                             <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember
-                            </h3>
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember</h3>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <a href="">
                     <div class="card-two border-0 shadow hover-card">
@@ -327,7 +325,7 @@
                     </div>
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-12 col-xl-12">
@@ -355,7 +353,12 @@
                                     <!-- Kolom kanan / bawah: periode -->
                                     <div class="col-12 mt-1">
                                         <small class="text-muted">
-                                            Periode Minggu Ke-1 | <span>Tanggal 1 - 5 Agustus 2025</span>
+                                            <p>
+                                                Periode aktif: Minggu ke-{{ $periode['periode_week'] }} |
+                                                ({{ \Carbon\Carbon::parse($periode['start_date'])->translatedFormat('d M Y') }} s.d.
+                                                {{ \Carbon\Carbon::parse($periode['end_date'])->translatedFormat('d M Y') }})
+                                            </p>
+
                                         </small>
                                     </div>
                                 </div>
@@ -418,8 +421,7 @@
                                                                     d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                                             </svg>Cek</button>
 
-                                                        <a href="{{ route('kantor-bmkg.edit') }}"
-                                                            class="btn btn-sm btn-secondary"><svg
+                                                        <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"

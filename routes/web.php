@@ -8,14 +8,15 @@ use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
 use App\Http\Controllers\PosBandaraJemberController;
 use App\Http\Controllers\KetapangController;
-use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\KelolaAkunController;
 use App\Http\Controllers\KetapangBwiController;
 use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataAlatController;
 use App\Http\Controllers\InventarisAlatController;
+use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,30 +34,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('register', [AuthController::class, 'register'])->name('auth.register');
-// Route::post('register-action', [AuthController::class, 'register_action'])->name('auth.register-action');
-
+// === AUTH ===
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('login', [AuthController::class, 'login_action']);
+Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
-
-// Route::get('dashboard', [DashboardController::class, 'index']);
-
+// === PROFIL ===
 Route::group(['middleware' => ['auth', 'cekperan:admin,teknisi', 'lastseen']], function () {
     Route::resource('profile', ProfileController::class);
 });
 
+// === ADMIN ===
+Route::group(['middleware' => ['auth', 'cekperan:admin', 'lastseen']], function () {
+    Route::get('/kelola-akun/{id}/ubah-password', [KelolaAkunController::class, 'showChangePassword'])
+        ->name('kelola-akun.showChangePassword');
 
-Route::group(['middleware' => ['auth', 'cekperan:admin', 'lastseen']], function (){
+    Route::put('/kelola-akun/{id}/update-password', [KelolaAkunController::class, 'updatePassword'])
+        ->name('kelola-akun.updatePassword');
+
     Route::resource('kelola-akun', KelolaAkunController::class);
     Route::get('/dashboard-admin', [DashboardAdminController::class, 'index'])->name('dashboard-admin.index');
 });
 
-Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], function (){
+// === TEKNISI ===
+Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], function () {
 
+    // 🔹 INI SUDAH ADA CONTROLLER, HAPUS ROUTE VIEW DOUBELNYA
     Route::get('inventaris-alat', [KantorBmkgController::class, 'index'])->name('kantor-bmkg.index');
-    
+
     Route::get('inventaris-alat/kantor-bmkg/create', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
     Route::post('inventaris-alat/kantor-bmkg/store', [KantorBmkgController::class, 'store'])->name('kantor-bmkg.store');
     Route::get('inventaris-alat/kantor-bmkg/edit', [KantorBmkgController::class, 'edit'])->name('kantor-bmkg.edit');
@@ -78,42 +83,32 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::put('inventaris-alat/pos-bandara-jmbr/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jmbr.update');
 
     Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
+    Route::get('cetak-laporan/view', [CetakLaporanController::class, 'lihatView'])->name('laporan-alat.view');
 
-    Route::resource('kelola-akun', KelolaAkunController::class);
-    Route::resource('profil', ProfileController::class);
-
-    Route::get('/surat-laporan', function () {
-        return view('pdf.surat-laporan-alat');
+    Route::prefix('laporan-alat')->name('laporan-alat.')->group(function () {
+        Route::get('/', [CetakLaporanController::class, 'index'])->name('index');
+        Route::get('/view', [CetakLaporanController::class, 'lihatView'])->name('view');
+        Route::get('/pdf', [CetakLaporanController::class, 'generatePdf'])->name('pdf');
     });
 
-    Route::get('inventaris-alat/laporan-alat', [CetakLaporanController::class, 'index']);
-
-
+    // 🔹 DATA ALAT
     Route::prefix('data-alat')->name('data-alat.')->group(function () {
-        Route::get('/', [DataAlatController::class, 'index'])
-            ->name('index');
-
-        Route::get('/{nama_lokasi}', [DataAlatController::class, 'kategoriByLokasi'])
-            ->name('tempat-alat.index');
-
-        Route::get('/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'alatByKategori'])
-            ->name('tambah-data-alat.index');
-
-        Route::put('/{nama_lokasi}/update/{id}/{nama_kategori?}', [DataAlatController::class, 'update'])
-            ->name('tambah-data-alat.update');
-        
-        Route::post('/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'store'])
-            ->name('tambah-data-alat.store');
-
-        Route::delete('/{nama_lokasi}/{nama_kategori?}/delete/{id}', [DataAlatController::class, 'destroy'])
-            ->name('tambah-data-alat.destroy');
+        Route::get('/', [DataAlatController::class, 'index'])->name('index');
+        Route::get('/{nama_lokasi}', [DataAlatController::class, 'kategoriByLokasi'])->name('tempat-alat.index');
+        Route::get('/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'alatByKategori'])->name('tambah-data-alat.index');
+        Route::put('/{nama_lokasi}/update/{id}/{nama_kategori?}', [DataAlatController::class, 'update'])->name('tambah-data-alat.update');
+        Route::post('/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'store'])->name('tambah-data-alat.store');
+        Route::delete('/{nama_lokasi}/{nama_kategori?}/delete/{id}', [DataAlatController::class, 'destroy'])->name('tambah-data-alat.destroy');
     });
 
+    // 🔹 Cek Alat
     Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
     Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
     Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
     Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
-
-    Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');    
 });
 
+// 🔹 ADMIN LANJUTAN (hapus double 'kelola-akun')
+Route::group(['middleware' => ['auth', 'cekperan:admin']], function () {
+    Route::resource('profile', ProfileController::class);
+});

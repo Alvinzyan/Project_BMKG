@@ -8,15 +8,20 @@ use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Helpers\PeriodeHelper;
+
 
 class KetapangBwiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() 
+    public function index()
     {
-        
+        // $user = Auth::user();
+        $periode = PeriodeHelper::getPeriodeAktif();
+        return view('inventaris-alat.index')
+            ->with('periode', $periode);
     }
 
     /**
@@ -98,7 +103,8 @@ class KetapangBwiController extends Controller
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
-            'alats.pengecekanTerakhir', 'catatanTerakhir'
+            'alats.pengecekanTerakhir',
+            'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
         return view('ketapang-bwi.edit', compact('lokasi', 'kategoris'));

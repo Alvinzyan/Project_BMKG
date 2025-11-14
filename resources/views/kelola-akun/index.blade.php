@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <title>Kelola Akun - Aplikasi Inventaris BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -185,72 +185,41 @@
                                                 <th>NIP</th>
                                                 <th>Jabatan</th>
                                                 <th>Jenis Kelamin</th>
-                                                <th>Email</th>
-                                                <th>Photo</th>
                                                 <th>Hak Akses</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($users as $index => $user)
-                                                <tr>
-                                                    <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $user->nama_lengkap }}</td>
-                                                    <td>{{ $user->nip ?: '-' }}</td>
-                                                    <td>{{ $user->jabatan ?: '-' }}</td>
-                                                    <td>{{ $user->jenis_kelamin ? \Illuminate\Support\Str::title($user->jenis_kelamin) : '-' }}
-                                                    </td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>
-                                                        @php
-                                                            if (
-                                                                $user->foto_profil &&
-                                                                file_exists(
-                                                                    storage_path('app/public/' . $user->foto_profil),
-                                                                )
-                                                            ) {
-                                                                $fotoPath = $user->foto_profil;
-                                                            } else {
-                                                                $fotoPath = 'foto_profil/default-profile.png';
-                                                            }
-                                                        @endphp
-                                                        <div
-                                                            style="width:50px; height:50px; border-radius:50%; overflow:hidden;">
-                                                            <img src="{{ asset('storage/' . $fotoPath) }}"
-                                                                alt="Foto Profil"
-                                                                style="width:100%; height:100%; object-fit:cover;">
-                                                        </div>
-                                                    </td>
-                                                    <td>{{ $user->peran }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                            data-bs-target="#modalLihatAkun{{ $user->id }}">
-                                                            <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>Lihat
-                                                        </a>
-                                                        <button type="button" class="btn btn-sm btn-secondary"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modalEditAkun{{ $user->id }}">
-                                                            <svg
-                                                                class="icon icon-xs"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-danger"
-                                                            data-bs-toggle="modal" data-bs-target="#modalHapusAkun"
-                                                            onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
-                                                            <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $user->nama_lengkap }}</td>
+                                                <td>{{ $user->nip }}</td>
+                                                <td>{{ $user->jabatan ?: '-' }}</td>
+                                                <td>{{ $user->jenis_kelamin ? \Illuminate\Support\Str::title($user->jenis_kelamin) : '-' }}</td>
+                                                <td>{{ ucwords($user->peran) }}</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
+                                                        <i class="bi bi-eye"></i> Lihat
+                                                    </a>
+                                                    @if($user->peran === 'teknisi')
+                                                    <button type="button" class="btn btn-sm btn-primary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalEditAkun{{ $user->id }}">
+                                                        <i class="bi bi-pencil"></i> Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun"
+                                                        onclick="hapusAkun('{{ $user->id }}', '{{ addslashes($user->nama_lengkap) }}')">
+                                                        <i class="bi bi-trash"></i> Hapus
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-warning"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalUbahPassword{{ $user->id }}">
+                                                        <i class="bi bi-key"></i> Ubah Password
+                                                    </button>
+                                                    @endif
+                                                </td>
+                                            </tr>
 
                                                 <!-- Modal Lihat Akun -->
                                                 <div class="modal fade" id="modalLihatAkun{{ $user->id }}"
@@ -303,12 +272,11 @@
                                                                             readonly>
                                                                     </div>
 
-                                                                    <!-- NIP -->
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-label">NIP</label>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $user->nip ?? '-' }}" readonly>
-                                                                    </div>
+                                                                <!-- NIP -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">NIP</label>
+                                                                    <input type="text" class="form-control" value="{{ $user->nip }}" readonly>
+                                                                </div>
 
                                                                     <!-- Jabatan -->
                                                                     <div class="col-md-6">
@@ -318,46 +286,33 @@
                                                                             readonly>
                                                                     </div>
 
-                                                                    <!-- Jenis Kelamin -->
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-label">Jenis Kelamin</label>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $user->jenis_kelamin ?? '-' }}"
+                                                                <!-- Jenis Kelamin -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Jenis Kelamin</label>
+                                                                    <input type="text" class="form-control" value="{{ $user->jenis_kelamin ?? '-' }}" readonly>
+                                                                </div>
+
+                                                                <!-- Peran -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Peran</label>
+                                                                    <input type="text" class="form-control" value="{{ ucwords($user->peran ?? '-') }}" readonly>
+                                                                </div>
+
+                                                                <!-- Password -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Password</label>
+                                                                    <div class="input-group">
+                                                                        <input type="password" class="form-control"
+                                                                            value="{{ $user->decrypted_password }}"
                                                                             readonly>
+                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                            <i class="bi bi-eye"></i>
+                                                                        </button>
                                                                     </div>
 
-                                                                    <!-- Email -->
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-label">Email</label>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $user->email ?? '-' }}"
-                                                                            readonly>
-                                                                    </div>
-
-                                                                    <!-- Peran -->
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-label">Peran</label>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $user->peran ?? '-' }}"
-                                                                            readonly>
-                                                                    </div>
-
-                                                                    <!-- Password -->
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-label">Password</label>
-                                                                        <div class="input-group">
-                                                                            <input type="password"
-                                                                                class="form-control"
-                                                                                value="{{ $user->decrypted_password }}"
-                                                                                readonly>
-                                                                            <button type="button"
-                                                                                class="btn btn-outline-secondary btn-toggle-password">
-                                                                                <i class="bi bi-eye"></i>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
 
                                                             <div class="modal-footer">
                                                                 <button type="button"
@@ -368,123 +323,137 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Modal Edit Akun -->
-                                                <div class="modal fade" id="modalEditAkun{{ $user->id }}"
-                                                    tabindex="-1" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                        <div class="modal-content border-0 shadow">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Edit Akun Pengguna</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal"></button>
-                                                            </div>
-                                                            <form method="POST"
-                                                                action="{{ route('kelola-akun.update', $user->id) }}"
-                                                                enctype="multipart/form-data">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <div class="modal-body">
-                                                                    <div class="row g-3">
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Nama
-                                                                                Lengkap</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="nama_lengkap"
-                                                                                value="{{ $user->nama_lengkap }}"
-                                                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
-                                                                            @error('nama_lengkap')
-                                                                                <small
-                                                                                    class="text-danger">{{ $message }}</small>
-                                                                            @enderror
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">NIP</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="nip"
-                                                                                value="{{ $user->nip ?? '-' }}">
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Jabatan</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="jabatan"
-                                                                                value="{{ $user->jabatan ?? '-' }}"
-                                                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Jenis
-                                                                                Kelamin</label>
-                                                                            <select name="jenis_kelamin"
-                                                                                class="form-control">
-                                                                                <option value="">-</option>
-                                                                                <option value="laki laki"
-                                                                                    {{ $user->jenis_kelamin == 'laki laki' ? 'selected' : '' }}>
-                                                                                    Laki-laki</option>
-                                                                                <option value="perempuan"
-                                                                                    {{ $user->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>
-                                                                                    Perempuan</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Email</label>
-                                                                            <input type="email" class="form-control"
-                                                                                name="email"
-                                                                                value="{{ $user->email }}"
-                                                                                autocomplete="new-email"
-                                                                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$">
-                                                                            @error('email')
-                                                                                <small
-                                                                                    class="text-danger">{{ $message }}</small>
-                                                                            @enderror
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Peran</label>
-                                                                            <input type="text" class="form-control" name="peran" value="{{ old('peran', 'Teknisi') }}" disabled>
-                                                                            @error('peran')
-                                                                                <small
-                                                                                    class="text-danger">{{ $message }}</small>
-                                                                            @enderror
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Password</label>
-                                                                            <div class="input-group">
-                                                                                <input type="password"
-                                                                                    class="form-control"
-                                                                                    name="password"
-                                                                                    value="{{ $user->decrypted_password }}"
-                                                                                    placeholder="Masukkan password"
-                                                                                    autocomplete="off">
-                                                                                <button type="button"
-                                                                                    class="btn btn-outline-secondary btn-toggle-password">
-                                                                                    <i class="bi bi-eye"></i>
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Foto Profil
-                                                                                (Opsional)</label>
-                                                                            <input type="file" class="form-control"
-                                                                                name="foto_profil">
-                                                                            <div class="form-text text-muted">Kosongkan
-                                                                                jika tidak ingin mengubah foto profil.
-                                                                            </div>
+                                            <!-- Modal Edit Akun -->
+                                            <div class="modal fade" id="modalEditAkun{{ $user->id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-content border-0 shadow">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Edit Akun User</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <form method="POST" action="{{ route('kelola-akun.update', $user->id) }}" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-body">
+                                                                <div class="row g-3">
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Nama Lengkap</label>
+                                                                        <input type="text" class="form-control" name="nama_lengkap" value="{{ $user->nama_lengkap }}"
+                                                                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                                                        @error('nama_lengkap')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">NIP</label>
+                                                                        <input type="text" class="form-control" name="nip" value="{{ $user->nip}}">
+                                                                        @error('nip')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Jabatan</label>
+                                                                        <input type="text" class="form-control" name="jabatan" value="{{ $user->jabatan ?? '-' }}"
+                                                                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Jenis Kelamin</label>
+                                                                        <select name="jenis_kelamin" class="form-control">
+                                                                            <option value="">-</option>
+                                                                            <option value="laki laki" {{ $user->jenis_kelamin == 'laki laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                                            <option value="perempuan" {{ $user->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <!-- Peran -->
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Peran</label>
+                                                                        <input type="hidden" value="{{ $user->peran }}">
+                                                                        <input type="text" class="form-control" value="{{ ucwords($user->peran) }}" style="background-color: #f8f9fa; cursor: not-allowed;" readonly>
+                                                                    </div>
+
+                                                                    <!-- Field Password -->
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Password</label>
+                                                                        <div class="input-group">
+                                                                            <input type="password"
+                                                                                class="form-control"
+                                                                                value="{{ $user->decrypted_password }}"
+                                                                                readonly
+                                                                                style="background-color: #f8f9fa; cursor: not-allowed;"
+                                                                                autocomplete="off">
                                                                         </div>
                                                                     </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Foto Profil (Opsional)</label>
+                                                                        <input type="file" class="form-control" name="foto_profil">
+                                                                        <div class="form-text text-muted" style="font-size: 13px; margin-top: 2px;">Kosongkan jika tidak ingin mengubah foto profil.</div>
+                                                                        <div class="form-text text-muted" style="font-size: 13px; margin-top: 1px;">Unggah dengan format jpg, jpeg, png.</div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger"
-                                                                        data-bs-dismiss="modal">Batal</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-success">Simpan</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
+                                            </div>
+
+                                            <!-- Modal Ubah Password User -->
+                                            <div class="modal fade" id="modalUbahPassword{{ $user->id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Ubah Password: {{ $user->nama_lengkap }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <form action="{{ route('kelola-akun.updatePassword', $user->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <label for="new_password_{{ $user->id }}" class="form-label">Password Baru</label>
+                                                                    <div class="input-group">
+                                                                        <input type="password"
+                                                                            class="form-control"
+                                                                            id="new_password_{{ $user->id }}"
+                                                                            name="new_password"
+                                                                            required>
+                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                            <i class="bi bi-eye"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="new_password_confirmation_{{ $user->id }}" class="form-label">Konfirmasi Password</label>
+                                                                        <div class="input-group">
+                                                                            <input type="password"
+                                                                                class="form-control"
+                                                                                id="new_password_confirmation_{{ $user->id }}"
+                                                                                name="new_password_confirmation"
+                                                                                required>
+                                                                            <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                                <i class="bi bi-eye"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    @error('new_password_confirmation')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                                                </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @empty
-                                                <tr>
-                                                    <td colspan="9" class="text-muted text-center">Belum ada data
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="7" class="text-muted text-center">Belum ada data</td>
+                                            </tr>
                                             @endforelse
                                         </tbody>
                                     </table>
@@ -526,15 +495,16 @@
                                 <!-- NIP -->
                                 <div class="col-md-6">
                                     <label for="nip" class="form-label">NIP</label>
-                                    <input type="text" class="form-control" id="nip" name="nip"
-                                        placeholder="Masukkan NIP">
+                                    <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP" required>
+                                    @error('nip')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <!-- Jabatan -->
                                 <div class="col-md-6">
                                     <label for="jabatan" class="form-label">Jabatan</label>
-                                    <input type="text" class="form-control" id="jabatan" name="jabatan"
-                                        placeholder="Masukkan jabatan"
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan jabatan" autocomplete="off"
                                         oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
                                 </div>
 
@@ -548,22 +518,13 @@
                                     </select>
                                 </div>
 
-                                <!-- Email -->
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Masukkan email" required autocomplete="new-email"
-                                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$"
-                                        title="Masukkan email yang valid, misal: nama@gmail.com atau nama@sekolah.ac.id">
-                                    @error('email')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
                                 <!-- Peran -->
                                 <div class="col-md-6">
-                                    <label for="peran" class="form-label">Peran</label>
-                                    <input type="text" class="form-control" name="peran" value="{{ old('peran', 'Teknisi') }}" disabled>
+                                    <label for="peran" class="form-label">Hak Akses</label>
+                                    <select class="form-select" id="peran" name="peran" required>
+                                        <option value="" disabled selected>Pilih hak akses</option>
+                                        <option value="Teknisi">Teknisi</option>
+                                    </select>
                                     @error('peran')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -573,8 +534,7 @@
                                 <div class="col-md-6">
                                     <label for="password" class="form-label">Kata Sandi</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            placeholder="Masukkan password" required>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" autocomplete="new-password" required>
                                         <button type="button" class="btn btn-outline-secondary btn-toggle-password">
                                             <i class="bi bi-eye"></i>
                                         </button>
@@ -588,6 +548,10 @@
                                 <div class="col-md-6">
                                     <label for="foto_profil" class="form-label">Foto Profil (opsional)</label>
                                     <input type="file" class="form-control" id="foto_profil" name="foto_profil">
+                                    <div class="form-text text-muted" style="font-size: 13px; margin-top: 1px;">Unggah dengan format jpg, jpeg, png.</div>
+                                    @error('foto_profil')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -753,17 +717,22 @@
 
     <!-- Modal Error Handling -->
     @if ($errors->any())
-        @if (session('edit_user_id'))
-            <script>
-                var modalEdit = new bootstrap.Modal(document.getElementById('modalEditAkun{{ session('edit_user_id') }}'));
-                modalEdit.show();
-            </script>
-        @else
-            <script>
-                var modalTambah = new bootstrap.Modal(document.getElementById('modalTambahAkun'));
-                modalTambah.show();
-            </script>
-        @endif
+    @if(session('edit_user_id'))
+    <script>
+        var modalEdit = new bootstrap.Modal(document.getElementById('modalEditAkun{{ session("edit_user_id") }}'));
+        modalEdit.show();
+    </script>
+    @elseif (session('openUbahPasswordModalId'))
+    <script>
+        var modalPwd = new bootstrap.Modal(document.getElementById('modalUbahPassword{{ session("openUbahPasswordModalId") }}'));
+        modalPwd.show();
+    </script>
+    @else
+    <script>
+        var modalTambah = new bootstrap.Modal(document.getElementById('modalTambahAkun'));
+        modalTambah.show();
+    </script>
+    @endif
     @endif
 
     @if (session('success'))

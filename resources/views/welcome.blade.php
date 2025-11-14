@@ -103,7 +103,10 @@
 
 <body>
     <header>
-        <div class="logo">LOGO</div>
+        <div>
+            <img src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                alt="Logo Instansi" style="width:50px; height: 50px;">
+        </div>
     </header>
 
     <section class="welcome">

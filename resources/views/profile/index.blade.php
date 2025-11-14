@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <title>Profil - Aplikasi Inventaris BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -125,12 +125,12 @@
                                     Profil
                                 </button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="ubah-password-tab" data-bs-toggle="tab" data-bs-target="#ubah-password"
                                     type="button" role="tab" aria-controls="ubah-password" aria-selected="false">
                                     Ubah Password
                                 </button>
-                            </li>
+                            </li> --}}
                         </ul>
 
                         <div class="tab-content" id="profileTabContent">
@@ -166,7 +166,7 @@
                                 </div>
                             </div>
 
-                            <!-- Ubah Password -->
+                            {{-- <!-- Ubah Password -->
                             <div class="tab-pane fade" id="ubah-password" role="tabpanel" aria-labelledby="ubah-password-tab">
                                 <form>
                                     <div class="mb-3">
@@ -183,7 +183,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-sm text-white" style="background-color:#1E3D58;">Simpan Perubahan</button>
                                 </form>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

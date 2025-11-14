@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 class KelolaAkunController extends Controller
 {
@@ -43,22 +44,13 @@ class KelolaAkunController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_lengkap'   => 'required|string|max:255',
-            'nip'            => 'nullable|string|max:50|unique:users,nip',
+            'nama_lengkap'   => 'required|string|min:3|max:255',
+            'nip'            => 'required|string|max:50|unique:users,nip',
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
-            'email'          => [
-                'required',
-                'email',
-                'max:255',
-                'unique:users,email',
-                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
-            ],
             'password'       => 'required|string|min:6',
             'peran'          => 'nullable|string',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ], [
-            'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
         ]);
 
         $fotoProfilPath = null;
@@ -68,10 +60,9 @@ class KelolaAkunController extends Controller
 
         User::create([
             'nama_lengkap'  => $validated['nama_lengkap'],
-            'nip'           => $validated['nip'] ?? null,
+            'nip'           => $validated['nip'],
             'jabatan'       => $validated['jabatan'] ?? null,
             'jenis_kelamin' => $validated['jenis_kelamin'] ?? null,
-            'email'         => $validated['email'],
             'password'      => Crypt::encryptString($validated['password']),
             'peran'         => $validated['peran'] ?? 'teknisi',
             'foto_profil'   => $fotoProfilPath,
@@ -93,37 +84,25 @@ class KelolaAkunController extends Controller
 
         session(['edit_user_id' => $id]);
 
-        $request->validate([
-            'nama_lengkap'   => 'required|string|max:255',
-            'nip'            => 'nullable|string|max:50|unique:users,nip,' . $id,
+        $rules = [
+            'nama_lengkap'   => 'required|string|min:3|max:25',
+            'nip'            => 'required|string|max:50|unique:users,nip,' . $id,
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
-            'email'          => [
-                'required',
-                'email',
-                'max:255',
-                'unique:users,email,' . $id,
-                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
-            ],
-            'password'       => 'nullable|string|min:6',
-            'peran'          => 'nullable|string',
+            // jangan include peran atau password bila tidak boleh diubah
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ], [
-            'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
-        ]);
+        ];
+
+        $validated = $request->validate($rules);
 
         session()->forget('edit_user_id');
 
-        $user->nama_lengkap  = $request->nama_lengkap;
-        $user->nip           = $request->nip ?? null;
-        $user->jabatan       = $request->jabatan ?? null;
-        $user->jenis_kelamin = $request->jenis_kelamin ?? null;
-        $user->email         = $request->email;
-        $user->peran         = $request->peran ?? 'teknisi';
-
-        if ($request->filled('password')) {
-            $user->password = Crypt::encryptString($request->password);
-        }
+        $user->nama_lengkap   = $request->nama_lengkap;
+        $user->nip            = $request->nip;
+        $user->jabatan        = $request->jabatan ?? null;
+        $user->jenis_kelamin  = $request->jenis_kelamin ?? null;
+        // peran tetap $user->peran
+        // password tidak diubah di sini
 
         if ($request->hasFile('foto_profil')) {
             $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');
@@ -132,8 +111,38 @@ class KelolaAkunController extends Controller
 
         $user->save();
 
+        return redirect()->route('kelola-akun.index')->with('success', 'Akun berhasil diperbarui.');
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $rules = [
+            'new_password'              => 'required|string|min:6|confirmed',
+            'new_password_confirmation' => 'required|string|min:6',
+        ];
+        $messages = [
+            'new_password.required'         => 'Password baru wajib diisi.',
+            'new_password.min'              => 'Password minimal 6 karakter.',
+            'new_password.confirmed'        => 'Konfirmasi password tidak cocok.',
+            'new_password_confirmation.required' => 'Konfirmasi password wajib diisi.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('openUbahPasswordModalId', $id);
+        }
+
+        $user->password = Crypt::encryptString($request->input('new_password'));
+        $user->save();
+
         return redirect()->route('kelola-akun.index')
-            ->with('success', 'Akun berhasil diperbarui.');
+            ->with('success', 'Password berhasil diperbarui.');
     }
 
     public function destroy($id)
