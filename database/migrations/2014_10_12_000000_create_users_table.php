@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('nama_lengkap')->nullable();
             $table->string('nip')->unique()->nullable();
+            $table->text('jabatan')->nullable();
             $table->enum('jenis_kelamin', ['laki laki', 'perempuan'])->nullable();
             $table->string('peran')->default('teknisi');
             $table->string('foto_profil')->nullable();

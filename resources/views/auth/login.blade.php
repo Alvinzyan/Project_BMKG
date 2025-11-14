@@ -169,19 +169,6 @@
             </div>
         </section>
     </main>
-    @if (session('error'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: {!! json_encode(session('error')) !!},
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-            });
-        </script>
-    @endif
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>

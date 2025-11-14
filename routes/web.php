@@ -13,10 +13,10 @@ use App\Http\Controllers\KetapangBwiController;
 use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataAlatController;
-use App\Http\Controllers\InventarisAlatController;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+use App\Http\Controllers\InventarisAlatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +72,10 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::get('inventaris-alat/ketapang-bwi/edit', [KetapangBwiController::class, 'edit'])->name('ketapang-bwi.edit');
     Route::put('inventaris-alat/ketapang-bwi/update', [KetapangBwiController::class, 'update'])->name('ketapang-bwi.update');
 
+    Route::get('inventaris-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
+    Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
+    Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
+    Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
     Route::get('inventaris-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
     Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
     Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');

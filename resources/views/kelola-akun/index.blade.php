@@ -112,7 +112,15 @@
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card text-white" style="background-color: #1E3D58;">
                                     <div class="card-body d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg>
+                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                            <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+                                            <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                            <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+                                            <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                            <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+                                        </svg>
                                         <div>
                                             <h5 class="card-title mb-0">Total User</h5>
                                             <p class="card-text fs-4 fw-bolder">{{ $users->count() }}</p>
@@ -125,11 +133,23 @@
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card text-white" style="background-color: #1E3D58;">
                                     <div class="card-body d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-cog"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h2.5" /><path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19.001 15.5v1.5" /><path d="M19.001 21v1.5" /><path d="M22.032 17.25l-1.299 .75" /><path d="M17.27 20l-1.3 .75" /><path d="M15.97 17.25l1.3 .75" /><path d="M20.733 20l1.3 .75" /></svg>
+                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-cog">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h2.5" />
+                                            <path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                            <path d="M19.001 15.5v1.5" />
+                                            <path d="M19.001 21v1.5" />
+                                            <path d="M22.032 17.25l-1.299 .75" />
+                                            <path d="M17.27 20l-1.3 .75" />
+                                            <path d="M15.97 17.25l1.3 .75" />
+                                            <path d="M20.733 20l1.3 .75" />
+                                        </svg>
                                         <div>
                                             <h5 class="card-title mb-0">Admin</h5>
                                             <p class="card-text fs-4 fw-bolder">
-                                                {{ $users->where('peran', 'admin')->count() }}</p>
+                                                {{ $users->where('peran', 'admin')->count() }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -139,11 +159,15 @@
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card text-white" style="background-color: #1E3D58;">
                                     <div class="card-body d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tool"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" /></svg>
+                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tool">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
+                                        </svg>
                                         <div>
                                             <h5 class="card-title mb-0">Teknisi</h5>
                                             <p class="card-text fs-4 fw-bolder">
-                                                {{ $users->where('peran', 'teknisi')->count() }}</p>
+                                                {{ $users->where('peran', 'teknisi')->count() }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +182,18 @@
                                 <div class="card-header d-flex justify-content-between align-items-center text-white"
                                     style="border-bottom:none;">
                                     <div class="d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-cog"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h2.5" /><path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19.001 15.5v1.5" /><path d="M19.001 21v1.5" /><path d="M22.032 17.25l-1.299 .75" /><path d="M17.27 20l-1.3 .75" /><path d="M15.97 17.25l1.3 .75" /><path d="M20.733 20l1.3 .75" /></svg>
+                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-cog">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h2.5" />
+                                            <path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                            <path d="M19.001 15.5v1.5" />
+                                            <path d="M19.001 21v1.5" />
+                                            <path d="M22.032 17.25l-1.299 .75" />
+                                            <path d="M17.27 20l-1.3 .75" />
+                                            <path d="M15.97 17.25l1.3 .75" />
+                                            <path d="M20.733 20l1.3 .75" />
+                                        </svg>
                                         <h2 class="fs-4 fw-bolder mb-0 text-white">Kelola Akun User</h2>
                                     </div>
                                     <div class="d-flex justify-content-end">
@@ -202,7 +237,7 @@
                                                     <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
                                                         <i class="bi bi-eye"></i> Lihat
                                                     </a>
-                                                    @if($user->peran === 'teknisi')
+
                                                     <button type="button" class="btn btn-sm btn-primary"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#modalEditAkun{{ $user->id }}">
@@ -217,60 +252,60 @@
                                                         data-bs-target="#modalUbahPassword{{ $user->id }}">
                                                         <i class="bi bi-key"></i> Ubah Password
                                                     </button>
-                                                    @endif
+
                                                 </td>
                                             </tr>
 
-                                                <!-- Modal Lihat Akun -->
-                                                <div class="modal fade" id="modalLihatAkun{{ $user->id }}"
-                                                    tabindex="-1"
-                                                    aria-labelledby="modalLihatAkunLabel{{ $user->id }}"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                        <div class="modal-content border-0 shadow">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"
-                                                                    id="modalLihatAkunLabel{{ $user->id }}">Detail
-                                                                    Akun Pengguna</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal"
-                                                                    aria-label="Tutup"></button>
+                                            <!-- Modal Lihat Akun -->
+                                            <div class="modal fade" id="modalLihatAkun{{ $user->id }}"
+                                                tabindex="-1"
+                                                aria-labelledby="modalLihatAkunLabel{{ $user->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-content border-0 shadow">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"
+                                                                id="modalLihatAkunLabel{{ $user->id }}">Detail
+                                                                Akun Pengguna</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Tutup"></button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <div class="text-center mb-4">
+                                                                @php
+                                                                // cek apakah file ada di storage
+                                                                if (
+                                                                $user->foto_profil &&
+                                                                file_exists(
+                                                                storage_path(
+                                                                'app/public/' . $user->foto_profil,
+                                                                ),
+                                                                )
+                                                                ) {
+                                                                $fotoPath = $user->foto_profil;
+                                                                } else {
+                                                                $fotoPath =
+                                                                'foto_profil/default-profile.png'; // sesuaikan path default kamu
+                                                                }
+                                                                @endphp
+                                                                <div
+                                                                    style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:auto;">
+                                                                    <img src="{{ asset('storage/' . $fotoPath) }}"
+                                                                        alt="Foto Profil"
+                                                                        style="width:100%; height:100%; object-fit:cover;">
+                                                                </div>
                                                             </div>
 
-                                                            <div class="modal-body">
-                                                                <div class="text-center mb-4">
-                                                                    @php
-                                                                        // cek apakah file ada di storage
-                                                                        if (
-                                                                            $user->foto_profil &&
-                                                                            file_exists(
-                                                                                storage_path(
-                                                                                    'app/public/' . $user->foto_profil,
-                                                                                ),
-                                                                            )
-                                                                        ) {
-                                                                            $fotoPath = $user->foto_profil;
-                                                                        } else {
-                                                                            $fotoPath =
-                                                                                'foto_profil/default-profile.png'; // sesuaikan path default kamu
-                                                                        }
-                                                                    @endphp
-                                                                    <div
-                                                                        style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:auto;">
-                                                                        <img src="{{ asset('storage/' . $fotoPath) }}"
-                                                                            alt="Foto Profil"
-                                                                            style="width:100%; height:100%; object-fit:cover;">
-                                                                    </div>
+                                                            <div class="row g-3">
+                                                                <!-- Nama Lengkap -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Nama Lengkap</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="{{ $user->nama_lengkap ?? '-' }}"
+                                                                        readonly>
                                                                 </div>
-
-                                                                <div class="row g-3">
-                                                                    <!-- Nama Lengkap -->
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-label">Nama Lengkap</label>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $user->nama_lengkap ?? '-' }}"
-                                                                            readonly>
-                                                                    </div>
 
                                                                 <!-- NIP -->
                                                                 <div class="col-md-6">
@@ -278,13 +313,13 @@
                                                                     <input type="text" class="form-control" value="{{ $user->nip }}" readonly>
                                                                 </div>
 
-                                                                    <!-- Jabatan -->
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-label">Jabatan</label>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $user->jabatan ?? '-' }}"
-                                                                            readonly>
-                                                                    </div>
+                                                                <!-- Jabatan -->
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Jabatan</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="{{ $user->jabatan ?? '-' }}"
+                                                                        readonly>
+                                                                </div>
 
                                                                 <!-- Jenis Kelamin -->
                                                                 <div class="col-md-6">
@@ -314,14 +349,14 @@
                                                             </div>
                                                         </div>
 
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-secondary"
-                                                                    data-bs-dismiss="modal">Tutup</button>
-                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-secondary"
+                                                                data-bs-dismiss="modal">Tutup</button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
                                             <!-- Modal Edit Akun -->
                                             <div class="modal fade" id="modalEditAkun{{ $user->id }}" tabindex="-1" aria-hidden="true">
@@ -488,7 +523,7 @@
                                         placeholder="Masukkan nama lengkap" required
                                         oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
                                     @error('nama_lengkap')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
@@ -523,10 +558,10 @@
                                     <label for="peran" class="form-label">Hak Akses</label>
                                     <select class="form-select" id="peran" name="peran" required>
                                         <option value="" disabled selected>Pilih hak akses</option>
-                                        <option value="Teknisi">Teknisi</option>
+                                        <option value="teknisi">Teknisi</option>
                                     </select>
                                     @error('peran')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
@@ -540,7 +575,7 @@
                                         </button>
                                     </div>
                                     @error('password')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
@@ -736,15 +771,15 @@
     @endif
 
     @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 2000
-            });
-        </script>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
     @endif
 
     <script>

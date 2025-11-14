@@ -22,7 +22,6 @@ class User extends Authenticatable
         'nip',
         'jabatan',
         'jenis_kelamin',
-        'email',
         'password',
         'peran',
         'foto_profil',

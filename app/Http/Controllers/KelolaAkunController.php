@@ -16,7 +16,6 @@ class KelolaAkunController extends Controller
 
     //     return view('kelola-akun.index', compact('users', 'totalUser'));
     // }
-
     public function index()
     {
         $users = \App\Models\User::all()->map(function ($user) {
@@ -30,8 +29,8 @@ class KelolaAkunController extends Controller
 
         // Statistik
         $totalUser = $users->count();
-        $totalAdmin = $users->where('peran', 'Admin')->count();
-        $totalTeknisi = $users->where('peran', 'Teknisi')->count();
+        $totalAdmin = $users->where('peran', 'admin')->count();
+        $totalTeknisi = $users->where('peran', 'teknisi')->count();
 
         return view('kelola-akun.index', compact('users', 'totalUser', 'totalAdmin', 'totalTeknisi'));
     }
@@ -49,22 +48,25 @@ class KelolaAkunController extends Controller
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
             'password'       => 'required|string|min:6',
-            'peran'          => 'nullable|string',
+            'peran'          => 'required|in:admin,teknisi',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
+        // Proses upload foto profil (jika ada)
         $fotoProfilPath = null;
         if ($request->hasFile('foto_profil')) {
             $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');
         }
 
+        // Simpan user — password dienkripsi jika diberikan, kalau tidak -> null
         User::create([
             'nama_lengkap'  => $validated['nama_lengkap'],
             'nip'           => $validated['nip'],
             'jabatan'       => $validated['jabatan'] ?? null,
             'jenis_kelamin' => $validated['jenis_kelamin'] ?? null,
             'password'      => Crypt::encryptString($validated['password']),
-            'peran'         => $validated['peran'] ?? 'teknisi',
+            'peran'         => $validated['peran'],
+
             'foto_profil'   => $fotoProfilPath,
         ]);
 

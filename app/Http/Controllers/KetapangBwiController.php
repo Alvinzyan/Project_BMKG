@@ -103,8 +103,7 @@ class KetapangBwiController extends Controller
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
-            'alats.pengecekanTerakhir',
-            'catatanTerakhir'
+            'alats.pengecekanTerakhir', 'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
         return view('ketapang-bwi.edit', compact('lokasi', 'kategoris'));

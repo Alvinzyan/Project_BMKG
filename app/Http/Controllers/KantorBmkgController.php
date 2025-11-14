@@ -17,13 +17,9 @@ class KantorBmkgController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $periode = PeriodeHelper::getPeriodeAktif();
-
-        return view('inventaris-alat.index', [
-            'user' => $user,
-            'periode' => $periode
-        ]);
-
+        $periode = PeriodeHelper::getPeriodeAktif();        
+        return view('inventaris-alat.index', compact('user'))
+            ->with('periode', $periode);
     }
 
     public function create()
