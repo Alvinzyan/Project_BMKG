@@ -194,13 +194,46 @@
                                 </p>
 
                                 <div class="col mb-3">
-                                    <!-- <a href="{{ route('laporan-alat.view') }}">
-                                        <button class="btn btn-info">Lihat Laporan</button>
-                                    </a> -->
-
-                                    <a href="{{ route('laporan-alat.pdf') }}" target="_blank">
+                                    <!-- <a href="{{ route('laporan-alat.pdf') }}" target="_blank">
                                         <button class="btn btn-danger">Cetak Laporan</button>
-                                    </a>
+                                    </a> -->
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalNomorSurat">
+                                        Cetak Laporan
+                                    </button>
+                                </div>
+
+                                <!-- Modal Isi Nomor Surat -->
+                                <div class="modal fade" id="modalNomorSurat" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content border-0 shadow">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Isi Nomor Surat</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <form method="GET" action="{{ route('laporan-alat.pdf') }}">
+                                                <div class="modal-body">
+                                                    <div class="row g-3">
+
+                                                        <div class="col-md-12">
+                                                            <label class="form-label">Nomor Surat</label>
+                                                            <input type="text" class="form-control" name="nomor_surat"
+                                                                placeholder="Contoh: e.B/IJ.01.01/026/KBWI/VII/2025" required>
+                                                            @error('nomor_surat')
+                                                            <small class="text-danger">{{ $message }}</small>
+                                                            @enderror
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-success">Cetak</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <iframe src="{{ route('laporan-alat.view') }}" width="100%" height="600px" style="border: none;" loading="lazy" title="Laporan Lihat View"></iframe>

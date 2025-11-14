@@ -16,15 +16,15 @@ class KantorBmkgController extends Controller
 {
     public function index()
     {
-        // $user = Auth::user();
-        $periode = PeriodeHelper::getPeriodeAktif();
-        return view('inventaris-alat.index')
+        $user = Auth::user();
+        $periode = PeriodeHelper::getPeriodeAktif();        
+        return view('inventaris-alat.index', compact('user'))
             ->with('periode', $periode);
     }
 
     public function create()
     {
-        // $user = Auth::user();
+        $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
@@ -32,19 +32,36 @@ class KantorBmkgController extends Controller
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('kantor-bmkg.create', compact('lokasi', 'kategoris'));
+        return view('kantor-bmkg.create', compact('lokasi', 'kategoris', 'user'));
     }
 
     public function store(Request $request)
     {
-        // $userId = Auth::id();
+        $request->validate([
+            'kondisi' => 'required|array',
+            'kalibrasi' => 'nullable|array',
+            'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-        foreach ($request->kondisi as $alatId => $kondisi) {
+        $userId = Auth::id();
+
+        foreach ($request->kondisi as $alatId => $kondisiList) {
+            // pastikan kondisi disimpan sebagai array
+            $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
+
+            $fotoLampiranPath = null;
+            if ($request->hasFile("foto_lampiran.$alatId")) {
+                $file = $request->file("foto_lampiran.$alatId");
+                $namaFile = time() . '_' . $file->getClientOriginalName();
+                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile); 
+            }
+            
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
-                'kondisi' => $kondisi,
-                'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
+                'kondisi' => $kondisiArray,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : null,
             ]);
         }
 
@@ -81,14 +98,29 @@ class KantorBmkgController extends Controller
 
     public function update(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
+        $request->validate([
+            'kondisi' => 'required|array',
+            'kalibrasi' => 'nullable|array',
+            'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-        foreach ($request->kondisi as $alatId => $kondisi) {
+        foreach ($request->kondisi as $alatId => $kondisiList) {
+            $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
+            $fotoLampiranPath = null;
+
+            if ($request->hasFile("foto_lampiran.$alatId")) {
+                $file = $request->file("foto_lampiran.$alatId");
+                $namaFile = time() . '_' . $file->getClientOriginalName();
+                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
+            }
+            
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
-                'kondisi' => $kondisi,
-                'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
+                'kondisi' => $kondisiArray,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                'foto_lampiran' => $fotoLampiranPath,
             ]);
         }
 
@@ -108,7 +140,6 @@ class KantorBmkgController extends Controller
                 }
             }
         }
-
         return redirect()->route('kantor-bmkg.edit')
             ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }

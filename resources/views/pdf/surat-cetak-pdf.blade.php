@@ -250,7 +250,7 @@
         <div class="content-wrap">
             <section class="meta-row">
                 <div class="meta-left">
-                    <div class="meta-item"><span class="label">Nomor</span>: e.B/IJ.01.01/026/KBWI/VII/2025</div>
+                    <div class="meta-item"><span class="label">Nomor</span>:  {{ $nomorSurat }}</div>
                     <div class="meta-item"><span class="label">Lampiran</span>: 1 (satu) berkas</div>
                     <div class="meta-item"><span class="label">Perihal</span>: Laporan Kondisi Aloptama<br>
                         <span class="value-indent">Stasiun Meteorologi Banyuwangi</span>

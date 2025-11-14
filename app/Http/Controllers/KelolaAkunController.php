@@ -29,8 +29,8 @@ class KelolaAkunController extends Controller
 
         // Statistik
         $totalUser = $users->count();
-        $totalAdmin = $users->where('peran', 'Admin')->count();
-        $totalTeknisi = $users->where('peran', 'Teknisi')->count();
+        $totalAdmin = $users->where('peran', 'admin')->count();
+        $totalTeknisi = $users->where('peran', 'teknisi')->count();
 
         return view('kelola-akun.index', compact('users', 'totalUser', 'totalAdmin', 'totalTeknisi'));
     }
@@ -48,7 +48,7 @@ class KelolaAkunController extends Controller
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
             'password'       => 'required|string|min:6',
-            'peran'          => 'required|in:Admin,Teknisi,User',
+            'peran'          => 'required|in:admin,teknisi',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 

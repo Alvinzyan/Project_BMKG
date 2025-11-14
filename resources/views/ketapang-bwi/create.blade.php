@@ -139,7 +139,7 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="" method="POST">
+                        <form action="{{ route('ketapang-bwi.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card border-0 shadow">
                                 <div class="card-header">
@@ -153,159 +153,114 @@
                                                 <small class="fs-6 fw-bold text-black">
                                                     Nama Penanggung Jawab :
                                                 </small>
-                                                <small class="fs-6 fw-medium text-gray-900">Cindil</small>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="card-table border-0 shadow">
-                                    <h4 class="fs-6 fw-bold text-white py-2">Kategori Alat</h4>
-                                    <div class="table-responsive">
-                                        <table class="table bg-white align-items-center table-flush">
-                                            <colgroup>
-                                                <col style="width: 3%;">
-                                                <col style="width: 20%;">
-                                                <col style="width: 15%;">
-                                                <col style="width: 3%;">
-                                                <col style="width: 25%;">
-                                                <col style="width: 3%;">
-                                                <col style="width: 11%;">
-                                                <col style="width: 20%;">
-                                            </colgroup>
-                                            <thead class="thead-white">
-                                                <tr>
-                                                    <th class="border-bottom">No</th>
-                                                    <th class="border-bottom">Nama Alat</th>
-                                                    <th class="border-bottom">Merek/Type</th>
-                                                    <th class="border-bottom">Jml</th>
-                                                    <th class="border-bottom">Kondisi</th>
-                                                    <th class="border-bottom">Tahun <br> Pemasangan</th>
-                                                    <th class="border-bottom">Kalibrasi Terakhir</th>
-                                                    <th class="border-bottom">Keterangan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="border-bottom text-center align-middle" colspan="8">
-                                                        Belum ada alat
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="py-3">
-                                        <!-- Tombol Tambah Catatan -->
-                                        <div class="d-flex justify-content-end mb-3">
-                                            <button type="button" class="btn btn-sm btn-white"
-                                                data-bs-toggle="modal" data-bs-target="#modalTambahCatatan">
-                                                <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 5l0 14" />
-                                                    <path d="M5 12l14 0" />
-                                                </svg>
-                                                Tambah Catatan
-                                            </button>
-                                        </div>
-
-                                        <!-- Modal Tambah Catatan -->
-                                        <div class="modal fade" id="modalTambahCatatan" tabindex="-1"
-                                            aria-labelledby="modalTambahCatatanLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content border-0 shadow">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalTambahCatatanLabel">
-                                                            Tambah
-                                                            Catatan
-                                                        </h5>
-                                                        <button type="button" class="btn-close"
-                                                            data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form id="formTambahCatatan">
-                                                            <div class="mb-3">
-                                                                <label for="catatan"
-                                                                    class="form-label">Catatan</label>
-                                                                <textarea class="form-control" id="catatan" rows="4" placeholder="Tulis catatan di sini..."></textarea>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-sm btn-danger"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                        <button type="submit" form="formTambahCatatan"
-                                                            class="btn btn-sm btn-success">Simpan</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                       <div class="bg-dark">
-                                            <div class="card-note border-0 shadow bg-white text-dark p-3">
-                                                <div class="row align-items-center mb-2">
-                                                    <div class="col">
-                                                        <h6 class="fw-bold mb-0">
-                                                        <i class="fas fa-list me-1"></i> Catatan
-                                                        </h6>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                <input type="text" class="form-control" placeholder="*Isi catatan bila perlu">
-                                                </div>
+                                                <small class="fs-6 fw-medium text-gray-900">{{ $user->nama_lengkap ?? '-' }}</small>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="d-flex justify-content-end flex-row mb-2">
-                                    <button type="button" class="btn btn-sm btn-gray-100 me-2"
-                                        data-bs-toggle="modal" data-bs-target="#modalTambahFoto">
-                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 5l0 14" />
-                                            <path d="M5 12l14 0" />
-                                        </svg>
-                                        Tambah Foto
-                                    </button>
+                                @foreach ($kategoris as $kategori)
+                                    <div class="card-table border-0 shadow">
+                                        <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
+                                        <div class="table-responsive">
+                                            <table class="table bg-white align-items-center table-flush">
+                                                <colgroup>
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 15%;">
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 25%;">
+                                                    <col style="width: 3%;">
+                                                    <col style="width: 11%;">
+                                                    <col style="width: 20%;">
+                                                </colgroup>
+                                                <thead class="thead-white">
+                                                    <tr>
+                                                        <th class="border-bottom">No</th>
+                                                        <th class="border-bottom">Nama Alat</th>
+                                                        <th class="border-bottom">Merek/Type</th>
+                                                        <th class="border-bottom">Jml</th>
+                                                        <th class="border-bottom">Kondisi</th>
+                                                        <th class="border-bottom">Tahun <br> Pemasangan</th>
+                                                        <th class="border-bottom">Kalibrasi Terakhir</th>
+                                                        <th class="border-bottom">Keterangan</th>
+                                                        <th class="border-bottom">Foto Lampiran</th>
+                                                    </tr>
+                                                </thead>
 
-                                    <!-- Modal Tambah Foto -->
-                                    <div class="modal fade" id="modalTambahFoto" tabindex="-1"
-                                        aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content border-0 shadow">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTambahFotoLabel">Tambah Foto
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Tutup"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <label for="">Upload Foto</label>
-                                                    <form action="/upload-foto" method="POST"
-                                                        enctype="multipart/form-data" class="dropzone"
-                                                        id="formTambahFoto">
-                                                        @csrf
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-sm btn-danger"
-                                                        data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" form="formTambahFoto"
-                                                        class="btn btn-sm btn-success">Simpan</button>
-                                                </div>
-                                            </div>
+                                                @foreach ($kategori->alats as $alat)
+                                                    <tbody>
+                                                        <tr>
+                                                            {{-- No --}}
+                                                            <td class="text-gray-900">{{ $loop->iteration }}</td>
+
+                                                            {{-- Nama Alat --}}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
+                                                            </td>
+
+                                                            {{-- Merek/Type --}}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
+                                                            </td>
+
+                                                            {{-- Jumlah --}}
+                                                            <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
+                                                            </td>
+
+                                                            {{-- Kondisi (input) --}}
+                                                            <td>
+                                                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            name="kondisi[{{ $alat->id }}]"
+                                                                            value="{{ $kondisi }}">
+                                                                        <label
+                                                                            class="form-check-label">{{ ucfirst($kondisi) }}</label>
+                                                                    </div>
+                                                                @endforeach
+                                                            </td>
+
+                                                            {{-- Tahun Pemasangan --}}
+                                                            <td>{{ $alat->tahun_pemasangan }}</td>
+
+                                                            {{-- Kalibrasi Terakhir (input number tahun) --}}
+                                                            <td>
+                                                                <input type="month" 
+                                                                    name="kalibrasi[{{ $alat->id }}]" 
+                                                                    class="form-control" 
+                                                                    placeholder="Pilih bulan & tahun">
+                                                            </td>
+
+                                                            {{-- Keterangan --}}
+                                                            <td style="text-transform: capitalize">
+                                                                {{ $alat->keterangan }}
+                                                            </td>
+
+                                                            <td>
+                                                                <input type="file" name="foto_lampiran[{{ $alat->id }}]" id="input-foto-{{ $alat->id }}" class="d-none">
+                                                                <div id="preview-foto-{{ $alat->id }}"></div>
+                                                                <button type="button" class="btn btn-sm btn-outline-primary btn-upload-foto"
+                                                                    data-id="{{ $alat->id }}" 
+                                                                    data-bs-toggle="modal" 
+                                                                    data-bs-target="#modalTambahFoto">
+                                                                    Tambah Foto
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </div>
+
+                                        <div class="d-flex align-items-start mt-3">
+                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
+                                            <!-- isi Catatan -->
+                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control"
+                                                style="max-width: 50%" placeholder="Tambahkan catatan bila diperlukan..."></textarea>
                                         </div>
                                     </div>
+                                @endforeach
 
+                                <div class="d-flex justify-content-end flex-row mb-2">                         
                                     <button class="btn btn-info" id="btnSimpan">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -323,6 +278,28 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+
+                <!-- Modal Tambah Foto -->
+                <div class="modal fade" id="modalTambahFoto" tabindex="-1"
+                    aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 shadow">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalTambahFotoLabel">Upload Foto
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Tutup"></button>                                                </div>
+                            <div class="modal-body">
+                                <input type="file" id="fileFoto" class="form-control" accept="image/*">
+                                <div id="previewModalFoto" class="mt-3 text-center"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
+                                <button type="button" class="btn btn-sm btn-success" id="btnSimpanFoto">Simpan</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -406,17 +383,85 @@
         </footer>
     </main>
 
-    <script>
-        Dropzone.autoDiscover = false;
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Sukses',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonColor: '#0d6efd',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>
+    @endif
 
-        const dropzone = new Dropzone("#dropzoneArea", {
-            url: "/upload/foto",
-            paramName: "foto_alat",
-            maxFiles: 5,
-            maxFilesize: 2,
-            acceptedFiles: ".jpg,.jpeg,.png",
-            addRemoveLinks: true,
-            dictDefaultMessage: "Seret dan lepas foto di sini atau klik untuk memilih",
+    <script>
+        let idAlatDipilih = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalFoto = document.getElementById('modalTambahFoto');
+            const inputFileFoto = document.getElementById('fileFoto');
+            const previewModal = document.getElementById('previewModalFoto');
+            const btnSimpanFoto = document.getElementById('btnSimpanFoto');
+
+            // Klik tombol tambah/ganti foto
+            document.querySelectorAll('.btn-upload-foto').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    idAlatDipilih = this.dataset.id;
+                    inputFileFoto.value = '';
+                    previewModal.innerHTML = '';
+                });
+            });
+
+            // Preview di modal
+            inputFileFoto.addEventListener('change', function(e) {
+                const fileFoto = e.target.files[0];
+                if (!fileFoto) return;
+
+                const reader = new FileReader();
+                reader.onload = e => {
+                    previewModal.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded shadow">`;
+                };
+                reader.readAsDataURL(fileFoto);
+            });
+
+            // Simpan foto
+            btnSimpanFoto.addEventListener('click', function() {
+                const fileFoto = inputFileFoto.files[0];
+                if (!fileFoto) {
+                    Swal.fire('Perhatian', 'Silakan pilih foto terlebih dahulu.', 'warning');
+                    return;
+                }
+
+                const inputHidden = document.getElementById(`input-foto-${idAlatDipilih}`);
+                const previewFotoTabel = document.getElementById(`preview-foto-${idAlatDipilih}`);
+                const btnFoto = document.querySelector(`.btn-upload-foto[data-id='${idAlatDipilih}']`);
+
+                // masukkan file yang dipilih ke input 
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(fileFoto);
+                inputHidden.files = dataTransfer.files;
+
+                // tampilkan preview
+                const reader = new FileReader();
+                reader.onload = e => {
+                    previewFotoTabel.innerHTML = `
+                        <img src="${e.target.result}" alt="Foto" width="80" class="rounded shadow-sm mt-1">
+                        <p class="text-muted small mb-0">${fileFoto.name}</p>
+                    `;
+                };
+                reader.readAsDataURL(fileFoto);
+
+                // ubah tombol jadi "Ganti Foto"
+                btnFoto.textContent = 'Ganti Foto';
+                btnFoto.classList.remove('btn-outline-primary');
+                btnFoto.classList.add('btn-warning');
+
+                // tutup modal
+                bootstrap.Modal.getInstance(modalFoto).hide();
+            });
         });
     </script>
 
@@ -436,7 +481,7 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.querySelector('form').submit();
+                    document.getElementById('formInventaris').submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire({
                         title: 'Dibatalkan',

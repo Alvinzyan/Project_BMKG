@@ -20,8 +20,23 @@ class CetakLaporanController extends Controller
         return view('pdf.surat-laporan-alat');
     }
 
-    public function generatePdf()
+    // public function generatePdf()
+    // {
+    //     $pdf = Pdf::loadView('pdf.surat-cetak-pdf')
+    //         ->setPaper('A4', 'portrait');
+    //     return $pdf->stream('laporan-alat.pdf');
+    // }
+
+    public function generatePdf(Request $request)
     {
+        $nomorSurat = $request->nomor_surat; // DARI MODAL
+
+        $data = [
+            'nomor_surat' => $nomorSurat,
+            'tanggal' => now()->translatedFormat('d F Y'),
+            // data lain...
+        ];
+
         $pdf = Pdf::loadView('pdf.surat-cetak-pdf')
             ->setPaper('A4', 'portrait');
         return $pdf->stream('laporan-alat.pdf');

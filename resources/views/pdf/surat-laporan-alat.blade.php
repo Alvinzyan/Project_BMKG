@@ -111,7 +111,7 @@
         .meta-right {
             width: 55mm;
             text-align: right;
-            font-size: 11pt;
+            font-size: 12pt;
         }
 
         .recipient {
@@ -144,7 +144,7 @@
         .signature {
             width: 55mm;
             text-align: left;
-            font-size: 11pt;
+            font-size: 12pt;
         }
 
         .signature .space {

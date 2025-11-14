@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Kantor BMKG - Aplikasi Inventaris BMKG</title>
+    <title>Volt - Free Bootstrap 5 Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -130,18 +130,20 @@
                 <path d="M14 16l1 0" />
                 <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
             </svg>
-            <h2 class="fs-4 fw-bolder mb-0">Kantor Meteorologi Banyuwangi</h2>
+            <h2 class="fs-4 fw-bolder mb-0">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h2>
         </div>
 
         <div class="row">
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form id="formInventaris" action="{{ route('kantor-bmkg.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('ketapang-bwi.update') }}" method="POST" id="formUpdate">
                             @csrf
+                            @method('PUT')
                             <div class="card border-0 shadow">
                                 <div class="card-header">
                                     <div class="row align-items-center">
+
                                         <div class="col d-flex justify-content-center">
                                             <h2 class="fs-4 fw-bolder mb-3">Inventaris Alat BMKG</h2>
                                         </div>
@@ -151,7 +153,7 @@
                                                 <small class="fs-6 fw-bold text-black">
                                                     Nama Penanggung Jawab :
                                                 </small>
-                                                <small class="fs-6 fw-medium text-gray-900">{{ $user->nama_lengkap ?? '-' }}</small>
+                                                <small class="fs-6 fw-medium text-gray-900"></small>
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +184,6 @@
                                                         <th class="border-bottom">Tahun <br> Pemasangan</th>
                                                         <th class="border-bottom">Kalibrasi Terakhir</th>
                                                         <th class="border-bottom">Keterangan</th>
-                                                        <th class="border-bottom">Foto Lampiran</th>
                                                     </tr>
                                                 </thead>
 
@@ -204,44 +205,54 @@
                                                             <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
                                                             </td>
 
-                                                            {{-- Kondisi (input) --}}
+                                                            {{-- Kondisi --}}
                                                             <td>
-                                                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            name="kondisi[{{ $alat->id }}][]"
-                                                                            value="{{ $kondisi }}">
-                                                                        <label
-                                                                            class="form-check-label">{{ ucfirst($kondisi) }}</label>
-                                                                    </div>
-                                                                @endforeach
+                                                                @php
+                                                                    $selectedKondisi = old(
+                                                                        'kondisi.' . $alat->id,
+                                                                        optional($alat->pengecekanTerakhir)->kondisi,
+                                                                    );
+                                                                @endphp
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="kondisi[{{ $alat->id }}]"
+                                                                        value="baik"
+                                                                        {{ $selectedKondisi == 'baik' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label">Baik</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="kondisi[{{ $alat->id }}]"
+                                                                        value="rusak ringan"
+                                                                        {{ $selectedKondisi == 'rusak ringan' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label">Rusak
+                                                                        Ringan</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="kondisi[{{ $alat->id }}]"
+                                                                        value="rusak berat"
+                                                                        {{ $selectedKondisi == 'rusak berat' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label">Rusak Berat</label>
+                                                                </div>
                                                             </td>
 
                                                             {{-- Tahun Pemasangan --}}
                                                             <td>{{ $alat->tahun_pemasangan }}</td>
 
-                                                            {{-- Kalibrasi Terakhir (input number tahun) --}}
+                                                            {{-- Kalibrasi Terakhir --}}
                                                             <td>
-                                                                <input type="month" 
-                                                                    name="kalibrasi[{{ $alat->id }}]" 
-                                                                    class="form-control" 
-                                                                    placeholder="Pilih bulan & tahun">
+                                                                <input type="number"
+                                                                    name="kalibrasi[{{ $alat->id }}]"
+                                                                    class="form-control" min="2000"
+                                                                    max="2099" maxlength="4"
+                                                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                    value="{{ old('kalibrasi.' . $alat->id, optional($alat->pengecekanTerakhir)->kalibrasi_terakhir) }}">
                                                             </td>
 
                                                             {{-- Keterangan --}}
                                                             <td style="text-transform: capitalize">
                                                                 {{ $alat->keterangan }}
-                                                            </td>
-
-                                                            <td>
-                                                                <input type="file" name="foto_lampiran[{{ $alat->id }}]" id="input-foto-{{ $alat->id }}" class="d-none">
-                                                                <div id="preview-foto-{{ $alat->id }}"></div>
-                                                                <button type="button" class="btn btn-sm btn-outline-primary btn-upload-foto"
-                                                                    data-id="{{ $alat->id }}" 
-                                                                    data-bs-toggle="modal" 
-                                                                    data-bs-target="#modalTambahFoto">
-                                                                    Tambah Foto
-                                                                </button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -252,14 +263,55 @@
                                         <div class="d-flex align-items-start mt-3">
                                             <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
                                             <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" id="" rows="3" class="form-control"
-                                                style="max-width: 50%" placeholder="Tambahkan catatan bila diperlukan..."></textarea>
+                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
                                         </div>
                                     </div>
                                 @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">
-                                    <button class="btn btn-info" id="btnSimpan">
+                                    <button type="button" class="btn btn-sm btn-gray-100 me-2"
+                                        data-bs-toggle="modal" data-bs-target="#modalTambahFoto">
+                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M12 5l0 14" />
+                                            <path d="M5 12l14 0" />
+                                        </svg>
+                                        Tambah Foto
+                                    </button>
+
+                                    <!-- Modal Tambah Foto -->
+                                    <div class="modal fade" id="modalTambahFoto" tabindex="-1"
+                                        aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content border-0 shadow">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTambahFotoLabel">Tambah Foto
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Tutup"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <label for="">Upload Foto</label>
+                                                    <form action="/upload-foto" method="POST"
+                                                        enctype="multipart/form-data" class="dropzone"
+                                                        id="formTambahFoto">
+                                                        @csrf
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-danger"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" form="formTambahFoto"
+                                                        class="btn btn-sm btn-success">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-info" id="btnUbah">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -271,33 +323,11 @@
                                             <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                                             <path d="M14 4l0 4l-6 0l0 -4" />
                                         </svg>
-                                        Simpan
+                                        Ubah
                                     </button>
                                 </div>
                             </div>
                         </form>
-                    </div>
-                </div>
-
-                <!-- Modal Tambah Foto -->
-                <div class="modal fade" id="modalTambahFoto" tabindex="-1"
-                    aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content border-0 shadow">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalTambahFotoLabel">Upload Foto
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Tutup"></button>                                                </div>
-                            <div class="modal-body">
-                                <input type="file" id="fileFoto" class="form-control" accept="image/*">
-                                <div id="previewModalFoto" class="mt-3 text-center"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-sm btn-success" id="btnSimpanFoto">Simpan</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -396,95 +426,26 @@
     @endif
 
     <script>
-        let idAlatDipilih = null;
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const modalFoto = document.getElementById('modalTambahFoto');
-            const inputFileFoto = document.getElementById('fileFoto');
-            const previewModal = document.getElementById('previewModalFoto');
-            const btnSimpanFoto = document.getElementById('btnSimpanFoto');
-
-            // Klik tombol tambah/ganti foto
-            document.querySelectorAll('.btn-upload-foto').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    idAlatDipilih = this.dataset.id;
-                    inputFileFoto.value = '';
-                    previewModal.innerHTML = '';
-                });
-            });
-
-            // Preview di modal
-            inputFileFoto.addEventListener('change', function(e) {
-                const fileFoto = e.target.files[0];
-                if (!fileFoto) return;
-
-                const reader = new FileReader();
-                reader.onload = e => {
-                    previewModal.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded shadow">`;
-                };
-                reader.readAsDataURL(fileFoto);
-            });
-
-            // Simpan foto
-            btnSimpanFoto.addEventListener('click', function() {
-                const fileFoto = inputFileFoto.files[0];
-                if (!fileFoto) {
-                    Swal.fire('Perhatian', 'Silakan pilih foto terlebih dahulu.', 'warning');
-                    return;
-                }
-
-                const inputHidden = document.getElementById(`input-foto-${idAlatDipilih}`);
-                const previewFotoTabel = document.getElementById(`preview-foto-${idAlatDipilih}`);
-                const btnFoto = document.querySelector(`.btn-upload-foto[data-id='${idAlatDipilih}']`);
-
-                // masukkan file yang dipilih ke input 
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(fileFoto);
-                inputHidden.files = dataTransfer.files;
-
-                // tampilkan preview
-                const reader = new FileReader();
-                reader.onload = e => {
-                    previewFotoTabel.innerHTML = `
-                        <img src="${e.target.result}" alt="Foto" width="80" class="rounded shadow-sm mt-1">
-                        <p class="text-muted small mb-0">${fileFoto.name}</p>
-                    `;
-                };
-                reader.readAsDataURL(fileFoto);
-
-                // ubah tombol jadi "Ganti Foto"
-                btnFoto.textContent = 'Ganti Foto';
-                btnFoto.classList.remove('btn-outline-primary');
-                btnFoto.classList.add('btn-warning');
-
-                // tutup modal
-                bootstrap.Modal.getInstance(modalFoto).hide();
-            });
-        });
-    </script>
-
-
-    <script>
-        document.getElementById('btnSimpan').addEventListener('click', function(e) {
+        document.getElementById('btnUbah').addEventListener('click', function(e) {
             e.preventDefault();
 
             Swal.fire({
                 title: 'Apakah kamu yakin?',
-                text: "Data pengecekan alat akan disimpan.",
+                text: "Data pengecekan alat akan berubah.",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#0d6efd',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Simpan',
+                confirmButtonText: 'Ya, Ubah',
                 cancelButtonText: 'Batal',
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('formInventaris').submit();
+                    document.getElementById('formUpdate').submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire({
                         title: 'Dibatalkan',
-                        text: 'Data pengecekan alat tidak jadi disimpan.',
+                        text: 'Data pengecekan alat tidak jadi diubah.',
                         icon: 'info',
                         confirmButtonColor: '#0d6efd'
                     });

@@ -16,6 +16,7 @@ use App\Http\Controllers\DataAlatController;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+use App\Http\Controllers\InventarisAlatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,11 +76,15 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
     Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
     Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
+    Route::get('inventaris-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
+    Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
+    Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
+    Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
 
-    Route::get('inventaris-alat/pos-bandara-jember/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
-    Route::post('inventaris-alat/pos-bandara-jember/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jember.store');
-    Route::get('inventaris-alat/pos-bandara-jember/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jember.edit');
-    Route::put('inventaris-alat/pos-bandara-jember/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jember.update');
+    Route::get('inventaris-alat/pos-bandara-jmbr/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jmbr.create');
+    Route::post('inventaris-alat/pos-bandara-jmbr/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jmbr.store');
+    Route::get('inventaris-alat/pos-bandara-jmbr/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jmbr.edit');
+    Route::put('inventaris-alat/pos-bandara-jmbr/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jmbr.update');
 
     Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
     Route::get('cetak-laporan/view', [CetakLaporanController::class, 'lihatView'])->name('laporan-alat.view');
