@@ -76,10 +76,6 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
     Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
     Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
-    Route::get('inventaris-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
-    Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
-    Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
-    Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
 
     Route::get('inventaris-alat/pos-bandara-jmbr/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jmbr.create');
     Route::post('inventaris-alat/pos-bandara-jmbr/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jmbr.store');
