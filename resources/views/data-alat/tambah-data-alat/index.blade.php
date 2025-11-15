@@ -267,13 +267,12 @@
                                 <!-- Modal Edit Alat -->
                                 <div class="modal fade" id="modalEditAlat_{{ $a->id }}" tabindex="-1"
                                     aria-labelledby="modalEditAlatLabel_{{ $a->id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content border-0 rounded-2 shadow">
-                                            <div class="modal-header" style="background:#1E3D58;">
-                                                <h5 class="modal-title" id="modalEditAlatLabel_{{ $a->id }}"
-                                                    style="color:#ffffff !important;">Edit Alat - {{ $a->nama_alat }}</h5>
-                                                <button type="button" class="btn-close btn-close-white"
-                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content border-0 shadow">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-dark" id="modalEditAlatLabel_{{ $a->id }}">Edit Alat - {{ $a->nama_alat }}</h5>
+                                                <button type="button" class="btn-close btn-close-dark"
+                                                        data-bs-dismiss="modal" aria-label="Tutup"></button>
                                             </div>
 
                                             <form action="{{ route('data-alat.tambah-data-alat.update', [
@@ -310,10 +309,8 @@
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn text-white"
-                                                            style="background:#1E3D58;">Simpan</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -333,11 +330,11 @@
 
         <!-- modal tambah alat -->
         <div class="modal fade" id="modalTambahAlat_{{ Str::slug($group) }}" tabindex="-1" aria-labelledby="modalTambahAlatLabel_{{ Str::slug($group) }}" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content border-0 rounded-2 shadow">
-                    <div class="modal-header" style="background:#1E3D58;">
-                        <h5 class="modal-title" id="modalTambahAlatLabel_{{ Str::slug($group) }}" style="color:#ffffff !important;">Tambah Alat - {{ $group }}</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="modalTambahAlatLabel_{{ Str::slug($group) }}">Tambah Alat - {{ $group }}</h5>
+                        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Tutup"></button>
                     </div>
 
                     <form method="POST" action="{{ route('data-alat.tambah-data-alat.store', ['nama_lokasi' => $lokasi->nama_lokasi, 'nama_kategori' => $group]) }}">
@@ -365,8 +362,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn text-white" style="background:#1E3D58;">Simpan</button>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-sm btn-success">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -478,20 +475,19 @@
                         text: "Data yang dihapus tidak dapat dikembalikan.",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
                         confirmButtonText: 'Ya, hapus!',
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            form.submit(); // lanjut hapus kalau dikonfirmasi
+                            form.submit();
                         }
                     });
                 });
             });
         });
     </script>
-
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
