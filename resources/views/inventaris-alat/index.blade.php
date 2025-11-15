@@ -696,6 +696,22 @@
         </footer>
     </main>
 
+    @if (session('success'))
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Sukses',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
+            });
+        });
+        </script>
+    @endif
+
+    <script src="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
+
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
