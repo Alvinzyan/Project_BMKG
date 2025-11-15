@@ -17,7 +17,7 @@ class KantorBmkgController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $periode = PeriodeHelper::getPeriodeAktif();        
+        $periode = PeriodeHelper::getPeriodeAktif();
         return view('inventaris-alat.index', compact('user'))
             ->with('periode', $periode);
     }
@@ -53,9 +53,9 @@ class KantorBmkgController extends Controller
             if ($request->hasFile("foto_lampiran.$alatId")) {
                 $file = $request->file("foto_lampiran.$alatId");
                 $namaFile = time() . '_' . $file->getClientOriginalName();
-                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile); 
+                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
             }
-            
+
             Pengecekan::create([
                 'id_user' => $userId,
                 'id_alat' => $alatId,
@@ -87,13 +87,25 @@ class KantorBmkgController extends Controller
     public function edit()
     {
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
+        $periode = PeriodeHelper::getPeriodeAktif();
+
+        // $kategoris = Kategori::with([
+        //     'alats.pengecekanTerakhir',
+        //     'catatanTerakhir'
+        // ])->where('id_lokasi', $lokasi->id)->get();
 
         $kategoris = Kategori::with([
-            'alats.pengecekanTerakhir',
+            'alats' => function ($query) use ($periode) {
+                $query->with(['pengecekanTerakhir' => function ($q) use ($periode) {
+                    $q->whereBetween('created_at', [
+                        $periode['start_date'] . ' 00:00:00',
+                        $periode['end_date'] . ' 23:59:59'
+                    ])->latest();
+                }]);
+            },
             'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
-
-        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris'));
+        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris', 'periode'));
     }
 
     public function update(Request $request)
@@ -105,6 +117,8 @@ class KantorBmkgController extends Controller
             'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
+        $periode = PeriodeHelper::getPeriodeAktif();
+        
         foreach ($request->kondisi as $alatId => $kondisiList) {
             $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
             $fotoLampiranPath = null;
@@ -114,7 +128,7 @@ class KantorBmkgController extends Controller
                 $namaFile = time() . '_' . $file->getClientOriginalName();
                 $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
             }
-            
+
             Pengecekan::create([
                 'id_user' => $userId,
                 'id_alat' => $alatId,

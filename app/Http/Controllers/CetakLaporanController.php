@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use App\Helpers\PeriodeHelper;
+use Carbon\Carbon;
 
 class CetakLaporanController extends Controller
 {
@@ -29,15 +31,20 @@ class CetakLaporanController extends Controller
 
     public function generatePdf(Request $request)
     {
-        $nomorSurat = $request->nomor_surat; // DARI MODAL
+        $nomorSurat = $request->nomor_surat;
+
+        $periode = PeriodeHelper::getPeriodeAktif();
+
+        $tanggalPeriode = Carbon::parse($periode['start_date'])->translatedFormat('j');
+        $tanggalPeriode .= ' – ' . Carbon::parse($periode['end_date'])->translatedFormat('j F Y');
 
         $data = [
             'nomor_surat' => $nomorSurat,
             'tanggal' => now()->translatedFormat('d F Y'),
-            // data lain...
+            'tanggal_periode' => $tanggalPeriode
         ];
 
-        $pdf = Pdf::loadView('pdf.surat-cetak-pdf')
+        $pdf = Pdf::loadView('pdf.surat-cetak-pdf', $data)
             ->setPaper('A4', 'portrait');
         return $pdf->stream('laporan-alat.pdf');
     }

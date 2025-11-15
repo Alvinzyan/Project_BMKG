@@ -356,10 +356,10 @@
                                     <div class="col-12 mt-1">
                                         <small class="text-muted">
                                             @if($periode)
-                                            <p>
-                                                Periode aktif: Minggu ke-{{ $periode['periode_week'] }} |
-                                                ({{ \Carbon\Carbon::parse($periode['start_date'])->translatedFormat('d M Y') }} s.d.
-                                                {{ \Carbon\Carbon::parse($periode['end_date'])->translatedFormat('d M Y') }})
+                                            <p class="mb-1">
+                                                <strong>Periode Aktif</strong>:
+                                                Minggu ke-{{ $periode['periode_week'] }}
+                                                ({{ $periode['start_label'] }} – {{ $periode['end_label'] }})
                                             </p>
                                             @else
                                             <p>Periode aktif belum tersedia.</p>

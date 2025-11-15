@@ -8,39 +8,43 @@ class PeriodeHelper
 {
     public static function getPeriodeAktif()
     {
-        // Pastikan timezone aman
-        $today = Carbon::now('Asia/Jakarta')->startOfDay();
+        $tanggal = Carbon::now('Asia/Jakarta');
 
-        // Mulai dari tanggal awal (2020)
-        $start = Carbon::create(2020, 1, 1, 0, 0, 0, 'Asia/Jakarta');
+        $start = $tanggal->copy()->startOfWeek(Carbon::SATURDAY);
+        $end   = $tanggal->copy()->endOfWeek(Carbon::FRIDAY);
 
-        // Geser ke Sabtu pertama (manual)
-        while ($start->dayOfWeek !== Carbon::SATURDAY) {
-            $start->addDay();
-        }
+        return [
+            'start_date' => $start->toDateString(),
+            'end_date'   => $end->toDateString(),
 
-        // Loop periode hingga minggu ke 5000
-        $tanggal = $start->copy();
-        $minggu  = 1;
+            'start_label' => $start->translatedFormat('d M Y'),
+            'end_label'   => $end->translatedFormat('d M Y'),
 
-        while ($minggu < 5000) {
-            $awal  = $tanggal->copy();
-            $akhir = $tanggal->copy()->addDays(6);
-
-            if ($today->between($awal, $akhir)) {
-                return [
-                    'periode_year'  => $awal->year,
-                    'periode_month' => $awal->month,
-                    'periode_week'  => $minggu,
-                    'start_date'    => $awal->format('Y-m-d'),
-                    'end_date'      => $akhir->format('Y-m-d'),
-                ];
-            }
-
-            $tanggal->addWeek();
-            $minggu++;
-        }
-
-        return null;
+            // Sementara minggu tetap null agar Blade lama aman
+            'periode_year'  => null,
+            'periode_month' => null,
+            'periode_week'  => $start->weekOfYear,
+        ];
     }
+
+    public static function getPeriodeFromDate($date)
+    {
+        $tanggal = Carbon::parse($date);
+
+        return [
+            'start_date' => $tanggal->copy()->startOfWeek(Carbon::SATURDAY)->toDateString(),
+            'end_date'   => $tanggal->copy()->endOfWeek(Carbon::FRIDAY)->toDateString(),
+        ];
+    }
+
+    // Opsional
+public static function filterPengecekanByPeriode($query, $periode = null)
+{
+    $periode = $periode ?? self::getPeriodeAktif();
+
+    return $query->whereBetween('created_at', [
+        $periode['start_date'] . ' 00:00:00',
+        $periode['end_date'] . ' 23:59:59'
+    ]);
+}
 }

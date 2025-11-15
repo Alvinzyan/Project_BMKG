@@ -78,20 +78,21 @@
 
         .meta-row {
             width: 100%;
-            box-sizing: border-box;
+            font-size: 11pt;
+            white-space: nowrap;
         }
 
         .meta-left {
+            display: inline-block;
             width: 60%;
-            float: left;
-            font-size: 11pt;
+            vertical-align: top;
         }
 
         .meta-right {
-            width: 35%;
-            float: right;
+            display: inline-block;
+            width: 38%;
             text-align: right;
-            font-size: 11pt;
+            vertical-align: top;
         }
 
         .meta-left .label {
@@ -145,7 +146,7 @@
             width: 100%;
             display: flex;
             justify-content: flex-end;
-            padding-left: 150mm;
+            padding-left: 140mm;
             margin-top: 5mm;
         }
 
@@ -169,6 +170,27 @@
             text-align: center;
             margin: 0 0 2mm 0;
             font-size: 12pt;
+        }
+
+        .meta-item-two {
+            margin-bottom: 3px;
+            font-size: 11px;
+        }
+
+        .meta-item-two .label {
+            display: inline-block;
+            width: 50px;
+        }
+
+        .meta-item-two .colon {
+            display: inline-block;
+            width: 10px;
+            text-align: center;
+        }
+
+        .meta-item-two .value {
+            display: inline-block;
+            width: auto;
         }
 
         /* ==================== TABEL ==================== */
@@ -250,13 +272,13 @@
         <div class="content-wrap">
             <section class="meta-row">
                 <div class="meta-left">
-                    <div class="meta-item"><span class="label">Nomor</span>:  {{ $nomorSurat }}</div>
+                    <div class="meta-item"><span class="label">Nomor</span>: {{ $nomor_surat }}</div>
                     <div class="meta-item"><span class="label">Lampiran</span>: 1 (satu) berkas</div>
                     <div class="meta-item"><span class="label">Perihal</span>: Laporan Kondisi Aloptama<br>
                         <span class="value-indent">Stasiun Meteorologi Banyuwangi</span>
                     </div>
                 </div>
-                <div class="meta-right">Banyuwangi, 25 Juli 2025</div>
+                <div class="meta-right">Banyuwangi, {{ $tanggal }}</div>
                 <div style="clear: both;"></div>
             </section>
 
@@ -271,7 +293,7 @@
             </div>
 
             <div class="content">
-                <p>Dengan hormat, bersama ini kami sampaikan Laporan Kondisi Peralatan yang dioperasikan di Stasiun Meteorologi Banyuwangi tanggal 19 – 25 Juli 2025 (sebagaimana terlampir).</p>
+                <p>Dengan hormat, bersama ini kami sampaikan Laporan Kondisi Peralatan yang dioperasikan di Stasiun Meteorologi Banyuwangi tanggal {{ $tanggal_periode }} (sebagaimana terlampir).</p>
                 <p>Demikian Laporan Kondisi Aloptama ini kami sampaikan, atas perhatiannya diucapkan terima kasih.</p>
             </div>
 
@@ -291,12 +313,12 @@
                     <div class="meta-item-two">
                         <span class="label">Nomor</span>
                         <span class="colon">:</span>
-                        <span class="value">e.B/IJ.01.01/026/KBWI/VII/2025</span>
+                        <span class="value">{{ $nomor_surat }}</span>
                     </div>
                     <div class="meta-item-two">
                         <span class="label">Tanggal</span>
                         <span class="colon">:</span>
-                        <span class="value">16 Oktober 2025</span>
+                        <span class="value">{{ $tanggal }}</span>
                     </div>
                 </div>
             </div>
@@ -388,6 +410,91 @@
             </div>
         </div>
     </div>
+
+    <!-- ===== HALAMAN 2: DATA ALAT ===== -->
+    <!-- <div class="paper-wrap">
+        <div class="sheet">
+            <div class="header-lampiran">
+                <div class="info-lampiran">
+                    <p>Lampiran Surat</p>
+                    <div class="meta-item-two">
+                        <span class="label">Nomor</span>
+                        <span class="colon">:</span>
+                        <span class="value">{{ $nomor_surat }}</span>
+                    </div>
+                    <div class="meta-item-two">
+                        <span class="label">Tanggal</span>
+                        <span class="colon">:</span>
+                        <span class="value">{{ $tanggal }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-two">
+                <h2 class="title">DAFTAR PERALATAN OPERASIONAL</h2>
+
+                @foreach($lokasiList as $lokasi)
+                <div class="section">
+                    <p><strong>{{ $loop->iteration }}. {{ $lokasi->nama_lokasi }}</strong></p>
+                </div>
+
+                @foreach($lokasi->kategori as $kategori)
+                <p class="subtitle">{{ $kategori->nama_kategori }}</p>
+
+                {{-- TABLE --}}
+                <table style="width: 100%; border-collapse: collapse; font-size: 10px; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">NO</th>
+                            <th rowspan="2" style="width: 18%; border: 1px solid #000; padding: 3px;">NAMA ALAT</th>
+                            <th rowspan="2" style="width: 12%; border: 1px solid #000; padding: 3px;">MERK / TYPE</th>
+                            <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">JML</th>
+                            <th colspan="3" style="width: 15%; border: 1px solid #000; padding: 3px;">KONDISI</th>
+                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">TAHUN<br>PEMASANGAN</th>
+                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">KALIBRASI<br>TERAKHIR</th>
+                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">KETERANGAN</th>
+                        </tr>
+                        <tr>
+                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">B</th>
+                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">RR</th>
+                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">RB</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{-- =========================
+                                 LOOP ALAT PER KATEGORI
+                            ========================== --}}
+                        @forelse($kategori->alat as $alat)
+                        <tr>
+                            <td style="border:1px solid #000; padding:3px;">{{ $loop->iteration }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->nama }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->merk }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->jumlah }}</td>
+
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'B' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RR' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RB' ? '√' : '' }}</td>
+
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->tahun_pemasangan }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kalibrasi_terakhir }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->keterangan }}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="10" style="border:1px solid #000; padding:3px; text-align:center;">
+                                Tidak ada data peralatan.
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+                @endforeach
+                @endforeach
+
+            </div>
+        </div>
+    </div> -->
 
     <!-- ===== HALAMAN 3 ===== -->
     <div class="paper-wrap">
