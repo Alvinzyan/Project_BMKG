@@ -50,13 +50,8 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -183,7 +178,7 @@
                 <div class="icon-shape rounded d-flex align-items-center justify-content-center me-2"
                     style="width:40px; height:40px; background-color:#1E3D58; color:#fff;">
                     <!-- SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icon-tabler-database">

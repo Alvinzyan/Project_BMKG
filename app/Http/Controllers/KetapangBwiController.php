@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KetapangBwiController extends Controller
 {
@@ -23,7 +24,7 @@ class KetapangBwiController extends Controller
      */
     public function create()
     {
-        // $user = Auth::user();
+        $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
@@ -31,7 +32,7 @@ class KetapangBwiController extends Controller
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('ketapang-bwi.create', compact('lokasi', 'kategoris'));
+        return view('ketapang-bwi.create', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
@@ -39,11 +40,11 @@ class KetapangBwiController extends Controller
      */
     public function store(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
@@ -77,13 +78,16 @@ class KetapangBwiController extends Controller
      */
     public function edit()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
-            'alats.pengecekanTerakhir', 'catatanTerakhir'
+            'alats.pengecekanTerakhir',
+            'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('ketapang-bwi.edit', compact('lokasi', 'kategoris'));
+        return view('ketapang-bwi.edit', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
@@ -91,11 +95,11 @@ class KetapangBwiController extends Controller
      */
     public function update(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId]

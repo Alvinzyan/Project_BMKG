@@ -20,7 +20,7 @@ class KantorBmkgController extends Controller
 
     public function create()
     {
-        // $user = Auth::user();
+        $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
@@ -28,16 +28,16 @@ class KantorBmkgController extends Controller
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('kantor-bmkg.create', compact('lokasi', 'kategoris'));
+        return view('kantor-bmkg.create', compact('lokasi', 'kategoris', 'user'));
     }
 
     public function store(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
@@ -65,22 +65,24 @@ class KantorBmkgController extends Controller
 
     public function edit()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
             'alats.pengecekanTerakhir', 'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris'));
+        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris', 'user'));
     }
 
     public function update(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId]

@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PosBandaraJemberController extends Controller
 {
@@ -23,7 +24,7 @@ class PosBandaraJemberController extends Controller
      */
     public function create()
     {
-        // $user = Auth::user();
+        $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notodinegoro Jember')->firstOrFail();
 
@@ -31,7 +32,7 @@ class PosBandaraJemberController extends Controller
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('pos-bandara-jmbr.create', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-jmbr.create', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
@@ -39,11 +40,11 @@ class PosBandaraJemberController extends Controller
      */
     public function store(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
@@ -77,13 +78,15 @@ class PosBandaraJemberController extends Controller
      */
     public function edit()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
             'alats.pengecekanTerakhir', 'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('pos-bandara-jmbr.edit', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-jmbr.edit', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
@@ -91,11 +94,11 @@ class PosBandaraJemberController extends Controller
      */
     public function update(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId]

@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Lokasi;
 use App\Models\Pengecekan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PosBandaraBwiController extends Controller
 {
@@ -23,7 +24,7 @@ class PosBandaraBwiController extends Controller
      */
     public function create()
     {
-        // $user = Auth::user();
+        $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
 
@@ -31,7 +32,7 @@ class PosBandaraBwiController extends Controller
             ->where('id_lokasi', $lokasi->id)
             ->get();
 
-        return view('pos-bandara-bwi.create', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-bwi.create', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
@@ -39,11 +40,11 @@ class PosBandaraBwiController extends Controller
      */
     public function store(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
             Pengecekan::create([
-                // 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisi,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId],
@@ -77,6 +78,8 @@ class PosBandaraBwiController extends Controller
      */
     public function edit()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
@@ -84,30 +87,20 @@ class PosBandaraBwiController extends Controller
             'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris', 'user'));
     }
 
     public function update(Request $request)
     {
-        // $userId = Auth::id();
+        $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisi) {
-            $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
-
-            if ($pengecekan) {
-                $pengecekan->update([
-                    // 'id_user' => $userId,
-                    'kondisi' => $kondisi,
-                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? $pengecekan->kalibrasi_terakhir,
-                ]);
-            } else {
-                Pengecekan::create([
-                    // 'id_user' => $userId,
-                    'id_alat' => $alatId,
-                    'kondisi' => $kondisi,
-                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
-                ]);
-            }
+            Pengecekan::create([
+                'id_user' => $userId,
+                'id_alat' => $alatId,
+                'kondisi' => $kondisi,
+                'kalibrasi_terakhir' => $request->kalibrasi[$alatId]
+            ]);
         }
 
         if ($request->has('catatan')) {
@@ -130,6 +123,7 @@ class PosBandaraBwiController extends Controller
         return redirect()->route('pos-bandara-bwi.edit')
             ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }
+
 
 
     /**

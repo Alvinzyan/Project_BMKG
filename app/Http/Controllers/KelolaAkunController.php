@@ -44,21 +44,12 @@ class KelolaAkunController extends Controller
     {
         $validated = $request->validate([
             'nama_lengkap'   => 'required|string|max:255',
-            'nip'            => 'nullable|string|max:50|unique:users,nip',
+            'nip'            => 'required|string|max:50|unique:users,nip',
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
-            'email'          => [
-                'required',
-                'email',
-                'max:255',
-                'unique:users,email',
-                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
-            ],
             'password'       => 'required|string|min:6',
             'peran'          => 'nullable|string',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ], [
-            'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
         ]);
 
         $fotoProfilPath = null;
@@ -68,12 +59,12 @@ class KelolaAkunController extends Controller
 
         User::create([
             'nama_lengkap'  => $validated['nama_lengkap'],
-            'nip'           => $validated['nip'] ?? null,
+            'nip'           => $validated['nip'],
             'jabatan'       => $validated['jabatan'] ?? null,
             'jenis_kelamin' => $validated['jenis_kelamin'] ?? null,
-            'email'         => $validated['email'],
             'password'      => Crypt::encryptString($validated['password']),
-            'peran'         => $validated['peran'] ?? 'teknisi',
+            'peran'         => $validated['peran'],
+            
             'foto_profil'   => $fotoProfilPath,
         ]);
 
@@ -95,21 +86,12 @@ class KelolaAkunController extends Controller
 
         $request->validate([
             'nama_lengkap'   => 'required|string|max:255',
-            'nip'            => 'nullable|string|max:50|unique:users,nip,' . $id,
+            'nip'            => 'required|string|max:50|unique:users,nip,' . $id,
             'jabatan'        => 'nullable|string|max:100',
             'jenis_kelamin'  => 'nullable|in:laki laki,perempuan',
-            'email'          => [
-                'required',
-                'email',
-                'max:255',
-                'unique:users,email,' . $id,
-                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id|id|ac\.id|net|org)$/'
-            ],
             'password'       => 'nullable|string|min:6',
             'peran'          => 'nullable|string',
             'foto_profil'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ], [
-            'email.regex' => 'Format email tidak valid. Gunakan email yang berakhiran .com, .co.id, .ac.id, .id, .net, atau .org',
         ]);
 
         session()->forget('edit_user_id');
@@ -118,8 +100,7 @@ class KelolaAkunController extends Controller
         $user->nip           = $request->nip ?? null;
         $user->jabatan       = $request->jabatan ?? null;
         $user->jenis_kelamin = $request->jenis_kelamin ?? null;
-        $user->email         = $request->email;
-        $user->peran         = $request->peran ?? 'teknisi';
+        $user->peran         = $request->peran;
 
         if ($request->filled('password')) {
             $user->password = Crypt::encryptString($request->password);
@@ -134,6 +115,26 @@ class KelolaAkunController extends Controller
 
         return redirect()->route('kelola-akun.index')
             ->with('success', 'Akun berhasil diperbarui.');
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Validasi password baru
+        $request->validate([
+            'new_password' => 'required|string|min:6|confirmed',
+        ], [
+            'new_password.required' => 'Password baru wajib diisi.',
+            'new_password.min' => 'Password minimal 6 karakter.',
+            'new_password.confirmed' => 'Konfirmasi password tidak cocok.',
+        ]);
+
+        // Enkripsi dan simpan password baru
+        $user->password = Crypt::encryptString($request->new_password);
+        $user->save();
+
+        return redirect()->route('kelola-akun.index')->with('success', 'Password berhasil diperbarui.');
     }
 
     public function destroy($id)

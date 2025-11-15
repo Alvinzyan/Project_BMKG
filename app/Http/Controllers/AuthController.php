@@ -16,34 +16,46 @@ class AuthController extends Controller
 
     public function login_action(Request $request)
     {
+        // Validasi input NIP dan password
         $request->validate([
-            'email' => [
-                'required',
-                'regex:/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.(com|co\.id|id|ac\.id|net|org)$/'
-            ],
+            'nip' => 'required|string|max:50',
             'password' => 'required|min:6|max:30',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        // Cari user berdasarkan NIP
+        $user = User::where('nip', $request->nip)->first();
 
-        if (!$user) {
-            // Jika email tidak ditemukan
-            return back()->with('error', 'Email atau Kata Sandi yang anda masukkan salah.')->onlyInput('email');
-        }
+        if ($user) {
+            try {
+                // Dekripsi password terenkripsi
+                $decryptedPassword = Crypt::decryptString($user->password);
 
-        try {
-            $decryptedPassword = Crypt::decryptString($user->password);
+                // Cek kecocokan password
+                if ($decryptedPassword === $request->password) {
+                    Auth::login($user, $request->has('remember'));
+                    $request->session()->regenerate();
 
-            if ($decryptedPassword === $request->password) {
-                Auth::login($user, $request->has('remember'));
-                $request->session()->regenerate();
-                return redirect('/inventaris-alat')->with('success', 'Login berhasil.');
-            } else {
-                return back()->with('error', 'Email atau Kata Sandi yang anda masukkan salah.')->onlyInput('email');
+                    // Arahkan sesuai peran
+                    if ($user->peran == 'admin') {
+                        return redirect()->route('dashboard-admin.index')->with('success', 'Login berhasil sebagai admin.');
+                    }
+
+                    if ($user->peran == 'teknisi') {
+                        return redirect('/inventaris-alat')->with('success', 'Login berhasil sebagai teknisi.');
+                    }
+
+                    // Default jika tidak ada peran spesifik
+                    return redirect()->route('dashboard')->with('success', 'Login berhasil.');
+                } else {
+                    return back()->withErrors(['nip', 'password' => 'NIP atau password salah.'])->onlyInput('nip', 'paswword');
+                }
+
+            } catch (\Exception $e) {
+                return back()->withErrors(['nip' => 'NIP tidak valid atau terenkripsi dengan format berbeda.'])->onlyInput('nip');
             }
-        } catch (\Exception $e) {
-            return back()->with('error', 'Terjadi kesalahan pada sistem autentikasi.')->onlyInput('email');
         }
+
+        return back()->withErrors(['nip' => 'NIP tidak ditemukan.'])->onlyInput('nip');
     }
 
     public function logout(Request $request)

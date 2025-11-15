@@ -50,13 +50,8 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -87,29 +82,34 @@
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                             <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">Masuk Ke Akun Anda</h1>
+                                <h1 class="mb-0 h2 fw-bolder">Login</h1>
+                                <p class="fw-bold">Aplikasi Inventaris Alat BMKG</p>
                             </div>
                             <form action="{{ route('auth.login') }}" method="POST" class="mt-4">
                                 @csrf
                                 <!-- Form -->
                                 <div class="form-group mb-4">
-                                    <label for="email">Email</label>
+                                    <label for="nip">NIP</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor"
-                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <svg class="icon icon-xs text-gray-600" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="icon icon-tabler icons-tabler-outline icon-tabler-id">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path
-                                                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
-                                                </path>
-                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
-                                                </path>
+                                                    d="M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+                                                <path d="M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path d="M15 8l2 0" />
+                                                <path d="M15 12l2 0" />
+                                                <path d="M7 16l10 0" />
                                             </svg>
                                         </span>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                            placeholder="example@email.com" id="email" name="email" autofocus
-                                            required>
+                                        <input type="text" class="form-control @error('nip') is-invalid @enderror"
+                                            placeholder="Masukkan NIP Anda" id="nip" name="nip" required>
                                         <div class="invalid-feedback">
-                                            @error('email')
+                                            @error('nip')
                                                 {{ $message }}
                                             @enderror
                                         </div>
@@ -123,11 +123,14 @@
                                         <label for="password">Kata Sandi</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon2">
-                                                <svg class="icon icon-xs text-gray-600" fill="currentColor"
-                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                                        clip-rule="evenodd"></path>
+                                                <svg class="icon icon-xs text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-key">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z" />
+                                                    <path d="M15 9h.01" />
                                                 </svg>
                                             </span>
 

@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Aplikasi Inventaris Alat</title>
     <style>
         * {
             margin: 0;
@@ -25,15 +31,25 @@
 
         header {
             display: flex;
-            justify-content: flex-start;
             align-items: center;
-            padding: 20px 50px;
+            gap: 0.938rem;
+            padding: 1.25rem 3.125rem;
+        }
+
+        header .logo-img {
+            width: 3rem;
+            height: auto;
+            transform: translateY(-68px);
+            animation: fadeSlide 1.2s ease-out forwards;
         }
 
         header .logo {
-            font-size: 24px;
+            font-size: 2rem;
             font-weight: bold;
             color: #002B5B;
+            transform: translateY(-68px);
+            animation: fadeSlide 1.2s ease-out forwards;
+            animation-delay: 0.3s;
         }
 
         .welcome {
@@ -50,33 +66,33 @@
         }
 
         .welcome h1 {
-            font-size: 52px;
+            font-size: 3.25rem;
             font-weight: bold;
             margin-bottom: 15px;
             color: #002B5B;
         }
 
         .welcome p {
-            font-size: 22px;
+            font-size: 1.375rem;
             margin-bottom: 30px;
             color: #004080;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 0.75rem 1.875rem;
             background-color: #004080;
             color: #fff;
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: bold;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 1.875rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeSlide 1s ease-out forwards;
-            animation-delay: 0.5s;
+            animation-delay: 0.4s;
         }
 
         .btn:hover {
@@ -103,12 +119,14 @@
 
 <body>
     <header>
-        <div class="logo">LOGO</div>
+        <img src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" class="logo-img">
+        <div class="logo">Stamet Banyuwangi</div>
     </header>
 
+
     <section class="welcome">
-        <h1>Selamat Datang di Website Kami</h1>
-        <p>Kami senang Anda berkunjung, silakan masuk untuk melanjutkan.</p>
+        <h1>Selamat Datang di Aplikasi Inventaris Alat BMKG</h1>
+        <p>Silakan masuk untuk melanjutkan.</p>
         <a href="{{ route('auth.login') }}" class="btn">Masuk</a>
     </section>
 

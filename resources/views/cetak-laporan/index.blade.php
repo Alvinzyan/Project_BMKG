@@ -50,13 +50,8 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -131,7 +126,7 @@
             </div>
         </div>
 
-        <div class="card-three border-0 shadow mt-4">
+        <!-- <div class="card-three border-0 shadow mt-4">
             <div class="card-body">
                 <h2 class="fw-bolder fs-4">Form Data Surat</h2>
 
@@ -173,7 +168,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-12 col-xl-12">
@@ -184,7 +179,7 @@
                                 <h2 class="fs-4 fw-bolder mb-0">Laporan Inventaris Alat BMKG</h2>
                             </div>
 
-                            <div class="card-four border-0 shadow mt-2 px-4 py-3">
+                            <div class="card-four border-0 shadow mt-2 px-4 py-3 bg-white">
                                 <h5 class="fw-bold fs-5">
                                     Judul Laporan
                                 </h5>
@@ -193,17 +188,19 @@
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                                 </p>
 
-                                <div class="col">
-                                    <a href="">
+                                <div class="col mb-3">
+                                    <!-- <a href="{{ route('laporan-alat.view') }}">
                                         <button class="btn btn-info">Lihat Laporan</button>
-                                    </a>
+                                    </a> -->
 
-                                    <a href="">
+                                    <a href="{{ route('laporan-alat.pdf') }}" target="_blank">
                                         <button class="btn btn-danger">Cetak Laporan</button>
                                     </a>
                                 </div>
-                            </div>
 
+                                <iframe src="{{ route('laporan-alat.view') }}" width="100%" height="600px" style="border: none;" loading="lazy" title="Laporan Lihat View"></iframe>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -289,7 +286,7 @@
     </main>
 
     <!-- Periode -->
-     <style>
+    <style>
         /* highlight minggu */
         .week-highlight {
             background-color: rgba(0, 123, 255, 0.2) !important;
@@ -314,8 +311,10 @@
 
         const kalender = flatpickr("#periode", {
             dateFormat: "d-m-Y",
-            locale: { firstDayOfWeek: 6 }, // Kalender dimulai dari Sabtu
-            onChange: function (tanggalTerpilih, stringTanggal, instansi) {
+            locale: {
+                firstDayOfWeek: 6
+            }, // Kalender dimulai dari Sabtu
+            onChange: function(tanggalTerpilih, stringTanggal, instansi) {
                 if (tanggalTerpilih.length > 0) {
                     const [awal, akhir] = hitungRentangMinggu(tanggalTerpilih[0]);
 
@@ -340,7 +339,7 @@
                     }, 50);
                 }
             },
-            onMonthChange: function (tanggalTerpilih, stringTanggal, instansi) {
+            onMonthChange: function(tanggalTerpilih, stringTanggal, instansi) {
                 // Pastikan highlight tetap muncul saat berpindah bulan
                 if (tanggalTerpilih.length > 0) {
                     const [awal, akhir] = hitungRentangMinggu(tanggalTerpilih[0]);

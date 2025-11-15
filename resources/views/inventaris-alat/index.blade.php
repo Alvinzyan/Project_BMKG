@@ -50,13 +50,8 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -250,7 +245,7 @@
             </div>
 
             <div class="col-12 col-sm-6 col-xl-3 mb-4">
-                <a href="{{ route('pos-bandara-jember.create') }}" class="card-link">
+                <a href="{{ route('pos-bandara-jmbr.create') }}" class="card-link">
                     <div class="card-two border-0 shadow text-center hover-card">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center">
                             <!-- Ikon -->
@@ -282,7 +277,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <a href="">
                     <div class="card-two border-0 shadow hover-card">
@@ -327,7 +322,7 @@
                     </div>
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-12 col-xl-12">

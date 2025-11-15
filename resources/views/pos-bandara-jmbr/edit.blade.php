@@ -50,13 +50,8 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -137,7 +132,7 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="{{ route('pos-bandara-bwi.update') }}" method="POST" id="formUpdate">
+                        <form action="{{ route('pos-bandara-jmbr.update') }}" method="POST" id="formUpdate">
                             @csrf
                             @method('PUT')
                             <div class="card border-0 shadow">
@@ -150,7 +145,7 @@
                                         <div class="card-info border-0 shadow py-2 mb-3">
                                             <div class="col-12">
                                                 <small class="fs-6 fw-bold text-black">
-                                                    Nama Penanggung Jawab :
+                                                    Nama Penanggung Jawab : {{ $user->nama_lengkap }}
                                                 </small>
                                                 <small class="fs-6 fw-medium text-gray-900"></small>
                                             </div>

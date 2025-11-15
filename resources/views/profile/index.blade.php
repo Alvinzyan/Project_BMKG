@@ -50,13 +50,8 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -125,12 +120,12 @@
                                     Profil
                                 </button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="ubah-password-tab" data-bs-toggle="tab" data-bs-target="#ubah-password"
                                     type="button" role="tab" aria-controls="ubah-password" aria-selected="false">
                                     Ubah Password
                                 </button>
-                            </li>
+                            </li> --}}
                         </ul>
 
                         <div class="tab-content" id="profileTabContent">
@@ -166,7 +161,7 @@
                                 </div>
                             </div>
 
-                            <!-- Ubah Password -->
+                            {{-- <!-- Ubah Password -->
                             <div class="tab-pane fade" id="ubah-password" role="tabpanel" aria-labelledby="ubah-password-tab">
                                 <form>
                                     <div class="mb-3">
@@ -183,7 +178,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-sm text-white" style="background-color:#1E3D58;">Simpan Perubahan</button>
                                 </form>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
