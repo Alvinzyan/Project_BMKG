@@ -60,8 +60,8 @@ class KetapangBwiController extends Controller
             $fotoLampiranPath = null;
             if ($request->hasFile("foto_lampiran.$alatId")) {
                 $file = $request->file("foto_lampiran.$alatId");
-                $namaFile = time() . '_' . $file->getClientOriginalName();
-                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile); 
+                $namaFile = time() . '.' . $file->getClientOriginalExtension();
+                $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
             }
             
             Pengecekan::create([
@@ -84,7 +84,7 @@ class KetapangBwiController extends Controller
             }
         }
 
-        return redirect()->route('ketapang-bwi.create')->with('success', 'Data pengecekan alat berhasil disimpan.');
+        return redirect()->route('kantor-bmkg.index')->with('success', 'Data pengecekan alat berhasil disimpan.');
     }
 
     /**
@@ -127,17 +127,27 @@ class KetapangBwiController extends Controller
 
             if ($request->hasFile("foto_lampiran.$alatId")) {
                 $file = $request->file("foto_lampiran.$alatId");
-                $namaFile = time() . '_' . $file->getClientOriginalName();
+                $namaFile = time() . '.' . $file->getClientOriginalExtension();
                 $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
             }
             
-            Pengecekan::create([
-                'id_user' => $userId,
-                'id_alat' => $alatId,
-                'kondisi' => $kondisiArray,
-                'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
-                'foto_lampiran' => $fotoLampiranPath,
-            ]);
+            $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
+            if ($pengecekan) {
+                $pengecekan->update([
+                    'id_user' => $userId,
+                    'kondisi' => $kondisiArray,
+                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                    'foto_lampiran' => $fotoLampiranPath ? str_replace('public/','',$fotoLampiranPath) : $pengecekan->foto_lampiran,
+                ]);
+            } else {
+                Pengecekan::create([
+                    'id_user' => $userId,
+                    'id_alat' => $alatId,
+                    'kondisi' => $kondisiArray,
+                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                    'foto_lampiran' => $fotoLampiranPath ? str_replace('public/','',$fotoLampiranPath) : null,
+                ]);
+            }
         }
 
         if ($request->has('catatan')) {
@@ -157,7 +167,7 @@ class KetapangBwiController extends Controller
             }
         }
 
-        return redirect()->route('ketapang-bwi.edit')
+        return redirect()->route('kantor-bmkg.index')
             ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }
 
