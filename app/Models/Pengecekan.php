@@ -14,7 +14,8 @@ class Pengecekan extends Model
     protected $casts = [
         'kondisi' => 'array', 
     ];
-     public function user() {
+
+    public function user() {
         return $this->belongsTo(User::class, 'id_user');
     }
 
