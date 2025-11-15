@@ -20,6 +20,6 @@ class Alat extends Model
 
     public function pengecekanTerakhir()
     {
-        return $this->hasOne(Pengecekan::class, 'id_alat')->latest();
+        return $this->hasOne(Pengecekan::class, 'id_alat')->latest('created_at');
     }
 }
