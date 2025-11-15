@@ -139,7 +139,7 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="{{ route('ketapang-bwi.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="formInventaris" action="{{ route('ketapang-bwi.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card border-0 shadow">
                                 <div class="card-header">
@@ -172,7 +172,8 @@
                                                     <col style="width: 25%;">
                                                     <col style="width: 3%;">
                                                     <col style="width: 11%;">
-                                                    <col style="width: 20%;">
+                                                    <col style="width: 10%;">
+                                                    <col style="width: 15%;">
                                                 </colgroup>
                                                 <thead class="thead-white">
                                                     <tr>
