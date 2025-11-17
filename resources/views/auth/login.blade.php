@@ -27,11 +27,9 @@
     <meta name="keywords" content="bmkg, volt dashboard, login, bootstrap 5">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Tabler Icon -->
@@ -45,6 +43,7 @@
 
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         body {
@@ -92,56 +91,82 @@
 
 <body>
     <main>
-        <section class="vh-lg-100 d-flex align-items-center justify-content-center">
+        <section class="vh-100 d-flex align-items-center justify-content-center">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-8 col-lg-5">
-                        <div class="login-card p-4 p-lg-5">
-                            <div class="text-center mb-4">
+                <div class="row justify-content-center form-bg-image">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
                                 <img src="{{ asset('volt/assets/img/BMG_2003.png') }}"
                                     alt="Logo Instansi" style="width: 100px; height: 100px;">
-                                <h3 class="login-title">Aplikasi Inventaris BMKG</h3>
-                                <p class="text-muted small mb-0">Silakan masuk untuk melanjutkan</p>
+                                <h1 class="mb-0 h2 fw-bolder mt-2">Login</h1>
+                                <p class="fw-bold">Aplikasi Inventaris Alat BMKG</p>
                             </div>
+
 
                             <form action="{{ route('auth.login') }}" method="POST" class="mt-4">
                                 @csrf
                                 <!-- NIP -->
                                 <div class="form-group mb-4">
-                                    <label for="nip" class="fw-semibold">NIP</label>
+                                    <label for="nip">NIP</label>
                                     <div class="input-group">
-                                        <span class="input-group-text">
-                                            <svg class="icon icon-xs text-gray-600" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M5.121 17.804A9 9 0 1118.879 17.804M12 11a4 4 0 100-8 4 4 0 000 8z" />
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <svg class="icon icon-xs text-gray-600" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="icon icon-tabler icons-tabler-outline icon-tabler-id">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path
+                                                    d="M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+                                                <path d="M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path d="M15 8l2 0" />
+                                                <path d="M15 12l2 0" />
+                                                <path d="M7 16l10 0" />
                                             </svg>
                                         </span>
                                         <input type="text" class="form-control @error('nip') is-invalid @enderror"
                                             placeholder="Masukkan NIP Anda" id="nip" name="nip" required>
                                         <div class="invalid-feedback">
-                                            @error('nip') {{ $message }} @enderror
+                                            @error('nip')
+                                            {{ $message }}
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
+                                <!-- End of Form -->
 
-                                <!-- Password -->
-                                <div class="form-group mb-3">
-                                    <label for="password" class="fw-semibold">Kata Sandi</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor"
-                                                viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                        </span>
-                                        <input type="password" placeholder="Masukkan kata sandi akun anda"
-                                            class="form-control @error('password') is-invalid @enderror" id="password"
-                                            name="password" required>
-                                        <div class="invalid-feedback">
-                                            @error('password') {{ $message }} @enderror
+                                <div class="form-group">
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <label for="password">Kata Sandi</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon2">
+                                                <svg class="icon icon-xs text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-key">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z" />
+                                                    <path d="M15 9h.01" />
+                                                </svg>
+                                            </span>
+
+                                            <input type="password" placeholder="Masukkan kata sandi akun anda"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                id="password" name="password" required>
+
+                                            <!-- Tombol Lihat Password -->
+                                            <button type="button" class="input-group-text bg-white btn-toggle-password" style="cursor:pointer;">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+
+                                            <div class="invalid-feedback">
+                                                @error('password')
+                                                {{ $message }}
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -210,6 +235,25 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.closest('.input-group').querySelector('input');
+                    const icon = this.querySelector('i');
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.replace('bi-eye', 'bi-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.replace('bi-eye-slash', 'bi-eye');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

@@ -66,6 +66,7 @@ class KetapangBwiController extends Controller
             
             Pengecekan::create([
                 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisiArray,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
@@ -100,13 +101,15 @@ class KetapangBwiController extends Controller
      */
     public function edit()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
             'alats.pengecekanTerakhir', 'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('ketapang-bwi.edit', compact('lokasi', 'kategoris'));
+        return view('ketapang-bwi.edit', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**

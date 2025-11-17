@@ -37,12 +37,6 @@ class KantorBmkgController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'kondisi' => 'required|array',
-            'kalibrasi' => 'nullable|array',
-            'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
-
         $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisiList) {
@@ -86,6 +80,8 @@ class KantorBmkgController extends Controller
 
     public function edit()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
         $periode = PeriodeHelper::getPeriodeAktif();
 
@@ -105,24 +101,60 @@ class KantorBmkgController extends Controller
             },
             'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
-        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris', 'periode'));
+
+        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris', 'user'));
     }
+
+    // public function update(Request $request)
+    // {
+    //     $userId = Auth::id();
+
+    //     foreach ($request->kondisi as $alatId => $kondisi) {
+    //         Pengecekan::create([
+    //             'id_user' => $userId,
+    //             'id_alat' => $alatId,
+    //             'kondisi' => $kondisi,
+    //             'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+    //             'foto_lampiran' => $fotoLampiranPath,
+    //         ]);
+    //     }
+
+    //     if ($request->has('catatan')) {
+    //         foreach ($request->catatan as $kategoriId => $isi) {
+    //             if ($isi) {
+    //                 $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+
+    //                 if ($catatan) {
+    //                     $catatan->update(['isi_catatan' => $isi]);
+    //                 } else {
+    //                     CatatanKategori::create([
+    //                         'id_kategori' => $kategoriId,
+    //                         'isi_catatan' => $isi,
+    //                     ]);
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     return redirect()->route('kantor-bmkg.edit')
+    //         ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
+    // }
 
     public function update(Request $request)
     {
-        $userId = Auth::id();
         $request->validate([
             'kondisi' => 'required|array',
             'kalibrasi' => 'nullable|array',
             'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $periode = PeriodeHelper::getPeriodeAktif();
-        
-        foreach ($request->kondisi as $alatId => $kondisiList) {
-            $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
-            $fotoLampiranPath = null;
+        $userId = Auth::id();
 
+        foreach ($request->kondisi as $alatId => $kondisiList) {
+
+            $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
+
+            $fotoLampiranPath = null;
             if ($request->hasFile("foto_lampiran.$alatId")) {
                 $file = $request->file("foto_lampiran.$alatId");
                 $namaFile = time() . '_' . $file->getClientOriginalName();
@@ -134,10 +166,11 @@ class KantorBmkgController extends Controller
                 'id_alat' => $alatId,
                 'kondisi' => $kondisiArray,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
-                'foto_lampiran' => $fotoLampiranPath,
+                'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : null,
             ]);
         }
 
+        // === UPDATE CATATAN ===
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {
@@ -154,6 +187,7 @@ class KantorBmkgController extends Controller
                 }
             }
         }
+
         return redirect()->route('kantor-bmkg.edit')
             ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }

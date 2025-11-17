@@ -99,13 +99,15 @@ class PosBandaraJemberController extends Controller
      */
     public function edit()
     {
-        $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notohadinegoro Jember')->firstOrFail();
+        $user = Auth::user();
+
+        $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
             'alats.pengecekanTerakhir', 'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('pos-bandara-jmbr.edit', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-jmbr.edit', compact('lokasi', 'kategoris', 'user'));
     }
 
     /**
@@ -131,6 +133,7 @@ class PosBandaraJemberController extends Controller
             }
             
             Pengecekan::create([
+                'id_user' => $userId,
                 'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisiArray,

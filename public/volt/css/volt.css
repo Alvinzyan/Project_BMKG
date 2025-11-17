@@ -4743,6 +4743,29 @@ textarea.form-control-lg {
     box-shadow: none;
 }
 
+.btn-login {
+    color: #ffffff;
+    background-color: #004080; /* sama dengan .btn */
+    border-color: #004080;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 
+                0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.btn-login:hover {
+    color: #ffffff;
+    background-color: #002b5b;
+    border-color: #002b5b;
+}
+
+.btn-check:focus + .btn-login,
+.btn-login:focus {
+    color: #ffffff;
+    background-color: #002b5b;
+    border-color: #002b5b;
+    box-shadow: 0 0 0 0.18rem rgba(0, 64, 128, 0.4);
+}
+
+
 .btn-primary {
     color: #ffffff;
     background-color: #1F2937;
@@ -23025,7 +23048,7 @@ textarea.form-control-lg {
 }
 
 .sidebar .nav-link .sidebar-icon {
-    margin-right: 0.5rem;
+    margin-right: 0.2rem;
     color: #ffffff;
 }
 

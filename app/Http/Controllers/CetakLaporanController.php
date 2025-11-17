@@ -6,6 +6,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Helpers\PeriodeHelper;
 use Carbon\Carbon;
+use App\Models\Lokasi;
+
 
 class CetakLaporanController extends Controller
 {
@@ -17,9 +19,43 @@ class CetakLaporanController extends Controller
         return view('cetak-laporan.index');
     }
 
-    public function lihatView()
+    public function lihatView(Request $request)
     {
-        return view('pdf.surat-laporan-alat');
+        $start = $request->periode_start;
+        $end   = $request->periode_end;
+
+        if ($start && $end) {
+            $lokasiList = Lokasi::with([
+                'kategoris.alats' => function ($q) use ($start, $end) {
+                    $q->whereHas('pengecekans', function ($x) use ($start, $end) {
+                        $x->whereBetween('tanggal_pengecekan', [$start, $end]);
+                    });
+                },
+                'kategoris.catatanKategori',
+
+                'kategoris.alats.pengecekans' => function ($q) {
+                    $q->whereNotNull('foto_lampiran');
+                }
+
+            ])->get();
+        } else {
+            $lokasiList = Lokasi::with([
+                'kategoris.alats',
+                'kategoris.catatanKategori',
+
+                'kategoris.alats.pengecekans' => function ($q) {
+                    $q->whereNotNull('foto_lampiran');
+                }
+
+            ])->get();
+        }
+
+        return view('pdf.surat-laporan-alat', [
+            'tanggal' => now()->translatedFormat('d F Y'),
+            'lokasiList' => $lokasiList,
+            'periode_start' => $start,
+            'periode_end' => $end,
+        ]);
     }
 
     // public function generatePdf()
@@ -38,10 +74,13 @@ class CetakLaporanController extends Controller
         $tanggalPeriode = Carbon::parse($periode['start_date'])->translatedFormat('j');
         $tanggalPeriode .= ' – ' . Carbon::parse($periode['end_date'])->translatedFormat('j F Y');
 
+        $lokasiList = Lokasi::with(['kategoris.alats', 'kategoris.catatanKategori'])->get();
+
         $data = [
             'nomor_surat' => $nomorSurat,
             'tanggal' => now()->translatedFormat('d F Y'),
-            'tanggal_periode' => $tanggalPeriode
+            'tanggal_periode' => $tanggalPeriode,
+            'lokasiList' => $lokasiList
         ];
 
         $pdf = Pdf::loadView('pdf.surat-cetak-pdf', $data)

@@ -50,13 +50,7 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -117,19 +111,24 @@
                 </svg>
             </a>
 
-            <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 21l18 0" />
-                <path d="M9 8l1 0" />
-                <path d="M9 12l1 0" />
-                <path d="M9 16l1 0" />
-                <path d="M14 8l1 0" />
-                <path d="M14 12l1 0" />
-                <path d="M14 16l1 0" />
-                <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
-            </svg>
+            <div class="icon-shape rounded d-flex align-items-center justify-content-center me-2"
+                style="width:40px; height:40px; background-color:#1E3D58; color:#fff;">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-building">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 21l18 0" />
+                    <path d="M9 8l1 0" />
+                    <path d="M9 12l1 0" />
+                    <path d="M9 16l1 0" />
+                    <path d="M14 8l1 0" />
+                    <path d="M14 12l1 0" />
+                    <path d="M14 16l1 0" />
+                    <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
+                </svg>
+            </div>
+
             <h2 class="fs-4 fw-bolder mb-0">Kantor Meteorologi Banyuwangi</h2>
         </div>
 
@@ -137,7 +136,7 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form id="formInventaris" action="{{ route('kantor-bmkg.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="formCreate" action="{{ route('kantor-bmkg.store') }}" method="POST">
                             @csrf
                             <div class="card border-0 shadow">
                                 <div class="card-header">
@@ -149,7 +148,7 @@
                                         <div class="card-info border-0 shadow py-2 mb-3">
                                             <div class="col-12">
                                                 <small class="fs-6 fw-bold text-black">
-                                                    Nama Penanggung Jawab :
+                                                    Nama Penanggung Jawab : {{ $user->nama_lengkap }}
                                                 </small>
                                                 <small class="fs-6 fw-medium text-gray-900">{{ $user->nama_lengkap ?? '-' }}</small>
                                             </div>
@@ -480,7 +479,7 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('formInventaris').submit();
+                    document.getElementById('formCreate').submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire({
                         title: 'Dibatalkan',

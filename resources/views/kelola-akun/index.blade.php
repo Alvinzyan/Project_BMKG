@@ -50,13 +50,8 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -106,76 +101,6 @@
         <div class="row">
             <div class="col-12 col-xl-12">
                 <div class="row">
-                    <div class="col-12 mb-4">
-                        <div class="row g-3">
-                            <!-- Card Total User -->
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card text-white" style="background-color: #1E3D58;">
-                                    <div class="card-body d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                            <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                                            <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                            <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                                            <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                            <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
-                                        </svg>
-                                        <div>
-                                            <h5 class="card-title mb-0">Total User</h5>
-                                            <p class="card-text fs-4 fw-bolder">{{ $users->count() }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card Admin -->
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card text-white" style="background-color: #1E3D58;">
-                                    <div class="card-body d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-cog">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h2.5" />
-                                            <path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                            <path d="M19.001 15.5v1.5" />
-                                            <path d="M19.001 21v1.5" />
-                                            <path d="M22.032 17.25l-1.299 .75" />
-                                            <path d="M17.27 20l-1.3 .75" />
-                                            <path d="M15.97 17.25l1.3 .75" />
-                                            <path d="M20.733 20l1.3 .75" />
-                                        </svg>
-                                        <div>
-                                            <h5 class="card-title mb-0">Admin</h5>
-                                            <p class="card-text fs-4 fw-bolder">
-                                                {{ $users->where('peran', 'admin')->count() }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card Teknisi -->
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card text-white" style="background-color: #1E3D58;">
-                                    <div class="card-body d-flex align-items-center">
-                                        <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tool">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
-                                        </svg>
-                                        <div>
-                                            <h5 class="card-title mb-0">Teknisi</h5>
-                                            <p class="card-text fs-4 fw-bolder">
-                                                {{ $users->where('peran', 'teknisi')->count() }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                     <div class="row g-3 mt-2">
                         <div class="col-12">
                             <div class="card shadow" style="background-color:#1E3D58; border:0;">
@@ -225,9 +150,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($users as $index => $user)
+                                            @php $no = 1; @endphp
+
+                                            @forelse ($users as $user)
+                                            @if($user->peran !== 'teknisi')
+                                            @continue
+                                            @endif
+
                                             <tr>
-                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $no++ }}</td>
                                                 <td>{{ $user->nama_lengkap }}</td>
                                                 <td>{{ $user->nip }}</td>
                                                 <td>{{ $user->jabatan ?: '-' }}</td>
@@ -237,7 +168,6 @@
                                                     <a class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLihatAkun{{ $user->id }}">
                                                         <i class="bi bi-eye"></i> Lihat
                                                     </a>
-
                                                     <button type="button" class="btn btn-sm btn-primary"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#modalEditAkun{{ $user->id }}">
@@ -252,7 +182,6 @@
                                                         data-bs-target="#modalUbahPassword{{ $user->id }}">
                                                         <i class="bi bi-key"></i> Ubah Password
                                                     </button>
-
                                                 </td>
                                             </tr>
 

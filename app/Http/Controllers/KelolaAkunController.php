@@ -66,7 +66,7 @@ class KelolaAkunController extends Controller
             'jenis_kelamin' => $validated['jenis_kelamin'] ?? null,
             'password'      => Crypt::encryptString($validated['password']),
             'peran'         => $validated['peran'],
-
+            
             'foto_profil'   => $fotoProfilPath,
         ]);
 
@@ -99,12 +99,15 @@ class KelolaAkunController extends Controller
 
         session()->forget('edit_user_id');
 
-        $user->nama_lengkap   = $request->nama_lengkap;
-        $user->nip            = $request->nip;
-        $user->jabatan        = $request->jabatan ?? null;
-        $user->jenis_kelamin  = $request->jenis_kelamin ?? null;
-        // peran tetap $user->peran
-        // password tidak diubah di sini
+        $user->nama_lengkap  = $request->nama_lengkap;
+        $user->nip           = $request->nip ?? null;
+        $user->jabatan       = $request->jabatan ?? null;
+        $user->jenis_kelamin = $request->jenis_kelamin ?? null;
+        $user->peran         = $request->peran;
+
+        if ($request->filled('password')) {
+            $user->password = Crypt::encryptString($request->password);
+        }
 
         if ($request->hasFile('foto_profil')) {
             $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');

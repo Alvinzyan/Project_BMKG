@@ -65,6 +65,7 @@ class PosBandaraBwiController extends Controller
             
             Pengecekan::create([
                 'id_user' => $userId,
+                'id_user' => $userId,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisiArray,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
@@ -99,6 +100,8 @@ class PosBandaraBwiController extends Controller
      */
     public function edit()
     {
+        $user = Auth::user();
+
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
 
         $kategoris = Kategori::with([
@@ -106,7 +109,7 @@ class PosBandaraBwiController extends Controller
             'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris'));
+        return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris', 'user'));
     }
 
     public function update(Request $request)
@@ -157,6 +160,7 @@ class PosBandaraBwiController extends Controller
         return redirect()->route('pos-bandara-bwi.edit')
             ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
     }
+
 
 
     /**

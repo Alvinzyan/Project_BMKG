@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\PeriodeHelper;
-
 use Illuminate\Http\Request;
 
 class InventarisAlatController extends Controller

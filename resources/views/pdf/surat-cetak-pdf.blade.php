@@ -18,14 +18,20 @@
 
         /* === PEMBUNGKUS HALAMAN === */
         .paper-wrap {
-            width: 210mm;
-            height: 297mm;
+            width: 100%;
+            height: 100%;
             background: white;
             margin: 0 auto;
             page-break-after: always;
             position: relative;
             box-sizing: border-box;
             overflow: hidden;
+        }
+
+        .paper-wrap.page-2,
+        .paper-wrap.page-3 {
+            padding-top: 10mm;
+            padding-bottom: 10mm;
         }
 
         /* === HEADER === */
@@ -194,15 +200,6 @@
         }
 
         /* ==================== TABEL ==================== */
-        /* table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 5mm;
-            font-size: 9pt;
-            table-layout: fixed;
-            word-wrap: break-word;
-        } */
-
         th,
         td {
             border: 1px solid #000;
@@ -212,7 +209,7 @@
         }
 
         .catatan {
-            margin-top: 4mm;
+            margin-top: 2mm;
             font-size: 8pt;
         }
 
@@ -305,114 +302,7 @@
     </div>
 
     <!-- ===== HALAMAN 2: DATA ALAT ===== -->
-    <div class="paper-wrap">
-        <div class="sheet">
-            <div class="header-lampiran">
-                <div class="info-lampiran">
-                    <p>Lampiran Surat</p>
-                    <div class="meta-item-two">
-                        <span class="label">Nomor</span>
-                        <span class="colon">:</span>
-                        <span class="value">{{ $nomor_surat }}</span>
-                    </div>
-                    <div class="meta-item-two">
-                        <span class="label">Tanggal</span>
-                        <span class="colon">:</span>
-                        <span class="value">{{ $tanggal }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-two">
-                <h2 class="title">DAFTAR PERALATAN OPERASIONAL</h2>
-                <div class="section">
-                    <p><strong>A. Peralatan di Kantor Meteorologi Banyuwangi</strong></p>
-                    <p class="subtitle">Peralatan konvensional</p>
-                </div>
-
-                <table table style="width: 100%; border-collapse: collapse; font-size: 10px; table-layout: fixed;">
-                    <thead>
-                        <tr>
-                            <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">NO</th>
-                            <th rowspan="2" style="width: 18%; border: 1px solid #000; padding: 3px;">NAMA ALAT</th>
-                            <th rowspan="2" style="width: 12%; border: 1px solid #000; padding: 3px;">MERK / TYPE</th>
-                            <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">JML</th>
-                            <th colspan="3" style="width: 15%; border: 1px solid #000; padding: 3px;">KONDISI</th>
-                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">TAHUN<br>PEMASANGAN</th>
-                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">KALIBRASI<br>TERAKHIR</th>
-                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">KETERANGAN</th>
-                        </tr>
-                        <tr>
-                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">B</th>
-                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">RR</th>
-                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">RB</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Sangkar Meteorologi</td>
-                            <td>Kayu Lokal</td>
-                            <td>1</td>
-                            <td>√</td>
-                            <td></td>
-                            <td></td>
-                            <td>2004</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Thermometer BB/BK</td>
-                            <td>Schneider</td>
-                            <td>2</td>
-                            <td></td>
-                            <td>√</td>
-                            <td></td>
-                            <td>2000</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Thermometer BB/BK</td>
-                            <td>F. Ketterer</td>
-                            <td>2</td>
-                            <td></td>
-                            <td>√</td>
-                            <td></td>
-                            <td>2011</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Thermometer Max./Min</td>
-                            <td>Schneider</td>
-                            <td>1</td>
-                            <td>√</td>
-                            <td></td>
-                            <td></td>
-                            <td>1986</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="catatan">
-                    <p><strong>Catatan:</strong></p>
-                    <ol>
-                        <li>Garis pembacaan pada Thermometer Apung hilang.</li>
-                        <li>Pada Theodolite, saat pemindahan dari lensa dekat ke jauh menjadi tidak terarah/fokus.</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== HALAMAN 2: DATA ALAT ===== -->
-    <!-- <div class="paper-wrap">
+    <div class="paper-wrap page-2">
         <div class="sheet">
             <div class="header-lampiran">
                 <div class="info-lampiran">
@@ -438,7 +328,7 @@
                     <p><strong>{{ $loop->iteration }}. {{ $lokasi->nama_lokasi }}</strong></p>
                 </div>
 
-                @foreach($lokasi->kategori as $kategori)
+                @foreach($lokasi->kategoris as $kategori)
                 <p class="subtitle">{{ $kategori->nama_kategori }}</p>
 
                 {{-- TABLE --}}
@@ -447,11 +337,11 @@
                         <tr>
                             <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">NO</th>
                             <th rowspan="2" style="width: 18%; border: 1px solid #000; padding: 3px;">NAMA ALAT</th>
-                            <th rowspan="2" style="width: 12%; border: 1px solid #000; padding: 3px;">MERK / TYPE</th>
+                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">MERK / TYPE</th>
                             <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">JML</th>
                             <th colspan="3" style="width: 15%; border: 1px solid #000; padding: 3px;">KONDISI</th>
-                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">TAHUN<br>PEMASANGAN</th>
-                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">KALIBRASI<br>TERAKHIR</th>
+                            <th rowspan="2" style="width: 14%; border: 1px solid #000; padding: 3px;">TAHUN<br>PEMASANGAN</th>
+                            <th rowspan="2" style="width: 13%; border: 1px solid #000; padding: 3px;">KALIBRASI<br>TERAKHIR</th>
                             <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">KETERANGAN</th>
                         </tr>
                         <tr>
@@ -462,14 +352,11 @@
                     </thead>
 
                     <tbody>
-                        {{-- =========================
-                                 LOOP ALAT PER KATEGORI
-                            ========================== --}}
-                        @forelse($kategori->alat as $alat)
+                        @forelse($kategori->alats as $alat)
                         <tr>
                             <td style="border:1px solid #000; padding:3px;">{{ $loop->iteration }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->nama }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->merk }}</td>
+                            <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->nama_alat }}</td>
+                            <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->merk_tipe }}</td>
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->jumlah }}</td>
 
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'B' ? '√' : '' }}</td>
@@ -478,7 +365,7 @@
 
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->tahun_pemasangan }}</td>
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->kalibrasi_terakhir }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->keterangan }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ ucfirst($alat->keterangan) }}</td>
                         </tr>
                         @empty
                         <tr>
@@ -489,15 +376,34 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="catatan" style="margin-bottom:6mm;">
+                    <p><strong>Catatan:</strong></p>
+
+                    @php
+                    $cat = $kategori->catatanKategori->isi_catatan ?? null;
+                    @endphp
+
+                    @if($cat)
+                    <ol>
+                        @foreach(explode("\n", $cat) as $baris)
+                        @if(trim($baris) !== '')
+                        <li>{{ $baris }}</li>
+                        @endif
+                        @endforeach
+                    </ol>
+                    @else
+                    <p>-</p>
+                    @endif
+                </div>
                 @endforeach
                 @endforeach
 
             </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- ===== HALAMAN 3 ===== -->
-    <div class="paper-wrap">
+    <div class="paper-wrap page-3">
         <div class="content-two">
             <h2>Lampiran</h2>
             <div class="lampiran">

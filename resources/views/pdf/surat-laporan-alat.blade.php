@@ -6,32 +6,36 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Surat Laporan - Aplikasi Inventaris BMKG</title>
     <style>
-        /* ==== RESET DASAR ==== */
-        @page {
-            size: A4;
-            margin: 15mm;
-        }
-
+        /* ==== BODY & PAPER ==== */
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px 0;
             font-family: "Times New Roman", serif;
-            color: #111;
-            background: #494949ff;
+            background: #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10mm;
         }
 
         .paper-wrap {
             width: 210mm;
             min-height: 297mm;
-            margin: 0 auto;
             background: #fff;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            padding: 0;
             box-sizing: border-box;
-            page-break-after: always;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-            border-radius: 4px;
+            scroll-snap-align: start;
+        }
+
+        .paper-wrap.page-2,
+        .paper-wrap.page-3 {
+            padding-top: 10mm;
+            padding-bottom: 10mm;
         }
 
         .sheet {
@@ -111,7 +115,7 @@
         .meta-right {
             width: 55mm;
             text-align: right;
-            font-size: 12pt;
+            font-size: 11pt;
         }
 
         .recipient {
@@ -151,12 +155,12 @@
             height: 22mm;
         }
 
-        /* ==== HALAMAN KEDUA ==== */
+        /* ==== HALAMAN 2 ==== */
         .header-lampiran {
             width: 100%;
             display: flex;
-            justify-content: flex-end;
-            padding-right: 20mm;
+            justify-content: flex-start;
+            padding-left: 150mm;
             margin-top: 5mm;
         }
 
@@ -207,6 +211,7 @@
 
         .section p {
             margin: 2mm 0;
+            page-break-inside: avoid;
         }
 
         /* ==== TABEL ==== */
@@ -217,6 +222,7 @@
             font-size: 9pt;
             table-layout: fixed;
             word-wrap: break-word;
+            page-break-inside: auto;
         }
 
         .table th,
@@ -237,7 +243,6 @@
             text-align: center;
         }
 
-        /* proporsional agar total muat 190mm */
         .table col:nth-child(1) {
             width: 10mm;
         }
@@ -247,7 +252,7 @@
         }
 
         .table col:nth-child(3) {
-            width: 25mm;
+            width: 30mm;
         }
 
         .table col:nth-child(4) {
@@ -265,11 +270,11 @@
         }
 
         .table col:nth-child(9) {
-            width: 26mm;
+            width: 25mm;
         }
 
         .table col:nth-child(10) {
-            width: 30mm;
+            width: 27mm;
         }
 
         .catatan {
@@ -285,70 +290,16 @@
         .catatan li {
             margin-bottom: 1mm;
         }
-
-        /* ==== FOOTER ==== */
-        .footer {
-            width: 100%;
-            font-size: 7pt;
-            text-align: center;
-            margin-top: auto;
-            padding: 2mm 0;
-        }
-
-        .footer .line-footer {
-            width: 70%;
-            border-top: 1px solid #000;
-            margin: 0 auto 1mm auto;
-        }
-
-        .footer .content-footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3mm;
-            flex-wrap: wrap;
-        }
-
-        .footer .barcode {
-            height: 8mm;
-        }
-
-        .footer .text {
-            font-style: italic;
-            line-height: 1.2;
-            text-align: center;
-        }
-
-        /* ==== CETAK ==== */
-        @media print {
-
-            html,
-            body {
-                width: 210mm;
-                height: 297mm;
-            }
-
-            .paper-wrap {
-                margin: 0;
-                box-shadow: none;
-            }
-
-            .footer {
-                position: relative;
-                bottom: 0;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- ===== HALAMAN 1: HALAMAN UTAMA ===== -->
+    <!-- HALAMAN 1 -->
     <div class="paper-wrap">
         <div class="sheet">
             <header class="letter-header">
                 <img class="logo" src="{{ asset('volt/assets/img/logo bmkg 2.png') }}" alt="Logo Instansi">
-
                 <div class="header-text">
                     <div class="org-name">BADAN METEOROLOGI, KLIMATOLOGI, DAN GEOFISIKA</div>
                     <div class="org-name">STASIUN METEOROLOGI KELAS III BANYUWANGI</div>
@@ -360,7 +311,6 @@
                     </div>
                     <div class="sub">Website: www.stamet-banyuwangi.bmkg.go.id</div>
                 </div>
-
                 <div class="line-2"></div>
             </header>
 
@@ -368,7 +318,7 @@
                 <div class="meta-left">
                     <div class="meta-item">
                         <div class="label">Nomor</div>
-                        <div class="value">: e.B/IJ.01.01/026/KBWI/VII/2025</div>
+                        <div class="value">: -</div>
                     </div>
                     <div class="meta-item">
                         <div class="label">Lampiran</div>
@@ -381,7 +331,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="meta-right">Banyuwangi, 25 Juli 2025</div>
+                <div class="meta-right">Banyuwangi, {{ $tanggal }}</div>
             </section>
 
             <section class="recipient">
@@ -410,8 +360,8 @@
         </div>
     </div>
 
-    <!-- ===== HALAMAN 2: DATA ALAT===== -->
-    <div class="paper-wrap">
+    <!-- ===== HALAMAN 2: DATA ALAT ===== -->
+    <div class="paper-wrap page-2">
         <div class="sheet">
             <div class="header-lampiran">
                 <div class="info-lampiran">
@@ -419,129 +369,143 @@
                     <div class="meta-item-two">
                         <span class="label">Nomor</span>
                         <span class="colon">:</span>
-                        <span class="value">e.B/IJ.01.01/026/KBWI/VII/2025</span>
+                        <span class="value">-</span>
                     </div>
                     <div class="meta-item-two">
                         <span class="label">Tanggal</span>
                         <span class="colon">:</span>
-                        <span class="value">16 Oktober 2025</span>
+                        <span class="value">{{ $tanggal }}</span>
                     </div>
                 </div>
             </div>
 
             <div class="content-two">
                 <h2 class="title">DAFTAR PERALATAN OPERASIONAL</h2>
+
+                @foreach($lokasiList as $lokasi)
                 <div class="section">
-                    <p><strong>A. Peralatan di Kantor Meteorologi Banyuwangi</strong></p>
-                    <p class="subtitle">Peralatan konvensional</p>
+                    <p><strong>{{ $loop->iteration }}. {{ $lokasi->nama_lokasi }}</strong></p>
                 </div>
 
-                <table class="table">
-                    <colgroup>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                    </colgroup>
+                @foreach($lokasi->kategoris as $kategori)
+                <p class="subtitle">{{ $kategori->nama_kategori }}</p>
+
+                <table class="table" style="width: 100%; border-collapse: collapse; font-size: 10px; table-layout: fixed;">
                     <thead>
                         <tr>
-                            <th rowspan="2">NO</th>
-                            <th rowspan="2">NAMA ALAT</th>
-                            <th rowspan="2">MERK/TYPE</th>
-                            <th rowspan="2">JMH</th>
-                            <th colspan="3">KONDISI</th>
-                            <th rowspan="2">TAHUN PEMASANGAN</th>
-                            <th rowspan="2">KALIBRASI TERAKHIR</th>
-                            <th rowspan="2">KETERANGAN</th>
+                            <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">NO</th>
+                            <th rowspan="2" style="width: 18%; border: 1px solid #000; padding: 3px;">NAMA ALAT</th>
+                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">MERK / TYPE</th>
+                            <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">JML</th>
+                            <th colspan="3" style="width: 15%; border: 1px solid #000; padding: 3px;">KONDISI</th>
+                            <th rowspan="2" style="width: 14%; border: 1px solid #000; padding: 3px;">TAHUN<br>PEMASANGAN</th>
+                            <th rowspan="2" style="width: 13%; border: 1px solid #000; padding: 3px;">KALIBRASI<br>TERAKHIR</th>
+                            <th rowspan="2" style="width: 15%; border: 1px solid #000; padding: 3px;">KETERANGAN</th>
                         </tr>
                         <tr>
-                            <th>B</th>
-                            <th>RR</th>
-                            <th>RB</th>
+                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">B</th>
+                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">RR</th>
+                            <th style="width: 5%; border: 1px solid #000; padding: 3px;">RB</th>
                         </tr>
                     </thead>
+
                     <tbody>
+                        @forelse($kategori->alats as $alat)
                         <tr>
-                            <td>1</td>
-                            <td>Sangkar Meteorologi</td>
-                            <td>Kayu Lokal</td>
-                            <td>1</td>
-                            <td>√</td>
-                            <td></td>
-                            <td></td>
-                            <td>2004</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $loop->iteration }}</td>
+                            <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->nama_alat }}</td>
+                            <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->merk_tipe }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->jumlah }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'B' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RR' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RB' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->tahun_pemasangan }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kalibrasi_terakhir }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ ucfirst($alat->keterangan) }}</td>
                         </tr>
+                        @empty
                         <tr>
-                            <td>2</td>
-                            <td>Thermometer BB/BK</td>
-                            <td>Schneider</td>
-                            <td>2</td>
-                            <td></td>
-                            <td>√</td>
-                            <td></td>
-                            <td>2000</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
+                            <td colspan="10" style="border:1px solid #000; padding:3px; text-align:center;">
+                                Tidak ada data peralatan.
+                            </td>
                         </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Thermometer BB/BK</td>
-                            <td>F. Ketterer</td>
-                            <td>2</td>
-                            <td></td>
-                            <td>√</td>
-                            <td></td>
-                            <td>2011</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Thermometer Max./Min</td>
-                            <td>Schneider</td>
-                            <td>1</td>
-                            <td>√</td>
-                            <td></td>
-                            <td></td>
-                            <td>1986</td>
-                            <td>Mei 2024</td>
-                            <td>Terpasang</td>
-                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
-
-                <div class="catatan">
+                <!-- ====== CATATAN PER KATEGORI ====== -->
+                <div class="catatan" style="margin-bottom:6mm;">
                     <p><strong>Catatan:</strong></p>
+
+                    @php
+                    $cat = $kategori->catatanKategori->isi_catatan ?? null;
+                    @endphp
+
+                    @if($cat)
                     <ol>
-                        <li>Garis pembacaan pada Thermometer Apung hilang.</li>
-                        <li>Pada Theodolite, saat pemindahan dari lensa dekat ke jauh menjadi tidak terarah/fokus.</li>
+                        @foreach(explode("\n", $cat) as $baris)
+                        @if(trim($baris) !== '')
+                        <li>{{ $baris }}</li>
+                        @endif
+                        @endforeach
                     </ol>
+                    @else
+                    <p>-</p>
+                    @endif
                 </div>
+                @endforeach
+                @endforeach
             </div>
         </div>
     </div>
 
-    <!-- ===== HALAMAN 3: FOTO LAMPIRAN ===== -->
-    <div class="paper-wrap">
+    <!-- HALAMAN 3: FOTO -->
+    <div class="paper-wrap page-3">
         <div class="sheet">
-            <h2 class="title">Lampiran</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 10mm; justify-content: center; padding: 10mm;">
-                <div style="width: 80mm; text-align: center;">
-                    <img src="{{ asset('storage/foto1.jpg') }}" alt="Foto 1" style="width:100%; border:1px solid #000;">
-                    <p style="font-size: 10pt; margin-top: 2mm;">Foto 1: Thermometer BB/BK</p>
+            <h2 class="title">Lampiran Foto Peralatan</h2>
+
+            <div style="padding: 5mm 10mm;">
+
+                @foreach ($lokasiList as $lokasi)
+
+                @php
+                // Ambil semua alat yang punya foto dalam lokasi
+                $alatDenganFoto = [];
+
+                foreach ($lokasi->kategoris as $kategori) {
+                foreach ($kategori->alats as $alat) {
+                $foto = optional($alat->pengecekans->first())->foto_lampiran;
+
+                if ($foto) {
+                $alatDenganFoto[] = [
+                'nama' => $alat->nama_alat,
+                'foto' => $foto
+                ];
+                }
+                }
+                }
+                @endphp
+
+                {{-- Jika lokasi tidak punya foto alat, skip --}}
+                @if (count($alatDenganFoto) == 0)
+                @continue
+                @endif
+
+                <h3 style="margin-top:10mm; font-size:14pt;">
+                    Lokasi: {{ $lokasi->nama_lokasi }}
+                </h3>
+
+                @foreach ($alatDenganFoto as $item)
+                <div style="width: 100%; margin-bottom: 12mm; text-align:center;">
+                    <img src="{{ asset('storage/' . $item['foto']) }}"
+                        style="width: 70mm; border:1px solid #000;">
+                    <p style="font-size: 10pt; margin-top: 2mm;">
+                        {{ $item['nama'] }}
+                    </p>
                 </div>
-                <div style="width: 80mm; text-align: center;">
-                    <img src="{{ asset('storage/foto2.jpg') }}" alt="Foto 2" style="width:100%; border:1px solid #000;">
-                    <p style="font-size: 10pt; margin-top: 2mm;">Foto 2: Sangkar Meteorologi</p>
-                </div>
+                @endforeach
+
+                @endforeach
+
             </div>
         </div>
     </div>

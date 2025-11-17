@@ -7,16 +7,14 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\KantorBmkgController;
 use App\Http\Controllers\PosBandaraBwiController;
 use App\Http\Controllers\PosBandaraJemberController;
-use App\Http\Controllers\KetapangController;
-use App\Http\Controllers\KelolaAkunController;
 use App\Http\Controllers\KetapangBwiController;
+use App\Http\Controllers\KelolaAkunController;
 use App\Http\Controllers\LaporanAlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataAlatController;
+use App\Http\Controllers\InventarisAlatController;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
-
-use App\Http\Controllers\InventarisAlatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +35,8 @@ Route::get('/', function () {
 // === AUTH ===
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('login', [AuthController::class, 'login_action']);
-Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
 
 // === PROFIL ===
 Route::group(['middleware' => ['auth', 'cekperan:admin,teknisi', 'lastseen']], function () {
@@ -59,8 +58,7 @@ Route::group(['middleware' => ['auth', 'cekperan:admin', 'lastseen']], function 
 // === TEKNISI ===
 Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], function () {
 
-    // 🔹 INI SUDAH ADA CONTROLLER, HAPUS ROUTE VIEW DOUBELNYA
-    Route::get('inventaris-alat', [KantorBmkgController::class, 'index'])->name('kantor-bmkg.index');
+    Route::get('inventaris-alat', [InventarisAlatController::class, 'index'])->name('inventaris-alat.index');
 
     Route::get('inventaris-alat/kantor-bmkg/create', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
     Route::post('inventaris-alat/kantor-bmkg/store', [KantorBmkgController::class, 'store'])->name('kantor-bmkg.store');
@@ -76,10 +74,6 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
     Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
     Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
-    Route::get('inventaris-alat/pos-bandara-bwi/create', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
-    Route::post('inventaris-alat/pos-bandara-bwi/store', [PosBandaraBwiController::class, 'store'])->name('pos-bandara-bwi.store');
-    Route::get('inventaris-alat/pos-bandara-bwi/edit', [PosBandaraBwiController::class, 'edit'])->name('pos-bandara-bwi.edit');
-    Route::put('inventaris-alat/pos-bandara-bwi/update', [PosBandaraBwiController::class, 'update'])->name('pos-bandara-bwi.update');
 
     Route::get('inventaris-alat/pos-bandara-jmbr/create', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jmbr.create');
     Route::post('inventaris-alat/pos-bandara-jmbr/store', [PosBandaraJemberController::class, 'store'])->name('pos-bandara-jmbr.store');
@@ -89,6 +83,7 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
     Route::get('cetak-laporan/view', [CetakLaporanController::class, 'lihatView'])->name('laporan-alat.view');
 
+    // 🔹 LAPORAN — GABUNG YANG DOUBEL, PAKAI PREFIX SEKALIAN
     Route::prefix('laporan-alat')->name('laporan-alat.')->group(function () {
         Route::get('/', [CetakLaporanController::class, 'index'])->name('index');
         Route::get('/view', [CetakLaporanController::class, 'lihatView'])->name('view');
@@ -104,12 +99,6 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
         Route::post('/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'store'])->name('tambah-data-alat.store');
         Route::delete('/{nama_lokasi}/{nama_kategori?}/delete/{id}', [DataAlatController::class, 'destroy'])->name('tambah-data-alat.destroy');
     });
-
-    // 🔹 Cek Alat
-    Route::get('cek-alat/kantor-bmkg', [KantorBmkgController::class, 'create'])->name('kantor-bmkg.create');
-    Route::get('cek-alat/pos-bandara-bwi', [PosBandaraBwiController::class, 'create'])->name('pos-bandara-bwi.create');
-    Route::get('cek-alat/pos-bandara-jember', [PosBandaraJemberController::class, 'create'])->name('pos-bandara-jember.create');
-    Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
 });
 
 // 🔹 ADMIN LANJUTAN (hapus double 'kelola-akun')
