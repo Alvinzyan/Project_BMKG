@@ -27,12 +27,42 @@ class KantorBmkgController extends Controller
         $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
+        $periode = PeriodeHelper::getPeriodeAktif();
 
-        $kategoris = Kategori::with('alats')
-            ->where('id_lokasi', $lokasi->id)
-            ->get();
+        $kategoris = Kategori::with(['alats' => function ($query) use ($periode) {
+            $query->with(['pengecekans' => function ($q) use ($periode) {
+                $q->whereBetween('created_at', [
+                    $periode['start_date'] . ' 00:00:00',
+                    $periode['end_date'] . ' 23:59:59'
+                ])->latest();
+            }]);
+        }])->where('id_lokasi', $lokasi->id)->get();
 
-        return view('kantor-bmkg.create', compact('lokasi', 'kategoris', 'user'));
+        $dataSudahAda = PeriodeHelper::filterPengecekanByPeriode(
+            Pengecekan::whereHas('alat', function ($q) use ($lokasi) {
+                $q->whereHas('kategori', function ($q2) use ($lokasi) {
+                    $q2->where('id_lokasi', $lokasi->id);
+                });
+            }),
+            $periode
+        )->exists();
+
+        $pengecekanTerakhir = Pengecekan::whereHas('alat', function ($q) use ($lokasi) {
+            $q->whereHas('kategori', function ($q2) use ($lokasi) {
+                $q2->where('id_lokasi', $lokasi->id);
+            });
+        })
+            ->whereBetween('created_at', [$periode['start_date'] . ' 00:00:00', $periode['end_date'] . ' 23:59:59'])
+            ->get()
+            ->keyBy('id_alat');
+
+        $catatanTerakhir = CatatanKategori::whereHas('kategori', function ($q) use ($lokasi) {
+            $q->where('id_lokasi', $lokasi->id);
+        })
+            ->get()
+            ->keyBy('id_kategori');
+
+        return view('kantor-bmkg.create', compact('lokasi', 'kategoris', 'user', 'periode', 'dataSudahAda', 'pengecekanTerakhir', 'catatanTerakhir'));
     }
 
     public function store(Request $request)
@@ -40,13 +70,12 @@ class KantorBmkgController extends Controller
         $userId = Auth::id();
 
         foreach ($request->kondisi as $alatId => $kondisiList) {
-            // pastikan kondisi disimpan sebagai array
             $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
 
             $fotoLampiranPath = null;
             if ($request->hasFile("foto_lampiran.$alatId")) {
                 $file = $request->file("foto_lampiran.$alatId");
-                $namaFile = time() . '_' . $file->getClientOriginalName();
+                $namaFile = time() . '.' . $file->getClientOriginalExtension();
                 $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
             }
 
@@ -83,62 +112,16 @@ class KantorBmkgController extends Controller
         $user = Auth::user();
 
         $lokasi = Lokasi::where('nama_lokasi', 'Kantor Meteorologi Banyuwangi')->firstOrFail();
-        $periode = PeriodeHelper::getPeriodeAktif();
-
-        // $kategoris = Kategori::with([
-        //     'alats.pengecekanTerakhir',
-        //     'catatanTerakhir'
-        // ])->where('id_lokasi', $lokasi->id)->get();
 
         $kategoris = Kategori::with([
-            'alats' => function ($query) use ($periode) {
-                $query->with(['pengecekanTerakhir' => function ($q) use ($periode) {
-                    $q->whereBetween('created_at', [
-                        $periode['start_date'] . ' 00:00:00',
-                        $periode['end_date'] . ' 23:59:59'
-                    ])->latest();
-                }]);
+            'alats' => function ($query) {
+                $query->with('pengecekanTerakhirAktif');
             },
             'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
         return view('kantor-bmkg.edit', compact('lokasi', 'kategoris', 'user'));
     }
-
-    // public function update(Request $request)
-    // {
-    //     $userId = Auth::id();
-
-    //     foreach ($request->kondisi as $alatId => $kondisi) {
-    //         Pengecekan::create([
-    //             'id_user' => $userId,
-    //             'id_alat' => $alatId,
-    //             'kondisi' => $kondisi,
-    //             'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
-    //             'foto_lampiran' => $fotoLampiranPath,
-    //         ]);
-    //     }
-
-    //     if ($request->has('catatan')) {
-    //         foreach ($request->catatan as $kategoriId => $isi) {
-    //             if ($isi) {
-    //                 $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
-
-    //                 if ($catatan) {
-    //                     $catatan->update(['isi_catatan' => $isi]);
-    //                 } else {
-    //                     CatatanKategori::create([
-    //                         'id_kategori' => $kategoriId,
-    //                         'isi_catatan' => $isi,
-    //                     ]);
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     return redirect()->route('kantor-bmkg.edit')
-    //         ->with('success', 'Data pengecekan alat dan catatan berhasil diperbarui.');
-    // }
 
     public function update(Request $request)
     {
@@ -157,17 +140,27 @@ class KantorBmkgController extends Controller
             $fotoLampiranPath = null;
             if ($request->hasFile("foto_lampiran.$alatId")) {
                 $file = $request->file("foto_lampiran.$alatId");
-                $namaFile = time() . '_' . $file->getClientOriginalName();
+                $namaFile = time() . '.' . $file->getClientOriginalExtension();
                 $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
             }
 
-            Pengecekan::create([
-                'id_user' => $userId,
-                'id_alat' => $alatId,
-                'kondisi' => $kondisiArray,
-                'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
-                'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : null,
-            ]);
+            $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
+            if ($pengecekan) {
+                $pengecekan->update([
+                    'id_user' => $userId,
+                    'kondisi' => $kondisiArray,
+                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                    'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : $pengecekan->foto_lampiran,
+                ]);
+            } else {
+                Pengecekan::create([
+                    'id_user' => $userId,
+                    'id_alat' => $alatId,
+                    'kondisi' => $kondisiArray,
+                    'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
+                    'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : null,
+                ]);
+            }
         }
 
         // === UPDATE CATATAN ===

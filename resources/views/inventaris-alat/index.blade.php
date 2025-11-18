@@ -237,8 +237,7 @@
                                 </svg>
                             </div>
                             <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi
-                            </h3>
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
                         </div>
                     </div>
                 </a>
@@ -269,60 +268,12 @@
                                 </svg>
                             </div>
                             <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notodinegoro Jember
-                            </h3>
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notohadinegoro Jember</h3>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
-
-        <!-- <div class="row">
-            <div class="col-12 col-sm-12 col-xl-6 mb-4">
-                <a href="">
-                    <div class="card-two border-0 shadow hover-card">
-                        <div class="card-body d-flex align-items-start">
-                            <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg" width="35"
-                                height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-photo">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M15 8h.01" />
-                                <path
-                                    d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" />
-                                <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" />
-                                <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" />
-                            </svg>
-                            <h2 class="fw-extrabold text-white fs-4">Preview Foto Lampiran</h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-12 col-sm-12 col-xl-6 mb-4">
-                <a href="">
-                    <div class="card-two border-0 shadow hover-card">
-                        <div class="card-body d-flex align-items-start">
-                            <svg class="icon icon-bg-white me-2" xmlns="http://www.w3.org/2000/svg" width="35"
-                                height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                <path
-                                    d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                <path d="M9 12l.01 0" />
-                                <path d="M13 12l2 0" />
-                                <path d="M9 16l.01 0" />
-                                <path d="M13 16l2 0" />
-                            </svg>
-                            <h2 class="fw-extrabold text-white fs-4">Review Laporan Mingguan</h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div> -->
 
         <div class="row">
             <div class="col-12 col-xl-12">
@@ -368,17 +319,15 @@
                                 <table class="table align-items-center table-flush">
                                     <colgroup>
                                         <col style="width: 5%;">
-                                        <col style="width: 35%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 50%;">
+                                        <col style="width: 30%;">
                                         <col style="width: 20%;">
-                                        <col style="width: 10%;">
                                     </colgroup>
                                     <thead class="thead-primary">
                                         <tr>
                                             <th class="border-bottom">No</th>
                                             <th class="border-bottom">Nama Lokasi</th>
                                             <th class="border-bottom">Status</th>
-                                            <th class="border-bottom">Penanggung Jawab</th>
                                             <th class="border-bottom">Aksi</th>
                                         </tr>
                                     </thead>
@@ -398,31 +347,12 @@
 
                                             </td>
 
-                                            {{-- Nama Penanggung Jawab --}}
-                                            <td class="fw-bolder text-gray-500">
-
                                             </td>
-
                                             {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
-
-                                                        <a href="{{ route('kantor-bmkg.edit') }}"
-                                                            class="btn btn-sm btn-secondary"><svg
+                                                        <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -454,28 +384,12 @@
 
                                             </td>
 
-                                            {{-- Nama Penanggung Jawab --}}
-                                            <td class="fw-bolder text-gray-500">
-
                                             </td>
 
                                             {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
                                                         <a href="{{ route('pos-bandara-bwi.edit') }}"
                                                             class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
@@ -509,28 +423,10 @@
 
                                             </td>
 
-                                            {{-- Nama Penanggung Jawab --}}
-                                            <td class="fw-bolder text-gray-500">
-
-                                            </td>
-
                                             {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
                                                         <a href="{{ route('ketapang-bwi.edit') }}"
                                                             class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
@@ -558,15 +454,10 @@
 
                                             {{-- Nama Lokasi --}}
                                             <td class="fw-bolder text-gray-500">
-                                                Pos Meteorologi Bandara Notodinegoro Jember
+                                                Pos Meteorologi Bandara Notohadinegoro Jember
                                             </td>
 
                                             {{-- Status --}}
-                                            <td class="fw-bolder text-gray-500">
-
-                                            </td>
-
-                                            {{-- Nama Penanggung Jawab --}}
                                             <td class="fw-bolder text-gray-500">
 
                                             </td>
@@ -575,20 +466,6 @@
                                             <td>
                                                 <div class="d-flex flex-row me-2">
                                                     <div class="">
-                                                        <button class="btn btn-sm btn-info"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                                                <path
-                                                                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-                                                            </svg>Cek</button>
-
                                                         <a href="{{ route('pos-bandara-jmbr.edit') }}"
                                                             class="btn btn-sm btn-secondary"><svg
                                                                 class="icon icon-xs me-1"
@@ -616,83 +493,34 @@
             </div>
         </div>
 
-        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
-            <div class="card-body bg-gray-800 text-white pt-4">
-                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
-                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
-                    aria-controls="theme-settings"></button>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
-                    </p>
-                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
-                        data-size="large" data-show-count="true"
-                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
-                </div>
-                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
-                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
-                    Download
-                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
-                <div class="d-flex justify-content-center">
-                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-                        target="_blank">
-                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
-                    </a>
-                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
-                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
-            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
-                <span class="fw-bold d-inline-flex align-items-center h6">
-                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Settings
-                </span>
-            </div>
-        </div>
-
-        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
-            <div class="row">
-                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
-                            class="text-primary fw-normal" href="https://themesberg.com"
-                            target="_blank">Themesberg</a></p>
-                </div>
-                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-                    <!-- List -->
-                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/about">About</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/themes">Themes</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/blog">Blog</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/contact">Contact</a>
-                        </li>
-                    </ul>
+        <footer class="bg-white rounded shadow p-3 mb-3 mt-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <p class="mb-0" style="font-size: 0.9rem;">
+                            © 2025 Badan Meteorologi, Klimatologi, dan Geofisika
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
     </main>
+
+    @if (session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Sukses',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+    @endif
+
+    <script src="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>

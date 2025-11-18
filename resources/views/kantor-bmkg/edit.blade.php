@@ -132,7 +132,7 @@
             <div class="col-12 col-xl-12">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <form action="{{ route('kantor-bmkg.update') }}" method="POST" id="formUpdate">
+                        <form action="{{ route('kantor-bmkg.update') }}" method="POST" id="formUpdate" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card border-0 shadow">
@@ -155,157 +155,117 @@
                                 </div>
 
                                 @foreach ($kategoris as $kategori)
-                                    <div class="card-table border-0 shadow">
-                                        <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
-                                        <div class="table-responsive">
-                                            <table class="table bg-white align-items-center table-flush">
-                                                <colgroup>
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 20%;">
-                                                    <col style="width: 15%;">
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 25%;">
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 11%;">
-                                                    <col style="width: 20%;">
-                                                </colgroup>
-                                                <thead class="thead-white">
-                                                    <tr>
-                                                        <th class="border-bottom">No</th>
-                                                        <th class="border-bottom">Nama Alat</th>
-                                                        <th class="border-bottom">Merek/Type</th>
-                                                        <th class="border-bottom">Jml</th>
-                                                        <th class="border-bottom">Kondisi</th>
-                                                        <th class="border-bottom">Tahun <br> Pemasangan</th>
-                                                        <th class="border-bottom">Kalibrasi Terakhir</th>
-                                                        <th class="border-bottom">Keterangan</th>
-                                                    </tr>
-                                                </thead>
+                                <div class="card-table border-0 shadow">
+                                    <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
+                                    <div class="table-responsive">
+                                        <table class="table bg-white align-items-center table-flush">
+                                            <colgroup>
+                                                <col style="width: 3%;">
+                                                <col style="width: 20%;">
+                                                <col style="width: 15%;">
+                                                <col style="width: 3%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 3%;">
+                                                <col style="width: 11%;">
+                                                <col style="width: 10%;">
+                                                <col style="width: 15%;">
+                                            </colgroup>
+                                            <thead class="thead-white">
+                                                <tr>
+                                                    <th class="border-bottom">No</th>
+                                                    <th class="border-bottom">Nama Alat</th>
+                                                    <th class="border-bottom">Merek/Type</th>
+                                                    <th class="border-bottom">Jml</th>
+                                                    <th class="border-bottom">Kondisi</th>
+                                                    <th class="border-bottom">Tahun <br> Pemasangan</th>
+                                                    <th class="border-bottom">Kalibrasi Terakhir</th>
+                                                    <th class="border-bottom">Keterangan</th>
+                                                    <th class="border-bottom">Foto Lampiran</th>
+                                                </tr>
+                                            </thead>
 
-                                                @foreach ($kategori->alats as $alat)
-                                                    <tbody>
-                                                        <tr>
-                                                            {{-- No --}}
-                                                            <td class="text-gray-900">{{ $loop->iteration }}</td>
+                                            @foreach ($kategori->alats as $alat)
+                                            <tbody>
+                                                <tr>
+                                                    {{-- No --}}
+                                                    <td class="text-gray-900">{{ $loop->iteration }}</td>
 
-                                                            {{-- Nama Alat --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
-                                                            </td>
+                                                    {{-- Nama Alat --}}
+                                                    <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
+                                                    </td>
 
-                                                            {{-- Merek/Type --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
-                                                            </td>
+                                                    {{-- Merek/Type --}}
+                                                    <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
+                                                    </td>
 
-                                                            {{-- Jumlah --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
-                                                            </td>
+                                                    {{-- Jumlah --}}
+                                                    <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
+                                                    </td>
 
-                                                            {{-- Kondisi --}}
-                                                            <td>
-                                                                @php
-                                                                    $selectedKondisi = old(
-                                                                        'kondisi.' . $alat->id,
-                                                                        optional($alat->pengecekanTerakhir)->kondisi,
-                                                                    );
-                                                                @endphp
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="kondisi[{{ $alat->id }}]"
-                                                                        value="baik"
-                                                                        {{ $selectedKondisi == 'baik' ? 'checked' : '' }}>
-                                                                    <label class="form-check-label">Baik</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="kondisi[{{ $alat->id }}]"
-                                                                        value="rusak ringan"
-                                                                        {{ $selectedKondisi == 'rusak ringan' ? 'checked' : '' }}>
-                                                                    <label class="form-check-label">Rusak
-                                                                        Ringan</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="kondisi[{{ $alat->id }}]"
-                                                                        value="rusak berat"
-                                                                        {{ $selectedKondisi == 'rusak berat' ? 'checked' : '' }}>
-                                                                    <label class="form-check-label">Rusak Berat</label>
-                                                                </div>
-                                                            </td>
+                                                    {{-- Kondisi --}}
+                                                    <td>
+                                                        @php
+                                                        $selectedKondisi = $alat->pengecekanTerakhirAktif->kondisi ?? [];
+                                                        @endphp
 
-                                                            {{-- Tahun Pemasangan --}}
-                                                            <td>{{ $alat->tahun_pemasangan }}</td>
+                                                        @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                name="kondisi[{{ $alat->id }}][]"
+                                                                value="{{ $kondisi }}"
+                                                                {{ in_array($kondisi, $selectedKondisi) ? 'checked' : '' }}>
+                                                            <label class="form-check-label">{{ ucfirst($kondisi) }}</label>
+                                                        </div>
+                                                        @endforeach
+                                                    </td>
 
-                                                            {{-- Kalibrasi Terakhir --}}
-                                                            <td>
-                                                                <input type="number"
-                                                                    name="kalibrasi[{{ $alat->id }}]"
-                                                                    class="form-control" min="2000"
-                                                                    max="2099" maxlength="4"
-                                                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                    value="{{ old('kalibrasi.' . $alat->id, optional($alat->pengecekanTerakhir)->kalibrasi_terakhir) }}">
-                                                            </td>
+                                                    {{-- Tahun Pemasangan --}}
+                                                    <td>{{ $alat->tahun_pemasangan }}</td>
 
-                                                            {{-- Keterangan --}}
-                                                            <td style="text-transform: capitalize">
-                                                                {{ $alat->keterangan }}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                @endforeach
-                                            </table>
-                                        </div>
+                                                    {{-- Kalibrasi Terakhir --}}
+                                                    <td>
+                                                        @php
+                                                        $kalibrasi = optional($alat->pengecekanTerakhirAktif)->kalibrasi_terakhir;
+                                                        @endphp
 
-                                        <div class="d-flex align-items-start mt-3">
-                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
-                                            <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
-                                        </div>
+                                                        <input type="month" name="kalibrasi[{{ $alat->id }}]" value="{{ $kalibrasi ?? '' }}">
+                                                    </td>
+
+                                                    {{-- Keterangan --}}
+                                                    <td style="text-transform: capitalize">
+                                                        {{ $alat->keterangan }}
+                                                    </td>
+                                                    <td>
+                                                        <input type="file" name="foto_lampiran[{{ $alat->id }}]" id="input-foto-{{ $alat->id }}" class="d-none">
+
+                                                        <!-- Preview jika ada foto sebelumnya -->
+                                                        <div id="preview-foto-{{ $alat->id }}">
+                                                            @if ($alat->pengecekanTerakhirAktif && $alat->pengecekanTerakhirAktif->foto_lampiran)
+                                                            <img src="{{ asset('storage/' . $alat->pengecekanTerakhirAktif->foto_lampiran) }}" alt="Foto Lampiran" width="120">
+                                                            <p class="text-muted small mb-0">(Foto tersimpan)</p>
+                                                            @endif
+                                                        </div>
+
+                                                        <button type="button" class="btn btn-sm btn-outline-primary btn-upload-foto"
+                                                            data-id="{{ $alat->id }}" data-bs-toggle="modal" data-bs-target="#modalTambahFoto">
+                                                            {{ $alat->pengecekanTerakhirAktif && $alat->pengecekanTerakhirAktif->foto_lampiran ? 'Ganti Foto' : 'Tambah Foto' }}
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            @endforeach
+                                        </table>
                                     </div>
+
+                                    <div class="d-flex align-items-start mt-3">
+                                        <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
+                                        <!-- isi Catatan -->
+                                        <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
+                                    </div>
+                                </div>
                                 @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">
-                                    <button type="button" class="btn btn-sm btn-gray-100 me-2"
-                                        data-bs-toggle="modal" data-bs-target="#modalTambahFoto">
-                                        <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 5l0 14" />
-                                            <path d="M5 12l14 0" />
-                                        </svg>
-                                        Tambah Foto
-                                    </button>
-
-                                    <!-- Modal Tambah Foto -->
-                                    <div class="modal fade" id="modalTambahFoto" tabindex="-1"
-                                        aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content border-0 shadow">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTambahFotoLabel">Tambah Foto
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Tutup"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <label for="">Upload Foto</label>
-                                                    <form action="/upload-foto" method="POST"
-                                                        enctype="multipart/form-data" class="dropzone"
-                                                        id="formTambahFoto">
-                                                        @csrf
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-sm btn-danger"
-                                                        data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" form="formTambahFoto"
-                                                        class="btn btn-sm btn-success">Simpan</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <button class="btn btn-info" id="btnUbah">
                                         <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -325,99 +285,55 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
-            <div class="card-body bg-gray-800 text-white pt-4">
-                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
-                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
-                    aria-controls="theme-settings"></button>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
-                    </p>
-                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
-                        data-size="large" data-show-count="true"
-                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
-                </div>
-                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
-                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
-                    Download
-                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
-                <div class="d-flex justify-content-center">
-                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-                        target="_blank">
-                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
-                    </a>
-                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
-                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
-                    </a>
+                <!-- Modal Tambah Foto -->
+                <div class="modal fade" id="modalTambahFoto" tabindex="-1"
+                    aria-labelledby="modalTambahFotoLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 shadow">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalTambahFotoLabel">Upload Foto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="file" id="fileFoto" class="form-control" accept="image/*">
+                                <div id="previewModalFoto" class="mt-3 text-center"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
+                                <button type="button" class="btn btn-sm btn-success" id="btnSimpanFoto">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
-            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
-                <span class="fw-bold d-inline-flex align-items-center h6">
-                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Settings
-                </span>
-            </div>
-        </div>
-
-        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
-            <div class="row">
-                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
-                            class="text-primary fw-normal" href="https://themesberg.com"
-                            target="_blank">Themesberg</a></p>
-                </div>
-                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-                    <!-- List -->
-                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/about">About</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/themes">Themes</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/blog">Blog</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/contact">Contact</a>
-                        </li>
-                    </ul>
+        <footer class="bg-white rounded shadow p-3 mb-3 mt-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <p class="mb-0" style="font-size: 0.9rem;">
+                            © 2025 Badan Meteorologi, Klimatologi, dan Geofisika
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
     </main>
 
     @if (session('success'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: 'Sukses',
-                    text: "{{ session('success') }}",
-                    icon: 'success',
-                    confirmButtonColor: '#0d6efd',
-                    confirmButtonText: 'OK'
-                });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Sukses',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
             });
-        </script>
+        });
+    </script>
     @endif
 
     <script>
@@ -447,6 +363,44 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        // Preview Foto di Modal
+        const previewImage = (file, target) => {
+            const reader = new FileReader();
+            reader.onload = e => target.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded shadow">`;
+            reader.readAsDataURL(file);
+        };
+
+        let alatDipilih = null;
+
+        // Klik tombol "Tambah Foto/Ganti Foto"
+        document.querySelectorAll('.btn-upload-foto').forEach(btn =>
+            btn.onclick = () => {
+                alatDipilih = btn.dataset.id;
+                fileFoto.value = "";
+                previewModalFoto.innerHTML = "";
+            }
+        );
+
+        // Preview otomatis setelah memilih file input
+        fileFoto.onchange = e => {
+            if (e.target.files[0]) previewImage(e.target.files[0], previewModalFoto);
+        };
+
+        // menyimpan foto dari modal
+        btnSimpanFoto.onclick = () => {
+            if (!alatDipilih) return;
+
+            let target = document.getElementById('input-foto-' + alatDipilih);
+            target.files = fileFoto.files;
+
+            // Preview kecil di tabel kolom
+            document.getElementById('preview-foto-' + alatDipilih).innerHTML =
+                `<img src="${URL.createObjectURL(fileFoto.files[0])}" width="80" class="rounded shadow-sm mt-1">`;
+            bootstrap.Modal.getInstance(modalTambahFoto).hide();
+        };
     </script>
 
     <!-- Core -->

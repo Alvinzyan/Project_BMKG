@@ -86,6 +86,7 @@
             width: 100%;
             font-size: 11pt;
             white-space: nowrap;
+            align-items: flex-start;
         }
 
         .meta-left {
@@ -220,27 +221,6 @@
 
         .catatan li {
             margin-bottom: 1mm;
-        }
-
-        /* === HALAMAN 3 (LAMPIRAN FOTO) === */
-        .lampiran {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10mm;
-            padding: 10mm;
-            box-sizing: border-box;
-        }
-
-        .lampiran img {
-            width: 80mm;
-            border: 1px solid black;
-        }
-
-        .lampiran p {
-            font-size: 10pt;
-            text-align: center;
-            margin-top: 2mm;
         }
     </style>
 </head>
@@ -402,23 +382,51 @@
         </div>
     </div>
 
-    <!-- ===== HALAMAN 3 ===== -->
+    <!-- HALAMAN 3: FOTO -->
     <div class="paper-wrap page-3">
-        <div class="content-two">
-            <h2>Lampiran</h2>
-            <div class="lampiran">
-                <div>
-                    <img src="{{ public_path('storage/foto1.jpg') }}" alt="Foto 1">
-                    <p>Foto 1: Thermometer BB/BK</p>
-                </div>
-                <div>
-                    <img src="{{ public_path('storage/foto2.jpg') }}" alt="Foto 2">
-                    <p>Foto 2: Sangkar Meteorologi</p>
-                </div>
+        <div class="sheet" style="padding-left:15mm; padding-right:5mm;">
+            <h2 style="text-align:center; font-size:14pt; margin-bottom:5mm;">Lampiran Foto Peralatan</h2>
+
+            @php $lokasiNo = 1; @endphp
+
+            @foreach ($lokasiList as $lokasi)
+
+            @php
+            $alatDenganFoto = [];
+            foreach ($lokasi->kategoris ?? [] as $kategori) {
+            foreach ($kategori->alats ?? [] as $alat) {
+            $foto = optional($alat->pengecekans->first())->foto_lampiran;
+            if ($foto) {
+            $alatDenganFoto[] = [
+            'nama' => $alat->nama_alat,
+            'foto' => $foto
+            ];
+            }
+            }
+            }
+            @endphp
+
+            @if (count($alatDenganFoto) == 0)
+            @continue
+            @endif
+
+            <h3 style="font-size:12pt; margin-top:5mm; margin-bottom:3mm;">
+                {{ $lokasiNo }}. {{ $lokasi->nama_lokasi }}
+            </h3>
+
+            @foreach ($alatDenganFoto as $item)
+            <div style="width:100%; text-align:center; margin-bottom:10mm; page-break-inside: avoid;">
+                <img src="{{ public_path('storage/' . $item['foto']) }}"
+                    style="width:100%; max-width:110mm; height:60mm; object-fit:cover; border:1px solid #000;">
+                <p style="font-size:12pt; margin-top:2mm;">{{ $item['nama'] }}</p>
             </div>
+            @endforeach
+
+            @php $lokasiNo++; @endphp
+
+            @endforeach
         </div>
     </div>
-
 </body>
 
 </html>

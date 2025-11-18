@@ -169,7 +169,7 @@
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icon-tabler-database">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <ellipse cx="12" cy="6" rx="9" ry="3" />
                         <path d="M3 6v12c0 1.667 4 3 9 3s9 -1.333 9 -3v-12" />
                         <path d="M3 12c0 1.667 4 3 9 3s9 -1.333 9 -3" />
@@ -185,14 +185,14 @@
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header fw-bold">
-                    Jumlah Alat Meteorologi
+                        Jumlah Alat Meteorologi
                     </div>
                     <div class="card-body">
-                    <canvas id="alatChart" style="width:100%; height:400px;"></canvas>
+                        <canvas id="alatChart" style="width:100%; height:400px;"></canvas>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <div class="row g-3">
                     @foreach($lokasis as $lokasi)
@@ -206,15 +206,15 @@
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                             class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                            <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433"/>
-                                            <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342"/>
-                                            <path d="M8 2v2"/>
-                                            <path d="M6 12v9h4v-9"/>
-                                            <path d="M3 21h18"/>
-                                            <path d="M22 5h-6l-1 -1"/>
-                                            <path d="M18 3l2 2l-2 2"/>
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2"/>
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
+                                            <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
+                                            <path d="M8 2v2" />
+                                            <path d="M6 12v9h4v-9" />
+                                            <path d="M3 21h18" />
+                                            <path d="M22 5h-6l-1 -1" />
+                                            <path d="M18 3l2 2l-2 2" />
+                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
                                         </svg>
                                     </div>
 
@@ -229,81 +229,16 @@
                     @endforeach
                 </div>
             </div>
-        </div>        
-
-        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
-            <div class="card-body bg-gray-800 text-white pt-4">
-                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
-                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
-                    aria-controls="theme-settings"></button>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
-                    </p>
-                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
-                        data-size="large" data-show-count="true"
-                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
-                </div>
-                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
-                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
-                    Download
-                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
-                <div class="d-flex justify-content-center">
-                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-                        target="_blank">
-                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
-                    </a>
-                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
-                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
-                    </a>
-                </div>
-            </div>
         </div>
 
-        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
-            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
-                <span class="fw-bold d-inline-flex align-items-center h6">
-                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Settings
-                </span>
-            </div>
-        </div>
-
-        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
-            <div class="row">
-                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
-                            class="text-primary fw-normal" href="https://themesberg.com"
-                            target="_blank">Themesberg</a></p>
-                </div>
-                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-                    <!-- List -->
-                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/about">About</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/themes">Themes</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/blog">Blog</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/contact">Contact</a>
-                        </li>
-                    </ul>
+        <footer class="bg-white rounded shadow p-3 mb-3 mt-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <p class="mb-0" style="font-size: 0.9rem;">
+                            © 2025 Badan Meteorologi, Klimatologi, dan Geofisika
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -362,7 +297,7 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: chartLabels, 
+                labels: chartLabels,
                 datasets: [{
                     label: 'Jumlah Alat',
                     data: chartData,
@@ -371,9 +306,15 @@
             },
             options: {
                 responsive: true,
-                plugins: { legend: { display: false } },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
                 scales: {
-                    y: { beginAtZero: true }
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
         });

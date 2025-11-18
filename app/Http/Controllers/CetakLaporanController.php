@@ -19,36 +19,63 @@ class CetakLaporanController extends Controller
         return view('cetak-laporan.index');
     }
 
+    // public function lihatView(Request $request)
+    // {
+    //     $start = $request->periode_start;
+    //     $end   = $request->periode_end;
+
+    //     if ($start && $end) {
+    //         $lokasiList = Lokasi::with([
+    //             'kategoris.alats' => function ($q) use ($start, $end) {
+    //                 $q->whereHas('pengecekans', function ($x) use ($start, $end) {
+    //                     $x->whereBetween('tanggal_pengecekan', [$start, $end]);
+    //                 });
+    //             },
+    //             'kategoris.catatanKategori',
+
+    //             'kategoris.alats.pengecekans' => function ($q) {
+    //                 $q->whereNotNull('foto_lampiran');
+    //             }
+
+    //         ])->get();
+    //     } else {
+    //         $lokasiList = Lokasi::with([
+    //             'kategoris.alats',
+    //             'kategoris.catatanKategori',
+
+    //             'kategoris.alats.pengecekans' => function ($q) {
+    //                 $q->whereNotNull('foto_lampiran');
+    //             }
+
+    //         ])->get();
+    //     }
+
+    //     return view('pdf.surat-laporan-alat', [
+    //         'tanggal' => now()->translatedFormat('d F Y'),
+    //         'lokasiList' => $lokasiList,
+    //         'periode_start' => $start,
+    //         'periode_end' => $end,
+    //     ]);
+    // }
+
     public function lihatView(Request $request)
     {
         $start = $request->periode_start;
         $end   = $request->periode_end;
 
-        if ($start && $end) {
-            $lokasiList = Lokasi::with([
-                'kategoris.alats' => function ($q) use ($start, $end) {
-                    $q->whereHas('pengecekans', function ($x) use ($start, $end) {
-                        $x->whereBetween('tanggal_pengecekan', [$start, $end]);
-                    });
-                },
-                'kategoris.catatanKategori',
-
-                'kategoris.alats.pengecekans' => function ($q) {
-                    $q->whereNotNull('foto_lampiran');
-                }
-
-            ])->get();
-        } else {
-            $lokasiList = Lokasi::with([
-                'kategoris.alats',
-                'kategoris.catatanKategori',
-
-                'kategoris.alats.pengecekans' => function ($q) {
-                    $q->whereNotNull('foto_lampiran');
-                }
-
-            ])->get();
+        if (!$start || !$end) {
+            $periode = PeriodeHelper::getPeriodeAktif();
+            $start = $periode['start_date'] ?? now()->format('Y-m-d');
+            $end   = $periode['end_date'] ?? now()->format('Y-m-d');
         }
+
+        $lokasiList = Lokasi::with([
+            'kategoris.alats',
+            'kategoris.catatanKategori',
+            'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
+                $q->whereBetween('created_at', [$start, $end]);
+            }
+        ])->get();
 
         return view('pdf.surat-laporan-alat', [
             'tanggal' => now()->translatedFormat('d F Y'),
@@ -58,12 +85,6 @@ class CetakLaporanController extends Controller
         ]);
     }
 
-    // public function generatePdf()
-    // {
-    //     $pdf = Pdf::loadView('pdf.surat-cetak-pdf')
-    //         ->setPaper('A4', 'portrait');
-    //     return $pdf->stream('laporan-alat.pdf');
-    // }
 
     public function generatePdf(Request $request)
     {

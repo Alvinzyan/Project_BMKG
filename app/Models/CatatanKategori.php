@@ -11,5 +11,8 @@ class CatatanKategori extends Model
 
     protected $fillable = ['id_kategori', 'isi_catatan'];
 
-    
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori');
+    }
 }

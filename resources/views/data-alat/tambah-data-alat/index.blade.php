@@ -65,7 +65,7 @@
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
@@ -182,7 +182,7 @@
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icon-tabler-database">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <ellipse cx="12" cy="6" rx="9" ry="3" />
                         <path d="M3 6v12c0 1.667 4 3 9 3s9 -1.333 9 -3v-12" />
                         <path d="M3 12c0 1.667 4 3 9 3s9 -1.333 9 -3" />
@@ -198,13 +198,13 @@
             <div class="align-items-center">
                 <div class="row g-0 border mb-1">
                     <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Lokasi</div>
-                    <div class="col-10 p-2 bg-white text-dark" 
+                    <div class="col-10 p-2 bg-white text-dark"
                         style="color:#1E3D58; border:1px solid #1E3D58;">{{ $lokasi->nama_lokasi }}</div>
                 </div>
 
                 <div class="row g-0 border">
                     <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Kategori</div>
-                    <div class="col-10 p-2 bg-white text-dark" 
+                    <div class="col-10 p-2 bg-white text-dark"
                         style="color:#1E3D58; border:1px solid #1E3D58;">{{ $nama_kategori }}</div>
                 </div>
             </div>
@@ -220,7 +220,7 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table text-center align-middle" 
+                    <table class="table text-center align-middle"
                         style="border:1px solid #000; border-collapse:collapse; font-size:14px;">
                         <thead>
                             <tr>
@@ -234,91 +234,88 @@
                         </thead>
                         <tbody>
                             @forelse($list as $a)
-                                <tr data-id="{{ $a->id }}">
-                                    <td style="border:1px solid #000;">{{ $loop->iteration }}</td>
-                                    <td style="border:1px solid #000;">{{ $a->nama_alat }}</td>
-                                    <td style="border:1px solid #000;">{{ $a->merk_tipe }}</td>
-                                    <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
-                                    <td style="border:1px solid #000;">{{ $a->tahun_pemasangan }}</td>
-                                    <td style="border:1px solid #000;">
-                                        <a href="#" class="btn btn-sm text-white btn-edit" style="background-color:#055C9D;" data-bs-toggle="modal" data-bs-target="#modalEditAlat_{{ $a->id }}">
-                                            <i class="bi bi-pencil-square"></i> Edit</a>
-                                        
-                                        <!-- Tombol Hapus -->
-                                        <form action="{{ route('data-alat.tambah-data-alat.destroy', [
+                            <tr data-id="{{ $a->id }}">
+                                <td style="border:1px solid #000;">{{ $loop->iteration }}</td>
+                                <td style="border:1px solid #000;">{{ $a->nama_alat }}</td>
+                                <td style="border:1px solid #000;">{{ $a->merk_tipe }}</td>
+                                <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
+                                <td style="border:1px solid #000;">{{ $a->tahun_pemasangan }}</td>
+                                <td style="border:1px solid #000;">
+                                    <a href="#" class="btn btn-sm text-white btn-edit" style="background-color:#055C9D;" data-bs-toggle="modal" data-bs-target="#modalEditAlat_{{ $a->id }}">
+                                        <i class="bi bi-pencil-square"></i> Edit</a>
+
+                                    <!-- Tombol Hapus -->
+                                    <form action="{{ route('data-alat.tambah-data-alat.destroy', [
                                                 'nama_lokasi' => $lokasi->nama_lokasi,
                                                 'nama_kategori' => $group,
                                                 'id' => $a->id
                                             ]) }}" method="POST" class="d-inline form-hapus">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="bi bi-trash"></i> Hapus
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
 
-                                <!-- Modal Edit Alat -->
-                                <div class="modal fade" id="modalEditAlat_{{ $a->id }}" tabindex="-1"
-                                    aria-labelledby="modalEditAlatLabel_{{ $a->id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content border-0 rounded-2 shadow">
-                                            <div class="modal-header" style="background:#1E3D58;">
-                                                <h5 class="modal-title" id="modalEditAlatLabel_{{ $a->id }}"
-                                                    style="color:#ffffff !important;">Edit Alat - {{ $a->nama_alat }}</h5>
-                                                <button type="button" class="btn-close btn-close-white"
-                                                        data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
+                            <!-- Modal Edit Alat -->
+                            <div class="modal fade" id="modalEditAlat_{{ $a->id }}" tabindex="-1"
+                                aria-labelledby="modalEditAlatLabel_{{ $a->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0 shadow">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-dark" id="modalEditAlatLabel_{{ $a->id }}">Edit Alat - {{ $a->nama_alat }}</h5>
+                                            <button type="button" class="btn-close btn-close-dark"
+                                                data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                        </div>
 
-                                            <form action="{{ route('data-alat.tambah-data-alat.update', [
+                                        <form action="{{ route('data-alat.tambah-data-alat.update', [
                                                 'nama_lokasi' => $lokasi->nama_lokasi,
                                                 'id' => $a->id,
                                                 'nama_kategori' => $kategori->nama_kategori ?? null,
                                             ]) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Nama Alat</label>
-                                                        <input type="text" class="form-control" name="nama_alat"
-                                                            value="{{ $a->nama_alat }}" required>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Merk / Type</label>
-                                                        <input type="text" class="form-control" name="merk_tipe"
-                                                            value="{{ $a->merk_tipe }}" required>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Jumlah</label>
-                                                        <input type="number" class="form-control" name="jumlah"
-                                                            value="{{ $a->jumlah }}" required>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Tahun Pemasangan</label>
-                                                        <input type="number" class="form-control" name="tahun_pemasangan"
-                                                            value="{{ $a->tahun_pemasangan }}" required>
-                                                    </div>
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nama Alat</label>
+                                                    <input type="text" class="form-control" name="nama_alat"
+                                                        value="{{ $a->nama_alat }}" required>
                                                 </div>
 
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn text-white"
-                                                            style="background:#1E3D58;">Simpan</button>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Merk / Type</label>
+                                                    <input type="text" class="form-control" name="merk_tipe"
+                                                        value="{{ $a->merk_tipe }}" required>
                                                 </div>
-                                            </form>
-                                        </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Jumlah</label>
+                                                    <input type="number" class="form-control" name="jumlah"
+                                                        value="{{ $a->jumlah }}" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tahun Pemasangan</label>
+                                                    <input type="number" class="form-control" name="tahun_pemasangan"
+                                                        value="{{ $a->tahun_pemasangan }}" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
+                            </div>
                             @empty
-                                <tr class="text-center align-middle">
-                                    <td style="border:1px solid #000;"></td>
-                                    <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
-                                </tr>
+                            <tr class="text-center align-middle">
+                                <td style="border:1px solid #000;"></td>
+                                <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
+                            </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -328,11 +325,11 @@
 
         <!-- modal tambah alat -->
         <div class="modal fade" id="modalTambahAlat_{{ Str::slug($group) }}" tabindex="-1" aria-labelledby="modalTambahAlatLabel_{{ Str::slug($group) }}" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content border-0 rounded-2 shadow">
-                    <div class="modal-header" style="background:#1E3D58;">
-                        <h5 class="modal-title" id="modalTambahAlatLabel_{{ Str::slug($group) }}" style="color:#ffffff !important;">Tambah Alat - {{ $group }}</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="modalTambahAlatLabel_{{ Str::slug($group) }}">Tambah Alat - {{ $group }}</h5>
+                        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Tutup"></button>
                     </div>
 
                     <form method="POST" action="{{ route('data-alat.tambah-data-alat.store', ['nama_lokasi' => $lokasi->nama_lokasi, 'nama_kategori' => $group]) }}">
@@ -360,8 +357,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn text-white" style="background:#1E3D58;">Simpan</button>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-sm btn-success">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -369,84 +366,19 @@
         </div>
         @endforeach
 
-        <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
-            <div class="card-body bg-gray-800 text-white pt-4">
-                <button type="button" class="btn-close theme-settings-close" aria-label="Close"
-                    data-bs-toggle="collapse" href="#theme-settings" role="button" aria-expanded="false"
-                    aria-controls="theme-settings"></button>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span>
-                    </p>
-                    <a class="github-button" href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-                        data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
-                        data-size="large" data-show-count="true"
-                        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
-                </div>
-                <a href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" target="_blank"
-                    class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">
-                    Download
-                    <svg class="icon icon-xs ms-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <p class="fs-7 text-gray-300 text-center">Available in the following technologies:</p>
-                <div class="d-flex justify-content-center">
-                    <a class="me-3" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-                        target="_blank">
-                        <img src="../../assets/img/technologies/bootstrap-5-logo.svg" class="image image-xs">
-                    </a>
-                    <a href="https://demo.themesberg.com/volt-react-dashboard/#/" target="_blank">
-                        <img src="../../assets/img/technologies/react-logo.svg" class="image image-xs">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
-            <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
-                <span class="fw-bold d-inline-flex align-items-center h6">
-                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Settings
-                </span>
-            </div>
-        </div>
-
-        <footer class="bg-white rounded shadow p-5 mb-4 mt-4">
-            <div class="row">
-                <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-                    <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
-                            class="text-primary fw-normal" href="https://themesberg.com"
-                            target="_blank">Themesberg</a></p>
-                </div>
-                <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-                    <!-- List -->
-                    <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/about">About</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/themes">Themes</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/blog">Blog</a>
-                        </li>
-                        <li class="list-inline-item px-0 px-sm-2">
-                            <a href="https://themesberg.com/contact">Contact</a>
-                        </li>
-                    </ul>
+        <footer class="bg-white rounded shadow p-3 mb-3 mt-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <p class="mb-0" style="font-size: 0.9rem;">
+                            © 2025 Badan Meteorologi, Klimatologi, dan Geofisika
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
     </main>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if(session('success'))
     <script>
@@ -459,13 +391,13 @@
         });
     </script>
     @endif
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const forms = document.querySelectorAll('.form-hapus');
 
             forms.forEach(form => {
-                form.addEventListener('submit', function (e) {
+                form.addEventListener('submit', function(e) {
                     e.preventDefault();
 
                     Swal.fire({
@@ -473,20 +405,19 @@
                         text: "Data yang dihapus tidak dapat dikembalikan.",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
                         confirmButtonText: 'Ya, hapus!',
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            form.submit(); // lanjut hapus kalau dikonfirmasi
+                            form.submit();
                         }
                     });
                 });
             });
         });
     </script>
-
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>

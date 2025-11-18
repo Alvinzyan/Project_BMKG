@@ -361,7 +361,7 @@
     </div>
 
     <!-- ===== HALAMAN 2: DATA ALAT ===== -->
-    <div class="paper-wrap page-2">
+    <div class="paper-wrap page-2" style="padding-top:15mm;">
         <div class="sheet">
             <div class="header-lampiran">
                 <div class="info-lampiran">
@@ -410,27 +410,25 @@
                     </thead>
 
                     <tbody>
-                        @forelse($kategori->alats as $alat)
+                        @foreach($kategori->alats as $alat)
+                        @php
+                        $lastPengecekan = $alat->pengecekans->sortByDesc('tanggal_pengecekan')->first();
+                        @endphp
                         <tr>
                             <td style="border:1px solid #000; padding:3px;">{{ $loop->iteration }}</td>
                             <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->nama_alat }}</td>
                             <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->merk_tipe }}</td>
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->jumlah }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'B' ? '√' : '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RR' ? '√' : '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RB' ? '√' : '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->tahun_pemasangan }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kalibrasi_terakhir }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ ucfirst($alat->keterangan) }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $lastPengecekan?->kondisi == 'B' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $lastPengecekan?->kondisi == 'RR' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $lastPengecekan?->kondisi == 'RB' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $alat->tahun_pemasangan ?? '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ optional($alat->pengecekans->first())->kalibrasi_terakhir ?? '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ ucfirst($alat->keterangan ?? '') }}</td>
                         </tr>
-                        @empty
-                        <tr>
-                            <td colspan="10" style="border:1px solid #000; padding:3px; text-align:center;">
-                                Tidak ada data peralatan.
-                            </td>
-                        </tr>
-                        @endforelse
+                        @endforeach
                     </tbody>
+
                 </table>
                 <!-- ====== CATATAN PER KATEGORI ====== -->
                 <div class="catatan" style="margin-bottom:6mm;">
@@ -459,22 +457,21 @@
     </div>
 
     <!-- HALAMAN 3: FOTO -->
-    <div class="paper-wrap page-3">
+    <div class="paper-wrap page-3" style="padding-top:10mm; padding-bottom:5mm; padding-left:5mm; padding-right:5mm;">
         <div class="sheet">
             <h2 class="title">Lampiran Foto Peralatan</h2>
 
             <div style="padding: 5mm 10mm;">
 
+                @php $lokasiNo = 1; @endphp
+
                 @foreach ($lokasiList as $lokasi)
 
                 @php
-                // Ambil semua alat yang punya foto dalam lokasi
                 $alatDenganFoto = [];
-
-                foreach ($lokasi->kategoris as $kategori) {
-                foreach ($kategori->alats as $alat) {
+                foreach ($lokasi->kategoris ?? [] as $kategori) {
+                foreach ($kategori->alats ?? [] as $alat) {
                 $foto = optional($alat->pengecekans->first())->foto_lampiran;
-
                 if ($foto) {
                 $alatDenganFoto[] = [
                 'nama' => $alat->nama_alat,
@@ -485,31 +482,31 @@
                 }
                 @endphp
 
-                {{-- Jika lokasi tidak punya foto alat, skip --}}
                 @if (count($alatDenganFoto) == 0)
                 @continue
                 @endif
 
-                <h3 style="margin-top:10mm; font-size:14pt;">
-                    Lokasi: {{ $lokasi->nama_lokasi }}
+                <h3 style="margin-top:2mm; font-size:12pt;">
+                    {{ $lokasiNo }}. Lokasi: {{ $lokasi->nama_lokasi }}
                 </h3>
 
                 @foreach ($alatDenganFoto as $item)
                 <div style="width: 100%; margin-bottom: 12mm; text-align:center;">
                     <img src="{{ asset('storage/' . $item['foto']) }}"
-                        style="width: 70mm; border:1px solid #000;">
-                    <p style="font-size: 10pt; margin-top: 2mm;">
+                        style="width: 160mm; height: 100mm; object-fit: cover; border:1px solid #000;">
+                    <p style="font-size: 12pt; margin-top: 2mm;">
                         {{ $item['nama'] }}
                     </p>
                 </div>
                 @endforeach
+
+                @php $lokasiNo++; @endphp
 
                 @endforeach
 
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
