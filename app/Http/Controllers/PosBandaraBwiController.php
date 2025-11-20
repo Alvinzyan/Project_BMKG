@@ -34,6 +34,7 @@ class PosBandaraBwiController extends Controller
 
         $kategoris = Kategori::with('alats')
             ->where('id_lokasi', $lokasi->id)
+            ->where('is_archived', 0) // hanya kategori yang tidak di archive
             ->get();
 
         return view('pos-bandara-bwi.create', compact('lokasi', 'kategoris', 'user'));
@@ -104,7 +105,10 @@ class PosBandaraBwiController extends Controller
         $kategoris = Kategori::with([
             'alats.pengecekanTerakhir',
             'catatanTerakhir'
-        ])->where('id_lokasi', $lokasi->id)->get();
+        ])
+        ->where('id_lokasi', $lokasi->id)
+        ->where('is_archived', 0) // hanya kategori yang tidak di archive
+        ->get();
 
         return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris'));
     }
