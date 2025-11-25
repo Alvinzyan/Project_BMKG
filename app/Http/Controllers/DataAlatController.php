@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Lokasi;
 use App\Models\Alat;
 use App\Models\Kategori;
@@ -14,14 +15,82 @@ class DataAlatController extends Controller
     {
         $lokasis = Lokasi::with('kategoris.alats')->get();
 
-        
+        // --- ICON MAPPING ---
+        $icons = [
+            'Kantor Meteorologi Banyuwangi' => <<<HTML
+            <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 21l18 0" />
+                    <path d="M9 8l1 0" />
+                    <path d="M9 12l1 0" />
+                    <path d="M9 16l1 0" />
+                    <path d="M14 8l1 0" />
+                    <path d="M14 12l1 0" />
+                    <path d="M14 16l1 0" />
+                    <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
+                </svg>
+            </div>
+        HTML,
+
+            'Pos Meteorologi Bandara Banyuwangi' => <<<HTML
+            <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
+                    <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
+                    <path d="M8 2v2" />
+                    <path d="M6 12v9h4v-9" />
+                    <path d="M3 21h18" />
+                    <path d="M22 5h-6l-1 -1" />
+                    <path d="M18 3l2 2l-2 2" />
+                    <path d="M10 17h7a2 2 0 0 1 2 2v2" />
+                </svg>
+            </div>
+        HTML,
+
+            'Pos Meteorologi Pelabuhan Ketapang Banyuwangi' => <<<HTML
+            <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 9v12m-8 -8a8 8 0 0 0 16 0m1 0h-2m-14 0h-2" />
+                    <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                </svg>
+            </div>
+        HTML,
+
+            'Pos Meteorologi Bandara Notohadinegoro Jember' => <<<HTML
+            <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
+                    <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
+                    <path d="M8 2v2" />
+                    <path d="M6 12v9h4v-9" />
+                    <path d="M3 21h18" />
+                    <path d="M22 5h-6l-1 -1" />
+                    <path d="M18 3l2 2l-2 2" />
+                    <path d="M10 17h7a2 2 0 0 1 2 2v2" />
+                </svg>
+            </div>
+        HTML,
+        ];
+
         $chartLabels = [];
         $chartData = [];
 
         foreach ($lokasis as $lokasi) {
             $chartLabels[] = $lokasi->nama_lokasi;
 
-            
+
             $totalAlat = 0;
             foreach ($lokasi->kategoris as $kategori) {
                 $totalAlat += $kategori->alats->count();
@@ -29,25 +98,26 @@ class DataAlatController extends Controller
             $chartData[] = $totalAlat;
         }
 
-        return view('data-alat.index', compact('lokasis', 'chartLabels', 'chartData'));
+        return view('data-alat.index', compact('lokasis', 'chartLabels', 'chartData', 'icons'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('tambah-data-alat.index');
     }
-    
+
     public function kategoriByLokasi($nama_lokasi)
     {
         $lokasi = Lokasi::where('nama_lokasi', urldecode($nama_lokasi))
-                        ->with('kategoris')
-                        ->firstOrFail();
+            ->with('kategoris')
+            ->firstOrFail();
 
         return view('data-alat.tempat-alat.index', compact('lokasi'));
     }
 
     public function alatByKategori($nama_lokasi, $nama_kategori = null)
     {
-        
+
         $nama_lokasi = urldecode($nama_lokasi);
         $nama_kategori = $nama_kategori ? urldecode($nama_kategori) : null;
 
@@ -68,7 +138,7 @@ class DataAlatController extends Controller
 
             $nama_kategori = $kategori->nama_kategori;
         } else {
-            
+
             $alats = [];
 
             $alats = [];
@@ -88,7 +158,7 @@ class DataAlatController extends Controller
      */
     public function store(Request $request, $nama_lokasi, $nama_kategori)
     {
-        
+
         $request->validate([
             'nama_alat' => 'required|string|max:255',
             'merk_tipe' => 'required|string|max:255',
@@ -133,11 +203,11 @@ class DataAlatController extends Controller
      */
     public function update(Request $request,  $nama_lokasi, $id, $nama_kategori = null)
     {
-        
+
         $nama_lokasi = urldecode($nama_lokasi);
         $nama_kategori = $nama_kategori ? urldecode($nama_kategori) : null;
 
-         $validated = $request->validate([
+        $validated = $request->validate([
             'nama_alat' => 'required|string|max:255',
             'merk_tipe' => 'nullable|string|max:255',
             'jumlah' => 'required|integer|min:1',
@@ -155,11 +225,10 @@ class DataAlatController extends Controller
      */
     public function destroy($nama_lokasi, $nama_kategori = null, $id)
     {
-        
+
         $alat = Alat::findOrFail($id);
         $alat->delete();
 
         return redirect()->back()->with('success', 'Data alat berhasil dihapus.');
     }
-
 }

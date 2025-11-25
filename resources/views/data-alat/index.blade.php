@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <title>Data Alat - Aplikasi Inventaris BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -50,8 +50,7 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -72,10 +71,10 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="../../index.html">
-            <img class="navbar-brand-dark" src="../../assets/img/brand/light.svg" alt="Volt logo" /> <img
-                class="navbar-brand-light" src="../../assets/img/brand/dark.svg" alt="Volt logo" />
+    <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
+        <a class="navbar-brand me-lg-5" href="/inventaris-alat">
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
+                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -165,10 +164,9 @@
                 <div class="icon-shape rounded d-flex align-items-center justify-content-center me-2"
                     style="width:40px; height:40px; background-color:#1E3D58; color:#fff;">
                     <!-- SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icon-tabler-database">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icon-tabler-database">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <ellipse cx="12" cy="6" rx="9" ry="3" />
                         <path d="M3 6v12c0 1.667 4 3 9 3s9 -1.333 9 -3v-12" />
@@ -195,37 +193,25 @@
 
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
                 <div class="row g-3">
-                    @foreach($lokasis as $lokasi)
-                    <div class="col-12">
-                        <a href="{{ url('/data-alat/'. urlencode($lokasi->nama_lokasi)) }}">
-                            <div class="card-two border-0 shadow hover-card">
-                                <div class="card-body d-flex align-items-center">
-                                    <!-- ICON -->
-                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                            <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                            <path d="M8 2v2" />
-                                            <path d="M6 12v9h4v-9" />
-                                            <path d="M3 21h18" />
-                                            <path d="M22 5h-6l-1 -1" />
-                                            <path d="M18 3l2 2l-2 2" />
-                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                        </svg>
-                                    </div>
+                    @foreach ($lokasis as $lokasi)
+                        <div class="col-12">
+                            <a href="{{ url('/data-alat/' . urlencode($lokasi->nama_lokasi)) }}">
+                                <div class="card-two border-0 shadow hover-card">
+                                    <div class="card-body d-flex align-items-center">
+                                        
+                                        <!-- ICON -->
+                                        <div class="me-3">
+                                            {!! $icons[$lokasi->nama_lokasi] ?? '' !!}
+                                        </div>
 
-                                    <!-- TEXT -->
-                                    <div>
-                                        <h3 class="fw-extrabold text-white fs-4">{{ $lokasi->nama_lokasi }}</h3>
+                                        <!-- TEXT -->
+                                        <div>
+                                            <h3 class="fw-extrabold text-white fs-4">{{ $lokasi->nama_lokasi }}</h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
                     @endforeach
                 </div>
             </div>

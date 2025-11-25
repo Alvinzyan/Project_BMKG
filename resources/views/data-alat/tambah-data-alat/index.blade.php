@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Tambah Data Alat - Aplikasi Inventaris BMKG</title>
+    <title>Tambah Data Alat - Aplikasi Inventaris Alat BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -50,8 +50,7 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -75,10 +74,10 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="../../index.html">
-            <img class="navbar-brand-dark" src="../../assets/img/brand/light.svg" alt="Volt logo" /> <img
-                class="navbar-brand-light" src="../../assets/img/brand/dark.svg" alt="Volt logo" />
+    <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
+        <a class="navbar-brand me-lg-5" href="/inventaris-alat">
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
+                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -179,9 +178,8 @@
                     style="width:40px; height:40px; background-color:#1E3D58; color:#fff;">
                     <!-- SVG -->
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icon-tabler-database">
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-database">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <ellipse cx="12" cy="6" rx="9" ry="3" />
                         <path d="M3 6v12c0 1.667 4 3 9 3s9 -1.333 9 -3v-12" />
@@ -197,173 +195,212 @@
         <div class="row mb-4 mt-4">
             <div class="align-items-center">
                 <div class="row g-0 border mb-1">
-                    <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Lokasi</div>
+                    <div class="col-2 p-2 fw-bold text-white bg-dark"
+                        style="background:#1E3D58; border-radius: 12px 0 0 12px;">Lokasi</div>
                     <div class="col-10 p-2 bg-white text-dark"
-                        style="color:#1E3D58; border:1px solid #1E3D58;">{{ $lokasi->nama_lokasi }}</div>
+                        style="color:#1E3D58; border:1px solid #1E3D58; border-radius: 0 12px 12px 0;">
+                        {{ $lokasi->nama_lokasi }}</div>
                 </div>
 
                 <div class="row g-0 border">
-                    <div class="col-2 p-2 fw-bold text-white bg-dark" style="background:#1E3D58;">Kategori</div>
+                    <div class="col-2 p-2 fw-bold text-white bg-dark"
+                        style="background:#1E3D58; border-radius: 12px 0 0 12px;">Kategori</div>
                     <div class="col-10 p-2 bg-white text-dark"
-                        style="color:#1E3D58; border:1px solid #1E3D58;">{{ $nama_kategori }}</div>
+                        style="color:#1E3D58; border:1px solid #1E3D58; border-radius: 0 12px 12px 0;">
+                        {{ $nama_kategori }}</div>
                 </div>
             </div>
         </div>
 
-        @foreach($alats as $group => $list)
-        <div class="card shadow-sm rounded-0 mb-4" style="background-color:#fff; border-top:3px solid #1E3D58;">
-            <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">{{ $group }}
-                <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;" data-bs-toggle="modal" data-bs-target="#modalTambahAlat_{{ Str::slug($group) }}">
-                    <i class="bi bi-plus"></i> Tambah Data
-                </a>
+        @foreach ($alats as $group => $list)
+            <div class="card shadow-sm rounded-0 mb-4" style="background-color:#fff; border-top:3px solid #1E3D58;">
+                <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">
+                    {{ $group }}
+                    <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;"
+                        data-bs-toggle="modal" data-bs-target="#modalTambahAlat_{{ Str::slug($group) }}">
+                        <i class="bi bi-plus"></i> Tambah Data
+                    </a>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table text-center align-middle"
+                            style="border:1px solid #000; border-collapse:collapse; font-size:14px;">
+                            <thead>
+                                <tr>
+                                    <th style="border:1px solid #000;">No</th>
+                                    <th style="border:1px solid #000;">Nama Alat</th>
+                                    <th style="border:1px solid #000;">Merk/Type</th>
+                                    <th style="border:1px solid #000;">Jumlah</th>
+                                    <th style="border:1px solid #000;">Tahun Pemasangan</th>
+                                    <th style="border:1px solid #000;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($list as $a)
+                                    <tr data-id="{{ $a->id }}">
+                                        <td style="border:1px solid #000;">{{ $loop->iteration }}</td>
+                                        <td style="border:1px solid #000;">{{ $a->nama_alat }}</td>
+                                        <td style="border:1px solid #000;">{{ $a->merk_tipe }}</td>
+                                        <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
+                                        <td style="border:1px solid #000;">{{ $a->tahun_pemasangan }}</td>
+                                        <td style="border:1px solid #000;">
+
+                                            <a href="#" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
+                                                data-bs-target="#modalEditAlat_{{ $a->id }}">
+                                                <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                    <path d="M13.5 6.5l4 4" />
+                                                </svg>Edit</a>
+
+                                            <!-- Tombol Hapus -->
+                                            <form
+                                                action="{{ route('data-alat.tambah-data-alat.destroy', [
+                                                    'nama_lokasi' => $lokasi->nama_lokasi,
+                                                    'nama_kategori' => $group,
+                                                    'id' => $a->id,
+                                                ]) }}"
+                                                method="POST" class="d-inline form-hapus">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>Hapus
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal Edit Alat -->
+                                    <div class="modal fade" id="modalEditAlat_{{ $a->id }}" tabindex="-1"
+                                        aria-labelledby="modalEditAlatLabel_{{ $a->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content border-0 shadow">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark"
+                                                        id="modalEditAlatLabel_{{ $a->id }}">Edit Alat -
+                                                        {{ $a->nama_alat }}</h5>
+                                                    <button type="button" class="btn-close btn-close-dark"
+                                                        data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                </div>
+
+                                                <form
+                                                    action="{{ route('data-alat.tambah-data-alat.update', [
+                                                        'nama_lokasi' => $lokasi->nama_lokasi,
+                                                        'id' => $a->id,
+                                                        'nama_kategori' => $kategori->nama_kategori ?? null,
+                                                    ]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Nama Alat</label>
+                                                            <input type="text" class="form-control"
+                                                                name="nama_alat" value="{{ $a->nama_alat }}"
+                                                                required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Merk / Type</label>
+                                                            <input type="text" class="form-control"
+                                                                name="merk_tipe" value="{{ $a->merk_tipe }}"
+                                                                required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Jumlah</label>
+                                                            <input type="number" class="form-control" name="jumlah"
+                                                                value="{{ $a->jumlah }}" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tahun Pemasangan</label>
+                                                            <input type="number" class="form-control"
+                                                                name="tahun_pemasangan"
+                                                                value="{{ $a->tahun_pemasangan }}" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <tr class="text-center align-middle">
+                                        <td style="border:1px solid #000;"></td>
+                                        <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table text-center align-middle"
-                        style="border:1px solid #000; border-collapse:collapse; font-size:14px;">
-                        <thead>
-                            <tr>
-                                <th style="border:1px solid #000;">No</th>
-                                <th style="border:1px solid #000;">Nama Alat</th>
-                                <th style="border:1px solid #000;">Merk/Type</th>
-                                <th style="border:1px solid #000;">Jumlah</th>
-                                <th style="border:1px solid #000;">Tahun Pemasangan</th>
-                                <th style="border:1px solid #000;">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($list as $a)
-                            <tr data-id="{{ $a->id }}">
-                                <td style="border:1px solid #000;">{{ $loop->iteration }}</td>
-                                <td style="border:1px solid #000;">{{ $a->nama_alat }}</td>
-                                <td style="border:1px solid #000;">{{ $a->merk_tipe }}</td>
-                                <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
-                                <td style="border:1px solid #000;">{{ $a->tahun_pemasangan }}</td>
-                                <td style="border:1px solid #000;">
-                                    <a href="#" class="btn btn-sm text-white btn-edit" style="background-color:#055C9D;" data-bs-toggle="modal" data-bs-target="#modalEditAlat_{{ $a->id }}">
-                                        <i class="bi bi-pencil-square"></i> Edit</a>
+            <!-- modal tambah alat -->
+            <div class="modal fade" id="modalTambahAlat_{{ Str::slug($group) }}" tabindex="-1"
+                aria-labelledby="modalTambahAlatLabel_{{ Str::slug($group) }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="modalTambahAlatLabel_{{ Str::slug($group) }}">
+                                Tambah Alat - {{ $group }}</h5>
+                            <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal"
+                                aria-label="Tutup"></button>
+                        </div>
 
-                                    <!-- Tombol Hapus -->
-                                    <form action="{{ route('data-alat.tambah-data-alat.destroy', [
-                                                'nama_lokasi' => $lokasi->nama_lokasi,
-                                                'nama_kategori' => $group,
-                                                'id' => $a->id
-                                            ]) }}" method="POST" class="d-inline form-hapus">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="bi bi-trash"></i> Hapus
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                        <form method="POST"
+                            action="{{ route('data-alat.tambah-data-alat.store', ['nama_lokasi' => $lokasi->nama_lokasi, 'nama_kategori' => $group]) }}">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nama_alat_{{ Str::slug($group) }}" class="form-label">Nama
+                                        Alat</label>
+                                    <input type="text" class="form-control"
+                                        id="nama_alat_{{ Str::slug($group) }}" name="nama_alat" required>
+                                </div>
 
-                            <!-- Modal Edit Alat -->
-                            <div class="modal fade" id="modalEditAlat_{{ $a->id }}" tabindex="-1"
-                                aria-labelledby="modalEditAlatLabel_{{ $a->id }}" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content border-0 shadow">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="modalEditAlatLabel_{{ $a->id }}">Edit Alat - {{ $a->nama_alat }}</h5>
-                                            <button type="button" class="btn-close btn-close-dark"
-                                                data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                        </div>
+                                <div class="mb-3">
+                                    <label for="merk_tipe_{{ Str::slug($group) }}" class="form-label">Merk /
+                                        Type</label>
+                                    <input type="text" class="form-control"
+                                        id="merk_tipe_{{ Str::slug($group) }}" name="merk_tipe" required>
+                                </div>
 
-                                        <form action="{{ route('data-alat.tambah-data-alat.update', [
-                                                'nama_lokasi' => $lokasi->nama_lokasi,
-                                                'id' => $a->id,
-                                                'nama_kategori' => $kategori->nama_kategori ?? null,
-                                            ]) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nama Alat</label>
-                                                    <input type="text" class="form-control" name="nama_alat"
-                                                        value="{{ $a->nama_alat }}" required>
-                                                </div>
+                                <div class="mb-3">
+                                    <label for="jumlah_{{ Str::slug($group) }}" class="form-label">Jumlah</label>
+                                    <input type="number" class="form-control" id="jumlah_{{ Str::slug($group) }}"
+                                        name="jumlah" required>
+                                </div>
 
-                                                <div class="mb-3">
-                                                    <label class="form-label">Merk / Type</label>
-                                                    <input type="text" class="form-control" name="merk_tipe"
-                                                        value="{{ $a->merk_tipe }}" required>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label">Jumlah</label>
-                                                    <input type="number" class="form-control" name="jumlah"
-                                                        value="{{ $a->jumlah }}" required>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label">Tahun Pemasangan</label>
-                                                    <input type="number" class="form-control" name="tahun_pemasangan"
-                                                        value="{{ $a->tahun_pemasangan }}" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-success">Simpan</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="tahun_pemasangan_{{ Str::slug($group) }}" class="form-label">Tahun
+                                        Pemasangan</label>
+                                    <input type="number" class="form-control"
+                                        id="tahun_pemasangan_{{ Str::slug($group) }}" name="tahun_pemasangan"
+                                        required>
                                 </div>
                             </div>
-                            @empty
-                            <tr class="text-center align-middle">
-                                <td style="border:1px solid #000;"></td>
-                                <td colspan="5" style="border:1px solid #000;">Belum ada data alat</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
 
-        <!-- modal tambah alat -->
-        <div class="modal fade" id="modalTambahAlat_{{ Str::slug($group) }}" tabindex="-1" aria-labelledby="modalTambahAlatLabel_{{ Str::slug($group) }}" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 shadow">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="modalTambahAlatLabel_{{ Str::slug($group) }}">Tambah Alat - {{ $group }}</h5>
-                        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-danger"
+                                    data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-sm btn-success">Simpan</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <form method="POST" action="{{ route('data-alat.tambah-data-alat.store', ['nama_lokasi' => $lokasi->nama_lokasi, 'nama_kategori' => $group]) }}">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="nama_alat_{{ Str::slug($group) }}" class="form-label">Nama Alat</label>
-                                <input type="text" class="form-control" id="nama_alat_{{ Str::slug($group) }}" name="nama_alat" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="merk_tipe_{{ Str::slug($group) }}" class="form-label">Merk / Type</label>
-                                <input type="text" class="form-control" id="merk_tipe_{{ Str::slug($group) }}" name="merk_tipe" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="jumlah_{{ Str::slug($group) }}" class="form-label">Jumlah</label>
-                                <input type="number" class="form-control" id="jumlah_{{ Str::slug($group) }}" name="jumlah" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="tahun_pemasangan_{{ Str::slug($group) }}" class="form-label">Tahun Pemasangan</label>
-                                <input type="number" class="form-control" id="tahun_pemasangan_{{ Str::slug($group) }}" name="tahun_pemasangan" required>
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-sm btn-success">Simpan</button>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
         @endforeach
 
         <footer class="bg-white rounded shadow p-3 mb-3 mt-3">
@@ -380,16 +417,16 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if(session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session("success") }}',
-            showConfirmButton: false,
-            timer: 2000
-        });
-    </script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
     @endif
 
     <script>

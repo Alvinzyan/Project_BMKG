@@ -7450,7 +7450,7 @@ textarea.form-control-lg {
     background-clip: border-box;
     border: 0.0625rem solid rgba(17, 24, 39, 0.125);
     border-radius: 0.5rem;
-    margin: 1rem;
+    margin: 0 1rem 1rem 1rem ;
 }
 
 /* .card-note {
