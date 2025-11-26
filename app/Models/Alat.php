@@ -5,32 +5,40 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\PeriodeHelper;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Alat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_alat', 'id_kategori', 'merk_tipe', 'jumlah', 'tahun_pemasangan', 'keterangan'];
+    protected $fillable = [
+        'nama_alat', 'id_kategori', 'merk_tipe', 'jumlah',
+        'tahun_pemasangan', 'keterangan'
+    ];
 
-    public function pengecekans()
+    public function pengecekans(): HasMany
     {
         return $this->hasMany(Pengecekan::class, 'id_alat');
     }
 
-    public function pengecekanTerakhirAktif()
+    public function pengecekanTerakhirAktif($start = null, $end = null)
     {
-        $periode = PeriodeHelper::getPeriodeAktif();
+        if (!$start || !$end) {
+            $periode = PeriodeHelper::getPeriodeAktif();
+            $start = $periode['start_date'];
+            $end   = $periode['end_date'];
+        }
 
         return $this->hasOne(Pengecekan::class, 'id_alat')
             ->whereBetween('created_at', [
-                $periode['start_date'] . ' 00:00:00',
-                $periode['end_date'] . ' 23:59:59'
+                "$start 00:00:00",
+                "$end 23:59:59"
             ])
             ->latestOfMany();
     }
-    public function kategori()
+
+    public function kategori(): BelongsTo
     {
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }

@@ -98,7 +98,7 @@
 
         .meta-left {
             flex: 1;
-            font-size: 11pt;
+            font-size: 12pt;
         }
 
         .meta-item {
@@ -121,13 +121,13 @@
         .recipient {
             display: flex;
             margin-top: 10mm;
-            font-size: 11pt;
+            font-size: 12pt;
             padding: 0 20mm;
         }
 
         .content-one {
             margin-top: 10mm;
-            font-size: 11pt;
+            font-size: 12pt;
             line-height: 1.4;
             text-align: justify;
             padding: 0 20mm;
@@ -314,6 +314,10 @@
                 <div class="line-2"></div>
             </header>
 
+            @php
+            $tanggalAwal = \Carbon\Carbon::parse($periode_start)->translatedFormat('j');
+            $tanggalAkhir = \Carbon\Carbon::parse($periode_end)->translatedFormat('j F Y');
+            @endphp
             <section class="meta-row">
                 <div class="meta-left">
                     <div class="meta-item">
@@ -346,7 +350,7 @@
 
             <section class="content-one">
                 <p>Dengan hormat, bersama ini kami sampaikan Laporan Kondisi Peralatan yang dioperasikan di Stasiun
-                    Meteorologi Banyuwangi tanggal 19 – 25 Juli 2025 (sebagaimana terlampir).</p>
+                    Meteorologi Banyuwangi tanggal {{ $tanggalAwal }} – {{ $tanggalAkhir }} (sebagaimana terlampir).</p>
                 <p>Demikian Laporan Kondisi Aloptama ini kami sampaikan, atas perhatiannya diucapkan terima kasih.</p>
             </section>
 
@@ -412,18 +416,30 @@
                     <tbody>
                         @foreach($kategori->alats as $alat)
                         @php
-                        $lastPengecekan = $alat->pengecekans->sortByDesc('tanggal_pengecekan')->first();
+                        $lastPengecekan = $alat->pengecekans->sortByDesc('created_at')->first();
+                        $kondisi = [];
+
+                        if ($lastPengecekan) {
+                        if (is_string($lastPengecekan->kondisi)) {
+                        $kondisi = json_decode($lastPengecekan->kondisi, true) ?? [];
+                        } elseif (is_array($lastPengecekan->kondisi)) {
+                        $kondisi = $lastPengecekan->kondisi;
+                        }
+                        }
                         @endphp
                         <tr>
                             <td style="border:1px solid #000; padding:3px;">{{ $loop->iteration }}</td>
                             <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->nama_alat }}</td>
                             <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->merk_tipe }}</td>
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->jumlah }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $lastPengecekan?->kondisi == 'B' ? '√' : '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $lastPengecekan?->kondisi == 'RR' ? '√' : '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $lastPengecekan?->kondisi == 'RB' ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ in_array('baik', $kondisi) ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ in_array('rusak ringan', $kondisi) ? '√' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ in_array('rusak berat', $kondisi) ? '√' : '' }}</td>
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->tahun_pemasangan ?? '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ optional($alat->pengecekans->first())->kalibrasi_terakhir ?? '' }}</td>
+                            <td style="border:1px solid #000; padding:3px;">{{ $lastPengecekan && $lastPengecekan->kalibrasi_terakhir 
+                                ? \Carbon\Carbon::createFromFormat('Y-m', $lastPengecekan->kalibrasi_terakhir)->locale('id')
+                                ->translatedFormat('F Y') : '' }}
+                            </td>
                             <td style="border:1px solid #000; padding:3px;">{{ ucfirst($alat->keterangan ?? '') }}</td>
                         </tr>
                         @endforeach
@@ -431,14 +447,15 @@
 
                 </table>
                 <!-- ====== CATATAN PER KATEGORI ====== -->
+                @php
+                $cat = $kategori->latestCatatan->isi_catatan ?? null;
+                $cat = trim($cat);
+                @endphp
+
+                @if($cat)
                 <div class="catatan" style="margin-bottom:6mm;">
                     <p><strong>Catatan:</strong></p>
 
-                    @php
-                    $cat = $kategori->catatanKategori->isi_catatan ?? null;
-                    @endphp
-
-                    @if($cat)
                     <ol>
                         @foreach(explode("\n", $cat) as $baris)
                         @if(trim($baris) !== '')
@@ -446,10 +463,8 @@
                         @endif
                         @endforeach
                     </ol>
-                    @else
-                    <p>-</p>
-                    @endif
                 </div>
+                @endif
                 @endforeach
                 @endforeach
             </div>

@@ -80,9 +80,6 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::get('inventaris-alat/pos-bandara-jmbr/edit', [PosBandaraJemberController::class, 'edit'])->name('pos-bandara-jmbr.edit');
     Route::put('inventaris-alat/pos-bandara-jmbr/update', [PosBandaraJemberController::class, 'update'])->name('pos-bandara-jmbr.update');
 
-    Route::get('cetak-laporan', [CetakLaporanController::class, 'index'])->name('laporan-alat.index');
-    Route::get('cetak-laporan/view', [CetakLaporanController::class, 'lihatView'])->name('laporan-alat.view');
-
     // 🔹 LAPORAN — GABUNG YANG DOUBEL, PAKAI PREFIX SEKALIAN
     Route::prefix('laporan-alat')->name('laporan-alat.')->group(function () {
         Route::get('/', [CetakLaporanController::class, 'index'])->name('index');

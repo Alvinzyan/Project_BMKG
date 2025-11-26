@@ -7,105 +7,163 @@ use Illuminate\Http\Request;
 use App\Helpers\PeriodeHelper;
 use Carbon\Carbon;
 use App\Models\Lokasi;
-
+use Illuminate\Support\Facades\Auth;
 
 class CetakLaporanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('cetak-laporan.index');
-    }
-
-    // public function lihatView(Request $request)
-    // {
-    //     $start = $request->periode_start;
-    //     $end   = $request->periode_end;
-
-    //     if ($start && $end) {
-    //         $lokasiList = Lokasi::with([
-    //             'kategoris.alats' => function ($q) use ($start, $end) {
-    //                 $q->whereHas('pengecekans', function ($x) use ($start, $end) {
-    //                     $x->whereBetween('tanggal_pengecekan', [$start, $end]);
-    //                 });
-    //             },
-    //             'kategoris.catatanKategori',
-
-    //             'kategoris.alats.pengecekans' => function ($q) {
-    //                 $q->whereNotNull('foto_lampiran');
-    //             }
-
-    //         ])->get();
-    //     } else {
-    //         $lokasiList = Lokasi::with([
-    //             'kategoris.alats',
-    //             'kategoris.catatanKategori',
-
-    //             'kategoris.alats.pengecekans' => function ($q) {
-    //                 $q->whereNotNull('foto_lampiran');
-    //             }
-
-    //         ])->get();
-    //     }
-
-    //     return view('pdf.surat-laporan-alat', [
-    //         'tanggal' => now()->translatedFormat('d F Y'),
-    //         'lokasiList' => $lokasiList,
-    //         'periode_start' => $start,
-    //         'periode_end' => $end,
-    //     ]);
-    // }
-
-    public function lihatView(Request $request)
-    {
-        $start = $request->periode_start;
-        $end   = $request->periode_end;
-
-        if (!$start || !$end) {
-            $periode = PeriodeHelper::getPeriodeAktif();
-            $start = $periode['start_date'] ?? now()->format('Y-m-d');
-            $end   = $periode['end_date'] ?? now()->format('Y-m-d');
+        if ($request->filled('periode_start')) {
+            $periode = PeriodeHelper::getPeriodeFromDate($request->periode_start);
+            $start = $periode['start_date'];
+            $end   = $periode['end_date'];
+        } else {
+            $periodeAktif = PeriodeHelper::getPeriodeAktif();
+            $start = $periodeAktif['start_date'];
+            $end   = $periodeAktif['end_date'];
         }
 
-        $lokasiList = Lokasi::with([
-            'kategoris.alats',
-            'kategoris.catatanKategori',
-            'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
-                $q->whereBetween('created_at', [$start, $end]);
-            }
-        ])->get();
-
-        return view('pdf.surat-laporan-alat', [
-            'tanggal' => now()->translatedFormat('d F Y'),
-            'lokasiList' => $lokasiList,
+        return view('cetak-laporan.index', [
             'periode_start' => $start,
-            'periode_end' => $end,
+            'periode_end'   => $end,
         ]);
     }
 
+    public function lihatView(Request $request)
+    {
+        if ($request->filled('periode_start') && $request->filled('periode_end')) {
+            $start = $request->periode_start;
+            $end   = $request->periode_end;
+        } else {
+            $periodeAktif = PeriodeHelper::getPeriodeAktif();
+            $start = $periodeAktif['start_date'];
+            $end   = $periodeAktif['end_date'];
+        }
+
+        // $lokasiList = Lokasi::with([
+        //     'kategoris.alats',
+        //     'kategoris.catatanKategori',
+        //     'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
+        //         $q->whereBetween('created_at', [
+        //             "{$start} 00:00:00",
+        //             "{$end} 23:59:59"
+        //         ]);
+        //     }
+        // ])->get();
+
+        $lokasiList = Lokasi::with([
+            'kategoris.alats',
+            'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
+                $q->whereBetween('created_at', [
+                    "{$start} 00:00:00",
+                    "{$end} 23:59:59"
+                ]);
+            },
+            'kategoris.catatanKategoris' => function ($q) use ($start, $end) {
+                $q->whereBetween('created_at', [
+                    "{$start} 00:00:00",
+                    "{$end} 23:59:59"
+                ]);
+            },
+        ])->get();
+
+        foreach ($lokasiList as $lokasi) {
+            foreach ($lokasi->kategoris as $kategori) {
+
+                $kategori->latestCatatan = $kategori->catatanKategoris
+                    ->sortByDesc('created_at')
+                    ->first();
+
+                foreach ($kategori->alats as $alat) {
+
+                    $alat->latestPengecekan = $alat->pengecekans
+                        ->sortByDesc('created_at')
+                        ->first();
+
+                    $alat->latestKalibrasi = $alat->pengecekans
+                        ->whereNotNull('kalibrasi_terakhir')
+                        ->sortByDesc('created_at')
+                        ->first();
+                }
+            }
+        }
+
+        return view('pdf.surat-laporan-alat', [
+            'lokasiList'      => $lokasiList,
+            'tanggal'         => now()->translatedFormat('d F Y'),
+            'periode_start'   => $start,
+            'periode_end'     => $end,
+        ]);
+    }
 
     public function generatePdf(Request $request)
     {
         $nomorSurat = $request->nomor_surat;
 
-        $periode = PeriodeHelper::getPeriodeAktif();
+        if ($request->filled('periode_start') && $request->filled('periode_end')) {
+            $start = $request->periode_start;
+            $end   = $request->periode_end;
+        } else {
+            $periodeAktif = PeriodeHelper::getPeriodeAktif();
+            $start = $periodeAktif['start_date'];
+            $end   = $periodeAktif['end_date'];
+        }
 
-        $tanggalPeriode = Carbon::parse($periode['start_date'])->translatedFormat('j');
-        $tanggalPeriode .= ' – ' . Carbon::parse($periode['end_date'])->translatedFormat('j F Y');
+        $tanggalPeriode = Carbon::parse($start)->translatedFormat('j') . ' – ' . Carbon::parse($end)->translatedFormat('j F Y');
 
-        $lokasiList = Lokasi::with(['kategoris.alats', 'kategoris.catatanKategori'])->get();
+        $lokasiList = Lokasi::with([
+            'kategoris.alats',
+            'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
+                $q->whereBetween('created_at', [
+                    "{$start} 00:00:00",
+                    "{$end} 23:59:59"
+                ]);
+            },
+            'kategoris.catatanKategoris' => function ($q) use ($start, $end) {
+                $q->whereBetween('created_at', [
+                    "{$start} 00:00:00",
+                    "{$end} 23:59:59"
+                ]);
+            },
+        ])->get();
+
+        foreach ($lokasiList as $lokasi) {
+            foreach ($lokasi->kategoris as $kategori) {
+
+                $kategori->latestCatatan = $kategori->catatanKategoris
+                    ->sortByDesc('created_at')
+                    ->first();
+
+                foreach ($kategori->alats as $alat) {
+
+                    $alat->latestPengecekan = $alat->pengecekans
+                        ->sortByDesc('created_at')
+                        ->first();
+
+                    $alat->latestKalibrasi = $alat->pengecekans
+                        ->whereNotNull('kalibrasi_terakhir')
+                        ->sortByDesc('created_at')
+                        ->first();
+                }
+            }
+        }
 
         $data = [
-            'nomor_surat' => $nomorSurat,
-            'tanggal' => now()->translatedFormat('d F Y'),
+            'nomor_surat'     => $nomorSurat,
+            'tanggal'         => now()->translatedFormat('d F Y'),
             'tanggal_periode' => $tanggalPeriode,
-            'lokasiList' => $lokasiList
+            'lokasiList'      => $lokasiList,
+            'periode_start'   => $start,
+            'periode_end'     => $end,
+            'nama_lengkap'    => $request->nama_lengkap ?? Auth::user()->nama_lengkap,
         ];
 
         $pdf = Pdf::loadView('pdf.surat-cetak-pdf', $data)
             ->setPaper('A4', 'portrait');
+
         return $pdf->stream('laporan-alat.pdf');
     }
 

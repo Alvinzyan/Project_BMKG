@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Surat Aloptoma BMKG - A4</title>
+    <title>Surat Aloptama BMKG - A4</title>
     <style>
         @page {
             size: A4;
-            margin: 0;
+            margin: 12mm 0 0 0;
         }
 
         body {
@@ -19,25 +19,28 @@
         /* === PEMBUNGKUS HALAMAN === */
         .paper-wrap {
             width: 100%;
-            height: 100%;
+            /* height: 100%; */
             background: white;
-            margin: 0 auto;
+            margin: 5mm auto;
             page-break-after: always;
             position: relative;
             box-sizing: border-box;
             overflow: hidden;
         }
 
-        .paper-wrap.page-2,
-        .paper-wrap.page-3 {
-            padding-top: 10mm;
-            padding-bottom: 10mm;
+        .paper-wrap:last-child {
+            page-break-after: auto;
+        }
+
+        .paper-wrap:not(.last-page) {
+            page-break-after: always;
         }
 
         /* === HEADER === */
         .letter-header {
             background-color: #e1e1e1;
             width: 210mm;
+            margin-top: -20mm;
             padding-top: 10mm;
             box-sizing: border-box;
             text-align: center;
@@ -78,13 +81,13 @@
         /* === KONTEN SURAT === */
         .content-wrap {
             padding: 10mm 20mm;
-            font-size: 11pt;
+            font-size: 12pt;
             box-sizing: border-box;
         }
 
         .meta-row {
             width: 100%;
-            font-size: 11pt;
+            font-size: 12pt;
             white-space: nowrap;
             align-items: flex-start;
         }
@@ -115,7 +118,7 @@
 
         .recipient {
             margin-top: 12mm;
-            font-size: 11pt;
+            font-size: 12pt;
         }
 
         .recipient .label {
@@ -222,10 +225,73 @@
         .catatan li {
             margin-bottom: 1mm;
         }
+
+        /* ==================== TTD ==================== */
+        .paper-wrap.page-ttd {
+            padding-left: 5mm;
+        }
+
+        .ttd-table {
+            padding-top: 10mm;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .ttd-td {
+            text-align: left;
+            vertical-align: top;
+            border: none;
+            font-size: 12pt;
+        }
+
+        .ttd-title span {
+            display: block;
+            margin-top: 2mm;
+        }
+
+        .ttd-space {
+            height: 25mm;
+        }
+
+        .ttd-name {
+            margin-top: 2mm;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .page-footer {
+            position: fixed;
+            bottom: 5mm;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 10pt;
+        }
+
+        .page-footer .footer-line {
+            width: 70%;
+            height: 1px;
+            background: #534d4dff;
+            margin: 0 auto 2mm auto;/
+        }
+
+        .page-footer .footer-text {
+            max-width: 65%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 5mm;
+            font-style: italic;
+        }
     </style>
 </head>
 
 <body>
+    <div class="page-footer">
+        <div class="footer-line"></div>
+        <div class="footer-text">
+            Dokumen ini telah ditandatangani secara elektronik
+            menggunakan sertifkat elektronik yang diterbitkan oleh Badan Sertifikat Elektronik (BSrE), Badan Siber dan Sandi Negara
+        </div>
+    </div>
 
     <!-- ===== HALAMAN 1 ===== -->
     <div class="paper-wrap">
@@ -312,7 +378,7 @@
                 <p class="subtitle">{{ $kategori->nama_kategori }}</p>
 
                 {{-- TABLE --}}
-                <table style="width: 100%; border-collapse: collapse; font-size: 10px; table-layout: fixed;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed;">
                     <thead>
                         <tr>
                             <th rowspan="2" style="width: 5%; border: 1px solid #000; padding: 3px;">NO</th>
@@ -332,38 +398,46 @@
                     </thead>
 
                     <tbody>
-                        @forelse($kategori->alats as $alat)
+                        @foreach($kategori->alats as $alat)
+                        @php
+                        $lastPengecekan = $alat->latestPengecekan;
+                        $kondisi = [];
+                        if ($lastPengecekan) {
+                        if (is_string($lastPengecekan->kondisi)) {
+                        $kondisi = json_decode($lastPengecekan->kondisi, true) ?? [];
+                        } elseif (is_array($lastPengecekan->kondisi)) {
+                        $kondisi = $lastPengecekan->kondisi;
+                        }
+                        }
+                        @endphp
                         <tr>
                             <td style="border:1px solid #000; padding:3px;">{{ $loop->iteration }}</td>
                             <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->nama_alat }}</td>
                             <td style="border:1px solid #000; padding:3px; text-align:left;">{{ $alat->merk_tipe }}</td>
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->jumlah }}</td>
-
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'B' ? '√' : '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RR' ? '√' : '' }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kondisi == 'RB' ? '√' : '' }}</td>
-
+                            <td style="border:1px solid #000; padding:3px; font-family: DejaVu Sans;">{{ in_array('baik', $kondisi) ? '✓' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px; font-family: DejaVu Sans;">{{ in_array('rusak ringan', $kondisi) ? '✓' : '' }}</td>
+                            <td style="border:1px solid #000; padding:3px; font-family: DejaVu Sans;">{{ in_array('rusak berat', $kondisi) ? '✓' : '' }}</td>
                             <td style="border:1px solid #000; padding:3px;">{{ $alat->tahun_pemasangan }}</td>
-                            <td style="border:1px solid #000; padding:3px;">{{ $alat->kalibrasi_terakhir }}</td>
+                            <td style="border:1px solid #000; padding:3px;"> {{ optional($alat->latestKalibrasi)->kalibrasi_terakhir
+                                ? \Carbon\Carbon::createFromFormat('Y-m', $alat->latestKalibrasi->kalibrasi_terakhir)
+                                ->locale('id')
+                                ->translatedFormat('F Y') : '' }}
+                            </td>
                             <td style="border:1px solid #000; padding:3px;">{{ ucfirst($alat->keterangan) }}</td>
                         </tr>
-                        @empty
-                        <tr>
-                            <td colspan="10" style="border:1px solid #000; padding:3px; text-align:center;">
-                                Tidak ada data peralatan.
-                            </td>
-                        </tr>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
+                @php
+                $cat = $kategori->latestCatatan->isi_catatan ?? null;
+                $cat = trim($cat);
+                @endphp
+
+                @if($cat)
                 <div class="catatan" style="margin-bottom:6mm;">
                     <p><strong>Catatan:</strong></p>
 
-                    @php
-                    $cat = $kategori->catatanKategori->isi_catatan ?? null;
-                    @endphp
-
-                    @if($cat)
                     <ol>
                         @foreach(explode("\n", $cat) as $baris)
                         @if(trim($baris) !== '')
@@ -371,19 +445,57 @@
                         @endif
                         @endforeach
                     </ol>
-                    @else
-                    <p>-</p>
-                    @endif
                 </div>
+                @endif
                 @endforeach
                 @endforeach
-
             </div>
         </div>
     </div>
 
+    <!-- HALAMAN TAMBAHAN: TANDA TANGAN -->
+    <div class="paper-wrap page-ttd">
+        <div class="content-wrap">
+
+            <p style="text-align:justify; font-size:12pt;">
+                Demikian laporan peralatan ini kami sampaikan, atas perhatiannya kami ucapkan terima kasih.
+            </p>
+
+            <table class="ttd-table" width="90%">
+                <tr>
+                    <td class="ttd-td">
+                        <div class="ttd-title">
+                            Mengetahui,
+                            <span>Kepala Stasiun Meteorologi Banyuwangi</span>
+                        </div>
+
+                        <div class="ttd-space"></div>
+
+                        <div class="ttd-name">
+                            <p>Teguh Tri Susanto</p>
+                        </div>
+                    </td>
+
+                    <td class="ttd-td">
+                        <div class="ttd-title">
+                            Pembuat Laporan
+                            <span>Teknisi</span>
+                        </div>
+
+                        <div class="ttd-space"></div>
+
+                        <div class="ttd-name">
+                            <p>{{ Auth::user()->nama_lengkap }}</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
     <!-- HALAMAN 3: FOTO -->
-    <div class="paper-wrap page-3">
+    <div class="paper-wrap last-page page-3">
         <div class="sheet" style="padding-left:15mm; padding-right:5mm;">
             <h2 style="text-align:center; font-size:14pt; margin-bottom:5mm;">Lampiran Foto Peralatan</h2>
 
@@ -427,6 +539,7 @@
             @endforeach
         </div>
     </div>
+
 </body>
 
 </html>

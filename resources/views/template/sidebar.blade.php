@@ -92,8 +92,8 @@
                 @endif
 
                 @if (auth()->user()->peran == 'teknisi')
-                <li class="nav-item {{ Request::is('cetak-laporan') ? 'active' : '' }}">
-                    <a href="/cetak-laporan" class="nav-link">
+                <li class="nav-item {{ Request::is('laporan-alat') ? 'active' : '' }}">
+                    <a href="/laporan-alat" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
