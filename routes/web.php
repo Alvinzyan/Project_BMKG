@@ -89,8 +89,33 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
 
     // 🔹 DATA ALAT
     Route::prefix('data-alat')->name('data-alat.')->group(function () {
+        
         Route::get('/', [DataAlatController::class, 'index'])->name('index');
+
+        // PAGE ARCHIVE KATEGORI
+        Route::get('{nama_lokasi}/archive', [DataAlatController::class, 'kategoriArchiveByLokasi'])
+            ->name('kategori.archive');
+
+        // PAGE KATEGORI PER LOKASI 
         Route::get('/{nama_lokasi}', [DataAlatController::class, 'kategoriByLokasi'])->name('tempat-alat.index');
+
+        // TAMBAH KATEGORI
+        Route::post('/{nama_lokasi}/kategori/store', [DataAlatController::class, 'storeKategori'])
+            ->name('tempat-alat.kategori.store');
+
+        // DELETE KATEGORI
+        Route::delete('/kategori/{id}/delete', [DataAlatController::class, 'deleteKategori'])
+            ->name('tempat-alat.delete');
+        
+        // ARCHIVE kategori
+        Route::post('/kategori/{id}/archive', [DataAlatController::class, 'archiveKategori'])
+            ->name('kategori.archive.action');
+
+        // UNARCHIVE kategori
+        Route::post('/kategori/{id}/unarchive', [DataAlatController::class, 'unarchiveKategori'])
+            ->name('kategori.unarchive');
+
+        // ALAT DALAM KATEGORI
         Route::get('/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'alatByKategori'])->name('tambah-data-alat.index');
         Route::put('/{nama_lokasi}/update/{id}/{nama_kategori?}', [DataAlatController::class, 'update'])->name('tambah-data-alat.update');
         Route::post('/{nama_lokasi}/{nama_kategori?}', [DataAlatController::class, 'store'])->name('tambah-data-alat.store');

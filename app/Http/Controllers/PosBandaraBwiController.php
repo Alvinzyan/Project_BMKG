@@ -36,7 +36,9 @@ class PosBandaraBwiController extends Controller
                     $periode['end_date'] . ' 23:59:59'
                 ])->latest();
             }]);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        }])->where('id_lokasi', $lokasi->id)
+            ->where('is_archived', 0)     // <-- tambahan filter di sini
+            ->get();
 
         $dataSudahAda = PeriodeHelper::filterPengecekanByPeriode(
             Pengecekan::whereHas('alat', function ($q) use ($lokasi) {
@@ -118,7 +120,10 @@ class PosBandaraBwiController extends Controller
                 $query->with('pengecekanTerakhirAktif');
             },
             'catatanTerakhir'
-        ])->where('id_lokasi', $lokasi->id)->get();
+        ])
+            ->where('id_lokasi', $lokasi->id)
+            ->where('is_archived', 0) // hanya kategori yang tidak di archive
+            ->get();
 
         return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris', 'user'));
     }

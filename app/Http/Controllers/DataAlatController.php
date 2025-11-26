@@ -39,7 +39,9 @@ class DataAlatController extends Controller
     public function kategoriByLokasi($nama_lokasi)
     {
         $lokasi = Lokasi::where('nama_lokasi', urldecode($nama_lokasi))
-                        ->with('kategoris')
+                        ->with(['kategoris' => function($kategoriQuery) {
+                            $kategoriQuery->where('is_archived', 0); // menampilkan kategori yang unarchive
+                        }])
                         ->firstOrFail();
 
         return view('data-alat.tempat-alat.index', compact('lokasi'));
@@ -51,9 +53,11 @@ class DataAlatController extends Controller
         $nama_lokasi = urldecode($nama_lokasi);
         $nama_kategori = $nama_kategori ? urldecode($nama_kategori) : null;
 
-        // Cari lokasi
+        // Mengambil Lokasi serta kategori yang aktif/tidak diarchive
         $lokasi = Lokasi::where('nama_lokasi', $nama_lokasi)
-            ->with('kategoris.alats')
+            ->with(['kategoris' => function($kategoriQuery){
+                $kategoriQuery->where('is_archived', 0); 
+            }, 'kategoris.alats'])
             ->firstOrFail();
 
         if ($nama_kategori && $nama_kategori !== 'semua') {
@@ -82,6 +86,74 @@ class DataAlatController extends Controller
 
         return view('data-alat.tambah-data-alat.index', compact('lokasi', 'alats', 'nama_kategori'));
     }
+
+    public function kategoriArchiveByLokasi($nama_lokasi)
+    {
+        $lokasi = Lokasi::where('nama_lokasi', urldecode($nama_lokasi))
+            ->with(['kategoris' => function($kategoriQuery) {
+                $kategoriQuery->where('is_archived', 1); // menampilkan kategori di archive
+            }])
+            ->firstOrFail();
+
+        return view('data-alat.tempat-alat.archive', compact('lokasi'));
+    }
+
+    public function archiveKategori($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        $kategori->is_archived = 1;
+        $kategori->save();
+
+        $lokasiNama = urlencode($kategori->lokasi->nama_lokasi);
+
+        return redirect("/data-alat/$lokasiNama")
+            ->with('success', 'Kategori berhasil di-archive.');
+    }
+
+    public function unarchiveKategori($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        $kategori->is_archived = 0;
+        $kategori->save();
+
+        $lokasiNama = urlencode($kategori->lokasi->nama_lokasi);
+
+        return redirect("/data-alat/$lokasiNama/archive")
+            ->with('success', 'Kategori berhasil di-unarchive.');
+    }
+
+    public function storeKategori(Request $request, $nama_lokasi)
+    {
+        $request->validate([
+            'nama_kategori' => 'required'
+        ]);
+
+        $lokasi = Lokasi::where('nama_lokasi', $nama_lokasi)->firstOrFail();
+
+        Kategori::create([
+            'nama_kategori' => $request->nama_kategori,
+            'id_lokasi' => $lokasi->id,   
+        ]);
+
+        return redirect()->route('data-alat.tempat-alat.index', $lokasi->nama_lokasi)
+                        ->with('success', 'Kategori berhasil ditambahkan!');
+    }
+
+    public function deleteKategori($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+
+        if ($kategori->alats()->count() > 0) {
+            return redirect()->back()->with('error', 'Kategori tidak bisa dihapus karena masih memiliki alat.');
+        }
+        
+        $lokasiNama = urlencode($kategori->lokasi->nama_lokasi);
+        $kategori->delete();
+
+        return redirect("/data-alat/$lokasiNama")
+                ->with('success', 'Kategori berhasil dihapus.');
+    }
+
 
     /**
      * Store a newly created resource in storage.
