@@ -137,10 +137,12 @@
                             <!-- Profil -->
                             <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
                                 <div class="text-center mb-4">
-                                    <img src="https://via.placeholder.com/100" alt="Foto Profil" class="rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+                                    <img src="{{ $users->foto_profil  ? asset('storage/'. $users->foto_profil) : asset('storage/foto_profil/default-profile.jpg') }}"  class="rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+                                    @if (auth()->user()->peran=="teknisi")
                                     <div>
-                                        <button class="btn btn-sm text-white" style="background-color:#1E3D58;">Edit Profile</button>
+                                        <button class="btn btn-sm text-white" style="background-color:#1E3D58;" data-bs-toggle="modal" data-bs-target="#modalEditProfile">Edit Profile</button>
                                     </div>
+                                    @endif
                                 </div>
                                 <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -159,10 +161,10 @@
                                     <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                                     <input type="jenis_kelamin" class="form-control" id="jenis_kelamin" value="{{ $users->jenis_kelamin ?? '-' }}" readonly>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <!-- <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" value="{{ $users->email}}" readonly>
-                                </div>
+                                </div> -->
                                 </div>
                             </div>
 
@@ -184,6 +186,61 @@
                                     <button type="submit" class="btn btn-sm text-white" style="background-color:#1E3D58;">Simpan Perubahan</button>
                                 </form>
                             </div> --}}
+                            
+                            <!-- MODAL EDIT PROFILE -->
+                            <div class="modal fade" id="modalEditProfile" tabindex="-1" aria-labelledby="modalEditProfileLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0 shadow">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-dark" id="modalEditProfileLabel">Edit Profil</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+
+                                            <div class="modal-body">
+
+                                                <!-- Foto Profil -->
+                                                <div class="text-center mb-3">
+                                                    <img src="{{ $users->foto_profil  ? asset('storage/'.$users->foto_profil) : asset('storage/foto_profil/default-profile.jpg') }}" 
+                                                        class="rounded-circle mb-2 shadow-sm" 
+                                                        style="width: 110px; height: 110px; object-fit: cover;">
+                                                    <div>
+                                                        <input type="file" class="form-control mt-2 w-75 mx-auto" name="foto_profil">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Nama -->
+                                                <div class="mb-3">
+                                                    <label for="nama_lengkap_edit" class="form-label">Nama Lengkap</label>
+                                                    <input type="text" class="form-control" id="nama_lengkap_edit"
+                                                        name="nama_lengkap" value="{{ $users->nama_lengkap }}">
+                                                </div>
+
+                                                <!-- Jenis Kelamin -->
+                                                <div class="mb-3">
+                                                    <label for="jenis_kelamin_edit" class="form-label">Jenis Kelamin</label>
+                                                    <select class="form-control" id="jenis_kelamin_edit" name="jenis_kelamin">
+                                                        <option value="laki laki" {{ $users->jenis_kelamin == 'laki laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                        <option value="perempuan" {{ $users->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-denger" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -268,6 +325,18 @@
         </footer>
     </main>
 
+    <script src="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+    @endif
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('volt/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
