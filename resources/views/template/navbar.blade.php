@@ -6,15 +6,17 @@
             <li class="nav-item d-flex align-items-center list-unstyled me-3">
                 @php
                 $user = auth()->user();
-                $fotoPath = 'foto_profil/default-profile.png';
-                if ($user && $user->foto_profil && \Illuminate\Support\Facades\Storage::disk('public')->exists($user->foto_profil)) {
-                $fotoPath = $user->foto_profil;
+                $fotoPath = 'foto_profil/default-profile.jpg';
+                if ($user && $user->foto_profil) {
+                    if (Storage::disk('public')->exists($user->foto_profil)) {
+                        $fotoPath = $user->foto_profil;
+                    }
                 }
                 @endphp
 
                 <img class="avatar rounded-circle"
                     alt="Foto Profil"
-                    src="{{ asset('storage/' . $fotoPath) }}"
+                    src="{{ asset('storage/' . $fotoPath) }}" alt="Foto Profil"
                     style="width:45px; height:45px; object-fit:cover;">
 
                 <span class="ms-2 mb-0 font-small fw-bold text-gray-900">
