@@ -50,10 +50,37 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        $request->validate([
+            'nama_lengkap' => 'required|string|min:3|max:255',
+            'jenis_kelamin' => 'nullable|in:laki laki,perempuan',
+            'foto_profil' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        if ($request->hasFile('foto_profil')) {
+
+            if ($user->foto_profil && file_exists(storage_path('app/public/' . $user->foto_profil))) {
+                unlink(storage_path('app/public/' . $user->foto_profil));
+            }
+
+            $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');
+
+            $user->foto_profil = $fotoProfilPath;
+        }
+
+
+        $user->nama_lengkap = $request->nama_lengkap;
+        $user->jenis_kelamin = $request->jenis_kelamin;
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profil berhasil diupdate!');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
