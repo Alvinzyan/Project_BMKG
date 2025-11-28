@@ -287,7 +287,7 @@
                                                                 $fotoPath = $user->foto_profil;
                                                                 } else {
                                                                 $fotoPath =
-                                                                'foto_profil/default-profile.png'; // sesuaikan path default kamu
+                                                                'foto_profil/default-profile.jpg'; // sesuaikan path default kamu
                                                                 }
                                                                 @endphp
                                                                 <div
@@ -340,11 +340,7 @@
                                                                         <input type="password" class="form-control"
                                                                             value="{{ $user->decrypted_password }}"
                                                                             readonly>
-                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
-                                                                            <i class="bi bi-eye"></i>
-                                                                        </button>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
