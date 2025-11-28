@@ -55,6 +55,9 @@ class CetakLaporanController extends Controller
         // ])->get();
 
         $lokasiList = Lokasi::with([
+            'kategoris' => function ($q) {
+                $q->where('is_archived', 0);   // ⬅ kategori yang tidak diarsip
+            },
             'kategoris.alats',
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [
@@ -115,6 +118,9 @@ class CetakLaporanController extends Controller
         $tanggalPeriode = Carbon::parse($start)->translatedFormat('j') . ' – ' . Carbon::parse($end)->translatedFormat('j F Y');
 
         $lokasiList = Lokasi::with([
+            'kategoris' => function ($q) {
+                $q->where('is_archived', 0);   // ⬅ kategori yang tidak diarsip
+            },
             'kategoris.alats',
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [

@@ -269,9 +269,9 @@
                                                                         <input type="password" class="form-control"
                                                                             value="{{ $user->decrypted_password }}"
                                                                             readonly>
-                                                                        <!-- <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
                                                                             <i class="bi bi-eye"></i>
-                                                                        </button> -->
+                                                                        </button>
                                                                     </div>
 
                                                                 </div>
@@ -331,7 +331,7 @@
                                                                     <!-- Peran -->
                                                                     <div class="col-md-6">
                                                                         <label class="form-label">Peran</label>
-                                                                        <input type="hidden" value="{{ $user->peran }}">
+                                                                        <input type="hidden" name="peran" value="{{ $user->peran }}">
                                                                         <input type="text" class="form-control" value="{{ ucwords($user->peran) }}" style="background-color: #f8f9fa; cursor: not-allowed;" readonly>
                                                                     </div>
 
@@ -371,14 +371,19 @@
                                             <div class="modal fade" id="modalUbahPassword{{ $user->id }}" tabindex="-1" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
+
                                                         <div class="modal-header">
                                                             <h5 class="modal-title">Ubah Password: {{ $user->nama_lengkap }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                         </div>
+
                                                         <form action="{{ route('kelola-akun.updatePassword', $user->id) }}" method="POST">
                                                             @csrf
                                                             @method('PUT')
+
                                                             <div class="modal-body">
+
+                                                                <!-- Password Baru -->
                                                                 <div class="mb-3">
                                                                     <label for="new_password_{{ $user->id }}" class="form-label">Password Baru</label>
                                                                     <div class="input-group">
@@ -391,31 +396,44 @@
                                                                             <i class="bi bi-eye"></i>
                                                                         </button>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="new_password_confirmation_{{ $user->id }}" class="form-label">Konfirmasi Password</label>
-                                                                        <div class="input-group">
-                                                                            <input type="password"
-                                                                                class="form-control"
-                                                                                id="new_password_confirmation_{{ $user->id }}"
-                                                                                name="new_password_confirmation"
-                                                                                required>
-                                                                            <button type="button" class="btn btn-outline-secondary btn-toggle-password">
-                                                                                <i class="bi bi-eye"></i>
-                                                                            </button>
-                                                                        </div>
+                                                                    @error('new_password')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                    @enderror
+                                                                </div>
+
+                                                                <!-- Konfirmasi Password -->
+                                                                <div class="mb-3">
+                                                                    <label for="new_password_confirmation_{{ $user->id }}" class="form-label">
+                                                                        Konfirmasi Password
+                                                                    </label>
+                                                                    <div class="input-group">
+                                                                        <input type="password"
+                                                                            class="form-control"
+                                                                            id="new_password_confirmation_{{ $user->id }}"
+                                                                            name="new_password_confirmation"
+                                                                            required>
+                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
+                                                                            <i class="bi bi-eye"></i>
+                                                                        </button>
                                                                     </div>
                                                                     @error('new_password_confirmation')
                                                                     <small class="text-danger">{{ $message }}</small>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                                                                    <button type="submit" class="btn btn-success">Simpan</button>
-                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                                            </div>
+
                                                         </form>
+
                                                     </div>
                                                 </div>
                                             </div>
+
                                             @empty
                                             <tr>
                                                 <td colspan="7" class="text-muted text-center">Belum ada data</td>
@@ -672,6 +690,22 @@
             });
         });
     </script>
+
+    @if(session('openUbahPasswordModalId'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var id = "{{ session('openUbahPasswordModalId') }}";
+            var modalSelector = "#modalUbahPassword" + id;
+            var modalEl = document.querySelector(modalSelector);
+
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
+    @endif
+
 </body>
 
 </html>

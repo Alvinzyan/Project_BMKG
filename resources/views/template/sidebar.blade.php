@@ -213,7 +213,8 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
+                @if (auth()->user()->peran == 'teknisi')
+                <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
                 <a href="/profile" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -227,7 +228,8 @@
                     </span>
                     <span class="sidebar-text">Profil</span>
                 </a>
-                </li> --}}
+                </li> 
+                @endif
 
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/calendar.html" target="_blank"

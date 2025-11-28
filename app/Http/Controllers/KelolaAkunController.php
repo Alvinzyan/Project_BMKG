@@ -103,7 +103,6 @@ class KelolaAkunController extends Controller
         $user->nip           = $request->nip ?? null;
         $user->jabatan       = $request->jabatan ?? null;
         $user->jenis_kelamin = $request->jenis_kelamin ?? null;
-        $user->peran         = $request->peran;
 
         if ($request->filled('password')) {
             $user->password = Crypt::encryptString($request->password);
@@ -125,7 +124,6 @@ class KelolaAkunController extends Controller
 
         $rules = [
             'new_password'              => 'required|string|min:6|confirmed',
-            'new_password_confirmation' => 'required|string|min:6',
         ];
         $messages = [
             'new_password.required'         => 'Password baru wajib diisi.',

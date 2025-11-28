@@ -197,7 +197,7 @@
 
         <div class="row mb-4 mt-4">
             <div class="col-12 d-flex align-items-center">
-                <a href="/data-alat" class="hover-back">
+                <a href="/data-alat/{{ urlencode($lokasi->nama_lokasi) }}" class="hover-back">
                     <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -249,7 +249,7 @@
                             <!-- Tombol Archive untuk tiap kategori -->
                             <form id="unarchive-form-{{ $kategori->id }}" action="{{ route('data-alat.kategori.unarchive', $kategori->id) }}" method="POST" style="right:10px; top:10px; z-index:10;">
                             @csrf
-                                <button type="button" onclick="confirmUnarchive({{ $kategori->id }})" class="btn btn-sm btn-unarchive">
+                                <button type="button" onclick="confirmUnarchive('{{ $kategori->id }}')" class="btn btn-sm btn-unarchive">
                                     <i class="bi bi-archive fs-4"></i> Unarchive
                                 </button>
                             </form>
