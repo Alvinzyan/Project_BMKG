@@ -40,8 +40,10 @@ Route::post('login', [AuthController::class, 'login_action']);
 Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // === PROFIL ===
-Route::group(['middleware' => ['auth', 'cekperan:admin,teknisi', 'lastseen']], function () {
+Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], function () {
     Route::resource('profile', ProfileController::class);
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
 });
 
 // === ADMIN ===
@@ -133,7 +135,7 @@ Route::group(['middleware' => ['auth', 'cekperan:teknisi', 'lastseen']], functio
     Route::get('cek-alat/ketapang', [KetapangBwiController::class, 'create'])->name('ketapang.create');
 });
 
-// 🔹 ADMIN LANJUTAN (hapus double 'kelola-akun')
-Route::group(['middleware' => ['auth', 'cekperan:admin']], function () {
-    Route::resource('profile', ProfileController::class);
-});
+// // 🔹 ADMIN LANJUTAN (hapus double 'kelola-akun')
+// Route::group(['middleware' => ['auth', 'cekperan:admin']], function () {
+//     Route::resource('profile', ProfileController::class);
+// });
