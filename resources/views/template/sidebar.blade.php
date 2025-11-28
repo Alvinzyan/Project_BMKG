@@ -150,7 +150,8 @@
                 </li>
                 @endif
 
-                {{-- <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
+                @if (auth()->user()->peran=="teknisi")
+                <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
                 <a href="/profile" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +160,8 @@
                     </span>
                     <span class="sidebar-text">Profile</span>
                 </a>
-                </li> --}}
+                </li>
+                @endif
 
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/calendar.html" target="_blank"
