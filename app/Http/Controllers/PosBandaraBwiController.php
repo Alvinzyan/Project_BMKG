@@ -38,6 +38,7 @@ class PosBandaraBwiController extends Controller
             }]);
         }])->where('id_lokasi', $lokasi->id)
             ->where('is_archived', 0)     // <-- tambahan filter di sini
+            ->whereHas('alats') // ada alat
             ->get();
 
         $dataSudahAda = PeriodeHelper::filterPengecekanByPeriode(
@@ -59,8 +60,13 @@ class PosBandaraBwiController extends Controller
             ->keyBy('id_alat');
 
         $catatanTerakhir = CatatanKategori::whereHas('kategori', function ($q) use ($lokasi) {
-            $q->where('id_lokasi', $lokasi->id);
-        })
+                $q->where('id_lokasi', $lokasi->id);
+            })
+            ->whereBetween('created_at', [
+                $periode['start_date'] . ' 00:00:00',
+                $periode['end_date'] . ' 23:59:59'
+            ])
+            ->latest()
             ->get()
             ->keyBy('id_kategori');
 
@@ -115,15 +121,33 @@ class PosBandaraBwiController extends Controller
 
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Banyuwangi')->firstOrFail();
 
+        $periode = PeriodeHelper::getPeriodeAktif();
+        $start = $periode['start_date'] . ' 00:00:00';
+        $end   = $periode['end_date']   . ' 23:59:59';
+
+        // LOAD kategori + alat + pengecekan periode aktif + catatan periode aktif
         $kategoris = Kategori::with([
-            'alats' => function ($query) {
-                $query->with('pengecekanTerakhirAktif');
+            'alats' => function ($query) use ($start, $end) {
+                $query->with(['pengecekans' => function ($q) use ($start, $end) {
+                    $q->whereBetween('created_at', [$start, $end])
+                    ->latest();
+                }]);
             },
-            'catatanTerakhir'
+
+            // SEMUA CATATAN DALAM PERIODE AKTIF
+            'catatanKategoris' => function ($q) use ($start, $end) {
+                $q->whereBetween('created_at', [$start, $end])
+                ->latest();
+            }
         ])
-            ->where('id_lokasi', $lokasi->id)
-            ->where('is_archived', 0) // hanya kategori yang tidak di archive
-            ->get();
+        ->where('id_lokasi', $lokasi->id)
+        ->where('is_archived', 0)
+        ->whereHas('alats') //ada alat
+        ->get();
+
+        foreach ($kategoris as $kategori) {
+            $kategori->catatan_periode_ini = $kategori->catatanKategoris->sortByDesc('created_at')->first();
+        }
 
         return view('pos-bandara-bwi.edit', compact('lokasi', 'kategoris', 'user'));
     }
