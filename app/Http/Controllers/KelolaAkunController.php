@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class KelolaAkunController extends Controller
 {
-    // public function index()
-    // {
-    //     $users = User::all();
-    //     $totalUser = $users->count();
-
-    //     return view('kelola-akun.index', compact('users', 'totalUser'));
-    // }
     public function index()
     {
         $users = \App\Models\User::all()->map(function ($user) {
@@ -100,7 +93,7 @@ class KelolaAkunController extends Controller
         session()->forget('edit_user_id');
 
         $user->nama_lengkap  = $request->nama_lengkap;
-        $user->nip           = $request->nip ?? null;
+        $user->nip           = $request->nip;
         $user->jabatan       = $request->jabatan ?? null;
         $user->jenis_kelamin = $request->jenis_kelamin ?? null;
 

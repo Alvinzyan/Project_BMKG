@@ -50,16 +50,10 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('volt/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('volt/assets/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('volt/assets/img/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('volt/assets/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
+        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-
     <!-- Sweet Alert -->
     <link type="text/css" href="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
@@ -72,7 +66,7 @@
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
     <!-- ICON -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
         /* Tombol Unarchive */
@@ -248,7 +242,7 @@
                         <div class="position-absolute" style="right:10px; top:25px; z-index:10; display:flex; align-items:center; gap:10px;">
                             <!-- Tombol Archive untuk tiap kategori -->
                             <form id="unarchive-form-{{ $kategori->id }}" action="{{ route('data-alat.kategori.unarchive', $kategori->id) }}" method="POST" style="right:10px; top:10px; z-index:10;">
-                            @csrf
+                                @csrf
                                 <button type="button" onclick="confirmUnarchive('{{ $kategori->id }}')" class="btn btn-sm btn-unarchive">
                                     <i class="bi bi-archive fs-4"></i> Unarchive
                                 </button>
@@ -264,34 +258,34 @@
                             </form>
                             @endif
                         </div>
-                            <a href="{{ url('/data-alat/' . urlencode($lokasi->nama_lokasi). '/' . urlencode($kategori->nama_kategori)) }}">
-                                <div class="card-two border-0 shadow hover-card position-relative">
-                                    <div class="card-body d-flex align-items-center">
-                                        <!-- ICON -->
-                                        <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
-                                                <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
-                                                <path d="M8 2v2" />
-                                                <path d="M6 12v9h4v-9" />
-                                                <path d="M3 21h18" />
-                                                <path d="M22 5h-6l-1 -1" />
-                                                <path d="M18 3l2 2l-2 2" />
-                                                <path d="M10 17h7a2 2 0 0 1 2 2v2" />
-                                            </svg>
-                                        </div>
+                        <a href="{{ url('/data-alat/' . urlencode($lokasi->nama_lokasi). '/' . urlencode($kategori->nama_kategori)) }}">
+                            <div class="card-two border-0 shadow hover-card position-relative">
+                                <div class="card-body d-flex align-items-center">
+                                    <!-- ICON -->
+                                    <div class="icon-shape icon-shape-white rounded d-flex align-items-center justify-content-center me-3" style="width:50px; height:50px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building-airport">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M3.59 7h8.82a1 1 0 0 1 .902 1.433l-1.44 3a1 1 0 0 1 -.901 .567h-5.942a1 1 0 0 1 -.901 -.567l-1.44 -3a1 1 0 0 1 .901 -1.433" />
+                                            <path d="M6 7l-.78 -2.342a.5 .5 0 0 1 .473 -.658h4.612a.5 .5 0 0 1 .475 .658l-.78 2.342" />
+                                            <path d="M8 2v2" />
+                                            <path d="M6 12v9h4v-9" />
+                                            <path d="M3 21h18" />
+                                            <path d="M22 5h-6l-1 -1" />
+                                            <path d="M18 3l2 2l-2 2" />
+                                            <path d="M10 17h7a2 2 0 0 1 2 2v2" />
+                                        </svg>
+                                    </div>
 
-                                        <!-- TEXT -->
-                                        <div>
-                                            <h3 class="fw-extrabold text-white fs-4">{{ $kategori->nama_kategori }}</h3>
-                                        </div>
+                                    <!-- TEXT -->
+                                    <div>
+                                        <h3 class="fw-extrabold text-white fs-4">{{ $kategori->nama_kategori }}</h3>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
                     </div>
                     @endforeach
                 </div>
@@ -390,31 +384,30 @@
     @endif
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('.btn-hapus');
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn-hapus');
 
-        buttons.forEach(button => {
-            button.addEventListener('click', function () {
-                let form = this.closest('form');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    let form = this.closest('form');
 
-                Swal.fire({
-                    title: 'Yakin ingin menghapus kategori ini?',
-                    text: "Kategori yang dihapus tidak dapat dikembalikan.",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
+                    Swal.fire({
+                        title: 'Yakin ingin menghapus kategori ini?',
+                        text: "Kategori yang dihapus tidak dapat dikembalikan.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
                 });
             });
         });
-    });
-
     </script>
 
     <script>

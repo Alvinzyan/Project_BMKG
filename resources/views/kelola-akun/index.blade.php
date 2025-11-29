@@ -269,11 +269,7 @@
                                                                         <input type="password" class="form-control"
                                                                             value="{{ $user->decrypted_password }}"
                                                                             readonly>
-                                                                        <button type="button" class="btn btn-outline-secondary btn-toggle-password">
-                                                                            <i class="bi bi-eye"></i>
-                                                                        </button>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>

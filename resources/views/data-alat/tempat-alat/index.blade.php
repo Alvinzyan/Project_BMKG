@@ -249,7 +249,7 @@
                                 <!-- Tombol Archive untuk tiap kategori -->
                                 <form id="archive-form-{{ $kategori->id }}"  action="{{ route('data-alat.kategori.archive.action', $kategori->id) }}" method="POST" style="right:10px; top:10px; z-index:10;">
                                     @csrf
-                                    <button type="button" onclick="confirmArchive({{ $kategori->id }})" class="btn btn-sm btn-archive">
+                                    <button type="button" onclick="confirmArchive('{{ $kategori->id }}')" class="btn btn-sm btn-archive">
                                         <i class="bi bi-archive fs-4"></i> Archive
                                     </button>
                                 </form>
