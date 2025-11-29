@@ -34,14 +34,14 @@
 
             <ul class="nav flex-column pt-3 pt-md-0">
                 <li class="nav-item">
-                    <a href="/inventaris-alat" class="nav-link d-flex align-items-center">
+                    <div class="d-flex align-items-center">
                         <span class="sidebar-icon">
-                            <img src="{{ asset('volt/assets/img/BMG_2003.png') }}" height="30" width="35"
-                                alt="Volt Logo">
+                            <img src="{{ asset('volt/assets/img/BMG_2003.png') }}" class="rounded-circle" style="width:40px;height:40px;object-fit:cover;" alt="Volt Logo">
                         </span>
-                        <span class="m-1 ms-1 sidebar-text">Stamet Banyuwangi</span>
-                    </a>
+                        <span class="m-2 ms-2 sidebar-text">Stamet Banyuwangi</span>
+                    </div>
                 </li>
+                
                 {{-- <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                 <a href="/dashboard" class="nav-link">
                     <span class="sidebar-icon">
@@ -195,6 +195,24 @@
                 </li>
                 @endif
 
+                @if (auth()->user()->peran == 'teknisi')
+                <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
+                    <a href="/profile" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Profil</span>
+                    </a>
+                </li>
+                @endif
+
                 <li class="nav-item">
                     <a href="{{ route('auth.logout') }}" class="nav-link" id="btnLogout">
                         <span class="sidebar-icon">
@@ -212,22 +230,6 @@
                         <span class="sidebar-text">Logout</span>
                     </a>
                 </li>
-
-                {{-- <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
-                <a href="/profile" class="nav-link">
-                    <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-user">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                        </svg>
-                    </span>
-                    <span class="sidebar-text">Profil</span>
-                </a>
-                </li> --}}
 
                 {{-- <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/calendar.html" target="_blank"

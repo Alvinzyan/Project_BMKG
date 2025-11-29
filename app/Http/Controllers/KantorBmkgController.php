@@ -36,7 +36,10 @@ class KantorBmkgController extends Controller
                     $periode['end_date'] . ' 23:59:59'
                 ])->latest();
             }]);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        }])
+            ->where('id_lokasi', $lokasi->id)
+            ->where('is_archived', 0)     // <-- tambahan filter di sini
+            ->get();
 
         $dataSudahAda = PeriodeHelper::filterPengecekanByPeriode(
             Pengecekan::whereHas('alat', function ($q) use ($lokasi) {
@@ -118,9 +121,14 @@ class KantorBmkgController extends Controller
                 $query->with('pengecekanTerakhirAktif.penanggungJawab');
             },
             'catatanTerakhir'
-        ])->where('id_lokasi', $lokasi->id)->get();
+        ])
+            ->where('id_lokasi', $lokasi->id)
+            ->where('is_archived', 0) // hanya kategori yang tidak di archive
+            ->get();
 
-        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris', 'user'));
+        $periode = PeriodeHelper::getPeriodeAktif();
+
+        return view('kantor-bmkg.edit', compact('lokasi', 'kategoris', 'user', 'periode'));
     }
 
     public function update(Request $request)
@@ -133,6 +141,9 @@ class KantorBmkgController extends Controller
         ]);
 
         $userId = Auth::id();
+        $periode = PeriodeHelper::getPeriodeAktif();
+        $start = $periode['start_date'] . ' 00:00:00';
+        $end   = $periode['end_date']   . ' 23:59:59';
 
         foreach ($request->kondisi as $alatId => $kondisiList) {
 
@@ -145,10 +156,11 @@ class KantorBmkgController extends Controller
                 $fotoLampiranPath = $file->storeAs('public/foto_pengecekan', $namaFile);
             }
 
-            $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
-
-            $penanggung = $request->penanggung_jawab[$alatId] 
-                      ?? ($pengecekan->penanggung_jawab ?? $userId);
+            // $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
+            $pengecekan = Pengecekan::where('id_alat', $alatId)
+                ->whereBetween('created_at', [$start, $end])
+                ->latest()
+                ->first();
 
             if ($pengecekan) {
                 $pengecekan->update([
@@ -173,7 +185,11 @@ class KantorBmkgController extends Controller
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {
-                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+                    // $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
+                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)
+                        ->whereBetween('created_at', [$start, $end])
+                        ->latest()
+                        ->first();
 
                     if ($catatan) {
                         $catatan->update(['isi_catatan' => $isi]);

@@ -163,7 +163,7 @@
 
         <div class="row mb-4 mt-4">
             <div class="col-12 d-flex align-items-center">
-                <a href="/data-alat" class="hover-back">
+                <a href="/data-alat/{{ urlencode($lokasi->nama_lokasi) }}" class="hover-back">
                     <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">

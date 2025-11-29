@@ -36,7 +36,9 @@ class PosBandaraJemberController extends Controller
                     $periode['end_date'] . ' 23:59:59'
                 ])->latest();
             }]);
-        }])->where('id_lokasi', $lokasi->id)->get();
+        }])->where('id_lokasi', $lokasi->id)
+            ->where('is_archived', 0)     // <-- tambahan filter di sini
+            ->get();
 
         $dataSudahAda = PeriodeHelper::filterPengecekanByPeriode(
             Pengecekan::whereHas('alat', function ($q) use ($lokasi) {
@@ -114,9 +116,7 @@ class PosBandaraJemberController extends Controller
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notohadinegoro Jember')->firstOrFail();
 
         $kategoris = Kategori::with([
-            'alats' => function ($query) {
-                $query->with('pengecekanTerakhirAktif.penanggungJawab');
-            },
+            'alats.pengecekanTerakhir',
             'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 

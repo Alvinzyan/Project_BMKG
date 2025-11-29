@@ -164,9 +164,19 @@
                                         {{ $endDisplay }}
                                     </p>
 
+                                    <!-- <div class="col mb-3">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalNomorSurat">
+                                            Cetak Laporan
+                                        </button>
+                                    </div> -->
+                                    
+                                    @php
+                                    $showButton = (!empty($totalData) && $totalData > 0);
+                                    @endphp
+
                                     <div class="col mb-3">
-                                        <button class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#modalNomorSurat">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalNomorSurat"
+                                            @if(!$showButton) style="display:none;" @endif>
                                             Cetak Laporan
                                         </button>
                                     </div>
@@ -223,29 +233,27 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-none d-md-block">
-                                        <iframe id="laporanIframe"
-                                            src="{{ route('laporan-alat.view', ['periode_start' => $periode_start, 'periode_end' => $periode_end]) }}"
-                                            width="105%" height="800" style="border:none;">
-                                        </iframe>
-                                    </div>
+                                    <div data-total-data="{{ $totalData ?? 0 }}" style="display: none;"></div>
 
-                                    <div class="d-block d-md-none">
-
-                                        <div class="text-center p-3 border-0 rounded shadow-sm bg-light">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-alert-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
-
-                                            <h6 class="fw-bold">Preview PDF tidak ideal di HP</h6>
-                                            <p class="text-muted small">Klik tombol di bawah untuk membuka laporan PDF.
-                                            </p>
-
-                                            <a href="{{ route('laporan-alat.view', ['periode_start' => $periode_start, 'periode_end' => $periode_end]) }}"
-                                                target="_blank" class="btn btn-info btn-sm w-50">
-                                                📄 Buka
-                                            </a>
-
+                                    <div id="contentArea">
+                                        @if(isset($totalData) && $totalData == 0)
+                                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                            <svg class="icon icon-sm me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                            </svg>
+                                            <div>
+                                                <strong>Tidak ada data pengecekan pada periode {{ \Carbon\Carbon::parse($periode_start)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($periode_end)->translatedFormat('d F Y') }}</strong>
+                                            </div>
                                         </div>
+                                        @else
+                                        <iframe
+                                            id="laporanIframe"
+                                            src="{{ route('laporan-alat.view', ['periode_start' => $periode_start, 'periode_end' => $periode_end]) }}"
+                                            width="100%" height="800">
+                                        </iframe>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -478,10 +486,12 @@
         });
     </script> -->
 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script>
         /* ===============================
-                                                                   HELPER FUNCTIONS
-                                                                =============================== */
+       HELPER FUNCTIONS
+    =============================== */
         function hitungRentangMinggu(tanggal) {
             const t = new Date(tanggal);
             t.setHours(0, 0, 0, 0);
@@ -497,13 +507,6 @@
             akhir.setDate(awal.getDate() + 6);
             akhir.setHours(23, 59, 59, 999);
 
-            console.log('=== DEBUG ===');
-            console.log('Input:', tanggal);
-            console.log('Hari:', day, ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][day]);
-            console.log('Mundur:', diffToStart, 'hari');
-            console.log('Sabtu:', awal.toLocaleDateString('id-ID'));
-            console.log('Jumat:', akhir.toLocaleDateString('id-ID'));
-
             return [awal, akhir];
         }
 
@@ -514,46 +517,6 @@
             return `${year}-${month}-${day}`;
         }
 
-        // function highlightMinggu(inst, awal, akhir) {
-        //     setTimeout(() => {
-        //         const container = inst.daysContainer;
-        //         if (!container) return;
-
-        //         let count = 0;
-        //         container.querySelectorAll(".flatpickr-day").forEach(el => {
-        //             const dt = el.dateObj;
-        //             if (!dt) return;
-
-        //             if (el.classList.contains("flatpickr-disabled")) {
-        //                 el.classList.remove("flatpickr-disabled");
-        //                 el.removeAttribute("aria-disabled");
-        //                 el.removeAttribute("tabindex");
-        //             }
-
-        //             const real = new Date(dt);
-        //             real.setHours(0, 0, 0, 0);
-
-        //             const awalNorm = new Date(awal);
-        //             awalNorm.setHours(0, 0, 0, 0);
-
-        //             const akhirNorm = new Date(akhir);
-        //             akhirNorm.setHours(0, 0, 0, 0);
-
-        //             const isInRange = real >= awalNorm && real <= akhirNorm;
-
-        //             if (isInRange) {
-        //                 el.classList.add("week-highlight");
-        //                 count++;
-        //                 console.log('✓', real.toLocaleDateString('id-ID'));
-        //             } else {
-        //                 el.classList.remove("week-highlight");
-        //             }
-        //         });
-        //         console.log('Total highlighted:', count, '/ 7 hari');
-        //     }, 50);
-        // }
-
-        // Modifikasi highlightMinggu supaya tanggal > hari ini tetap disabled
         function highlightMinggu(inst, awal, akhir) {
             setTimeout(() => {
                 const container = inst.daysContainer;
@@ -626,8 +589,7 @@
             const namaLengkapVal = document.querySelector('#modalNomorSurat input[name="nama_lengkap"]').value;
             const baseUrl = "{{ route('laporan-alat.pdf') }}";
 
-            btnCetakPdf.href =
-                `${baseUrl}?periode_start=${periodeStartVal}&periode_end=${periodeEndVal}&nama_lengkap=${encodeURIComponent(namaLengkapVal)}&nomor_surat=${encodeURIComponent(nomorSuratVal)}`;
+            btnCetakPdf.href = `${baseUrl}?periode_start=${periodeStartVal}&periode_end=${periodeEndVal}&nama_lengkap=${encodeURIComponent(namaLengkapVal)}&nomor_surat=${encodeURIComponent(nomorSuratVal)}`;
         });
 
         /* ===============================
@@ -639,10 +601,8 @@
             locale: {
                 firstDayOfWeek: 6
             },
-            minDate: "today", // tidak bisa pilih sebelum hari ini
-            maxDate: "today", // tidak bisa pilih setelah hari ini
-            clickOpens: true, // tetap bisa klik input
-            defaultDate: "today", // default ke hari ini
+            maxDate: "today",
+            clickOpens: true,
 
             onReady(_, __, inst) {
                 reapply(inst);
@@ -662,7 +622,6 @@
             onChange(selectedDates, _, inst) {
                 if (!selectedDates.length) return;
 
-                console.log('\n=== KLIK TANGGAL ===');
                 const [awal, akhir] = hitungRentangMinggu(selectedDates[0]);
 
                 inst.jumpToDate(awal);
@@ -680,7 +639,7 @@
         });
 
         /* ===============================
-           BUTTON TAMPILKAN
+           BUTTON TAMPILKAN (GABUNGAN)
         =============================== */
         btnTampilkan.addEventListener("click", () => {
             if (!periode_start.value || !periode_end.value) {
@@ -691,15 +650,75 @@
                 return;
             }
 
-            const iframe = document.getElementById("laporanIframe");
-            const baseUrl = "{{ route('laporan-alat.view') }}";
-            iframe.src = `${baseUrl}?periode_start=${periode_start.value}&periode_end=${periode_end.value}`;
+            // Tampilkan loading
+            const contentArea = document.getElementById("contentArea");
+            const btnCetak = document.querySelector('.btn-danger[data-bs-target="#modalNomorSurat"]');
 
-            const periodeText = document.getElementById("periodeText");
-            const start = new Date(periode_start.value);
-            const end = new Date(periode_end.value);
-            periodeText.textContent =
-                `Laporan ini dibuat berdasarkan periode ${start.toLocaleDateString('id-ID')} - ${end.toLocaleDateString('id-ID')}`;
+            contentArea.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><p class="mt-3">Memuat data...</p></div>';
+
+            // Fetch untuk cek apakah ada data
+            const checkUrl = `{{ route('laporan-alat.index') }}?periode_start=${periode_start.value}&periode_end=${periode_end.value}`;
+
+            fetch(checkUrl)
+                .then(response => response.text())
+                .then(html => {
+                    // Parse HTML untuk ambil totalData
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const totalDataElement = doc.querySelector('[data-total-data]');
+                    const totalData = totalDataElement ? parseInt(totalDataElement.getAttribute('data-total-data')) : 0;
+
+                    const start = new Date(periode_start.value);
+                    const end = new Date(periode_end.value);
+                    const periodeText = `${start.toLocaleDateString('id-ID')} - ${end.toLocaleDateString('id-ID')}`;
+
+                    // Update periode text
+                    document.getElementById("periodeText").textContent = `Laporan ini dibuat berdasarkan periode ${periodeText}`;
+
+                    // Update modal hidden inputs
+                    document.querySelector('#modalNomorSurat input[name="periode_start"]').value = periode_start.value;
+                    document.querySelector('#modalNomorSurat input[name="periode_end"]').value = periode_end.value;
+
+                    if (totalData === 0) {
+                        // Tidak ada data - tampilkan alert
+                        contentArea.innerHTML = `
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                            <svg class="icon icon-sm me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <div>
+                                <strong>Tidak ada data pengecekan pada periode ${periodeText}</strong>
+                            </div>
+                        </div>
+                    `;
+
+                        // Sembunyikan tombol cetak
+                        if (btnCetak) btnCetak.style.display = 'none';
+                    } else {
+                        // Ada data - tampilkan iframe
+                        const baseUrl = "{{ route('laporan-alat.view') }}";
+                        contentArea.innerHTML = `
+                        <iframe
+                            id="laporanIframe"
+                            src="${baseUrl}?periode_start=${periode_start.value}&periode_end=${periode_end.value}"
+                            width="100%" height="800">
+                        </iframe>
+                    `;
+
+                        // Tampilkan tombol cetak
+                        if (btnCetak) btnCetak.style.display = 'inline-block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    contentArea.innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Terjadi kesalahan saat memuat data.</strong>
+                    </div>
+                `;
+                });
         });
 
         /* ===============================
@@ -708,19 +727,22 @@
         document.addEventListener("DOMContentLoaded", () => {
             const start = "{{ $periode_start ?? '' }}";
             const end = "{{ $periode_end ?? '' }}";
+
             if (!start || !end) return;
 
             const s = new Date(start);
             const e = new Date(end);
 
-            document.querySelector("#periode").value =
-                `${s.toLocaleDateString("id-ID")} s.d. ${e.toLocaleDateString("id-ID")}`;
+            // Set input periode
+            document.querySelector("#periode").value = `${s.toLocaleDateString("id-ID")} s.d. ${e.toLocaleDateString("id-ID")}`;
             periode_start.value = start;
             periode_end.value = end;
 
+            // Update modal hidden inputs
             document.querySelector('#modalNomorSurat input[name="periode_start"]').value = start;
             document.querySelector('#modalNomorSurat input[name="periode_end"]').value = end;
 
+            // Highlight kalender
             setTimeout(() => highlightMinggu(kalender, s, e), 120);
         });
     </script>

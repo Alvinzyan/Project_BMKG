@@ -276,6 +276,19 @@
 
     <!-- Script Chart -->
     <script>
+        function bungkusLabelPerKata(label, jumlahKataPerBaris = 2) {
+        const daftarKata = label.split(" ");
+        const barisLabel = [];
+
+        for (let i = 0; i < daftarKata.length; i += jumlahKataPerBaris) {
+            barisLabel.push(daftarKata.slice(i, i + jumlahKataPerBaris).join(" "));
+        }
+
+        return barisLabel;
+    }
+    </script>
+
+    <script>
         const ctx = document.getElementById('alatChart').getContext('2d');
         const chartLabels = @json($chartLabels);
         const chartData = @json($chartData);
@@ -283,7 +296,7 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: chartLabels,
+                labels: chartLabels.map(label => bungkusLabelPerKata(label, 2)), 
                 datasets: [{
                     label: 'Jumlah Alat',
                     data: chartData,
@@ -298,8 +311,15 @@
                     }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true
+                    x: {
+                        ticks: {
+                            maxRotation: 0,
+                            minRotation: 0,
+                            autoSkip: false,
+                            font: {
+                                size: 10   // optional, biar muat semua
+                            }
+                        }
                     }
                 }
             }

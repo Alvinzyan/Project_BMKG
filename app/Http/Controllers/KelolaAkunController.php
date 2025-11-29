@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class KelolaAkunController extends Controller
 {
-    // public function index()
-    // {
-    //     $users = User::all();
-    //     $totalUser = $users->count();
-
-    //     return view('kelola-akun.index', compact('users', 'totalUser'));
-    // }
     public function index()
     {
         $users = \App\Models\User::all()->map(function ($user) {
@@ -100,10 +93,9 @@ class KelolaAkunController extends Controller
         session()->forget('edit_user_id');
 
         $user->nama_lengkap  = $request->nama_lengkap;
-        $user->nip           = $request->nip ?? null;
+        $user->nip           = $request->nip;
         $user->jabatan       = $request->jabatan ?? null;
         $user->jenis_kelamin = $request->jenis_kelamin ?? null;
-        $user->peran         = $request->peran;
 
         if ($request->filled('password')) {
             $user->password = Crypt::encryptString($request->password);
@@ -125,7 +117,6 @@ class KelolaAkunController extends Controller
 
         $rules = [
             'new_password'              => 'required|string|min:6|confirmed',
-            'new_password_confirmation' => 'required|string|min:6',
         ];
         $messages = [
             'new_password.required'         => 'Password baru wajib diisi.',

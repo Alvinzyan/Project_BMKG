@@ -26,9 +26,31 @@ class CetakLaporanController extends Controller
             $end   = $periodeAktif['end_date'];
         }
 
+        $lokasiList = Lokasi::with([
+            'kategoris' => function ($q) {
+                $q->where('is_archived', 0);
+            },
+            'kategoris.alats',
+            'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
+                $q->whereBetween('created_at', [
+                    "{$start} 00:00:00",
+                    "{$end} 23:59:59"
+                ]);
+            },
+        ])->get();
+
+        $totalData = $lokasiList->sum(function ($lokasi) {
+            return $lokasi->kategoris->sum(function ($kategori) {
+                return $kategori->alats->sum(function ($alat) {
+                    return $alat->pengecekans->count();
+                });
+            });
+        });
+
         return view('cetak-laporan.index', [
             'periode_start' => $start,
             'periode_end'   => $end,
+            'totalData'     => $totalData,
         ]);
     }
 
@@ -43,18 +65,10 @@ class CetakLaporanController extends Controller
             $end   = $periodeAktif['end_date'];
         }
 
-        // $lokasiList = Lokasi::with([
-        //     'kategoris.alats',
-        //     'kategoris.catatanKategori',
-        //     'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
-        //         $q->whereBetween('created_at', [
-        //             "{$start} 00:00:00",
-        //             "{$end} 23:59:59"
-        //         ]);
-        //     }
-        // ])->get();
-
         $lokasiList = Lokasi::with([
+            'kategoris' => function ($q) {
+                $q->where('is_archived', 0);   // ⬅ kategori yang tidak diarsip
+            },
             'kategoris.alats',
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [
@@ -69,6 +83,15 @@ class CetakLaporanController extends Controller
                 ]);
             },
         ])->get();
+
+        // Hitung total data
+        $totalData = $lokasiList->sum(function ($lokasi) {
+            return $lokasi->kategoris->sum(function ($kategori) {
+                return $kategori->alats->sum(function ($alat) {
+                    return $alat->pengecekans->count();
+                });
+            });
+        });
 
         foreach ($lokasiList as $lokasi) {
             foreach ($lokasi->kategoris as $kategori) {
@@ -96,6 +119,7 @@ class CetakLaporanController extends Controller
             'tanggal'         => now()->translatedFormat('d F Y'),
             'periode_start'   => $start,
             'periode_end'     => $end,
+            'totalData'       => $totalData,
         ]);
     }
 
@@ -115,6 +139,9 @@ class CetakLaporanController extends Controller
         $tanggalPeriode = Carbon::parse($start)->translatedFormat('j') . ' – ' . Carbon::parse($end)->translatedFormat('j F Y');
 
         $lokasiList = Lokasi::with([
+            'kategoris' => function ($q) {
+                $q->where('is_archived', 0);   // ⬅ kategori yang tidak diarsip
+            },
             'kategoris.alats',
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [
