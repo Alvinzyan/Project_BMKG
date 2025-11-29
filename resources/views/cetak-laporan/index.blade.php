@@ -100,7 +100,7 @@
                                     </h5>
 
                                     <p class="fw-normal fs-6 periode-text" id="periodeText">
-                                        Laporan ini dibuat berdasarkan periode {{ $startDisplay }} - {{ $endDisplay }}
+                                        Laporan ini  berdasarkan periode {{ $startDisplay }} - {{ $endDisplay }}
                                     </p>
 
                                     <!-- <div class="col mb-3">
