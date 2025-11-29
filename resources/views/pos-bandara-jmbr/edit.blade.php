@@ -256,7 +256,7 @@
                                         <div class="d-flex align-items-start mt-3">
                                             <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
                                             <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
+                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatan_periode_ini)->isi_catatan) }}</textarea>
                                         </div>
                                     </div>
                                 @endforeach
