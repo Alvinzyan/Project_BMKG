@@ -253,7 +253,7 @@
                                                                 <!-- Jenis Kelamin -->
                                                                 <div class="col-md-6">
                                                                     <label class="form-label">Jenis Kelamin</label>
-                                                                    <input type="text" class="form-control" value="{{ $user->jenis_kelamin ?? '-' }}" readonly>
+                                                                    <input type="text" class="form-control" value="{{ isset($user->jenis_kelamin) ? ucwords($user->jenis_kelamin) : '-' }}" readonly>
                                                                 </div>
 
                                                                 <!-- Peran -->

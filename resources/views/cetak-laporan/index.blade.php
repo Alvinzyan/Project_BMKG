@@ -56,6 +56,19 @@
 
     <!-- Sweet Alert -->
     <link type="text/css" href="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+
+    <!-- Notyf -->
+    <link type="text/css" href="{{ asset('volt/vendor/notyf/notyf.min.css') }}" rel="stylesheet">
+
+    <!-- Volt CSS -->
+    <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
+
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+    <!-- Untuk Filter Periode -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('volt/vendor/notyf/notyf.min.css') }}" rel="stylesheet">
 </head>
 
@@ -65,8 +78,9 @@
 
     <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
         <a class="navbar-brand me-lg-5" href="/inventaris-alat">
-            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
-                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                alt="Logo BMKG" />Stamet Banyuwangi<img class="navbar-brand-light"
+                src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -98,7 +112,8 @@
                             <div class="d-flex align-items-end">
                                 <label for="periode" class="form-label me-2">Periode</label>
 
-                                <input type="text" id="periode" class="form-control" placeholder="Pilih tanggal" autocomplete="off">
+                                <input type="text" id="periode" class="form-control" placeholder="Pilih tanggal"
+                                    autocomplete="off">
 
                                 <input type="hidden" id="periode_start" name="periode_start">
                                 <input type="hidden" id="periode_end" name="periode_end">
@@ -106,12 +121,14 @@
                         </div>
                         <div class="col-12 col-sm-12 col-xl-2 mb-3">
                             <button id="btnTampilkan" type="button" class="btn btn-sm btn-info">
-                                <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+                                <svg class="icon icon-xs me-1" xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                    <path
+                                        d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                 </svg>
                                 Tampilkan
                             </button>
@@ -122,8 +139,8 @@
         </div>
 
         @php
-        $startDisplay = $periode_start ? \Carbon\Carbon::parse($periode_start)->translatedFormat('d F Y') : '-';
-        $endDisplay = $periode_end ? \Carbon\Carbon::parse($periode_end)->translatedFormat('d F Y') : '-';
+            $startDisplay = $periode_start ? \Carbon\Carbon::parse($periode_start)->translatedFormat('d F Y') : '-';
+            $endDisplay = $periode_end ? \Carbon\Carbon::parse($periode_end)->translatedFormat('d F Y') : '-';
         @endphp
 
         <!-- Form report / area yang berisi iframe (id diganti supaya tidak duplikat) -->
@@ -143,14 +160,10 @@
                                     </h5>
 
                                     <p class="fw-normal fs-6 periode-text" id="periodeText">
-                                        Laporan ini  berdasarkan periode {{ $startDisplay }} - {{ $endDisplay }}
+                                        Laporan ini berdasarkan periode {{ $startDisplay }} -
+                                        {{ $endDisplay }}
                                     </p>
-
-                                    <!-- <div class="col mb-3">
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalNomorSurat">
-                                            Cetak Laporan
-                                        </button>
-                                    </div> -->
+                                    
                                     @php
                                     $showButton = (!empty($totalData) && $totalData > 0);
                                     @endphp
@@ -168,28 +181,33 @@
                                             <div class="modal-content border-0 shadow">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">Isi Nomor Surat</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
                                                 </div>
 
-                                                <form method="GET" action="{{ route('laporan-alat.pdf') }}" target="_blank">
-                                                    <input type="hidden" name="periode_start" value="{{ $periode_start }}">
-                                                    <input type="hidden" name="periode_end" value="{{ $periode_end }}">
+                                                <form method="GET" action="{{ route('laporan-alat.pdf') }}"
+                                                    target="_blank">
+                                                    <input type="hidden" name="periode_start"
+                                                        value="{{ $periode_start }}">
+                                                    <input type="hidden" name="periode_end"
+                                                        value="{{ $periode_end }}">
                                                     <div class="modal-body">
                                                         <div class="row g-3">
                                                             <div class="col-md-12">
                                                                 <label class="form-label">Nama Teknisi</label>
                                                                 <input type="text" class="form-control"
                                                                     value="{{ Auth::user()->nama_lengkap }}"
-                                                                    name="nama_lengkap"
-                                                                    readonly>
+                                                                    name="nama_lengkap" readonly>
                                                             </div>
 
                                                             <div class="col-md-12">
                                                                 <label class="form-label">Nomor Surat</label>
-                                                                <input type="text" class="form-control" name="nomor_surat"
-                                                                    placeholder="Contoh: e.B/IJ.01.01/026/KBWI/VII/2025" required>
+                                                                <input type="text" class="form-control"
+                                                                    name="nomor_surat"
+                                                                    placeholder="Contoh: e.B/IJ.01.01/026/KBWI/VII/2025"
+                                                                    required>
                                                                 @error('nomor_surat')
-                                                                <small class="text-danger">{{ $message }}</small>
+                                                                    <small class="text-danger">{{ $message }}</small>
                                                                 @enderror
                                                             </div>
 
@@ -197,8 +215,10 @@
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                                                        <a href="#" id="btnCetakPdf" target="_blank" class="btn btn-success">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                        <a href="#" id="btnCetakPdf" target="_blank"
+                                                            class="btn btn-success">
                                                             Cetak PDF
                                                         </a>
                                                     </div>
@@ -273,189 +293,6 @@
             color: #000 !important;
         }
     </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <!-- <script>
-        /* ===============================
-        HELPER FUNCTIONS
-        =============================== */
-        function hitungRentangMinggu(tanggal) {
-            const t = new Date(tanggal);
-            const day = t.getDay();
-            const diffToStart = (day - 6 + 7) % 7;
-
-            const awal = new Date();
-            awal.setDate(t.getDate() - diffToStart);
-
-            const akhir = new Date(awal);
-            akhir.setDate(awal.getDate() + 6);
-
-            awal.setHours(0, 0, 0, 0);
-            akhir.setHours(23, 59, 59, 999);
-
-            return [awal, akhir];
-        }
-
-        function formatYMD(date) {
-            const offset = date.getTimezoneOffset() * 60000;
-            return new Date(date - offset).toISOString().split("T")[0];
-        }
-
-        function highlightMinggu(inst, awal, akhir) {
-            setTimeout(() => {
-                const container = inst.daysContainer;
-                if (!container) return;
-
-                container.querySelectorAll(".flatpickr-day").forEach(el => {
-                    const dt = el.dateObj;
-                    if (!dt) return;
-
-                    // Hilangkan disabled palsu
-                    if (el.classList.contains("flatpickr-disabled")) {
-                        el.classList.remove("flatpickr-disabled");
-                        el.removeAttribute("aria-disabled");
-                        el.removeAttribute("tabindex");
-                    }
-
-                    const real = new Date(dt);
-                    real.setHours(0, 0, 0, 0);
-
-                    el.classList.toggle("week-highlight", real >= awal && real <= akhir);
-                });
-            }, 50);
-        }
-
-        function reapply(inst) {
-            const start = periode_start.value;
-            const end = periode_end.value;
-            if (!start || !end) return;
-
-            highlightMinggu(inst, new Date(start), new Date(end));
-        }
-
-        /* ===============================
-           ELEMENTS
-        =============================== */
-        const btnTampilkan = document.getElementById("btnTampilkan");
-        const periode_start = document.getElementById("periode_start");
-        const periode_end = document.getElementById("periode_end");
-
-        // Tombol Cetak PDF di modal
-        const btnCetakPdf = document.getElementById("btnCetakPdf");
-        const modalNomorSurat = document.getElementById("modalNomorSurat");
-
-        btnCetakPdf.addEventListener('click', (e) => {
-            const periodeStartVal = document.querySelector('#modalNomorSurat input[name="periode_start"]').value;
-            const periodeEndVal = document.querySelector('#modalNomorSurat input[name="periode_end"]').value;
-            const namaLengkapVal = document.querySelector('#modalNomorSurat input[name="nama_lengkap"]').value;
-            const nomorSuratVal = document.querySelector('#modalNomorSurat input[name="nomor_surat"]').value;
-
-            if (!nomorSuratVal) {
-                e.preventDefault(); // cegah link kalau nomor surat kosong
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Nomor surat harus diisi!'
-                });
-                return;
-            }
-
-            const baseUrl = "{{ route('laporan-alat.pdf') }}";
-
-            btnCetakPdf.href = `${baseUrl}?periode_start=${periodeStartVal}&periode_end=${periodeEndVal}&nama_lengkap=${encodeURIComponent(namaLengkapVal)}&nomor_surat=${encodeURIComponent(nomorSuratVal)}`;
-        });
-
-        /* ===============================
-           FLATPICKR INITIALIZATION
-        =============================== */
-        const kalender = flatpickr("#periode", {
-            dateFormat: "d-m-Y",
-            allowInput: false,
-            locale: {
-                firstDayOfWeek: 6
-            },
-
-            onReady(_, __, inst) {
-                reapply(inst);
-            },
-            onOpen(_, __, inst) {
-                reapply(inst);
-            },
-            onValueUpdate(_, __, inst) {
-                reapply(inst);
-            },
-            onMonthChange(_, __, inst) {
-                reapply(inst);
-            },
-            onYearChange(_, __, inst) {
-                reapply(inst);
-            },
-
-            onChange(selectedDates, _, inst) {
-                if (!selectedDates.length) return;
-
-                const [awal, akhir] = hitungRentangMinggu(selectedDates[0]);
-                inst.jumpToDate(awal);
-
-                inst.input.value = `${awal.toLocaleDateString("id-ID")} s.d. ${akhir.toLocaleDateString("id-ID")}`;
-
-                periode_start.value = formatYMD(awal);
-                periode_end.value = formatYMD(akhir);
-
-                highlightMinggu(inst, awal, akhir);
-
-                // Update modal hidden inputs otomatis
-                document.querySelector('#modalNomorSurat input[name="periode_start"]').value = periode_start.value;
-                document.querySelector('#modalNomorSurat input[name="periode_end"]').value = periode_end.value;
-            }
-        });
-
-        /* ===============================
-           BUTTON "Tampilkan" CLICK
-        =============================== */
-        btnTampilkan.addEventListener("click", () => {
-            if (!periode_start.value || !periode_end.value) {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Periode belum dipilih!"
-                });
-                return;
-            }
-
-            const iframe = document.getElementById("laporanIframe");
-            const baseUrl = "{{ route('laporan-alat.view') }}";
-            iframe.src = `${baseUrl}?periode_start=${periode_start.value}&periode_end=${periode_end.value}`;
-
-            // Update teks periode
-            const periodeText = document.getElementById("periodeText");
-            const start = new Date(periode_start.value);
-            const end = new Date(periode_end.value);
-            periodeText.textContent = `Laporan ini dibuat berdasarkan periode ${start.toLocaleDateString('id-ID')} - ${end.toLocaleDateString('id-ID')}`;
-        });
-
-        /* ===============================
-           RESTORE HIGHLIGHT SAAT RELOAD
-        =============================== */
-        document.addEventListener("DOMContentLoaded", () => {
-            const start = "{{ $periode_start ?? '' }}";
-            const end = "{{ $periode_end ?? '' }}";
-            if (!start || !end) return;
-
-            const s = new Date(start);
-            const e = new Date(end);
-
-            document.querySelector("#periode").value =
-                `${s.toLocaleDateString("id-ID")} s.d. ${e.toLocaleDateString("id-ID")}`;
-
-            periode_start.value = start;
-            periode_end.value = end;
-
-            // Update modal hidden inputs otomatis
-            document.querySelector('#modalNomorSurat input[name="periode_start"]').value = start;
-            document.querySelector('#modalNomorSurat input[name="periode_end"]').value = end;
-
-            setTimeout(() => highlightMinggu(kalender, s, e), 120);
-        });
-    </script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 

@@ -146,17 +146,6 @@
                                         <div class="col d-flex justify-content-center">
                                             <h2 class="fs-4 fw-bolder mb-3">Inventaris Alat BMKG</h2>
                                         </div>
-<<<<<<< HEAD
-
-                                        <div class="card-info border-0 shadow py-2 mb-3">
-                                            <div class="col-12">
-                                                <small class="fs-6 fw-bold text-black">
-                                                    Nama Penanggung Jawab : {{ $user->nama_lengkap }}
-                                                </small>
-                                            </div>
-                                        </div>
-=======
->>>>>>> f83da3f8e7724f983fdb9167b471fa7de6187eac
                                     </div>
                                 </div>
 
@@ -309,14 +298,12 @@
                                             </table>
                                         </div>
 
-                                        <div class="d-flex align-items-start mt-3">
-                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
-                                            <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%"
-                                                placeholder="Tambahkan catatan apabila diperlukan...">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
-                                        </div>
-
+                                    <div class="d-flex align-items-start mt-3">
+                                        <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
+                                        <!-- isi Catatan -->
+                                        <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatan_periode_ini)->isi_catatan) }}</textarea>
                                     </div>
+                                </div>
                                 @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">

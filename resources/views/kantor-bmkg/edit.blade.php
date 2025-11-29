@@ -111,7 +111,7 @@
                 </svg>
             </a>
 
-           <div class="d-flex align-items-center justify-content-center text-white rounded me-3 me-sm-4 flex-shrink-0"
+            <div class="d-flex align-items-center justify-content-center text-white rounded me-3 me-sm-4 flex-shrink-0"
                 style="width: 45px; height: 45px; background-color:#1E3D58;">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -144,179 +144,166 @@
                                 <div class="card-header border-0">
                                     <div class="row align-items-center">
                                         <div class="col d-flex justify-content-center">
-<<<<<<< HEAD
                                             <h2 class="fs-4 fw-bolder mb-3">Inventaris Alat BMKG</h2>
-                                        </div>
-
-                                        <div class="card-info border-0 shadow py-2 mb-3">
-                                            <div class="col-12">
-                                                <small class="fs-6 fw-bold text-black">
-                                                    Nama Penanggung Jawab : {{ $user->nama_lengkap }}
-                                                </small>
-                                            </div>
-=======
-                                            <h2 class="fs-3 fw-bolder">Inventaris Alat BMKG</h2>
->>>>>>> f83da3f8e7724f983fdb9167b471fa7de6187eac
                                         </div>
                                     </div>
                                 </div>
 
                                 @foreach ($kategoris as $kategori)
-                                    <div class="card-table border-0 shadow">
-                                        <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
-                                        <div class="table-responsive">
-                                            <table class="table bg-white align-items-center table-flush">
+                                <div class="card-table border-0 shadow">
+                                    <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
+                                    <div class="table-responsive">
+                                        <table class="table bg-white align-items-center table-flush">
 
-                                                <colgroup>
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 20%;">
-                                                    <col style="width: 10%;">
-                                                    <col style="width: 10%">
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 20%;">
-                                                    <col style="width: 3%;">
-                                                    <col style="width: 11%;">
-                                                    <col style="width: 10%;">
-                                                    <col style="width: 10%;">
-                                                </colgroup>
+                                            <colgroup>
+                                                <col style="width: 3%;">
+                                                <col style="width: 20%;">
+                                                <col style="width: 10%;">
+                                                <col style="width: 10%">
+                                                <col style="width: 3%;">
+                                                <col style="width: 20%;">
+                                                <col style="width: 3%;">
+                                                <col style="width: 11%;">
+                                                <col style="width: 10%;">
+                                                <col style="width: 10%;">
+                                            </colgroup>
 
-                                                <thead class="thead-white">
-                                                    <tr>
-                                                        <th class="border-bottom">No</th>
-                                                        <th class="border-bottom">Nama Alat</th>
-                                                        <th class="border-bottom">Merek/Type</th>
-                                                        <th class="border-bottom">Penanggung Jawab</th>
-                                                        <th class="border-bottom">Jml</th>
-                                                        <th class="border-bottom">Kondisi</th>
-                                                        <th class="border-bottom">Tahun <br> Pemasangan</th>
-                                                        <th class="border-bottom">Kalibrasi Terakhir</th>
-                                                        <th class="border-bottom">Keterangan</th>
-                                                        <th class="border-bottom">Foto Lampiran</th>
-                                                    </tr>
-                                                </thead>
+                                            <thead class="thead-white">
+                                                <tr>
+                                                    <th class="border-bottom">No</th>
+                                                    <th class="border-bottom">Nama Alat</th>
+                                                    <th class="border-bottom">Merek/Type</th>
+                                                    <th class="border-bottom">Penanggung Jawab</th>
+                                                    <th class="border-bottom">Jml</th>
+                                                    <th class="border-bottom">Kondisi</th>
+                                                    <th class="border-bottom">Tahun <br> Pemasangan</th>
+                                                    <th class="border-bottom">Kalibrasi Terakhir</th>
+                                                    <th class="border-bottom">Keterangan</th>
+                                                    <th class="border-bottom">Foto Lampiran</th>
+                                                </tr>
+                                            </thead>
 
-                                                @php
-                                                    $teknisis = \App\Models\User::where('peran', 'teknisi')->get();
-                                                @endphp
+                                            @php
+                                            $teknisis = \App\Models\User::where('peran', 'teknisi')->get();
+                                            @endphp
 
-                                                @foreach ($kategori->alats as $alat)
-                                                    <tbody>
-                                                        <tr>
-                                                            {{-- No --}}
-                                                            <td class="text-gray-900">{{ $loop->iteration }}</td>
+                                            @foreach ($kategori->alats as $alat)
+                                            <tbody>
+                                                <tr>
+                                                    {{-- No --}}
+                                                    <td class="text-gray-900">{{ $loop->iteration }}</td>
 
-                                                            {{-- Nama Alat --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
-                                                            </td>
+                                                    {{-- Nama Alat --}}
+                                                    <td class="fw-bolder text-gray-500">{{ $alat->nama_alat }}
+                                                    </td>
 
-                                                            {{-- Merek/Type --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
-                                                            </td>
+                                                    {{-- Merek/Type --}}
+                                                    <td class="fw-bolder text-gray-500">{{ $alat->merk_tipe }}
+                                                    </td>
 
-                                                            {{-- Penanggung Jawab --}}
-                                                            <td class="fw-bolder text-gray-500">
-                                                                @php
-                                                                    $currentPJId = optional(
-                                                                        optional($alat->pengecekanTerakhirAktif)
-                                                                            ->penanggungJawab,
-                                                                    )->id;
-                                                                @endphp
+                                                    {{-- Penanggung Jawab --}}
+                                                    <td class="fw-bolder text-gray-500">
+                                                        @php
+                                                        $currentPJId = optional(
+                                                        optional($alat->pengecekanTerakhirAktif)
+                                                        ->penanggungJawab,
+                                                        )->id;
+                                                        @endphp
 
-                                                                <select name="penanggung_jawab[{{ $alat->id }}]"
-                                                                    class="form-select">
-                                                                    <option value="">-- Pilih --
-                                                                    </option>
+                                                        <select name="penanggung_jawab[{{ $alat->id }}]"
+                                                            class="form-select">
+                                                            <option value="">-- Pilih --
+                                                            </option>
 
-                                                                    @foreach ($teknisis as $teknisi)
-                                                                        <option value="{{ $teknisi->id }}"
-                                                                            {{ $currentPJId == $teknisi->id ? 'selected' : '' }}>
-                                                                            {{ $teknisi->nama_lengkap }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </td>
+                                                            @foreach ($teknisis as $teknisi)
+                                                            <option value="{{ $teknisi->id }}"
+                                                                {{ $currentPJId == $teknisi->id ? 'selected' : '' }}>
+                                                                {{ $teknisi->nama_lengkap }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
 
-                                                            {{-- Jumlah --}}
-                                                            <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
-                                                            </td>
+                                                    {{-- Jumlah --}}
+                                                    <td class="fw-bolder text-gray-500">{{ $alat->jumlah }}
+                                                    </td>
 
-                                                            {{-- Kondisi --}}
-                                                            <td>
-                                                                @php
-                                                                    $selectedKondisi =
-                                                                        $alat->pengecekanTerakhirAktif->kondisi ?? [];
-                                                                @endphp
+                                                    {{-- Kondisi --}}
+                                                    <td>
+                                                        @php
+                                                        $selectedKondisi =
+                                                        $alat->pengecekanTerakhirAktif->kondisi ?? [];
+                                                        @endphp
 
-                                                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input"
-                                                                            type="checkbox"
-                                                                            name="kondisi[{{ $alat->id }}][]"
-                                                                            value="{{ $kondisi }}"
-                                                                            {{ in_array($kondisi, $selectedKondisi) ? 'checked' : '' }}>
-                                                                        <label
-                                                                            class="form-check-label">{{ ucfirst($kondisi) }}</label>
-                                                                    </div>
-                                                                @endforeach
-                                                            </td>
+                                                        @foreach (['baik', 'rusak ringan', 'rusak berat'] as $kondisi)
+                                                        <div class="form-check">
+                                                            <input class="form-check-input"
+                                                                type="checkbox"
+                                                                name="kondisi[{{ $alat->id }}][]"
+                                                                value="{{ $kondisi }}"
+                                                                {{ in_array($kondisi, $selectedKondisi) ? 'checked' : '' }}>
+                                                            <label
+                                                                class="form-check-label">{{ ucfirst($kondisi) }}</label>
+                                                        </div>
+                                                        @endforeach
+                                                    </td>
 
-                                                            {{-- Tahun Pemasangan --}}
-                                                            <td>{{ $alat->tahun_pemasangan }}</td>
+                                                    {{-- Tahun Pemasangan --}}
+                                                    <td>{{ $alat->tahun_pemasangan }}</td>
 
-                                                            {{-- Kalibrasi Terakhir --}}
-                                                            <td>
-                                                                @php
-                                                                    $kalibrasi = optional(
-                                                                        $alat->pengecekanTerakhirAktif,
-                                                                    )->kalibrasi_terakhir;
-                                                                @endphp
+                                                    {{-- Kalibrasi Terakhir --}}
+                                                    <td>
+                                                        @php
+                                                        $kalibrasi = optional(
+                                                        $alat->pengecekanTerakhirAktif,
+                                                        )->kalibrasi_terakhir;
+                                                        @endphp
 
-                                                                <input class="form-control" type="month"
-                                                                    name="kalibrasi[{{ $alat->id }}]"
-                                                                    value="{{ $kalibrasi ?? '' }}">
-                                                            </td>
+                                                        <input class="form-control" type="month"
+                                                            name="kalibrasi[{{ $alat->id }}]"
+                                                            value="{{ $kalibrasi ?? '' }}">
+                                                    </td>
 
-                                                            {{-- Keterangan --}}
-                                                            <td style="text-transform: capitalize">
-                                                                {{ $alat->keterangan }}
-                                                            </td>
-                                                            <td>
-                                                                <input type="file"
-                                                                    name="foto_lampiran[{{ $alat->id }}]"
-                                                                    id="input-foto-{{ $alat->id }}"
-                                                                    class="d-none">
+                                                    {{-- Keterangan --}}
+                                                    <td style="text-transform: capitalize">
+                                                        {{ $alat->keterangan }}
+                                                    </td>
+                                                    <td>
+                                                        <input type="file"
+                                                            name="foto_lampiran[{{ $alat->id }}]"
+                                                            id="input-foto-{{ $alat->id }}"
+                                                            class="d-none">
 
-                                                                <!-- Preview jika ada foto sebelumnya -->
-                                                                <div id="preview-foto-{{ $alat->id }}">
-                                                                    @if ($alat->pengecekanTerakhirAktif && $alat->pengecekanTerakhirAktif->foto_lampiran)
-                                                                        <img src="{{ asset('storage/' . $alat->pengecekanTerakhirAktif->foto_lampiran) }}"
-                                                                            alt="Foto Lampiran" width="120">
-                                                                        <p class="text-muted small mb-0">(Foto
-                                                                            tersimpan)</p>
-                                                                    @endif
-                                                                </div>
+                                                        <!-- Preview jika ada foto sebelumnya -->
+                                                        <div id="preview-foto-{{ $alat->id }}">
+                                                            @if ($alat->pengecekanTerakhirAktif && $alat->pengecekanTerakhirAktif->foto_lampiran)
+                                                            <img src="{{ asset('storage/' . $alat->pengecekanTerakhirAktif->foto_lampiran) }}"
+                                                                alt="Foto Lampiran" width="120">
+                                                            <p class="text-muted small mb-0">(Foto
+                                                                tersimpan)</p>
+                                                            @endif
+                                                        </div>
 
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-outline-primary btn-upload-foto"
-                                                                    data-id="{{ $alat->id }}"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#modalTambahFoto">
-                                                                    {{ $alat->pengecekanTerakhirAktif && $alat->pengecekanTerakhirAktif->foto_lampiran ? 'Ganti Foto' : 'Tambah Foto' }}
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                @endforeach
-                                            </table>
-                                        </div>
-
-                                        <div class="d-flex align-items-start mt-3">
-                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
-                                            <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%"
-                                                placeholder="Tambahkan catatan apabila diperlukan...">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
-                                        </div>
+                                                        <button type="button"
+                                                            class="btn btn-sm btn-outline-primary btn-upload-foto"
+                                                            data-id="{{ $alat->id }}"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalTambahFoto">
+                                                            {{ $alat->pengecekanTerakhirAktif && $alat->pengecekanTerakhirAktif->foto_lampiran ? 'Ganti Foto' : 'Tambah Foto' }}
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            @endforeach
+                                        </table>
                                     </div>
+
+                                    <div class="d-flex align-items-start mt-3">
+                                        <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
+                                        <!-- isi Catatan -->
+                                        <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%">{{ old('catatan.' . $kategori->id, optional($kategori->catatan_periode_ini)->isi_catatan) }}</textarea>
+                                    </div>
+                                </div>
                                 @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">
@@ -380,17 +367,17 @@
     </main>
 
     @if (session('success'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: 'Sukses',
-                    text: "{{ session('success') }}",
-                    icon: 'success',
-                    confirmButtonColor: '#0d6efd',
-                    confirmButtonText: 'OK'
-                });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Sukses',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
             });
-        </script>
+        });
+    </script>
     @endif
 
     <script>

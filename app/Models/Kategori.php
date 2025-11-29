@@ -28,11 +28,6 @@ class Kategori extends Model
         return $this->hasMany(CatatanKategori::class, 'id_kategori');
     }
 
-    public function catatanKategori()
-    {
-        return $this->hasOne(CatatanKategori::class, 'id_kategori');
-    }
-
     public function catatanTerakhir()
     {
         return $this->hasOne(CatatanKategori::class, 'id_kategori')->latest();

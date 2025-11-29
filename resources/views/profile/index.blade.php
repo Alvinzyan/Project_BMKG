@@ -155,12 +155,8 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                        <input type="jenis_kelamin" class="form-control" id="jenis_kelamin" value="{{ $users->jenis_kelamin ?? '-' }}" readonly>
+                                        <input type="jenis_kelamin" class="form-control" id="jenis_kelamin" value="{{ isset($user->jenis_kelamin) ? ucwords($user->jenis_kelamin) : '-' }}" readonly>
                                     </div>
-                                    <!-- <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="{{ $users->email}}" readonly>
-                                </div> -->
                                 </div>
                             </div>
 

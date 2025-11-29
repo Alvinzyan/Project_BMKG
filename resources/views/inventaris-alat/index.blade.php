@@ -339,12 +339,12 @@
 
                                             {{-- Status --}}
                                             <td class="fw-bolder text-gray-500 d-flex justify-content-center">
-                                                @if(!$lokasi->dicek)
-                                                <span class="badge bg-secondary">Belum</span>
-                                                @elseif(!$lokasi->lengkap)
-                                                <span class="badge bg-warning">Proses</span>
+                                                @if($lokasi->status == 'belum')
+                                                <span class="badge bg-danger">Belum (0/{{ $lokasi->total_alat }})</span>
+                                                @elseif($lokasi->status == 'proses')
+                                                <span class="badge bg-warning">Proses ({{ $lokasi->total_dicek }}/{{ $lokasi->total_alat }})</span>
                                                 @else
-                                                <span class="badge bg-success">Done</span>
+                                                <span class="badge bg-success">Done ({{ $lokasi->total_alat }}/{{ $lokasi->total_alat }})</span>
                                                 @endif
                                             </td>
 

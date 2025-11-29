@@ -27,10 +27,23 @@ class CetakLaporanController extends Controller
         }
 
         $lokasiList = Lokasi::with([
-            'kategoris' => function ($q) {
-                $q->where('is_archived', 0);
+            'kategoris' => function ($q) use ($start, $end) {
+                $q->where('is_archived', 0)
+                    ->whereHas('alats.pengecekans', function ($q2) use ($start, $end) {
+                        $q2->whereBetween('created_at', [
+                            "{$start} 00:00:00",
+                            "{$end} 23:59:59"
+                        ]);
+                    });
             },
-            'kategoris.alats',
+            'kategoris.alats' => function ($q) use ($start, $end) {
+                $q->whereHas('pengecekans', function ($q2) use ($start, $end) {
+                    $q2->whereBetween('created_at', [
+                        "{$start} 00:00:00",
+                        "{$end} 23:59:59"
+                    ]);
+                });
+            },
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [
                     "{$start} 00:00:00",
@@ -38,6 +51,27 @@ class CetakLaporanController extends Controller
                 ]);
             },
         ])->get();
+
+        // START
+        $lokasiList = $lokasiList->map(function ($lokasi) {
+
+            // Filter kategori level
+            $lokasi->kategoris = $lokasi->kategoris->filter(function ($kategori) {
+
+                // Filter alat di dalam kategori
+                $kategori->alats = $kategori->alats->filter(function ($alat) {
+                    return $alat->pengecekans->count() > 0;
+                });
+
+                // Kategori tampil hanya jika punya ≥1 alat yang dicek
+                return $kategori->alats->count() > 0;
+            });
+
+            return $lokasi;
+        });
+
+        $lokasiList = $lokasiList->filter(fn($lokasi) => $lokasi->kategoris->count() > 0);
+        // END
 
         $totalData = $lokasiList->sum(function ($lokasi) {
             return $lokasi->kategoris->sum(function ($kategori) {
@@ -66,10 +100,23 @@ class CetakLaporanController extends Controller
         }
 
         $lokasiList = Lokasi::with([
-            'kategoris' => function ($q) {
-                $q->where('is_archived', 0);   // ⬅ kategori yang tidak diarsip
+            'kategoris' => function ($q) use ($start, $end) {
+                $q->where('is_archived', 0)
+                    ->whereHas('alats.pengecekans', function ($q2) use ($start, $end) {
+                        $q2->whereBetween('created_at', [
+                            "{$start} 00:00:00",
+                            "{$end} 23:59:59"
+                        ]);
+                    });
             },
-            'kategoris.alats',
+            'kategoris.alats' => function ($q) use ($start, $end) {
+                $q->whereHas('pengecekans', function ($q2) use ($start, $end) {
+                    $q2->whereBetween('created_at', [
+                        "{$start} 00:00:00",
+                        "{$end} 23:59:59"
+                    ]);
+                });
+            },
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [
                     "{$start} 00:00:00",
@@ -83,6 +130,26 @@ class CetakLaporanController extends Controller
                 ]);
             },
         ])->get();
+
+        // START
+        $lokasiList = $lokasiList->map(function ($lokasi) {
+
+            // Filter kategori
+            $lokasi->kategoris = $lokasi->kategoris->filter(function ($kategori) {
+
+                // Filter alat di dalam kategori
+                $kategori->alats = $kategori->alats->filter(function ($alat) {
+                    return $alat->pengecekans->count() > 0;
+                });
+
+                // Kategori tampil hanya jika punya ≥1 alat yang dicek
+                return $kategori->alats->count() > 0;
+            });
+
+            return $lokasi;
+        });
+
+        $lokasiList = $lokasiList->filter(fn($lokasi) => $lokasi->kategoris->count() > 0);
 
         // Hitung total data
         $totalData = $lokasiList->sum(function ($lokasi) {
@@ -139,10 +206,23 @@ class CetakLaporanController extends Controller
         $tanggalPeriode = Carbon::parse($start)->translatedFormat('j') . ' – ' . Carbon::parse($end)->translatedFormat('j F Y');
 
         $lokasiList = Lokasi::with([
-            'kategoris' => function ($q) {
-                $q->where('is_archived', 0);   // ⬅ kategori yang tidak diarsip
+            'kategoris' => function ($q) use ($start, $end) {
+                $q->where('is_archived', 0)
+                    ->whereHas('alats.pengecekans', function ($q2) use ($start, $end) {
+                        $q2->whereBetween('created_at', [
+                            "{$start} 00:00:00",
+                            "{$end} 23:59:59"
+                        ]);
+                    });
             },
-            'kategoris.alats',
+            'kategoris.alats' => function ($q) use ($start, $end) {
+                $q->whereHas('pengecekans', function ($q2) use ($start, $end) {
+                    $q2->whereBetween('created_at', [
+                        "{$start} 00:00:00",
+                        "{$end} 23:59:59"
+                    ]);
+                });
+            },
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [
                     "{$start} 00:00:00",
@@ -156,6 +236,34 @@ class CetakLaporanController extends Controller
                 ]);
             },
         ])->get();
+
+        $lokasiList = $lokasiList->map(function ($lokasi) {
+
+            // Filter kategori
+            $lokasi->kategoris = $lokasi->kategoris->filter(function ($kategori) {
+
+                // Filter alat di dalam kategori
+                $kategori->alats = $kategori->alats->filter(function ($alat) {
+                    return $alat->pengecekans->count() > 0;
+                });
+
+                // Kategori tampil hanya jika punya ≥1 alat yang dicek
+                return $kategori->alats->count() > 0;
+            });
+
+            return $lokasi;
+        });
+
+        $lokasiList = $lokasiList->filter(fn($lokasi) => $lokasi->kategoris->count() > 0);
+
+        // Hitung total data
+        $totalData = $lokasiList->sum(function ($lokasi) {
+            return $lokasi->kategoris->sum(function ($kategori) {
+                return $kategori->alats->sum(function ($alat) {
+                    return $alat->pengecekans->count();
+                });
+            });
+        });
 
         foreach ($lokasiList as $lokasi) {
             foreach ($lokasi->kategoris as $kategori) {
@@ -186,6 +294,7 @@ class CetakLaporanController extends Controller
             'periode_start'   => $start,
             'periode_end'     => $end,
             'nama_lengkap'    => $request->nama_lengkap ?? Auth::user()->nama_lengkap,
+            'totalData'       => $totalData,
         ];
 
         $pdf = Pdf::loadView('pdf.surat-cetak-pdf', $data)
