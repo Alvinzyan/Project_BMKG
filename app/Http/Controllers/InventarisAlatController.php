@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Helpers\PeriodeHelper;
 use App\Models\Kategori;
 use App\Models\Pengecekan;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 
 class InventarisAlatController extends Controller
@@ -13,6 +14,8 @@ class InventarisAlatController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        $lokasis = Lokasi::all();
         $periode = PeriodeHelper::getPeriodeAktif();
 
         $kategoris = Kategori::with('alats')->get();
@@ -30,7 +33,8 @@ class InventarisAlatController extends Controller
             'user',
             'periode',
             'kategoris',
-            'pengecekanTerakhir'
+            'pengecekanTerakhir',
+            'lokasis'
         ));
     }
 }

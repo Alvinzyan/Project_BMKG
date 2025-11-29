@@ -116,7 +116,9 @@ class PosBandaraJemberController extends Controller
         $lokasi = Lokasi::where('nama_lokasi', 'Pos Meteorologi Bandara Notohadinegoro Jember')->firstOrFail();
 
         $kategoris = Kategori::with([
-            'alats.pengecekanTerakhir',
+            'alats' => function ($query) {
+                $query->with('pengecekanTerakhirAktif.penanggungJawab');
+            },
             'catatanTerakhir'
         ])->where('id_lokasi', $lokasi->id)->get();
 
@@ -128,6 +130,7 @@ class PosBandaraJemberController extends Controller
         $request->validate([
             'kondisi' => 'required|array',
             'kalibrasi' => 'nullable|array',
+            'penanggung_jawab' => 'nullable|array',
             'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
@@ -145,9 +148,14 @@ class PosBandaraJemberController extends Controller
             }
 
             $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
+
+            $penanggung = $request->penanggung_jawab[$alatId] 
+                      ?? ($pengecekan->penanggung_jawab ?? $userId);
+
             if ($pengecekan) {
                 $pengecekan->update([
                     'id_user' => $userId,
+                    'penanggung_jawab' => $penanggung,
                     'kondisi' => $kondisiArray,
                     'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
                     'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : $pengecekan->foto_lampiran,
@@ -155,6 +163,7 @@ class PosBandaraJemberController extends Controller
             } else {
                 Pengecekan::create([
                     'id_user' => $userId,
+                    'penanggung_jawab' => $penanggung,
                     'id_alat' => $alatId,
                     'kondisi' => $kondisiArray,
                     'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
@@ -162,8 +171,7 @@ class PosBandaraJemberController extends Controller
                 ]);
             }
         }
-
-        // === UPDATE CATATAN ===
+        
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {

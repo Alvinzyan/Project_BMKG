@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Dashboard - Aplikasi Inventaris BMKG</title>
+    <title>Inventaris Alat - Aplikasi Inventaris Alat BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -72,10 +72,10 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="../../index.html">
-            <img class="navbar-brand-dark" src="../../assets/img/brand/light.svg" alt="Volt logo" /> <img
-                class="navbar-brand-light" src="../../assets/img/brand/dark.svg" alt="Volt logo" />
+    <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
+        <a class="navbar-brand me-lg-5" href="/inventaris-alat">
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
+                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -319,171 +319,57 @@
                                 <table class="table align-items-center table-flush">
                                     <colgroup>
                                         <col style="width: 5%;">
-                                        <col style="width: 50%;">
-                                        <col style="width: 30%;">
+                                        <col style="width: 40%;">
+                                        <col style="width: 40%;">
                                         <col style="width: 20%;">
                                     </colgroup>
                                     <thead class="thead-primary">
                                         <tr>
                                             <th class="border-bottom">No</th>
                                             <th class="border-bottom">Nama Lokasi</th>
-                                            <th class="border-bottom">Status</th>
-                                            <th class="border-bottom">Aksi</th>
+                                            <th class="border-bottom text-center">Status</th>
+                                            <th class="border-bottom text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($lokasis as $index => $lokasi)
                                         <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                1.
-                                            </th>
-
-                                            {{-- Nama Lokasi --}}
-                                            <td class="fw-bolder text-gray-500">
-                                                Kantor Meteorologi Banyuwangi
-                                            </td>
+                                            <th class="text-gray-900" scope="row">{{ $index + 1 }}</th>
+                                            <td class="fw-bolder text-gray-500">{{ $lokasi->nama_lokasi }}</td>
 
                                             {{-- Status --}}
-                                            <td class="fw-bolder text-gray-500">
-
-                                            </td>
-
-                                            </td>
-                                            {{-- Tombol Aksi --}}
-                                            <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                2.
-                                            </th>
-
-                                            {{-- Nama Lokasi --}}
-                                            <td class="fw-bolder text-gray-500">
-                                                Pos Meteorologi Bandara Banyuwangi
-                                            </td>
-
-                                            {{-- Status --}}
-                                            <td class="fw-bolder text-gray-500">
-
-                                            </td>
-
+                                            <td class="fw-bolder text-gray-500 d-flex justify-content-center">
+                                                @if(!$lokasi->dicek)
+                                                <span class="badge bg-secondary">Belum</span>
+                                                @elseif(!$lokasi->lengkap)
+                                                <span class="badge bg-warning">Proses</span>
+                                                @else
+                                                <span class="badge bg-success">Done</span>
+                                                @endif
                                             </td>
 
                                             {{-- Tombol Aksi --}}
                                             <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <a href="{{ route('pos-bandara-bwi.edit') }}"
-                                                            class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</a>
-                                                    </div>
+                                                <div class="d-flex flex-row justify-content-center">
+                                                    <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary">
+                                                        <svg class="icon icon-xs me-1"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                                                            <path stroke="none" d="M0 0h24v24H0z"
+                                                                fill="none" />
+                                                            <path
+                                                                d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                            <path d="M13.5 6.5l4 4" />
+                                                        </svg>
+                                                        Edit
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                3.
-                                            </th>
-
-                                            {{-- Nama Lokasi --}}
-                                            <td class="fw-bolder text-gray-500">
-                                                Pos Meteorologi Pelabuhan Ketapang Banyuwangi
-                                            </td>
-
-                                            {{-- Status --}}
-                                            <td class="fw-bolder text-gray-500">
-
-                                            </td>
-
-                                            {{-- Tombol Aksi --}}
-                                            <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <a href="{{ route('ketapang-bwi.edit') }}"
-                                                            class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <th class="text-gray-900" scope="row">
-                                                4.
-                                            </th>
-
-                                            {{-- Nama Lokasi --}}
-                                            <td class="fw-bolder text-gray-500">
-                                                Pos Meteorologi Bandara Notohadinegoro Jember
-                                            </td>
-
-                                            {{-- Status --}}
-                                            <td class="fw-bolder text-gray-500">
-
-                                            </td>
-
-                                            {{-- Tombol Aksi --}}
-                                            <td>
-                                                <div class="d-flex flex-row me-2">
-                                                    <div class="">
-                                                        <a href="{{ route('pos-bandara-jmbr.edit') }}"
-                                                            class="btn btn-sm btn-secondary"><svg
-                                                                class="icon icon-xs me-1"
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path
-                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                                <path d="M13.5 6.5l4 4" />
-                                                            </svg>Edit</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

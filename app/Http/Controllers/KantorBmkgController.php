@@ -118,7 +118,7 @@ class KantorBmkgController extends Controller
 
         $kategoris = Kategori::with([
             'alats' => function ($query) {
-                $query->with('pengecekanTerakhirAktif');
+                $query->with('pengecekanTerakhirAktif.penanggungJawab');
             },
             'catatanTerakhir'
         ])
@@ -136,6 +136,7 @@ class KantorBmkgController extends Controller
         $request->validate([
             'kondisi' => 'required|array',
             'kalibrasi' => 'nullable|array',
+            'penanggung_jawab' => 'nullable|array',
             'foto_lampiran.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
@@ -156,6 +157,10 @@ class KantorBmkgController extends Controller
             }
 
             // $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
+
+            $penanggung = $request->penanggung_jawab[$alatId] 
+                      ?? ($pengecekan->penanggung_jawab ?? $userId);
+
             $pengecekan = Pengecekan::where('id_alat', $alatId)
                 ->whereBetween('created_at', [$start, $end])
                 ->latest()
@@ -164,6 +169,7 @@ class KantorBmkgController extends Controller
             if ($pengecekan) {
                 $pengecekan->update([
                     'id_user' => $userId,
+                    'penanggung_jawab' => $penanggung,
                     'kondisi' => $kondisiArray,
                     'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
                     'foto_lampiran' => $fotoLampiranPath ? str_replace('public/', '', $fotoLampiranPath) : $pengecekan->foto_lampiran,
@@ -171,6 +177,7 @@ class KantorBmkgController extends Controller
             } else {
                 Pengecekan::create([
                     'id_user' => $userId,
+                    'penanggung_jawab' => $penanggung,
                     'id_alat' => $alatId,
                     'kondisi' => $kondisiArray,
                     'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
@@ -178,8 +185,7 @@ class KantorBmkgController extends Controller
                 ]);
             }
         }
-
-        // === UPDATE CATATAN ===
+        
         if ($request->has('catatan')) {
             foreach ($request->catatan as $kategoriId => $isi) {
                 if ($isi) {

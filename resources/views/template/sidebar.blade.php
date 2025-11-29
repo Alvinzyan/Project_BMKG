@@ -33,7 +33,7 @@
             </div>
 
             <ul class="nav flex-column pt-3 pt-md-0">
-                <li class="nav-item">
+                <li class="nav-item mb-2">
                     <div class="d-flex align-items-center">
                         <span class="sidebar-icon">
                             <img src="{{ asset('volt/assets/img/BMG_2003.png') }}" class="rounded-circle" style="width:40px;height:40px;object-fit:cover;" alt="Volt Logo">

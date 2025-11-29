@@ -21,7 +21,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Lokasi Data Alat - Aplikasi Inventaris BMKG</title>
+    <title>Lokasi Data Alat - Aplikasi Inventaris Alat BMKG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -50,8 +50,7 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -103,10 +102,10 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="../../index.html">
-            <img class="navbar-brand-dark" src="../../assets/img/brand/light.svg" alt="Volt logo" /> <img
-                class="navbar-brand-light" src="../../assets/img/brand/dark.svg" alt="Volt logo" />
+    <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
+        <a class="navbar-brand me-lg-5" href="/inventaris-alat">
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
+                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -206,10 +205,9 @@
                 <div class="icon-shape rounded d-flex align-items-center justify-content-center me-2"
                     style="width:40px; height:40px; background-color:#1E3D58; color:#fff;">
                     <!-- SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icon-tabler-database">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icon-tabler-database">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <ellipse cx="12" cy="6" rx="9" ry="3" />
                         <path d="M3 6v12c0 1.667 4 3 9 3s9 -1.333 9 -3v-12" />
