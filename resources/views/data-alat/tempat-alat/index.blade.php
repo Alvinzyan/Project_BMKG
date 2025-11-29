@@ -192,7 +192,7 @@
         <div class="row">
             <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
                 @foreach ($lokasi->kategoris as $kategori)
-                    <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="col-12 col-sm-6 col-xl-6">
                         <a
                             href="{{ url('/data-alat/' . urlencode($lokasi->nama_lokasi) . '/' . urlencode($kategori->nama_kategori)) }}">
                             <div class="card-two border-0 shadow hover-card">
@@ -225,7 +225,7 @@
                     </div>
                 @endforeach
 
-                <div class="col-12 col-sm-6 col-xl-3">
+                <div class="col-12 col-sm-6 col-xl-6">
                     <a href="{{ url('/data-alat/' . urlencode($lokasi->nama_lokasi) . '/semua') }}">
                         <div class="card-two border-0 shadow hover-card">
                             <div class="card-body d-flex align-items-center">

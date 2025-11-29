@@ -34,7 +34,7 @@
 
             <ul class="nav flex-column pt-3 pt-md-0">
                 <li class="nav-item">
-                    <a href="../../index.html" class="nav-link d-flex align-items-center">
+                    <a href="/inventaris-alat" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
                             <img src="{{ asset('volt/assets/img/BMG_2003.png') }}" height="30" width="35"
                                 alt="Volt Logo">
@@ -92,8 +92,8 @@
                 @endif
 
                 @if (auth()->user()->peran == 'teknisi')
-                <li class="nav-item {{ Request::is('cetak-laporan') ? 'active' : '' }}">
-                    <a href="/cetak-laporan" class="nav-link">
+                <li class="nav-item {{ Request::is('laporan-alat') ? 'active' : '' }}">
+                    <a href="/laporan-alat" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -114,7 +114,7 @@
                 @endif
 
                 @if (auth()->user()->peran == 'teknisi')
-                <li class="nav-item {{ Request::is('tambah-alat') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('data-alat') ? 'active' : '' }}">
                     <a href="/data-alat" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" xmlns="http://www.w3.org/2000/svg" width="24"
