@@ -16,7 +16,7 @@
 
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -181,12 +181,12 @@
 
         <div class="row">
             <div class="col-12 col-sm-12 col-xl-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-header fw-bold">
+                <div class="card bg-white border-0 shadow h-100">
+                    <div class="card-header border-0 fw-bolder fs-5">
                         Jumlah Alat Meteorologi
                     </div>
                     <div class="card-body">
-                        <canvas id="alatChart" style="width:100%; height:400px;"></canvas>
+                        <canvas id="alatChart" style="width:100%; height:25rem;"></canvas>
                     </div>
                 </div>
             </div>
@@ -313,11 +313,11 @@
                 scales: {
                     x: {
                         ticks: {
-                            maxRotation: 0,
-                            minRotation: 0,
+                            maxRotation: 49,
+                            minRotation: 49,
                             autoSkip: false,
                             font: {
-                                size: 10   // optional, biar muat semua
+                                size: 11
                             }
                         }
                     }

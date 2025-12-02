@@ -180,6 +180,10 @@ class KantorBmkgController extends Controller
             }
 
             // $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
+
+            $penanggung = $request->penanggung_jawab[$alatId] 
+                      ?? ($pengecekan->penanggung_jawab ?? $userId);
+
             $pengecekan = Pengecekan::where('id_alat', $alatId)
                 ->whereBetween('created_at', [$start, $end])
                 ->latest()

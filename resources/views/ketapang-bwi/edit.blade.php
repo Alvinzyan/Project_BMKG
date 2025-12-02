@@ -16,7 +16,7 @@
 
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -291,15 +291,6 @@
                                                 @endforeach
                                             </table>
                                         </div>
-
-                                        <div class="d-flex align-items-start mt-3">
-                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>
-                                            <!-- isi Catatan -->
-                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%"
-                                                placeholder="Tambahkan catatan apabila diperlukan...">{{ old('catatan.' . $kategori->id, optional($kategori->catatanTerakhir)->isi_catatan) }}</textarea>
-                                        </div>
-
-                                    </div>
 
                                     <div class="d-flex align-items-start mt-3">
                                         <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan : </h4>

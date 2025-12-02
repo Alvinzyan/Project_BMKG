@@ -16,7 +16,7 @@
 
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -99,7 +99,7 @@
         </nav>
 
         <div class="row">
-            <div class="col-12 mb-4">
+            <div class="col-12 mb-4 mt-2">
                 <div class="row g-3">
                     <!-- Card Total User -->
                     <div class="col-12 col-md-12 col-lg-4">
@@ -325,8 +325,8 @@
             icon: 'success',
             title: 'Berhasil!',
             text: "{{ session('success') }}",
-            showConfirmButton: false,
-            timer: 2000
+            confirmButtonColor: '#0d6efd',
+            confirmButtonText: 'OK'
         });
     </script>
     @endif

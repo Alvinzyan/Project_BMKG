@@ -87,9 +87,7 @@
 
         .meta-row {
             width: 100%;
-            font-size: 12pt;
-            white-space: nowrap;
-            align-items: flex-start;
+            margin-bottom: 5mm;
         }
 
         .meta-left {
@@ -314,15 +312,38 @@
 
         <div class="content-wrap">
             <section class="meta-row">
-                <div class="meta-left">
-                    <div class="meta-item"><span class="label">Nomor</span>: {{ $nomor_surat }}</div>
-                    <div class="meta-item"><span class="label">Lampiran</span>: 1 (satu) berkas</div>
-                    <div class="meta-item"><span class="label">Perihal</span>: Laporan Kondisi Aloptama<br>
-                        <span class="value-indent">Stasiun Meteorologi Banyuwangi</span>
-                    </div>
-                </div>
-                <div class="meta-right">Banyuwangi, {{ $tanggal }}</div>
-                <div style="clear: both;"></div>
+                <table style="width: 100%; border: none; border-collapse: collapse; font-size: 12pt; margin: 0; padding: 0;">
+                    <tr>
+                        <!-- Kolom Kiri (60%) - RATA KIRI -->
+                        <td style="border: none; width: 60%; vertical-align: top; text-align: left; padding: 0;">
+                            <table style="border: none; border-collapse: collapse; width: 100%; margin: 0; padding: 0;">
+                                <tr>
+                                    <td style="border: none; width: 80px; vertical-align: top; font-weight: bold; text-align: left; padding: 0 5px 3px 0;">Nomor</td>
+                                    <td style="border: none; width: 10px; vertical-align: top; text-align: left; padding: 0 5px 3px 0;">:</td>
+                                    <td style="border: none; vertical-align: top; text-align: left; padding: 0 0 3px 0;">{{ $nomor_surat }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none; width: 80px; vertical-align: top; font-weight: bold; text-align: left; padding: 0 5px 3px 0;">Lampiran</td>
+                                    <td style="border: none; width: 10px; vertical-align: top; text-align: left; padding: 0 5px 3px 0;">:</td>
+                                    <td style="border: none; vertical-align: top; text-align: left; padding: 0 0 3px 0;">1 (satu) berkas</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none; width: 80px; vertical-align: top; font-weight: bold; text-align: left; padding: 0 5px 0 0;">Perihal</td>
+                                    <td style="border: none; width: 10px; vertical-align: top; text-align: left; padding: 0 5px 0 0;">:</td>
+                                    <td style="border: none; vertical-align: top; text-align: left; padding: 0;">
+                                        Laporan Kondisi Aloptama<br>
+                                        Stasiun Meteorologi Banyuwangi
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+
+                        <!-- Kolom Kanan (40%) - RATA KANAN -->
+                        <td style="border: none; width: 40%; vertical-align: top; text-align: right; padding: 0;">
+                            Banyuwangi, {{ $tanggal }}
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <div class="recipient">

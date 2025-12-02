@@ -7443,14 +7443,14 @@ textarea.form-control-lg {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0.875rem;
     min-width: 0;
     word-wrap: break-word;
     background-color: #1E3D58;
     background-clip: border-box;
     border: 0.0625rem solid rgba(17, 24, 39, 0.125);
     border-radius: 0.5rem;
-    margin: 0 1rem 1rem 1rem ;
+    margin: 0 0.188rem 1rem 0.188rem ;
 }
 
 /* .card-note {
@@ -7504,20 +7504,6 @@ textarea.form-control-lg {
     border: 0.0625rem solid rgba(17, 24, 39, 0.125);
     border-radius: 0.5rem;
 }
-
-.card-four {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #F0F0F0;
-    background-clip: border-box;
-    border: 0.0625rem solid rgba(17, 24, 39, 0.125);
-    border-radius: 0.5rem;
-}
-
 
 .card-table-two {
     position: relative;

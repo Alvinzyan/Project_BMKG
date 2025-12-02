@@ -16,7 +16,7 @@
 
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -76,8 +76,9 @@
 
     <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
         <a class="navbar-brand me-lg-5" href="/inventaris-alat">
-            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
-                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                alt="Logo BMKG" />Stamet Banyuwangi<img class="navbar-brand-light"
+                src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -194,31 +195,40 @@
 
         <div class="row mb-4 mt-4">
             <div class="align-items-center">
-                <div class="row g-0 border mb-1">
-                    <div class="col-2 p-2 fw-bold text-white bg-dark"
-                        style="background:#1E3D58; border-radius: 12px 0 0 12px;">Lokasi</div>
-                    <div class="col-10 p-2 bg-white text-dark"
-                        style="color:#1E3D58; border:1px solid #1E3D58; border-radius: 0 12px 12px 0;">
+                <div class="row g-0 border-0 mb-2">
+                    <div class="col-4 col-sm-2 p-2 fw-bold text-white bg-dark"
+                        style="background:#1E3D58; border-radius: 0.688rem 0 0 0.688rem;">Lokasi</div>
+                    <div class="col-8 col-sm-8 p-2 bg-white text-dark"
+                        style="color:#1E3D58; border:1px solid #1E3D58; border-radius: 0 0.688rem 0.688rem 0;">
                         {{ $lokasi->nama_lokasi }}</div>
                 </div>
 
-                <div class="row g-0 border">
-                    <div class="col-2 p-2 fw-bold text-white bg-dark"
-                        style="background:#1E3D58; border-radius: 12px 0 0 12px;">Kategori</div>
-                    <div class="col-10 p-2 bg-white text-dark"
-                        style="color:#1E3D58; border:1px solid #1E3D58; border-radius: 0 12px 12px 0;">
+                <div class="row g-0 border-0">
+                    <div class="col-4 col-sm-2 p-2 fw-bold text-white bg-dark"
+                        style="background:#1E3D58; border-radius: 0.688rem 0 0 0.688rem;">Kategori</div>
+
+                    <div class="col-8 col-sm-8 p-2 bg-white text-dark"
+                        style="color:#1E3D58; border:1px solid #1E3D58; border-radius: 0 0.688rem 0.688rem 0;">
                         {{ $nama_kategori }}</div>
                 </div>
             </div>
         </div>
 
         @foreach ($alats as $group => $list)
-            <div class="card shadow-sm rounded-0 mb-4" style="background-color:#fff; border-top:3px solid #1E3D58;">
-                <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">
+            <div class="card shadow rounded" style="background-color: #fff; border-top:3px solid #1E3D58;">
+                <div
+                    class="card-header border-0 fw-bold fs-5 text-dark d-flex justify-content-between align-items-center">
                     {{ $group }}
                     <a href="#" class="btn btn-sm text-white" style="background-color:#1E3D58;"
                         data-bs-toggle="modal" data-bs-target="#modalTambahAlat_{{ Str::slug($group) }}">
-                        <i class="bi bi-plus"></i> Tambah Data
+                        <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>Tambah Data
                     </a>
                 </div>
 
@@ -269,7 +279,18 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">
-                                                    <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>Hapus
+                                                    <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>Hapus
                                                 </button>
                                             </form>
                                         </td>

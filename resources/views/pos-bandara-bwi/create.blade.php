@@ -16,7 +16,7 @@
 
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -150,7 +150,7 @@
                                 </div>
 
                                 @foreach ($kategoris as $kategori)
-                                    <div class="card-table border-0 shadow">
+                                    <div class="card-table border-0">
                                         <h4 class="fs-6 fw-bold text-white py-2">{{ $kategori->nama_kategori }}</h4>
 
                                         <div class="table-responsive">

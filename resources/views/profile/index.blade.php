@@ -16,7 +16,7 @@
 
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -50,8 +50,7 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -68,7 +67,7 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <style>
+    {{-- <style>
         .nav-tabs .nav-link.active {
             background-color: #1E3D58 !important;
             color: white !important;
@@ -78,7 +77,7 @@
             background-color: #1E3D58 !important;
             color: white !important;
         }
-    </style>
+    </style> --}}
 
 </head>
 
@@ -86,10 +85,11 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="../../index.html">
-            <img class="navbar-brand-dark" src="../../assets/img/brand/light.svg" alt="Volt logo" /> <img
-                class="navbar-brand-light" src="../../assets/img/brand/dark.svg" alt="Volt logo" />
+    <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
+        <a class="navbar-brand me-lg-5" href="/inventaris-alat">
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                alt="Logo BMKG" />Stamet Banyuwangi<img class="navbar-brand-light"
+                src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -110,57 +110,64 @@
             @include('template.navbar')
         </nav>
 
-        <div class="container-fluid py-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow-sm rounded-4 p-4" style="background-color: #fff; border: 1px solid #e0e0e0;">
-                        <ul class="nav nav-tabs mb-4" id="profileTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="profil-tab" data-bs-toggle="tab" data-bs-target="#profil"
-                                    type="button" role="tab" aria-controls="profil" aria-selected="true">
-                                    Profil
-                                </button>
-                            </li>
-                            {{-- <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="ubah-password-tab" data-bs-toggle="tab" data-bs-target="#ubah-password"
-                                    type="button" role="tab" aria-controls="ubah-password" aria-selected="false">
-                                    Ubah Password
-                                </button>
-                            </li> --}}
-                        </ul>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card shadow border-0 p-3" style="background-color: #fff;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="d-flex align-items-center justify-content-center text-white rounded me-1 me-sm-2 flex-shrink-0"
+                                style="width: 45px; height: 45px; background-color:#1E3D58;">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                </svg>
+                            </div>
+
+                            <h2 class="fs-4 fw-bolder mb-0">Profil</h2>
+                        </div>
 
                         <div class="tab-content" id="profileTabContent">
                             <!-- Profil -->
-                            <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
+                            <div class="tab-pane fade show active" id="profil" role="tabpanel"
+                                aria-labelledby="profil-tab">
                                 <div class="text-center mb-4">
-                                    <img src="{{ $users->foto_profil  ? asset('storage/'. $users->foto_profil) : asset('storage/foto_profil/default-profile.png') }}" class="rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
-                                    @if (auth()->user()->peran=="teknisi")
-                                    <div>
-                                        <button class="btn btn-sm text-white" style="background-color:#1E3D58;" data-bs-toggle="modal" data-bs-target="#modalEditProfile">Edit Profile</button>
-                                    </div>
+                                    <img src="{{ $users->foto_profil ? asset('storage/' . $users->foto_profil) : asset('storage/foto_profil/default-profile.png') }}"
+                                        class="rounded-circle mb-2"
+                                        style="width: 100px; height: 100px; object-fit: cover;">
+                                    @if (auth()->user()->peran == 'teknisi')
+                                        <div>
+                                            <button class="btn btn-secondary btn-sm text-white" data-bs-toggle="modal"
+                                                data-bs-target="#modalEditProfile">Edit
+                                                Profil</button>
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="{{ $users->nama_lengkap}}" readonly>
+                                        <input type="text" class="form-control" id="nama_lengkap"
+                                            name="nama_lengkap" value="{{ $users->nama_lengkap }}" readonly>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="nip" class="form-label">NIP</label>
-                                        <input type="text" class="form-control" id="nip" value="{{ $users->nip ?? '-' }}" readonly>
+                                        <input type="text" class="form-control" id="nip"
+                                            value="{{ $users->nip ?? '-' }}" readonly>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="jabatan" class="form-label">Jabatan</label>
-                                        <input type="jabatan" class="form-control" id="jabatan" value="{{ $users->jabatan ?? '-' }}" readonly>
+                                        <input type="jabatan" class="form-control" id="jabatan"
+                                            value="{{ $users->jabatan ?? '-' }}" readonly>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                        <input type="jenis_kelamin" class="form-control" id="jenis_kelamin" value="{{ $users->jenis_kelamin ?? '-' }}" readonly>
+                                        <input type="jenis_kelamin" class="form-control" id="jenis_kelamin"
+                                            value="{{ isset($user->jenis_kelamin) ? ucwords($user->jenis_kelamin) : '-' }}"
+                                            readonly>
                                     </div>
-                                    <!-- <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="{{ $users->email}}" readonly>
-                                </div> -->
                                 </div>
                             </div>
 
@@ -184,57 +191,72 @@
                             </div> --}}
 
                             <!-- Modal Edit Akun -->
-                            <div class="modal fade" id="modalEditProfile" tabindex="-1" aria-labelledby="modalEditProfileLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalEditProfile" tabindex="-1"
+                                aria-labelledby="modalEditProfileLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md">
                                     <div class="modal-content border-0 shadow">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="modalEditProfileLabel">Edit Profil</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            <h5 class="modal-title text-dark" id="modalEditProfileLabel">Edit
+                                                Profil
+                                            </h5>
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="modal"></button>
                                         </div>
-                                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ route('profile.update') }}"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
                                                 <!-- Foto Profil -->
                                                 <div class="text-center mb-3">
-                                                    <img src="{{ $users->foto_profil  ? asset('storage/'.$users->foto_profil) : asset('storage/foto_profil/default-profile.png') }}"
+                                                    <img src="{{ $users->foto_profil ? asset('storage/' . $users->foto_profil) : asset('storage/foto_profil/default-profile.png') }}"
                                                         class="rounded-circle mb-2 shadow-sm"
                                                         style="width: 110px; height: 110px; object-fit: cover;">
                                                     <div>
-                                                        <input type="file" class="form-control mt-2 w-75 mx-auto" name="foto_profil">
+                                                        <input type="file" class="form-control mt-2 w-75 mx-auto"
+                                                            name="foto_profil">
                                                     </div>
                                                     @error('foto_profil')
-                                                    <small class="text-danger">{{ $message }}</small>
+                                                        <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
 
                                                 <!-- Nama -->
                                                 <div class="mb-3">
-                                                    <label for="nama_lengkap_edit" class="form-label">Nama Lengkap</label>
+                                                    <label for="nama_lengkap_edit" class="form-label">Nama
+                                                        Lengkap</label>
                                                     <input type="text" class="form-control" id="nama_lengkap_edit"
                                                         name="nama_lengkap" value="{{ $users->nama_lengkap }}">
                                                     @error('nama_lengkap')
-                                                    <small class="text-danger">{{ $message }}</small>
+                                                        <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
 
                                                 <!-- Jenis Kelamin -->
                                                 <div class="mb-3">
-                                                    <label for="jenis_kelamin_edit" class="form-label">Jenis Kelamin</label>
-                                                    <select class="form-control" id="jenis_kelamin_edit" name="jenis_kelamin">
-                                                        <option value="laki laki" {{ $users->jenis_kelamin == 'laki laki' ? 'selected' : '' }}>Laki-laki</option>
-                                                        <option value="perempuan" {{ $users->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                    <label for="jenis_kelamin_edit" class="form-label">Jenis
+                                                        Kelamin</label>
+                                                    <select class="form-control" id="jenis_kelamin_edit"
+                                                        name="jenis_kelamin">
+                                                        <option value="laki laki"
+                                                            {{ $users->jenis_kelamin == 'laki laki' ? 'selected' : '' }}>
+                                                            Laki-laki</option>
+                                                        <option value="perempuan"
+                                                            {{ $users->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>
+                                                            Perempuan</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="jabatan_edit" class="form-label">Jabatan</label>
-                                                    <input type="text" class="form-control" name="jabatan" value="{{ $user->jabatan ?? '-' }}"
+                                                    <input type="text" class="form-control" name="jabatan"
+                                                        value="{{ $user->jabatan ?? '-' }}"
                                                         oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase())">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">Batal</button>
                                                 <button type="submit" class="btn btn-success">Simpan</button>
                                             </div>
                                         </form>
@@ -247,8 +269,8 @@
             </div>
         </div>
 
-        <footer class="bg-white rounded shadow p-3 mb-3 mt-3">
-            <div class="container">
+        <footer class="bg-white border-0 rounded shadow p-3 mb-3 mt-3">
+            <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-12 text-center">
                         <p class="mb-0" style="font-size: 0.9rem;">
@@ -262,24 +284,24 @@
 
     <script src="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
     @if (session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: "{{ session('success') }}",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
     @endif
 
     @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var editModal = new bootstrap.Modal(document.getElementById('modalEditProfile'));
-            editModal.show();
-        });
-    </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var editModal = new bootstrap.Modal(document.getElementById('modalEditProfile'));
+                editModal.show();
+            });
+        </script>
     @endif
 
     <!-- Core -->
