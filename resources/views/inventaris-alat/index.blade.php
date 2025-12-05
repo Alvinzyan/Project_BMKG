@@ -50,8 +50,7 @@
         content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('volt/assets/img/favicon/favicon-bmkg.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -74,8 +73,9 @@
 
     <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
         <a class="navbar-brand me-lg-5" href="/inventaris-alat">
-            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
-                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                alt="Logo BMKG" />Stamet Banyuwangi<img class="navbar-brand-light"
+                src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -237,7 +237,8 @@
                                 </svg>
                             </div>
                             <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi</h3>
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Pelabuhan Ketapang Banyuwangi
+                            </h3>
                         </div>
                     </div>
                 </a>
@@ -268,7 +269,8 @@
                                 </svg>
                             </div>
                             <!-- Tulisan -->
-                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notohadinegoro Jember</h3>
+                            <h3 class="fw-extrabold text-white mb-0 fs-6">Pos Meteorologi Bandara Notohadinegoro Jember
+                            </h3>
                         </div>
                     </div>
                 </a>
@@ -282,8 +284,9 @@
                         <div class="card-table-two border-0 shadow">
                             <div class="card-header-two">
                                 <div class="row align-items-center">
-                                    <!-- Kolom kiri: ikon + judul -->
-                                    <div class="col d-flex align-items-center">
+
+                                    <!-- Kolom kiri: ikon + judul Desktop-->
+                                    <div class="col align-items-center d-none d-sm-flex">
                                         <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -298,17 +301,33 @@
                                         <h2 class="fs-4 fw-bolder mb-0">Laporan Inventaris Mingguan</h2>
                                     </div>
 
+                                    <!-- Kolom kiri: ikon + judul Mobile-->
+                                    <div class="col d-flex align-items-center d-block d-sm-none">
+                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="30"
+                                            height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                            <path
+                                                d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                            <path d="M9 12h6" />
+                                            <path d="M9 16h6" />
+                                        </svg>
+                                        <small class="fs-6 fw-bolder mb-0">Laporan Inventaris Mingguan</small>
+                                    </div>
+
                                     <!-- Kolom kanan / bawah: periode -->
                                     <div class="col-12 mt-1">
                                         <small class="text-muted">
-                                            @if($periode)
-                                            <p class="mb-1">
-                                                <strong>Periode Aktif</strong>:
-                                                Minggu ke-{{ $periode['periode_week'] }}
-                                                ({{ $periode['start_label'] }} – {{ $periode['end_label'] }})
-                                            </p>
+                                            @if ($periode)
+                                                <p class="mb-1">
+                                                    <strong>Periode Aktif</strong>:
+                                                    Minggu ke-{{ $periode['periode_week'] }}
+                                                    ({{ $periode['start_label'] }} – {{ $periode['end_label'] }})
+                                                </p>
                                             @else
-                                            <p>Periode aktif belum tersedia.</p>
+                                                <p>Periode aktif belum tersedia.</p>
                                             @endif
                                         </small>
                                     </div>
@@ -332,43 +351,47 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($lokasis as $index => $lokasi)
-                                        <tr>
-                                            <th class="text-gray-900" scope="row">{{ $index + 1 }}</th>
-                                            <td class="fw-bolder text-gray-500">{{ $lokasi->nama_lokasi }}</td>
+                                        @foreach ($lokasis as $index => $lokasi)
+                                            <tr>
+                                                <th class="text-gray-900" scope="row">{{ $index + 1 }}</th>
+                                                <td class="fw-bolder text-gray-500">{{ $lokasi->nama_lokasi }}</td>
 
-                                            {{-- Status --}}
-                                            <td class="fw-bolder text-gray-500 d-flex justify-content-center">
-                                                @if($lokasi->status == 'belum')
-                                                <span class="badge bg-danger">Belum (0/{{ $lokasi->total_alat }})</span>
-                                                @elseif($lokasi->status == 'proses')
-                                                <span class="badge bg-warning">Proses ({{ $lokasi->total_dicek }}/{{ $lokasi->total_alat }})</span>
-                                                @else
-                                                <span class="badge bg-success">Done ({{ $lokasi->total_alat }}/{{ $lokasi->total_alat }})</span>
-                                                @endif
-                                            </td>
+                                                {{-- Status --}}
+                                                <td class="fw-bolder text-gray-500 d-flex justify-content-center">
+                                                    @if ($lokasi->status == 'belum')
+                                                        <span class="badge bg-danger">Belum
+                                                            (0/{{ $lokasi->total_alat }})</span>
+                                                    @elseif($lokasi->status == 'proses')
+                                                        <span class="badge bg-warning">Proses
+                                                            ({{ $lokasi->total_dicek }}/{{ $lokasi->total_alat }})</span>
+                                                    @else
+                                                        <span class="badge bg-success">Done
+                                                            ({{ $lokasi->total_alat }}/{{ $lokasi->total_alat }})</span>
+                                                    @endif
+                                                </td>
 
-                                            {{-- Tombol Aksi --}}
-                                            <td>
-                                                <div class="d-flex flex-row justify-content-center">
-                                                    <a href="{{ route('.edit') }}" class="btn btn-sm btn-secondary">
-                                                        <svg class="icon icon-xs me-1"
-                                                            xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                            <path stroke="none" d="M0 0h24v24H0z"
-                                                                fill="none" />
-                                                            <path
-                                                                d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                            <path d="M13.5 6.5l4 4" />
-                                                        </svg>
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                {{-- Tombol Aksi --}}
+                                                <td>
+                                                    <div class="d-flex flex-row justify-content-center">
+                                                        <a href="{{ route('kantor-bmkg.edit') }}"
+                                                            class="btn btn-sm btn-secondary">
+                                                            <svg class="icon icon-xs me-1"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                                                                <path stroke="none" d="M0 0h24v24H0z"
+                                                                    fill="none" />
+                                                                <path
+                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                                <path d="M13.5 6.5l4 4" />
+                                                            </svg>
+                                                            Edit
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -393,17 +416,17 @@
     </main>
 
     @if (session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Sukses',
-                text: "{{ session('success') }}",
-                icon: 'success',
-                confirmButtonColor: '#0d6efd',
-                confirmButtonText: 'OK'
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Sukses',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonColor: '#0d6efd',
+                    confirmButtonText: 'OK'
+                });
             });
-        });
-    </script>
+        </script>
     @endif
 
     <script src="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>

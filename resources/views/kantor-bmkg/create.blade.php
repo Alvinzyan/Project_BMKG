@@ -77,8 +77,9 @@
 
     <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
         <a class="navbar-brand me-lg-5" href="/inventaris-alat">
-            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
-                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                alt="Logo BMKG" />Stamet Banyuwangi<img class="navbar-brand-light"
+                src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -111,7 +112,7 @@
                 </svg>
             </a>
 
-            <div class="d-flex align-items-center justify-content-center text-white rounded me-3 me-sm-4 flex-shrink-0"
+            <div class="d-flex align-items-center justify-content-center text-white rounded me-2 me-sm-2 flex-shrink-0"
                 style="width: 45px; height: 45px; background-color:#1E3D58;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -262,9 +263,10 @@
                                         </div>
 
                                         {{-- CATATAN --}}
-                                        <div class="d-flex align-items-start mt-3">
-                                            <h4 class="fs-6 fw-bold text-white mb-0 me-2">Catatan :</h4>
-                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control" style="max-width: 50%"
+                                        <div class="col-12 col-sm-6 mt-3">
+                                            <h4 class="fs-6 fw-bold text-white mb-2">Catatan</h4>
+
+                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control"
                                                 placeholder="Tambahkan catatan apabila diperlukan..." @if ($dataSudahAda) readonly @endif>{{ $catatanTerakhir[$kategori->id]->isi_catatan ?? '' }}</textarea>
                                         </div>
 
