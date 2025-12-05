@@ -351,7 +351,7 @@
                                             {{-- Tombol Aksi --}}
                                             <td>
                                                 <div class="d-flex flex-row justify-content-center">
-                                                    <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary">
+                                                    <a href="{{ route('.edit') }}" class="btn btn-sm btn-secondary">
                                                         <svg class="icon icon-xs me-1"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"

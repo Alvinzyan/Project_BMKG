@@ -361,9 +361,9 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 2000
+                text: "{{ session('success') }}",
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
             });
         </script>
     @endif

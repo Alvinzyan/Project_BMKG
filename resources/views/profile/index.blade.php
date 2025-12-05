@@ -63,6 +63,8 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('volt/css/volt.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/croppie@2.6.5/croppie.css">
+
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -134,10 +136,12 @@
                             <!-- Profil -->
                             <div class="tab-pane fade show active" id="profil" role="tabpanel"
                                 aria-labelledby="profil-tab">
+
                                 <div class="text-center mb-4">
-                                    <img src="{{ $users->foto_profil ? asset('storage/' . $users->foto_profil) : asset('storage/foto_profil/default-profile.png') }}"
+                                    <img src="{{ $users->foto_profil ? asset('storage/' . $users->foto_profil) : asset('storage/foto_profil/default-profil.jpg') }}"
                                         class="rounded-circle mb-2"
                                         style="width: 100px; height: 100px; object-fit: cover;">
+
                                     @if (auth()->user()->peran == 'teknisi')
                                         <div>
                                             <button class="btn btn-secondary btn-sm text-white" data-bs-toggle="modal"
@@ -146,6 +150,7 @@
                                         </div>
                                     @endif
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
@@ -171,30 +176,12 @@
                                 </div>
                             </div>
 
-                            {{-- <!-- Ubah Password -->
-                            <div class="tab-pane fade" id="ubah-password" role="tabpanel" aria-labelledby="ubah-password-tab">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="current_password" class="form-label">Password Lama</label>
-                                        <input type="password" class="form-control" id="current_password" placeholder="Masukkan password lama" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="new_password" class="form-label">Password Baru</label>
-                                        <input type="password" class="form-control" id="new_password" placeholder="Masukkan password baru" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="new_password_confirmation" class="form-label">Konfirmasi Password</label>
-                                        <input type="password" class="form-control" id="new_password_confirmation" placeholder="Konfirmasi password baru" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-sm text-white" style="background-color:#1E3D58;">Simpan Perubahan</button>
-                                </form>
-                            </div> --}}
-
                             <!-- Modal Edit Akun -->
                             <div class="modal fade" id="modalEditProfile" tabindex="-1"
                                 aria-labelledby="modalEditProfileLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md">
                                     <div class="modal-content border-0 shadow">
+
                                         <div class="modal-header">
                                             <h5 class="modal-title text-dark" id="modalEditProfileLabel">Edit
                                                 Profil
@@ -202,23 +189,64 @@
                                             <button type="button" class="btn-close"
                                                 data-bs-dismiss="modal"></button>
                                         </div>
+
                                         <form method="POST" action="{{ route('profile.update') }}"
                                             enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
+
                                                 <!-- Foto Profil -->
-                                                <div class="text-center mb-3">
-                                                    <img src="{{ $users->foto_profil ? asset('storage/' . $users->foto_profil) : asset('storage/foto_profil/default-profile.png') }}"
-                                                        class="rounded-circle mb-2 shadow-sm"
-                                                        style="width: 110px; height: 110px; object-fit: cover;">
-                                                    <div>
+                                                <div class="text-center mb-3 positon-relative">
+                                                    <!-- Foto Profil -->
+                                                    <div class="text-center mb-3">
+
+                                                        <img src="{{ $users->foto_profil
+                                                            ? asset('storage/' . $users->foto_profil)
+                                                            : asset('storage/foto_profil/default-profil.jpg') }}"
+                                                            id="previewFoto" class="rounded-circle mb-2 shadow-sm"
+                                                            style="width:110px;height:110px;object-fit:cover;">
+
+                                                        <button type="button" id="btnHapus"
+                                                            onclick="hapusFotoProfil()"
+                                                            class="btn btn-danger btn-sm position-absolute rounded-circle"
+                                                            style="top:0; right:calc(50% - 70px);">
+                                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                                                                width="24" height="24" viewBox="0 0 24 24"
+                                                                fill="none" stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                                <path stroke="none" d="M0 0h24v24H0z"
+                                                                    fill="none" />
+                                                                <path d="M4 7l16 0" />
+                                                                <path d="M10 11l0 6" />
+                                                                <path d="M14 11l0 6" />
+                                                                <path
+                                                                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <div id="croppie-container" class="mx-auto d-none"></div>
+
                                                         <input type="file" class="form-control mt-2 w-75 mx-auto"
-                                                            name="foto_profil">
+                                                            id="fotoInput" accept="image/*">
+
+                                                        <input type="hidden" name="foto_base64" id="fotoBase64">
+
+                                                        <input type="hidden" name="hapus_foto" id="hapusFoto" value="0">
+
+                                                        <div class="d-flex gap-2 justify-content-center mt-2">
+                                                            <button type="button" id="btnBatalCrop"
+                                                                onclick="batalkanCrop()"
+                                                                class="btn btn-danger btn-sm d-none">Batal</button>
+
+                                                            <button type="button" id="btnCrop"
+                                                                class="btn btn-success btn-sm d-none">Gunakan
+                                                                Foto</button>
+                                                        </div>
                                                     </div>
-                                                    @error('foto_profil')
-                                                        <small class="text-danger">{{ $message }}</small>
-                                                    @enderror
+
                                                 </div>
 
                                                 <!-- Nama -->
@@ -256,13 +284,14 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                                    data-bs-dismiss="modal">Kembali</button>
+                                                <button class="btn btn-success" id="btnSimpan">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -282,15 +311,14 @@
         </footer>
     </main>
 
-    <script src="{{ asset('volt/vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
     @if (session('success'))
         <script>
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
                 text: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 2000
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
             });
         </script>
     @endif
@@ -303,6 +331,138 @@
             });
         </script>
     @endif
+
+    {{-- Crop Foto Profil --}}
+    <script>
+        let croppie = null;
+
+        document.getElementById('fotoInput').addEventListener('change', function(e) {
+
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+
+                // Sembunyikan preview lama & tombol hapus
+                document.getElementById('previewFoto').classList.add('d-none');
+                document.getElementById('btnHapus').classList.add('d-none');
+                document.getElementById('btnSimpan').disabled = true;
+
+                // Tampilkan croppie
+                const croppieContainer = document.getElementById('croppie-container');
+                croppieContainer.classList.remove('d-none');
+                croppieContainer.innerHTML = "";
+
+                croppie = new Croppie(croppieContainer, {
+                    viewport: {
+                        width: 150,
+                        height: 150,
+                        type: 'circle'
+                    },
+                    boundary: {
+                        width: 220,
+                        height: 220
+                    },
+                    enableZoom: true,
+                    showZoomer: true
+                });
+
+                croppie.bind({
+                    url: e.target.result
+                });
+
+                // Tampilkan tombol crop
+                document.getElementById('btnCrop').classList.remove('d-none');
+                document.getElementById('btnBatalCrop').classList.remove('d-none');
+            }
+
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('btnCrop').addEventListener('click', function() {
+            croppie.result({
+                type: 'base64',
+                size: {
+                    width: 300,
+                    height: 300
+                },
+                format: 'png',
+                circle: true
+            }).then(function(img) {
+
+                document.getElementById('fotoBase64').value = img;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: "Foto berhasil digunakan",
+                    confirmButtonColor: '#0d6efd',
+                    confirmButtonText: 'OK'
+                });
+
+                document.getElementById('btnSimpan').disabled = false;
+            });
+        });
+    </script>
+
+    <script>
+        function batalkanCrop() {
+            document.getElementById('croppie-container').classList.add('d-none');
+            document.getElementById('btnCrop').classList.add('d-none');
+            document.getElementById('btnBatalCrop').classList.add('d-none');
+
+            document.getElementById('previewFoto').classList.remove('d-none');
+            document.getElementById('btnHapus').classList.remove('d-none');
+
+            if (croppie) {
+                croppie.destroy();
+                croppie = null;
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById('inputFoto').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                document.getElementById('hapusFoto').value = 0;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    </script>
+
+    <script>
+        function hapusFotoProfil() {
+            Swal.fire({
+                title: 'Hapus Foto Profil?',
+                text: "Foto akan dihapus dan dikembalikan ke default.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    document.getElementById('previewFoto').src =
+                        "{{ asset('storage/foto_profil/default-profil.jpg') }}";
+
+                    document.getElementById('hapusFoto').value = 1;
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Dihapus!',
+                        text: 'Foto profil berhasil dihapus.',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                }
+            });
+        }
+    </script>
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
@@ -344,6 +504,9 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/croppie@2.6.5/croppie.min.js"></script>
+
 </body>
 
 </html>

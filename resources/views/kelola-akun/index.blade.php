@@ -107,9 +107,9 @@
                                 class="card-header border-0 fw-bold text-white d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2">
 
                                 <div class="d-flex align-items-center">
-                                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
+                                    <svg class="icon me-2" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                         class="icon icon-tabler icons-tabler-outline icon-tabler-user-cog">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
@@ -625,7 +625,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary"
+                            <button type="button" class="btn btn-sm btn-outline-grey"
                                 data-bs-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus</button>
                         </div>
@@ -715,8 +715,8 @@
                 icon: 'success',
                 title: 'Berhasil!',
                 text: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 2000
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
             });
         </script>
     @endif

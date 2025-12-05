@@ -313,8 +313,8 @@
                 scales: {
                     x: {
                         ticks: {
-                            maxRotation: 49,
-                            minRotation: 49,
+                            maxRotation: 50,
+                            minRotation: 50,
                             autoSkip: false,
                             font: {
                                 size: 11
