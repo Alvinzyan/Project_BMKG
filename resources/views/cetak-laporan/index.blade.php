@@ -139,11 +139,10 @@
         </div>
 
         @php
-            $startDisplay = $periode_start ? \Carbon\Carbon::parse($periode_start)->translatedFormat('d F Y') : '-';
-            $endDisplay = $periode_end ? \Carbon\Carbon::parse($periode_end)->translatedFormat('d F Y') : '-';
+        $startDisplay = $periode_start ? \Carbon\Carbon::parse($periode_start)->translatedFormat('d F Y') : '-';
+        $endDisplay = $periode_end ? \Carbon\Carbon::parse($periode_end)->translatedFormat('d F Y') : '-';
         @endphp
 
-        <!-- Form report / area yang berisi iframe (id diganti supaya tidak duplikat) -->
         <form id="formReport">
             <div class="row">
                 <div class="col-12 col-xl-12">
@@ -160,10 +159,9 @@
                                     </h5>
 
                                     <p class="fw-normal fs-6 periode-text" id="periodeText">
-                                        Laporan ini berdasarkan periode {{ $startDisplay }} -
-                                        {{ $endDisplay }}
+                                        Laporan ini berdasarkan periode {{ $startDisplay }} - {{ $endDisplay }}
                                     </p>
-                                    
+
                                     @php
                                     $showButton = (!empty($totalData) && $totalData > 0);
                                     @endphp
@@ -207,7 +205,7 @@
                                                                     placeholder="Contoh: e.B/IJ.01.01/026/KBWI/VII/2025"
                                                                     required>
                                                                 @error('nomor_surat')
-                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                <small class="text-danger">{{ $message }}</small>
                                                                 @enderror
                                                             </div>
 
@@ -238,7 +236,7 @@
                                                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
                                             </svg>
                                             <div>
-                                                <strong>Tidak ada data pengecekan pada periode {{ \Carbon\Carbon::parse($periode_start)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($periode_end)->translatedFormat('d F Y') }}</strong>
+                                                <strong>Tidak ada data pengecekan</strong>
                                             </div>
                                         </div>
                                         @else
@@ -527,6 +525,7 @@
                     </div>
                 `;
                 });
+            window.location.href = `{{ route('laporan-alat.index') }}?periode_start=${periode_start.value}&periode_end=${periode_end.value}`;
         });
 
         /* ===============================

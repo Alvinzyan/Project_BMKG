@@ -350,7 +350,7 @@
 
             <section class="content-one">
                 <p>Dengan hormat, bersama ini kami sampaikan Laporan Kondisi Peralatan yang dioperasikan di Stasiun
-                    Meteorologi Banyuwangi tanggal {{ $tanggalAwal }} – {{ $tanggalAkhir }} (sebagaimana terlampir).</p>
+                    Meteorologi Banyuwangi tanggal {{ $tanggal_periode }} (sebagaimana terlampir).</p>
                 <p>Demikian Laporan Kondisi Aloptama ini kami sampaikan, atas perhatiannya diucapkan terima kasih.</p>
             </section>
 
@@ -456,13 +456,14 @@
                 <div class="catatan" style="margin-bottom:6mm;">
                     <p><strong>Catatan:</strong></p>
 
-                    <ol>
+                    <div style="padding-left: 4mm;">
                         @foreach(explode("\n", $cat) as $baris)
                         @if(trim($baris) !== '')
-                        <li>{{ $baris }}</li>
+                        <p style="margin: 1mm 0;">{{ $baris }}</p>
                         @endif
                         @endforeach
-                    </ol>
+                    </div>
+
                 </div>
                 @endif
                 @endforeach

@@ -8,6 +8,9 @@ class PeriodeHelper
 {
     public static function getPeriodeAktif()
     {
+        Carbon::setLocale('id');
+        $tanggal = Carbon::now('Asia/Jakarta');
+
         $tanggal = now();
         $hari = $tanggal->dayOfWeek;
 
@@ -27,6 +30,9 @@ class PeriodeHelper
 
     public static function getPeriodeFromDate($date)
     {
+        Carbon::setLocale('id');
+        $tanggal = Carbon::now('Asia/Jakarta');
+
         $tanggal = Carbon::parse($date);
         $hari = $tanggal->dayOfWeek;
         $offset = ($hari + 1) % 7;

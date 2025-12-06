@@ -146,7 +146,7 @@
         }
 
         .signature .name {
-            margin-top: 22mm;
+            margin-top: 24mm;
         }
 
         /* === HALAMAN 2 (TABEL) === */
@@ -211,17 +211,7 @@
         }
 
         .catatan {
-            margin-top: 2mm;
             font-size: 8pt;
-        }
-
-        .catatan ol {
-            padding-left: 4mm;
-            margin: 0;
-        }
-
-        .catatan li {
-            margin-bottom: 1mm;
         }
 
         /* ==================== TTD ==================== */
@@ -456,16 +446,18 @@
                 @endphp
 
                 @if($cat)
-                <div class="catatan" style="margin-bottom:6mm;">
+                <div class="catatan">
                     <p><strong>Catatan:</strong></p>
 
-                    <ol>
+                    <div style="padding-left: 4mm;">
                         @foreach(explode("\n", $cat) as $baris)
                         @if(trim($baris) !== '')
-                        <li>{{ $baris }}</li>
+                        <p style="margin: 0; padding: 0; line-height: 1.1;">
+                            {{ $baris }}
+                        </p>
                         @endif
                         @endforeach
-                    </ol>
+                    </div>
                 </div>
                 @endif
                 @endforeach

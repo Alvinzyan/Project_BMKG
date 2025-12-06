@@ -42,7 +42,13 @@ class CetakLaporanController extends Controller
                         "{$start} 00:00:00",
                         "{$end} 23:59:59"
                     ]);
-                });
+                })
+                    ->with(['pengecekans' => function ($q2) use ($start, $end) {
+                        $q2->whereBetween('created_at', [
+                            "{$start} 00:00:00",
+                            "{$end} 23:59:59"
+                        ]);
+                    }]);
             },
             'kategoris.alats.pengecekans' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [
@@ -71,7 +77,6 @@ class CetakLaporanController extends Controller
         });
 
         $lokasiList = $lokasiList->filter(fn($lokasi) => $lokasi->kategoris->count() > 0);
-        // END
 
         $totalData = $lokasiList->sum(function ($lokasi) {
             return $lokasi->kategoris->sum(function ($kategori) {
@@ -97,6 +102,15 @@ class CetakLaporanController extends Controller
             $periodeAktif = PeriodeHelper::getPeriodeAktif();
             $start = $periodeAktif['start_date'];
             $end   = $periodeAktif['end_date'];
+        }
+
+        $startDate = Carbon::parse($start);
+        $endDate   = Carbon::parse($end);
+
+        if ($startDate->month === $endDate->month) {
+            $tanggalPeriode = $startDate->locale('id')->format('j') . '–' . $endDate->locale('id')->translatedFormat('j F Y');
+        } else {
+            $tanggalPeriode = $startDate->locale('id')->translatedFormat('j F') . ' – ' . $endDate->locale('id')->translatedFormat('j F Y');
         }
 
         $lokasiList = Lokasi::with([
@@ -183,7 +197,8 @@ class CetakLaporanController extends Controller
 
         return view('pdf.surat-laporan-alat', [
             'lokasiList'      => $lokasiList,
-            'tanggal'         => now()->translatedFormat('d F Y'),
+            'tanggal'         => now()->locale('id')->translatedFormat('d F Y'),
+            'tanggal_periode' => $tanggalPeriode,
             'periode_start'   => $start,
             'periode_end'     => $end,
             'totalData'       => $totalData,
@@ -203,7 +218,14 @@ class CetakLaporanController extends Controller
             $end   = $periodeAktif['end_date'];
         }
 
-        $tanggalPeriode = Carbon::parse($start)->translatedFormat('j') . ' – ' . Carbon::parse($end)->translatedFormat('j F Y');
+        $startDate = Carbon::parse($start);
+        $endDate   = Carbon::parse($end);
+
+        if ($startDate->month === $endDate->month) {
+            $tanggalPeriode = $startDate->locale('id')->format('j') . '–' . $endDate->locale('id')->translatedFormat('j F Y');
+        } else {
+            $tanggalPeriode = $startDate->locale('id')->translatedFormat('j F') . ' – ' . $endDate->locale('id')->translatedFormat('j F Y');
+        }
 
         $lokasiList = Lokasi::with([
             'kategoris' => function ($q) use ($start, $end) {
@@ -288,7 +310,7 @@ class CetakLaporanController extends Controller
 
         $data = [
             'nomor_surat'     => $nomorSurat,
-            'tanggal'         => now()->translatedFormat('d F Y'),
+            'tanggal'         => now()->locale('id')->translatedFormat('d F Y'),
             'tanggal_periode' => $tanggalPeriode,
             'lokasiList'      => $lokasiList,
             'periode_start'   => $start,
