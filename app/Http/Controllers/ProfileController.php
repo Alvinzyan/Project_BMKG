@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -16,29 +17,6 @@ class ProfileController extends Controller
         return view('profile.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('pos-bandara-bwi.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -53,13 +31,13 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        /** @var \App\Models\User $user */
         $user = auth()->user();
 
-        $request->validate([
+        $validated = $request->validate([
             'nama_lengkap'  => 'required|string|min:3|max:255',
             'jenis_kelamin' => 'nullable|in:laki laki,perempuan',
             'foto_profil'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'foto_base64'   => 'nullable|string',
             'jabatan'       => 'nullable|string|max:100',
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
@@ -69,22 +47,40 @@ class ProfileController extends Controller
             'foto_profil.max'   => 'Ukuran file maksimum 2MB',
         ]);
 
-        if ($request->hasFile('foto_profil')) {
-
-            if ($user->foto_profil && file_exists(storage_path('app/public/' . $user->foto_profil))) {
-                unlink(storage_path('app/public/' . $user->foto_profil));
+        if ($request->hapus_foto == 1) {
+            if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
+                Storage::disk('public')->delete($user->foto_profil);
             }
 
-            $fotoProfilPath = $request->file('foto_profil')->store('foto_profil', 'public');
-
-            $user->foto_profil = $fotoProfilPath;
+            $validated['foto_profil'] = null;
         }
 
-        $user->nama_lengkap = $request->nama_lengkap;
-        $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->jabatan = $request->jabatan;
+        elseif ($request->foto_base64) {
 
-        $user->save();
+            if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
+                Storage::disk('public')->delete($user->foto_profil);
+            }
+
+            $image_parts = explode(";base64,", $request->foto_base64);
+            $image_base64 = base64_decode($image_parts[1]);
+
+            $fileName = 'foto_profil_' . time() . '.png';
+
+            Storage::disk('public')->put('foto_profil/' . $fileName, $image_base64);
+
+            $validated['foto_profil'] = 'foto_profil/' . $fileName;
+        }
+
+        elseif ($request->hasFile('foto_profil')) {
+
+            if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
+                Storage::disk('public')->delete($user->foto_profil);
+            }
+
+            $validated['foto_profil'] = $request->file('foto_profil')->store('foto_profil', 'public');
+        }
+
+        $user->update($validated);
 
         return redirect()->route('profile.index')
             ->with('success', 'Profil berhasil diupdate!');

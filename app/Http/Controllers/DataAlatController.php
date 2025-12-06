@@ -110,7 +110,7 @@ class DataAlatController extends Controller
     {
         $lokasi = Lokasi::where('nama_lokasi', urldecode($nama_lokasi))
                         ->with(['kategoris' => function($kategoriQuery) {
-                            $kategoriQuery->where('is_archived', 0); // menampilkan kategori yang unarchive
+                            $kategoriQuery->where('is_archived', 0);
                         }])
                         ->firstOrFail();
 

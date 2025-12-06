@@ -39,17 +39,12 @@
         header .logo-img {
             width: 3rem;
             height: auto;
-            transform: translateY(-68px);
-            animation: fadeSlide 1.2s ease-out forwards;
         }
 
         header .logo {
             font-size: 2rem;
             font-weight: bold;
             color: #002B5B;
-            transform: translateY(-68px);
-            animation: fadeSlide 1.2s ease-out forwards;
-            animation-delay: 0.3s;
         }
 
         .welcome {
@@ -112,6 +107,75 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE - TABLET */
+        @media (max-width: 992px) {
+
+            header {
+                padding: 0.8rem 2rem;
+            }
+
+            header .logo {
+                font-size: 1.6rem;
+            }
+
+            .welcome h1 {
+                font-size: 2.4rem;
+            }
+
+            .welcome p {
+                font-size: 1.125rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 0.65rem 1.5rem;
+            }
+        }
+
+
+        /* RESPONSIVE - MOBILE */
+        @media (max-width: 576px) {
+
+            body {
+                overflow-y: auto;
+                background-position: center bottom;
+                background-size: cover;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            header .logo-img {
+                width: 2.6rem;
+            }
+
+            header .logo {
+                font-size: 1.1rem;
+            }
+
+            .welcome {
+                padding: 0.1rem;
+                padding-bottom: 100px;
+            }
+
+            .welcome h1 {
+                font-size: 1.8rem;
+            }
+
+            .welcome p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                font-size: 0.95rem;
+                padding: 0.6rem 1.4rem;
+                border-radius: 1.5rem;
             }
         }
     </style>

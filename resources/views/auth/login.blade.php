@@ -15,7 +15,7 @@
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -97,8 +97,10 @@
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                             <div class="text-center text-md-center mb-4 mt-md-0">
-                                <img src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                                <a href="/">
+                                    <img src="{{ asset('volt/assets/img/BMG_2003.png') }}"
                                     alt="Logo Instansi" style="width: 100px; height: 100px;">
+                                </a>
                                 <h1 class="mb-0 h2 fw-bolder mt-2">Login</h1>
                                 <p class="fw-bold">Aplikasi Inventaris Alat BMKG</p>
                             </div>
@@ -157,7 +159,6 @@
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 id="password" name="password" required>
 
-                                            <!-- Tombol Lihat Password -->
                                             <button type="button" class="input-group-text bg-white btn-toggle-password" style="cursor:pointer;">
                                                 <i class="bi bi-eye"></i>
                                             </button>
@@ -194,6 +195,25 @@
             </div>
         </section>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.closest('.input-group').querySelector('input');
+                    const icon = this.querySelector('i');
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.replace('bi-eye', 'bi-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.replace('bi-eye-slash', 'bi-eye');
+                    }
+                });
+            });
+        });
+    </script>
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
@@ -235,25 +255,6 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('volt/assets/js/volt.js') }}"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.btn-toggle-password').forEach(button => {
-                button.addEventListener('click', function() {
-                    const input = this.closest('.input-group').querySelector('input');
-                    const icon = this.querySelector('i');
-
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        icon.classList.replace('bi-eye', 'bi-eye-slash');
-                    } else {
-                        input.type = 'password';
-                        icon.classList.replace('bi-eye-slash', 'bi-eye');
-                    }
-                });
-            });
-        });
-    </script>
 
 </body>
 

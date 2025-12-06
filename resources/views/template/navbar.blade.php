@@ -6,7 +6,7 @@
             <li class="nav-item d-flex align-items-center list-unstyled me-3">
                 @php
                 $user = auth()->user();
-                $fotoPath = 'foto_profil/default-profile.png';
+                $fotoPath = 'foto_profil/default-profil.jpg';
                 if ($user && $user->foto_profil) {
                     if (Storage::disk('public')->exists($user->foto_profil)) {
                         $fotoPath = $user->foto_profil;
