@@ -188,7 +188,7 @@
 
 
                                     @php
-                                        $showButton = !empty($totalData) && $totalData > 0;
+                                    $showButton = !empty($totalData) && $totalData > 0;
                                     @endphp
 
                                     <div class="col mb-3">
@@ -203,50 +203,50 @@
                                     <div class="modal fade" id="modalNomorSurat" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0 shadow">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Isi Nomor Surat</h5>
-                                                    <button type="button" class="btn-close"
-                                                        data-bs-dismiss="modal"></button>
-                                                </div>
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Isi Nomor Surat</h5>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal"></button>
+                                                    </div>
 
-                                                <form method="GET" action="{{ route('laporan-alat.pdf') }}"
-                                                    target="_blank">
-                                                    <input type="hidden" name="periode_start"
-                                                        value="{{ $periode_start }}">
-                                                    <input type="hidden" name="periode_end"
-                                                        value="{{ $periode_end }}">
-                                                    <div class="modal-body">
-                                                        <div class="row g-3">
-                                                            <div class="col-md-12">
-                                                                <label class="form-label">Nama Teknisi</label>
-                                                                <input type="text" class="form-control"
-                                                                    value="{{ Auth::user()->nama_lengkap }}"
-                                                                    name="nama_lengkap" readonly>
+                                                    <form method="GET" action="{{ route('laporan-alat.pdf') }}"
+                                                        target="_blank">
+                                                        <input type="hidden" name="periode_start"
+                                                            value="{{ $periode_start }}">
+                                                        <input type="hidden" name="periode_end"
+                                                            value="{{ $periode_end }}">
+                                                        <div class="modal-body">
+                                                            <div class="row g-3">
+                                                                <div class="col-md-12">
+                                                                    <label class="form-label">Nama Teknisi</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="{{ Auth::user()->nama_lengkap }}"
+                                                                        name="nama_lengkap" readonly>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <label class="form-label">Nomor Surat</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="nomor_surat"
+                                                                        placeholder="Contoh: e.B/IJ.01.01/026/KBWI/VII/2025"
+                                                                        required>
+                                                                    @error('nomor_surat')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                    @enderror
+                                                                </div>
+
                                                             </div>
-
-                                                            <div class="col-md-12">
-                                                                <label class="form-label">Nomor Surat</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="nomor_surat"
-                                                                    placeholder="Contoh: e.B/IJ.01.01/026/KBWI/VII/2025"
-                                                                    required>
-                                                                @error('nomor_surat')
-                                                                <small class="text-danger">{{ $message }}</small>
-                                                                @enderror
-                                                            </div>
-
                                                         </div>
-                                                    </div>
 
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                        <a href="#" id="btnCetakPdf" target="_blank"
-                                                            class="btn btn-success">
-                                                            Cetak PDF
-                                                        </a>
-                                                    </div>
-                                                </form>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                            <a href="#" id="btnCetakPdf" target="_blank"
+                                                                class="btn btn-success">
+                                                                Cetak PDF
+                                                            </a>
+                                                        </div>
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>
@@ -255,65 +255,65 @@
 
                                     <div id="contentArea">
                                         @if (isset($totalData) && $totalData == 0)
-                                            <div class="alert alert-primary text-center" role="alert">
+                                        <div class="alert alert-primary text-center" role="alert">
 
-                                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24"
-                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 9v4" />
-                                                    <path
-                                                        d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
-                                                    <path d="M12 16h.01" />
-                                                </svg>
+                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M12 9v4" />
+                                                <path
+                                                    d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                                                <path d="M12 16h.01" />
+                                            </svg>
 
-                                                <div>
-                                                    <strong>
-                                                        Tidak ada data pengecekan.
-                                                    </strong>
-                                                </div>
-
+                                            <div>
+                                                <strong>
+                                                    Tidak ada data pengecekan.
+                                                </strong>
                                             </div>
+
+                                        </div>
                                         @else
-                                            <div class="d-none d-sm-block">
-                                                <iframe id="laporanIframe"
-                                                    src="{{ route('laporan-alat.view', ['periode_start' => $periode_start, 'periode_end' => $periode_end]) }}"
-                                                    width="100%" height="900" style="border: none">
-                                                </iframe>
-                                            </div>
+                                        <div class="d-none d-sm-block">
+                                            <iframe id="laporanIframe"
+                                                src="{{ route('laporan-alat.view', ['periode_start' => $periode_start, 'periode_end' => $periode_end]) }}"
+                                                width="100%" height="900" style="border: none">
+                                            </iframe>
+                                        </div>
 
-                                            <div class="d-block d-sm-none">
+                                        <div class="d-block d-sm-none">
 
-                                                <div class="text-center p-3 border rounded shadow-sm bg-light">
+                                            <div class="text-center p-3 border rounded shadow-sm bg-light">
 
-                                                    <div class="mb-2">
-                                                        <svg class="fs-5" xmlns="http://www.w3.org/2000/svg"
-                                                            width="50" height="50" viewBox="0 0 24 24"
-                                                            fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path d="M12 9v4" />
-                                                            <path
-                                                                d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
-                                                            <path d="M12 16h.01" />
-                                                        </svg>
-                                                    </div>
-
-                                                    <h6 class="fw-bold">Preview PDF tidak ideal di layar kecil</h6>
-                                                    <p class="text-muted small">Klik tombol di bawah untuk membuka
-                                                        laporan PDF.</p>
-
-                                                    <a href="{{ route('laporan-alat.view', ['periode_start' => $periode_start, 'periode_end' => $periode_end]) }}"
-                                                        target="_blank" class="btn btn-info btn-sm w-100">
-                                                        📄 Buka Laporan PDF
-                                                    </a>
-
+                                                <div class="mb-2">
+                                                    <svg class="fs-5" xmlns="http://www.w3.org/2000/svg"
+                                                        width="50" height="50" viewBox="0 0 24 24"
+                                                        fill="none" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M12 9v4" />
+                                                        <path
+                                                            d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                                                        <path d="M12 16h.01" />
+                                                    </svg>
                                                 </div>
 
+                                                <h6 class="fw-bold">Preview PDF tidak ideal di layar kecil</h6>
+                                                <p class="text-muted small">Klik tombol di bawah untuk membuka
+                                                    laporan PDF.</p>
+
+                                                <a href="{{ route('laporan-alat.view', ['periode_start' => $periode_start, 'periode_end' => $periode_end]) }}"
+                                                    target="_blank" class="btn btn-info btn-sm w-100">
+                                                    📄 Buka Laporan PDF
+                                                </a>
+
                                             </div>
+
+                                        </div>
                                         @endif
                                     </div>
                                 </div>

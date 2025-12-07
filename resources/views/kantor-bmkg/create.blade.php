@@ -266,7 +266,7 @@
                                         <div class="col-12 col-sm-6 mt-3">
                                             <h4 class="fs-6 fw-bold text-white mb-2">Catatan</h4>
 
-                                            <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control"
+                                            <textarea id="autoNumber" name="catatan[{{ $kategori->id }}]" rows="3" class="form-control"
                                                 placeholder="Tambahkan catatan apabila diperlukan..." @if ($dataSudahAda) readonly @endif>{{ $catatanTerakhir[$kategori->id]->isi_catatan ?? '' }}</textarea>
                                         </div>
 
@@ -448,6 +448,45 @@
         });
     </script>
 
+    <!-- Penomeran Otomatis - Catatan -->
+    <script>
+        const textarea = document.getElementById("autoNumber");
+
+        function renumber() {
+            let lines = textarea.value.split("\n");
+            let newLines = [];
+
+            for (let i = 0; i < lines.length; i++) {
+                // hapus nomor lama
+                let line = lines[i].replace(/^\d+\.\s*/, "");
+                
+                if (line.length > 0) {
+                    line = line.charAt(0).toUpperCase() + line.slice(1);
+                }
+                newLines.push((i + 1) + ". " + line);
+            }
+
+            textarea.value = newLines.join("\n");
+        }
+
+        textarea.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                textarea.value += "\n";
+                renumber();
+            }
+        });
+
+        textarea.addEventListener("input", function() {
+            renumber();
+        });
+
+        textarea.addEventListener("focus", function() {
+            if (textarea.value.trim() === "") {
+                textarea.value = "1. ";
+            }
+        });
+    </script>
 
     <!-- Core -->
     <script src="{{ asset('volt/vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
