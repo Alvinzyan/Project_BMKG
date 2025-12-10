@@ -226,12 +226,11 @@
                 <div class="card-header fw-bold text-dark d-flex justify-content-between align-items-center">
                     <span>Daftar Kategori Archive</span>
 
-                    <div class="d-flex gap-2">
-                        <!-- Tombol Archive Page -->
+                    <!-- <div class="d-flex gap-2">
                         <a href="{{ url('/data-alat/'. urlencode($lokasi->nama_lokasi)) }}" class="btn btn-sm btn-secondary">
                             <i class="bi bi-archive"></i> Kategori Unarchive
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div style="border-bottom:1px solid #e5e5e5; margin-bottom:25px;"></div>
