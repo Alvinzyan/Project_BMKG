@@ -8,6 +8,7 @@ use App\Models\Kategori;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DataAlatController extends Controller
 {
@@ -194,11 +195,18 @@ class DataAlatController extends Controller
 
     public function storeKategori(Request $request, $nama_lokasi)
     {
-        $request->validate([
-            'nama_kategori' => 'required'
-        ]);
-
         $lokasi = Lokasi::where('nama_lokasi', $nama_lokasi)->firstOrFail();
+        
+        $request->validate([
+            'nama_kategori' => [
+                'required',
+                Rule::unique('kategoris')->where(fn($q) => 
+                    $q->where('id_lokasi', $lokasi->id)
+                ),
+            ]
+        ], [
+            'nama_kategori.unique' => 'Kategori ini sudah ada di lokasi tersebut.'
+        ]);
 
         Kategori::create([
             'nama_kategori' => $request->nama_kategori,

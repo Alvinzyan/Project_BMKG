@@ -341,7 +341,7 @@
                                     <div class="row g-3">
                                         <div class="col-md-12">
                                             <label class="form-label">Nama Kategori</label>
-                                            <input type="text" class="form-control" name="nama_kategori" required>
+                                            <input type="text" class="form-control" name="nama_kategori" value="{{ old('nama_kategori') }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -382,6 +382,23 @@
         });
     </script>
     @endif
+
+    @if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal Menambahkan Kategori',
+            text: '{{ $errors->first() }}'
+        });
+
+        // Membuka ulang modal tambah kategori
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = new bootstrap.Modal(document.getElementById('modalTambahKategori'));
+            modal.show();
+        });
+    </script>
+    @endif
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
