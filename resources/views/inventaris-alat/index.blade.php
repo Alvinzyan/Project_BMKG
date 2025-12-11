@@ -373,7 +373,7 @@
                                             <td class="text-center align-middle">
                                                 <div class="d-flex flex-row justify-content-center">
                                                     @if($lokasi->nama_lokasi == 'Kantor Meteorologi Banyuwangi')
-                                                    <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary">
+                                                    <a href="{{ route('kantor-bmkg.edit') }}" class="btn btn-sm btn-secondary text-white">
                                                         <svg class="icon icon-xs me-1"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"
@@ -387,7 +387,7 @@
                                                         Edit
                                                     </a>
                                                     @elseif($lokasi->nama_lokasi == 'Pos Meteorologi Bandara Banyuwangi')
-                                                    <a href="{{ route('pos-bandara-bwi.edit') }}" class="btn btn-sm btn-secondary">
+                                                    <a href="{{ route('pos-bandara-bwi.edit') }}" class="btn btn-sm btn-secondary text-white">
                                                         <svg class="icon icon-xs me-1"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"
@@ -401,7 +401,7 @@
                                                         Edit
                                                     </a>
                                                     @elseif($lokasi->nama_lokasi == 'Pos Meteorologi Pelabuhan Ketapang Banyuwangi')
-                                                    <a href="{{ route('ketapang-bwi.edit') }}" class="btn btn-sm btn-secondary">
+                                                    <a href="{{ route('ketapang-bwi.edit') }}" class="btn btn-sm btn-secondary text-white">
                                                         <svg class="icon icon-xs me-1"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"
@@ -415,7 +415,7 @@
                                                         Edit
                                                     </a>
                                                     @elseif($lokasi->nama_lokasi == 'Pos Meteorologi Bandara Notohadinegoro Jember')
-                                                    <a href="{{ route('pos-bandara-jmbr.edit') }}" class="btn btn-sm btn-secondary">
+                                                    <a href="{{ route('pos-bandara-jmbr.edit') }}" class="btn btn-sm btn-secondary text-white       ">
                                                         <svg class="icon icon-xs me-1"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"

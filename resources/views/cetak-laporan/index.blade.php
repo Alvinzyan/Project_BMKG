@@ -126,7 +126,7 @@
 
         <div class="card bg-white border-0 shadow mt-4">
             <div class="card-body">
-                <h2 class="fw-bolder fs-4">Filter Laporan Inventaris Alat</h2>
+                <h2 class="fw-bolder fs-5">Filter Laporan Inventaris Alat</h2>
 
                 <!-- Form filter (satu saja) -->
                 <form id="formFilter" method="GET" action="{{ route('laporan-alat.index') }}">
@@ -178,14 +178,13 @@
                                 </div>
 
                                 <div class="card border-0 mt-2 p-4 text-white" style="background:#1E3D58;">
-                                    <h5 class="fw-bold fs-5">
+                                    <h5 class="fw-bolder" style="font-size: 18px">
                                         Laporan Kondisi Aloptama - Stasiun Meteorologi Banyuwangi
                                     </h5>
 
-                                    <p class="fw-normal fs-6 periode-text" id="periodeText">
+                                    <p class="fw-normal periode-text" id="periodeText" style="font-size: 16px">
                                         Laporan ini berdasarkan periode {{ $startDisplay }} - {{ $endDisplay }}
                                     </p>
-
 
                                     @php
                                     $showButton = !empty($totalData) && $totalData > 0;
@@ -204,7 +203,7 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content border-0 shadow">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Isi Nomor Surat</h5>
+                                                        <h5 class="modal-title text-primary">Isi Nomor Surat</h5>
                                                         <button type="button" class="btn-close"
                                                             data-bs-dismiss="modal"></button>
                                                     </div>
@@ -218,14 +217,14 @@
                                                         <div class="modal-body">
                                                             <div class="row g-3">
                                                                 <div class="col-md-12">
-                                                                    <label class="form-label">Nama Teknisi</label>
+                                                                    <label class="form-label text-primary">Nama Teknisi</label>
                                                                     <input type="text" class="form-control"
                                                                         value="{{ Auth::user()->nama_lengkap }}"
                                                                         name="nama_lengkap" readonly>
                                                                 </div>
 
                                                                 <div class="col-md-12">
-                                                                    <label class="form-label">Nomor Surat</label>
+                                                                    <label class="form-label text-primary">Nomor Surat</label>
                                                                     <input type="text" class="form-control"
                                                                         name="nomor_surat"
                                                                         placeholder="Contoh: e.B/IJ.01.01/026/KBWI/VII/2025"
@@ -255,10 +254,10 @@
 
                                     <div id="contentArea">
                                         @if (isset($totalData) && $totalData == 0)
-                                        <div class="alert alert-primary text-center" role="alert">
+                                        <div class="alert alert-warning text-center" role="alert">
 
-                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24"
-                                                height="24" viewBox="0 0 24 24" fill="none"
+                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="50"
+                                                height="50" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round"
                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
@@ -276,6 +275,7 @@
                                             </div>
 
                                         </div>
+
                                         @else
                                         <div class="d-none d-sm-block">
                                             <iframe id="laporanIframe"
@@ -536,42 +536,6 @@
 
                     // Jika tidak ada data -> tampilkan alert dan sembunyikan tombol cetak
                     if (totalData === 0) {
-                        if (isMobile) {
-                            contentArea.innerHTML = `
-                    <div class="d-block d-sm-none">
-                        <div class="alert alert-warning text-center p-2 border rounded shadow-sm bg-light">
-                            <div class="mb-2">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="icon">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M12 9v4"/>
-                                    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"/>
-                                    <path d="M12 16h.01"/>
-                                </svg>
-                            </div>
-                            <h6 class="fw-bold">Tidak ada data pengecekan </h6>
-                            <p class="text-muted small">Pada Periode ${periodeText}</p>
-                        </div>
-                    </div>
-                `;
-                        } else {
-                            contentArea.innerHTML = `
-                    <div class="alert alert-warning d-flex flex-column flex-sm-row align-items-center text-center text-sm-start" role="alert">
-                        <svg class="icon me-sm-2 mb-2 mb-sm-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 9v4" />
-                            <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
-                            <path d="M12 16h.01" />
-                        </svg>
-                        <div>
-                            <strong>Tidak ada data pengecekan pada periode ${periodeText}</strong>
-                        </div>
-                    </div>
-                `;
-                        }
 
                         if (btnCetak) btnCetak.style.display = 'none';
                         return;

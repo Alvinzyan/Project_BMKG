@@ -37,8 +37,8 @@ class PosBandaraBwiController extends Controller
                 ])->latest();
             }]);
         }])->where('id_lokasi', $lokasi->id)
-            ->where('is_archived', 0)     // <-- tambahan filter di sini
-            ->whereHas('alats') // ada alat
+            ->where('is_archived', 0)  
+            ->whereHas('alats')
             ->get();
 
         $dataSudahAda = PeriodeHelper::filterPengecekanByPeriode(
@@ -75,7 +75,7 @@ class PosBandaraBwiController extends Controller
 
     public function store(Request $request)
     {
-        $userId = Auth::id();
+        $namaTeknisi = Auth::user()->nama_lengkap;
 
         foreach ($request->kondisi as $alatId => $kondisiList) {
             $kondisiArray = is_array($kondisiList) ? $kondisiList : [$kondisiList];
@@ -88,7 +88,7 @@ class PosBandaraBwiController extends Controller
             }
 
             Pengecekan::create([
-                'id_user' => $userId,
+                'penanggung_jawab' => $namaTeknisi,
                 'id_alat' => $alatId,
                 'kondisi' => $kondisiArray,
                 'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
@@ -125,7 +125,6 @@ class PosBandaraBwiController extends Controller
         $start = $periode['start_date'] . ' 00:00:00';
         $end   = $periode['end_date']   . ' 23:59:59';
 
-        // LOAD kategori + alat + pengecekan periode aktif + catatan periode aktif
         $kategoris = Kategori::with([
             'alats' => function ($query) use ($start, $end) {
                 $query->with(['pengecekans' => function ($q) use ($start, $end) {
@@ -133,8 +132,6 @@ class PosBandaraBwiController extends Controller
                     ->latest();
                 }]);
             },
-
-            // SEMUA CATATAN DALAM PERIODE AKTIF
             'catatanKategoris' => function ($q) use ($start, $end) {
                 $q->whereBetween('created_at', [$start, $end])
                 ->latest();
@@ -142,7 +139,7 @@ class PosBandaraBwiController extends Controller
         ])
         ->where('id_lokasi', $lokasi->id)
         ->where('is_archived', 0)
-        ->whereHas('alats') //ada alat
+        ->whereHas('alats')
         ->get();
 
         foreach ($kategoris as $kategori) {
@@ -162,6 +159,10 @@ class PosBandaraBwiController extends Controller
         ]);
 
         $userId = Auth::id();
+        
+        $periode = PeriodeHelper::getPeriodeAktif();
+        $start = $periode['start_date'] . ' 00:00:00';
+        $end   = $periode['end_date']   . ' 23:59:59';
 
         foreach ($request->kondisi as $alatId => $kondisiList) {
 
@@ -176,12 +177,16 @@ class PosBandaraBwiController extends Controller
 
             $pengecekan = Pengecekan::where('id_alat', $alatId)->latest()->first();
 
-            $penanggung = $request->penanggung_jawab[$alatId] 
-                      ?? ($pengecekan->penanggung_jawab ?? $userId);
+            $penanggung = $request->penanggung_jawab[$alatId]
+                ?? ($pengecekan->penanggung_jawab ?? Auth::user()->nama_lengkap);
+
+            $pengecekan = Pengecekan::where('id_alat', $alatId)
+                ->whereBetween('created_at', [$start, $end])
+                ->latest()
+                ->first();
 
             if ($pengecekan) {
                 $pengecekan->update([
-                    'id_user' => $userId,
                     'penanggung_jawab' => $penanggung,
                     'kondisi' => $kondisiArray,
                     'kalibrasi_terakhir' => $request->kalibrasi[$alatId] ?? null,
@@ -189,7 +194,6 @@ class PosBandaraBwiController extends Controller
                 ]);
             } else {
                 Pengecekan::create([
-                    'id_user' => $userId,
                     'penanggung_jawab' => $penanggung,
                     'id_alat' => $alatId,
                     'kondisi' => $kondisiArray,
@@ -198,12 +202,18 @@ class PosBandaraBwiController extends Controller
                 ]);
             }
         }
-        
-        if ($request->has('catatan')) {
-            foreach ($request->catatan as $kategoriId => $isi) {
-                if ($isi) {
-                    $catatan = CatatanKategori::where('id_kategori', $kategoriId)->latest()->first();
 
+        if ($request->has('catatan')) {
+            foreach ($request->catatan as $kategoriId => $isiRaw) {
+
+                $isi = is_string($isiRaw) ? trim($isiRaw) : null;
+
+                $catatan = CatatanKategori::where('id_kategori', $kategoriId)
+                    ->whereBetween('created_at', [$start, $end])
+                    ->latest()
+                    ->first();
+
+                if ($isi && $isi !== '') {
                     if ($catatan) {
                         $catatan->update(['isi_catatan' => $isi]);
                     } else {
@@ -211,6 +221,10 @@ class PosBandaraBwiController extends Controller
                             'id_kategori' => $kategoriId,
                             'isi_catatan' => $isi,
                         ]);
+                    }
+                } else {
+                    if ($catatan) {
+                        $catatan->delete();
                     }
                 }
             }

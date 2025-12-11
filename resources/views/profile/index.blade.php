@@ -117,7 +117,7 @@
                 <div class="card shadow border-0 p-3" style="background-color: #fff;">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2">
-                            <div class="d-flex align-items-center justify-content-center text-white rounded me-1 me-sm-2 flex-shrink-0"
+                            <div class="d-flex align-items-center justify-content-center text-white rounded me-2 me-sm-2 flex-shrink-0"
                                 style="width: 45px; height: 45px; background-color:#1E3D58;">
                                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

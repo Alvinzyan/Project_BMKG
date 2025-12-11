@@ -9,7 +9,7 @@ class Pengecekan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_user', 'penanggung_jawab', 'id_alat', 'kondisi', 'kalibrasi_terakhir',  'foto_lampiran'];
+    protected $fillable = ['penanggung_jawab', 'id_alat', 'kondisi', 'kalibrasi_terakhir',  'foto_lampiran'];
 
     protected $casts = [
         'kondisi' => 'array',

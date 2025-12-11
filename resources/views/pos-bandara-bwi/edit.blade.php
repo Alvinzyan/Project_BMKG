@@ -77,8 +77,9 @@
 
     <nav class="navbar navbar-dark px-4 col-12 d-lg-none" style="background-color: #1E3D58">
         <a class="navbar-brand me-lg-5" href="/inventaris-alat">
-            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />Stamet Banyuwangi<img
-                class="navbar-brand-light" src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
+            <img class="navbar-brand-dark me-2" src="{{ asset('volt/assets/img/BMG_2003.png') }}"
+                alt="Logo BMKG" />Stamet Banyuwangi<img class="navbar-brand-light"
+                src="{{ asset('volt/assets/img/BMG_2003.png') }}" alt="Logo BMKG" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -129,7 +130,10 @@
                     <path d="M10 17h7a2 2 0 0 1 2 2v2" />
                 </svg>
             </div>
-            <h2 class="fs-4 fw-bolder mb-0">Pos Meteorologi Bandara Banyuwangi - Edit</h2>
+
+            <h2 class="fs-4 fw-bolder mb-0 d-none d-sm-block">Pos Meteorologi Bandara Banyuwangi - Edit</h2>
+
+            <h2 class="fs-6 fw-bolder mb-0 d-block d-sm-none">Pos Meteorologi Bandara Banyuwangi - Edit</h2>
         </div>
 
         <div class="row">
@@ -285,7 +289,7 @@
                                                                 </div>
 
                                                                 <button type="button"
-                                                                    class="btn btn-sm btn-outline-primary btn-upload-foto"
+                                                                    class="btn btn-sm btn-outline-primary btn-upload-foto mt-2"
                                                                     data-id="{{ $alat->id }}"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#modalTambahFoto">
@@ -298,12 +302,13 @@
                                             </table>
                                         </div>
 
-                                    <div class="col-12 col-sm-6 mt-3">
-                                        <h4 class="fs-6 fw-bold text-white mb-2">Catatan</h4>
-                                        <!-- isi Catatan -->
-                                        <textarea name="catatan[{{ $kategori->id }}]" rows="3" class="form-control">{{ old('catatan.' . $kategori->id, optional($kategori->catatan_periode_ini)->isi_catatan) }}</textarea>
+                                        <div class="col-12 col-sm-6 mt-3">
+                                            <h4 class="fs-6 fw-bold text-white mb-2">Catatan</h4>
+                                            <!-- isi Catatan -->
+                                            <textarea id="autoNumber-{{ $kategori->id }}" name="catatan[{{ $kategori->id }}]" rows="3" class="form-control">{{ old('catatan.' . $kategori->id, optional($kategori->catatan_periode_ini)->isi_catatan) }}</textarea>
+                                        </div>
+
                                     </div>
-                                </div>
                                 @endforeach
 
                                 <div class="d-flex justify-content-end flex-row mb-2">
@@ -327,7 +332,7 @@
                     </div>
                 </div>
 
-                <!-- Modal Tambah Foto -->
+                <!-- Modal Ubah Foto -->
                 <div class="modal fade" id="modalTambahFoto" tabindex="-1" aria-labelledby="modalTambahFotoLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -381,35 +386,6 @@
     @endif
 
     <script>
-        document.getElementById('btnUbah').addEventListener('click', function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                text: "Data pengecekan alat akan berubah.",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#0d6efd',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Ubah',
-                cancelButtonText: 'Batal',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('formUpdate').submit();
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire({
-                        title: 'Dibatalkan',
-                        text: 'Data pengecekan alat tidak jadi diubah.',
-                        icon: 'info',
-                        confirmButtonColor: '#0d6efd'
-                    });
-                }
-            });
-        });
-    </script>
-
-    <script>
         // Preview Foto di Modal
         const previewImage = (file, target) => {
             const reader = new FileReader();
@@ -445,6 +421,104 @@
                 `<img src="${URL.createObjectURL(fileFoto.files[0])}" width="80" class="rounded shadow-sm mt-1">`;
             bootstrap.Modal.getInstance(modalTambahFoto).hide();
         };
+    </script>
+
+    <!-- Penomoran Otomatis - Catatan -->
+    <script>
+        document.querySelectorAll('textarea[id^="autoNumber-"]').forEach(function(textarea){
+            function getCaretInfo(el) {
+                const pos = el.selectionStart;
+                const before = el.value.slice(0, pos);
+                const lineIndex = before.split("\n").length - 1;
+                const lastNewline = before.lastIndexOf("\n");
+                const offsetInLine = pos - (lastNewline + 1);
+                return {
+                    pos,
+                    lineIndex,
+                    offsetInLine
+                };
+            }
+
+            function setCaretByLineOffset(el, lineIndex, offsetInLine, newLines) {
+                let newPos = 0;
+                for (let i = 0; i < newLines.length; i++) {
+                    const line = newLines[i];
+                    if (i < lineIndex) {
+                        newPos += line.length + 1;
+                    } else if (i === lineIndex) {
+                        const isNumbered = /^\d+\.\s/.test(line);
+                        const prefixLen = isNumbered ? line.match(/^\d+\.\s/)[0].length : 0;
+                        const rawLineLen = line.length - prefixLen;
+                        const clampedOffset = Math.max(0, Math.min(offsetInLine, rawLineLen));
+                        newPos += prefixLen + clampedOffset;
+                        break;
+                    }
+                }
+                newPos = Math.max(0, Math.min(newPos, el.value.length));
+                el.setSelectionRange(newPos, newPos);
+            }
+
+            function renumberAndPreserveCaret() {
+                const caret = getCaretInfo(textarea);
+                const rawLines = textarea.value.split("\n").map(line => line.replace(/^\d+\.\s*/, ""));
+                const newLines = rawLines.map((raw, idx) => {
+                    if (raw.trim().length === 0) return "";
+                    return (idx + 1) + ". " + (raw.charAt(0).toUpperCase() + raw.slice(1));
+                });
+
+                const newValue = newLines.join("\n");
+                textarea.value = newValue;
+                setCaretByLineOffset(textarea, caret.lineIndex, caret.offsetInLine, newLines);
+            }
+
+            let debounceTimer = null;
+
+            function scheduleRenumber() {
+                if (debounceTimer) clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    renumberAndPreserveCaret();
+                    debounceTimer = null;
+                }, 120);
+            }
+
+            textarea.addEventListener("input", scheduleRenumber);
+
+            textarea.addEventListener("focus", function() {
+                if (textarea.value.trim() === "") {
+                    textarea.value = "1. ";
+                    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.getElementById('btnUbah').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data pengecekan alat akan berubah.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#0d6efd',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Ubah',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('formUpdate').submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'Dibatalkan',
+                        text: 'Data pengecekan alat tidak jadi diubah.',
+                        icon: 'info',
+                        confirmButtonColor: '#0d6efd'
+                    });
+                }
+            });
+        });
     </script>
 
     <!-- Core -->

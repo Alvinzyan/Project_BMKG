@@ -130,7 +130,9 @@
                 </svg>
             </div>
 
-            <h2 class="fs-4 fw-bolder mb-0">Kantor Meteorologi Banyuwangi - Edit</h2>
+            <h2 class="fs-4 fw-bolder mb-0 d-none d-sm-block">Kantor Meteorologi Banyuwangi - Edit</h2>
+
+            <h2 class="fs-6 fw-bolder mb-0 d-block d-sm-none">Kantor Meteorologi Banyuwangi - Edit</h2>
         </div>
 
         <div class="row">
@@ -213,12 +215,13 @@
 
                                                                 <select name="penanggung_jawab[{{ $alat->id }}]"
                                                                     class="form-select">
-                                                                    <option value="">-- Pilih --
-                                                                    </option>
+                                                                    <option value="">-- Pilih --</option>
 
                                                                     @foreach ($teknisis as $teknisi)
-                                                                        <option value="{{ $teknisi->id }}"
-                                                                            {{ $currentPJId == $teknisi->id ? 'selected' : '' }}>
+                                                                        <option value="{{ $teknisi->nama_lengkap }}"
+                                                                            {{ $alat->pengecekanTerakhirAktif && $alat->pengecekanTerakhirAktif->penanggung_jawab == $teknisi->nama_lengkap
+                                                                                ? 'selected'
+                                                                                : '' }}>
                                                                             {{ $teknisi->nama_lengkap }}
                                                                         </option>
                                                                     @endforeach
@@ -286,7 +289,7 @@
                                                                 </div>
 
                                                                 <button type="button"
-                                                                    class="btn btn-sm btn-outline-primary btn-upload-foto"
+                                                                    class="btn btn-sm btn-outline-primary btn-upload-foto mt-2"
                                                                     data-id="{{ $alat->id }}"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#modalTambahFoto">
@@ -301,10 +304,10 @@
 
                                         <div class="col-12 col-sm-6 mt-3">
                                             <h4 class="fs-6 fw-bold text-white mb-2">Catatan</h4>
-                                                <textarea id="autoNumber" id="catatanTextarea" name="catatan[{{ $kategori->id }}]" rows="3" class="form-control ps-4"
-                                                    placeholder="Ubah catatan apabila diperlukan...">{{ old('catatan.' . $kategori->id, optional($kategori->catatan_periode_ini)->isi_catatan) }}</textarea>
-                                            </div>
+                                            <textarea id="autoNumber-{{ $kategori->id }}" name="catatan[{{ $kategori->id }}]" rows="3"
+                                                class="form-control ps-4" placeholder="Ubah catatan apabila diperlukan...">{{ old('catatan.' . $kategori->id, optional($kategori->catatan_periode_ini)->isi_catatan) }}</textarea>
                                         </div>
+
                                     </div>
                                 @endforeach
 
@@ -328,27 +331,26 @@
                         </form>
                     </div>
                 </div>
+            </div>
 
-                <!-- Modal Tambah Foto -->
-                <div class="modal fade" id="modalTambahFoto" tabindex="-1" aria-labelledby="modalTambahFotoLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content border-0 shadow">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalTambahFotoLabel">Upload Foto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Tutup"></button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="file" id="fileFoto" class="form-control" accept="image/*">
-                                <div id="previewModalFoto" class="mt-3 text-center"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-danger"
-                                    data-bs-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-sm btn-success"
-                                    id="btnSimpanFoto">Simpan</button>
-                            </div>
+            <!-- Modal Tambah Foto -->
+            <div class="modal fade" id="modalTambahFoto" tabindex="-1" aria-labelledby="modalTambahFotoLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTambahFotoLabel">Upload Foto</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Tutup"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" id="fileFoto" class="form-control" accept="image/*">
+                            <div id="previewModalFoto" class="mt-3 text-center"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-danger"
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-sm btn-success" id="btnSimpanFoto">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -381,35 +383,6 @@
             });
         </script>
     @endif
-
-    <script>
-        document.getElementById('btnUbah').addEventListener('click', function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                text: "Data pengecekan alat akan berubah.",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#0d6efd',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Ubah',
-                cancelButtonText: 'Batal',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('formUpdate').submit();
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire({
-                        title: 'Dibatalkan',
-                        text: 'Data pengecekan alat tidak jadi diubah.',
-                        icon: 'info',
-                        confirmButtonColor: '#0d6efd'
-                    });
-                }
-            });
-        });
-    </script>
 
     <script>
         // Preview Foto di Modal
@@ -449,43 +422,101 @@
         };
     </script>
 
-    <!-- Penomeran Otomatis - Catatan -->
+    <!-- Penomoran Otomatis - Catatan -->
     <script>
-        const textarea = document.getElementById("autoNumber");
+        document.querySelectorAll('textarea[id^="autoNumber-"]').forEach(function(textarea) {
+            function getCaretInfo(el) {
+                const pos = el.selectionStart;
+                const before = el.value.slice(0, pos);
+                const lineIndex = before.split("\n").length - 1;
+                const lastNewline = before.lastIndexOf("\n");
+                const offsetInLine = pos - (lastNewline + 1);
+                return {
+                    pos,
+                    lineIndex,
+                    offsetInLine
+                };
+            }
 
-        function renumber() {
-            let lines = textarea.value.split("\n");
-            let newLines = [];
-
-            for (let i = 0; i < lines.length; i++) {
-                // hapus nomor lama
-                let line = lines[i].replace(/^\d+\.\s*/, "");
-                
-                if (line.length > 0) {
-                    line = line.charAt(0).toUpperCase() + line.slice(1);
+            function setCaretByLineOffset(el, lineIndex, offsetInLine, newLines) {
+                let newPos = 0;
+                for (let i = 0; i < newLines.length; i++) {
+                    const line = newLines[i];
+                    if (i < lineIndex) {
+                        newPos += line.length + 1;
+                    } else if (i === lineIndex) {
+                        const isNumbered = /^\d+\.\s/.test(line);
+                        const prefixLen = isNumbered ? line.match(/^\d+\.\s/)[0].length : 0;
+                        const rawLineLen = line.length - prefixLen;
+                        const clampedOffset = Math.max(0, Math.min(offsetInLine, rawLineLen));
+                        newPos += prefixLen + clampedOffset;
+                        break;
+                    }
                 }
-                newLines.push((i + 1) + ". " + line);
+                newPos = Math.max(0, Math.min(newPos, el.value.length));
+                el.setSelectionRange(newPos, newPos);
             }
 
-            textarea.value = newLines.join("\n");
-        }
+            function renumberAndPreserveCaret() {
+                const caret = getCaretInfo(textarea);
+                const rawLines = textarea.value.split("\n").map(line => line.replace(/^\d+\.\s*/, ""));
+                const newLines = rawLines.map((raw, idx) => {
+                    if (raw.trim().length === 0) return "";
+                    return (idx + 1) + ". " + (raw.charAt(0).toUpperCase() + raw.slice(1));
+                });
 
-        textarea.addEventListener("keydown", function(e) {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                textarea.value += "\n";
-                renumber();
+                const newValue = newLines.join("\n");
+                textarea.value = newValue;
+                setCaretByLineOffset(textarea, caret.lineIndex, caret.offsetInLine, newLines);
             }
+
+            let debounceTimer = null;
+
+            function scheduleRenumber() {
+                if (debounceTimer) clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    renumberAndPreserveCaret();
+                    debounceTimer = null;
+                }, 120);
+            }
+
+            textarea.addEventListener("input", scheduleRenumber);
+
+            textarea.addEventListener("focus", function() {
+                if (textarea.value.trim() === "") {
+                    textarea.value = "1. ";
+                    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+                }
+            });
         });
+    </script>
 
-        textarea.addEventListener("input", function() {
-            renumber();
-        });
+    <script>
+        document.getElementById('btnUbah').addEventListener('click', function(e) {
+            e.preventDefault();
 
-        textarea.addEventListener("focus", function() {
-            if (textarea.value.trim() === "") {
-                textarea.value = "1. ";
-            }
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data pengecekan alat akan berubah.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#0d6efd',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Ubah',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('formUpdate').submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'Dibatalkan',
+                        text: 'Data pengecekan alat tidak jadi diubah.',
+                        icon: 'info',
+                        confirmButtonColor: '#0d6efd'
+                    });
+                }
+            });
         });
     </script>
 

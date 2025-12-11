@@ -146,7 +146,7 @@
                 <div class="d-flex align-items-center justify-content-center text-white rounded me-2 me-sm-2 flex-shrink-0"
                     style="width: 45px; height: 45px; background-color:#1E3D58;">
                     <!-- SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="icon icon-tabler icon-tabler-database">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -156,8 +156,9 @@
                     </svg>
                 </div>
 
-                <!-- Judul -->
-                <h2 class="fs-4 fw-bolder mb-0" style="color:#1E3D58;">Peralatan di {{ $lokasi->nama_lokasi }}</h2>
+                <h2 class="fs-4 fw-bolder mb-0 d-none d-sm-block" style="color:#1E3D58;">Peralatan di {{ $lokasi->nama_lokasi }}</h2>
+
+                <h2 class="fs-6 fw-bolder mb-0 d-block d-sm-none" style="color:#1E3D58;">Peralatan di {{ $lokasi->nama_lokasi }}</h2>
             </div>
         </div>
 
