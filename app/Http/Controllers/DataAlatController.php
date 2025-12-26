@@ -244,6 +244,7 @@ class DataAlatController extends Controller
             'merk_tipe' => 'required|string|max:255',
             'jumlah' => 'required|integer|min:1',
             'tahun_pemasangan' => 'required|integer|min:1900|max:' . date('Y'),
+            'kalibrasi_terakhir' => 'nullable|date_format:Y-m'
         ]);
 
         $lokasi = Lokasi::where('nama_lokasi', urldecode($nama_lokasi))->firstOrFail();
@@ -257,6 +258,9 @@ class DataAlatController extends Controller
             'merk_tipe' => $request->merk_tipe,
             'jumlah' => $request->jumlah,
             'tahun_pemasangan' => $request->tahun_pemasangan,
+            'kalibrasi_terakhir' => $request->kalibrasi_terakhir
+                ? $request->kalibrasi_terakhir . '-01'
+                : null,
         ]);
 
         return redirect()->back()->with('success', 'Data alat berhasil ditambahkan!');
@@ -292,10 +296,17 @@ class DataAlatController extends Controller
             'merk_tipe' => 'nullable|string|max:255',
             'jumlah' => 'required|integer|min:1',
             'tahun_pemasangan' => 'required|integer|min:1900|max:' . date('Y'),
+            'kalibrasi_terakhir' => 'nullable|date_format:Y-m'
         ]);
 
         $alat = Alat::findOrFail($id);
+        
+        $validated['kalibrasi_terakhir'] = $request->kalibrasi_terakhir
+            ? $request->kalibrasi_terakhir . '-01'
+            : null;
+
         $alat->update($validated);
+
 
         return redirect()->back()->with('success', 'Data alat berhasil diperbarui.');
     }

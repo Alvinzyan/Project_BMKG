@@ -14,7 +14,7 @@ class Alat extends Model
 
     protected $fillable = [
         'nama_alat', 'id_kategori', 'merk_tipe', 'jumlah',
-        'tahun_pemasangan', 'keterangan'
+        'tahun_pemasangan', 'kalibrasi_terakhir','keterangan'
     ];
 
     public function pengecekans(): HasMany

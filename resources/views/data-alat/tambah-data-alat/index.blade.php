@@ -233,6 +233,8 @@
                                     <th style="border:1px solid #000;">Merk/Type</th>
                                     <th style="border:1px solid #000;">Jumlah</th>
                                     <th style="border:1px solid #000;">Tahun Pemasangan</th>
+                                    <th style="border:1px solid #000;">Kalibrasi Terakhir</th>
+                                    <th style="border:1px solid #000;">Status Kalibrasi</th>
                                     <th style="border:1px solid #000;">Aksi</th>
                                 </tr>
                             </thead>
@@ -244,6 +246,13 @@
                                         <td style="border:1px solid #000;">{{ $a->merk_tipe }}</td>
                                         <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
                                         <td style="border:1px solid #000;">{{ $a->tahun_pemasangan }}</td>
+                                        <td style="border:1px solid #000;">{{ $a->kalibrasi_terakhir }}</td>
+                                        <td style="border:1px solid #000;">
+                                            <span class="badge bg-{{ $a->status_kalibrasi['color'] }}">
+                                                {{ $a->status_kalibrasi['label'] }}
+                                            </span>
+                                        </td>
+
                                         <td style="border:1px solid #000;">
 
                                             <a href="#" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
@@ -324,6 +333,13 @@
                                                                 name="tahun_pemasangan"
                                                                 value="{{ $a->tahun_pemasangan }}" required>
                                                         </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Kalibrasi Terakhir</label>
+                                                            <input type="month" class="form-control"
+                                                                name="kalibrasi_terakhir"
+                                                                value="{{ $a->kalibrasi_terakhir }}">
+                                                        </div>
                                                     </div>
 
                                                     <div class="modal-footer">
@@ -389,6 +405,11 @@
                                     <input type="number" class="form-control"
                                         id="tahun_pemasangan_{{ Str::slug($group) }}" name="tahun_pemasangan"
                                         required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Kalibrasi Terakhir</label>
+                                    <input type="month" class="form-control" name="kalibrasi_terakhir">
                                 </div>
                             </div>
 

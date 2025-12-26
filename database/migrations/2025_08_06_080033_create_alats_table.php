@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('merk_tipe');
             $table->integer('jumlah');
             $table->integer('tahun_pemasangan')->nullable();
+            $table->string('kalibrasi_terakhir')->nullable(); 
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });
