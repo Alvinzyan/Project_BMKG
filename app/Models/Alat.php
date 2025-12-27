@@ -42,4 +42,43 @@ class Alat extends Model
     {
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
+
+    public function getKalibrasiTerakhirFormatAttribute()
+    {
+        if (!$this->kalibrasi_terakhir) return null;
+
+        try {
+            return \Carbon\Carbon::parse($this->kalibrasi_terakhir)
+                ->locale('id')
+                ->translatedFormat('F Y');
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+
+    public function getStatusKalibrasiAttribute()
+    {
+        if (!$this->kalibrasi_terakhir) return null;
+
+        try {
+            $jatuhTempo = \Carbon\Carbon::parse($this->kalibrasi_terakhir)
+            ->addYear() //kalibrasi berlaku 1 tahun
+            ->startOfMonth();
+        } catch (\Exception $e) {
+            return null;
+        }
+
+        $now = now()->startOfMonth();
+        $diff = $now->diffInMonths($jatuhTempo, false);
+
+        // 1 bulan sebelum sampai lewat
+        if ($diff <= 1) return 'red';
+
+        // 2–3 bulan sebelum jatuh tempo
+        if ($diff <= 3) return 'yellow';
+
+        // Lebih dari 3 bulan lagi
+        return 'green';
+    }
 }

@@ -246,11 +246,19 @@
                                         <td style="border:1px solid #000;">{{ $a->merk_tipe }}</td>
                                         <td style="border:1px solid #000;">{{ $a->jumlah }}</td>
                                         <td style="border:1px solid #000;">{{ $a->tahun_pemasangan }}</td>
-                                        <td style="border:1px solid #000;">{{ $a->kalibrasi_terakhir }}</td>
                                         <td style="border:1px solid #000;">
-                                            <span class="badge bg-{{ $a->status_kalibrasi['color'] }}">
-                                                {{ $a->status_kalibrasi['label'] }}
-                                            </span>
+                                            {{ $a->kalibrasi_terakhir_format ?? '-' }}
+                                        </td>
+                                        <td style="border:1px solid #000; text-align:center;">
+                                            @if($a->status_kalibrasi === 'red')
+                                                <span class="badge bg-danger">Kadaluarsa</span>
+                                            @elseif($a->status_kalibrasi === 'yellow')
+                                                <span class="badge bg-warning">Akan Kadaluarsa</span>
+                                            @elseif($a->status_kalibrasi === 'green')
+                                                <span class="badge bg-success">Aktif</span>
+                                            @else
+                                                -
+                                            @endif
                                         </td>
 
                                         <td style="border:1px solid #000;">
@@ -338,7 +346,7 @@
                                                             <label class="form-label">Kalibrasi Terakhir</label>
                                                             <input type="month" class="form-control"
                                                                 name="kalibrasi_terakhir"
-                                                                value="{{ $a->kalibrasi_terakhir }}">
+                                                                value="{{ $a->kalibrasi_terakhir ? \Carbon\Carbon::parse($a->kalibrasi_terakhir)->format('Y-m') : '' }}">
                                                         </div>
                                                     </div>
 

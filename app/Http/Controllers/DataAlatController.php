@@ -301,9 +301,10 @@ class DataAlatController extends Controller
 
         $alat = Alat::findOrFail($id);
         
-        $validated['kalibrasi_terakhir'] = $request->kalibrasi_terakhir
-            ? $request->kalibrasi_terakhir . '-01'
-            : null;
+        $validated['kalibrasi_terakhir'] =
+            ($request->kalibrasi_terakhir && $request->kalibrasi_terakhir !== '-')
+                ? $request->kalibrasi_terakhir . '-01'
+                : null;
 
         $alat->update($validated);
 
